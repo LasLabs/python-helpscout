@@ -20,7 +20,6 @@ omit =
     */virtualenv/*
     */tests/*
     setup.py
-    */__init__.py
     tests.py
 
 [xml]
