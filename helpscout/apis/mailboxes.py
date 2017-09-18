@@ -11,6 +11,7 @@ class Mailboxes(BaseApi):
     """This represents the ``Mailboxes`` Endpoint.
 
     The following aspects are implemented:
+
     * `List Mailboxes
       <http://developer.helpscout.net/help-desk-api/mailboxes/list/>`_
     * `Get Mailboxes

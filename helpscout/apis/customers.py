@@ -13,6 +13,7 @@ class Customers(BaseApi):
     """This represents the ``Customers`` Endpoint.
 
     The following aspects are implemented:
+    
     * `List Customers
       <http://developer.helpscout.net/help-desk-api/customers/list/>`_
     * `Get Customer

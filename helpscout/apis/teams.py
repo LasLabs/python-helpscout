@@ -11,6 +11,7 @@ class Teams(BaseApi):
     """This represents the ``Teams`` Endpoint.
 
     The following aspects are implemented:
+
     * `List Teams
       <http://developer.helpscout.net/help-desk-api/teams/list/>`_
     * `Get Teams
