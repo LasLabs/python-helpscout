@@ -58,7 +58,7 @@ class Mailboxes(BaseApi):
 
         Args:
             mailbox_or_id (Mailbox or int): Mailbox of the ID of the mailbox
-            to get the folders for.
+             to get the folders for.
 
         Returns:
             RequestPaginator of Folder: Folders iterator.

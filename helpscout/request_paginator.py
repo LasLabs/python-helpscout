@@ -38,16 +38,16 @@ class RequestPaginator(object):
             endpoint (str): URI endpoint to call.
             session (requests.Session): The authenticated requests session.
             data (dict): Data to be sent in the query string for the
-            Request.
+             Request.
             output_type (type): Class type to output. Object will be
-            instantiated using the current row before output.
+             instantiated using the current row before output.
             request_type (str): Type of request to send (``GET`` or ``POST``).
             session (requests.Session, optional): An authenticated requests
-            session to use.
+             session to use.
 
         Raises:
             NotImplementedError: In the event that an invalid request type was
-            defined.
+             defined.
         """
         self.endpoint = endpoint
         self.data = data
@@ -80,11 +80,11 @@ class RequestPaginator(object):
 
         Args:
             data (dict, optional): Either the request parameters or the JSON
-            data, depending on the request type.
+             data, depending on the request type.
 
         Raises:
             NotImplementedError: In the event that an invalid request type was
-            defined.
+             defined.
 
         Returns:
             mixed: JSON decoded respons.
@@ -136,9 +136,7 @@ class RequestPaginator(object):
         return self._call('put', url=self.endpoint, json=json)
 
     def _call(self, method, *args, **kwargs):
-        """Call the remote service and return the response data.
-
-        """
+        """Call the remote service and return the response data."""
 
         assert self.session
         method = getattr(self.session, method)

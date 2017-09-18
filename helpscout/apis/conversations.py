@@ -45,22 +45,22 @@ class Conversations(BaseApi):
             session (requests.Session): Authenticated requests Session.
             conversation (Conversation): The conversation to be created.
             imported (bool): The ``imported`` request parameter enables
-            conversations to be created for historical purposes (i.e.
-            if moving from a different platform, you can import your
-            history). When ``imported`` is set to ``True``, no outgoing emails
-            or notifications will be generated.
+             conversations to be created for historical purposes (i.e.
+             if moving from a different platform, you can import your
+             history). When ``imported`` is set to ``True``, no outgoing
+             emails or notifications will be generated.
             auto_reply (bool): The ``auto_reply`` request parameter enables
-            auto replies to be sent when a conversation is created via the
-            API. When ``auto_reply`` is set to ``True``, an auto reply will be
-            sent as long as there is at least one ``customer`` thread in the
-            conversation.
+             auto replies to be sent when a conversation is created via the
+             API. When ``auto_reply`` is set to ``True``, an auto reply will
+             be sent as long as there is at least one ``customer`` thread in the
+             conversation.
             _reload (bool, optional): Set this request parameter to ``True``
-            to return the created conversation in the response.
+             to return the created conversation in the response.
 
         Returns:
             bool: Success status, if ``_reload`` is ``False``.
             Conversation: Newly created conversation, if ``_reload`` is
-            ``True``.
+             ``True``.
         """
         data = {
             'conversation': conversation.to_api(),
@@ -86,16 +86,16 @@ class Conversations(BaseApi):
 
         Args:
             conversation (Conversation): The conversation that the thread is
-            being added to.
+             being added to.
             session (requests.Session): Authenticated requests Session.
             thread (Thread): The thread to be created.
             imported (bool): The ``imported`` request parameter enables
-            threads to be created for historical purposes (i.e.
-            if moving from a different platform, you can import your
-            history). When ``imported`` is set to ``True``, no outgoing emails
-            or notifications will be generated.
+             conversations to be created for historical purposes (i.e.
+             if moving from a different platform, you can import your
+             history). When ``imported`` is set to ``True``, no outgoing
+             emails or notifications will be generated.
             _reload (bool, optional): Set this request parameter to ``True``
-            to return the created conversation in the response.
+             to return the created conversation in the response.
 
         Returns:
             bool: Success status, if ``_reload`` is ``False``.
@@ -158,12 +158,12 @@ class Conversations(BaseApi):
             session (requests.Session): Authenticated requests Session.
             conversation (Conversation): The conversation to be updated.
             _reload (bool, optional): Set this request parameter to ``True``
-            to return the created conversation in the response.
+             to return the created conversation in the response.
 
         Returns:
             bool: Success status, if ``_reload`` is ``False``.
             Conversation: Freshly updated conversation, if ``_reload`` is
-            ``True``.
+             ``True``.
         """
         data = {
             'conversation': conversation.to_api(),
@@ -184,10 +184,10 @@ class Conversations(BaseApi):
         Args:
             session (requests.Session): Authenticated requests Session.
             conversation (Conversation): The conversation that the thread
-            belongs to.
+             belongs to.
             thread (Thread): The thread to be updated.
             _reload (bool, optional): Set this request parameter to ``True``
-            to return the created conversation in the response.
+             to return the created conversation in the response.
 
         Returns:
             bool: Success status, if ``_reload`` is ``False``.

@@ -36,7 +36,7 @@ class BaseModel(properties.HasProperties):
 
         Raises:
             HelpScoutValidationError: In the event that an unexpected property
-            is received.
+             is received.
 
         Returns:
             BaseModel: Instantiated model using the API values.
@@ -72,7 +72,7 @@ class BaseModel(properties.HasProperties):
         
         Returns:
             dict: Mapping representing this object that can be sent to the
-            API.
+             API.
         """
         vals = {}
         for attribute, attribute_type in self._props.items():
