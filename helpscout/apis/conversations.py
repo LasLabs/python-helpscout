@@ -16,19 +16,21 @@ class Conversations(BaseApi):
     The following aspects are implemented:
 
     * `List Conversations
-      <developer.helpscout.net/help-desk-api/conversations/list/>`_
+      <http://developer.helpscout.net/help-desk-api/conversations/list/>`_
     * `Get Conversation
-      <developer.helpscout.net/help-desk-api/conversations/get/>`_
+      <http://developer.helpscout.net/help-desk-api/conversations/get/>`_
     * `Create Conversation
-      <developer.helpscout.net/help-desk-api/conversations/create/>`_
+      <http://developer.helpscout.net/help-desk-api/conversations/create/>`_
     * `Update Conversation
-      <developer.helpscout.net/help-desk-api/conversations/update/>`_
+      <http://developer.helpscout.net/help-desk-api/conversations/update/>`_
     * `Delete Conversation
-      <developer.helpscout.net/help-desk-api/conversations/delete/>`_
+      <http://developer.helpscout.net/help-desk-api/conversations/delete/>`_
     * `Create Thread
-      <developer.helpscout.net/help-desk-api/conversations/create-thread/>`_
+      <http://eveloper.helpscout.net/help-desk-api/conversations/
+      create-thread/>`_
     * `Update Thread
-      <developer.helpscout.net/help-desk-api/conversations/update-thread/>`_
+      <http://developer.helpscout.net/help-desk-api/conversations/
+      update-thread/>`_
     """
 
     __object__ = Conversation
