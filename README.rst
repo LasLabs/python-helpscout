@@ -22,6 +22,19 @@ If you would like to contribute, or prefer Git::
    pip install -r requirements.txt
    pip install .
 
+Known Issues / RoadMap
+======================
+
+* Add the ability to accept web hooks via HTTP
+* Add better validations (like regexes for emails)
+* Verify required attributes, particularly when creating for API instead of
+  receiving
+* Attachment handling in Conversations (Create/Delete Attachment)
+* Raw email source handling in Conversations (Get Thread Source)
+* Implement List Customers by Mailbox
+* Implement Search endpoint
+* Implement Workflows
+
 Credits
 =======
 
