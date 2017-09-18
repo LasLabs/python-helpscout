@@ -69,7 +69,7 @@ class BaseApi(object):
             result_length = len(results)
             if result_length == 0:
                 return None
-            return results[0]
+            return cls.__object__.from_api(**results[0])
         obj = super(BaseApi, cls).__new__(cls)
         obj.paginator = paginator
         return obj

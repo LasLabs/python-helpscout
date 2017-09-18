@@ -151,8 +151,8 @@ class RequestPaginator(object):
             message = response_json.get('error', response_json.get('message'))
             raise HelpScoutRemoteException(response.status_code, message)
 
-        self.page_current = response_json[self.PAGE_CURRENT]
-        self.page_total = response_json[self.PAGE_TOTAL]
+        self.page_current = response_json.get(self.PAGE_CURRENT, 1)
+        self.page_total = response_json.get(self.PAGE_TOTAL, 1)
 
         try:
             return response_json[self.PAGE_DATA_MULTI]

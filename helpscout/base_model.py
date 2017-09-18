@@ -61,9 +61,15 @@ class BaseModel(properties.HasProperties):
                 vals[attribute] = prop.instance_class.from_api(**value)
 
             elif isinstance(prop, properties.List):
-                vals[attribute] = [
-                    prop.prop.instance_class.from_api(**v) for v in value
-                ]
+                attributes = []
+                for v in value:
+                    try:
+                        attributes.append(
+                            prop.prop.instance_class.from_api(**v),
+                        )
+                    except AttributeError:
+                        attributes.append(v)
+                vals[attribute] = attributes
 
         return cls(**vals)
 

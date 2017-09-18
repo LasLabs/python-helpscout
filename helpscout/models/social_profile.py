@@ -13,7 +13,7 @@ class SocialProfile(BaseModel):
         'Username',
         required=True,
     )
-    location = properties.StringChoice(
+    type = properties.StringChoice(
         'Type of social profile.',
         choices=['twitter',
                  'facebook',
