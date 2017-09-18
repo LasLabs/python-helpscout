@@ -1,4 +1,6 @@
-|License MIT| | |Build Status| | |Test Coverage| | |Code Climate|
+|License MIT| | |PyPi Package| | |PyPi Versions|
+
+|Build Status| | |Test Coverage| | |Code Climate|
 
 =========
 HelpScout
@@ -192,12 +194,18 @@ Maintainer
 
 This module is maintained by LasLabs Inc.
 
-.. |Build Status| image:: https://api.travis-ci.org/LasLabs/python-helpscout.svg?branch=master
+.. |Build Status| image:: https://img.shields.io/travis/LasLabs/python-helpscout/master.svg
    :target: https://travis-ci.org/LasLabs/python-helpscout
-.. |Test Coverage| image:: https://codecov.io/gh/LasLabs/python-helpscout/branch/master/graph/badge.svg
+.. |Test Coverage| image:: https://img.shields.io/codecov/c/github/LasLabs/python-helpscout/master.svg
    :target: https://codecov.io/gh/LasLabs/python-helpscout
-.. |Code Climate| image:: https://codeclimate.com/github/LasLabs/python-helpscout/badges/gpa.svg
+.. |Code Climate| image:: https://img.shields.io/codeclimate/github/LasLabs/python-helpscout.svg
    :target: https://codeclimate.com/github/LasLabs/python-helpscout
-.. |License MIT| image:: https://img.shields.io/badge/license-MIT-blue.svg
+.. |License MIT| image:: https://img.shields.io/github/license/laslabs/python-helpscout.svg
    :target: https://opensource.org/licenses/MIT
    :alt: License: MIT
+.. |PyPi Package| image:: https://img.shields.io/pypi/v/helpscout.svg
+   :target: https://pypi.python.org/pypi/helpscout
+   :alt: PyPi Package
+.. |PyPi Versions| image:: https://img.shields.io/pypi/pyversions/helpscout.svg
+   :target: https://pypi.python.org/pypi/helpscout
+   :alt: PyPi Versions
