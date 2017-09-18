@@ -1,2 +1,2 @@
-requests
-properties
+requests>=2.18.4
+properties>=0.3.6b0
