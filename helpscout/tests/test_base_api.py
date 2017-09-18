@@ -57,7 +57,7 @@ class TestBaseApi(unittest.TestCase):
     @mock.patch(PAGINATOR)
     def test_new_paginator_singleton(self, paginator):
         """It should return the record if singleton and found."""
-        paginator().call.return_value = [BaseModel(id=9876)]
+        paginator().call.return_value = [{'id': 9876}]
         res = self.new_api(singleton=True)
         self.assertIsInstance(res, BaseModel)
         self.assertEqual(res.id, 9876)
