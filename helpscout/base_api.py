@@ -16,9 +16,9 @@ class BaseApi(object):
     Attributes:
         BASE_URI (str): HelpScout API URI base.
         paginator (RequestPaginator): Object to use for producing an iterator
-        representing multiple requests (API response pages). Created on init.
+         representing multiple requests (API response pages). Created on init.
         __object__ (helpscout.models.BaseModel): Model object that API
-        represents.
+         represents.
     """
 
     BASE_URI = 'https://api.helpscout.net/v1'

@@ -33,10 +33,10 @@ class HelpScout(object):
 
     Attributes:
         Conversations (helpscout.api.Conversations): Conversations API
-        endpoint.
+            endpoint.
         Customers (helpscout.api.Customers): Customers API endpoint.
         __apis__ (dict): References to all available APIs, keyed by class
-        name.
+            name.
     """
 
     __apis__ = {}

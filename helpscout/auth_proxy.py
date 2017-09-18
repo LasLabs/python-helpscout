@@ -26,7 +26,7 @@ class AuthProxy(object):
         Args:
             auth (requests.Session): Authenticated requests Session.
             proxy_class (type): A class implementing the ``BaseApi``
-            interface.
+             interface.
         """
         assert isinstance(proxy_class, type)
         self.session = session
@@ -56,8 +56,8 @@ class AuthProxy(object):
 
         Args:
             method (callable): A method call that should be authenticated. It
-            should accept a ``requests.Session`` as its first parameter, which
-            should be used for the actual API call.
+             should accept a ``requests.Session`` as its first parameter,
+             which should be used for the actual API call.
 
         Returns:
             mixed: The results of the authenticated callable.

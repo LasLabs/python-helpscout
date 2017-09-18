@@ -58,7 +58,7 @@ class Teams(BaseApi):
 
         Args:
             team_or_id (Team or int): Team of the ID of the team
-            to get the folders for.
+             to get the folders for.
 
         Returns:
             RequestPaginator of User: Users iterator.
