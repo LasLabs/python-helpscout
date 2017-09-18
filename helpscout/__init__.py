@@ -24,7 +24,11 @@ class HelpScout(object):
     naive API object.
 
     This allows for the ``HelpScout`` instance to act as a container for
-    all of the authenticated API objects, with usage such as::
+    all of the authenticated API objects.
+
+    Examples:
+
+    ..code-block:: python
 
         from helpscout import HelpScout
         hs = HelpScout('api_key')
@@ -32,9 +36,14 @@ class HelpScout(object):
             print(customer)
 
     Attributes:
-        Conversations (helpscout.api.Conversations): Conversations API
+        Conversations (helpscout.api.conversations.Conversations):
+            Conversations API endpoint.
+        Customers (helpscout.api.customers.Customers): Customers API
             endpoint.
-        Customers (helpscout.api.Customers): Customers API endpoint.
+        Mailboxes (helpscout.api.mailboxes.Mailboxes): Mailboxes API endpoint.
+        Tags (helpscout.api.tags.Tags): Tags API endpoint.
+        Teams (helpscout.api.teams.Teams): Teams API endpoint.
+        Users (helpscout.api.users.Users): Users API endpoint.
         __apis__ (dict): References to all available APIs, keyed by class
             name.
     """
