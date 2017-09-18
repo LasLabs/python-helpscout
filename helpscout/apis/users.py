@@ -11,6 +11,7 @@ class Users(BaseApi):
     """This represents the ``Users`` Endpoint.
 
     The following aspects are implemented:
+    
     * `List Users
       <http://developer.helpscout.net/help-desk-api/users/list/>`_
     * `Get Users

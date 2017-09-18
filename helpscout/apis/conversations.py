@@ -14,6 +14,7 @@ class Conversations(BaseApi):
     """This represents the ``Conversations`` Endpoint.
 
     The following aspects are implemented:
+
     * `List Conversations
       <developer.helpscout.net/help-desk-api/conversations/list/>`_
     * `Get Conversation

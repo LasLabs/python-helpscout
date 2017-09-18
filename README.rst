@@ -22,6 +22,47 @@ If you would like to contribute, or prefer Git::
    pip install -r requirements.txt
    pip install .
 
+Usage
+=====
+
+The `HelpScout object <https://laslabs.github.io/python-helpscout/helpscout.html#helpscout.HelpScout>`_
+is the primary point of interaction with the HelpScout API.
+
+Connecting to the HelpScout API will require an API Key, which is generated from
+within your HelpScout account. In the below example, our key is ``API_KEY``.
+
+.. code-block:: python
+
+   from helpscout import HelpScout
+   hs = HelpScout('API_KEY')
+
+The HelpScout API endpoints are exposed as variables on the instantiated ``HelpScout``
+object. The available endpoints are:
+
+* `Conversations <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.conversations>`_
+* `Customers <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.customers>`_
+* `Mailboxes <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.mailboxes>`_
+* `Tags <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.tags>`_
+* `Teams <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.teams>`_
+* `Users <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.users>`_
+
+They can also be viewed from the ``__apis__`` property of ``HelpScout``::
+
+   >>> hs.__apis__
+   {'Conversations': <helpscout.auth_proxy.AuthProxy object at 0x10783ddd0>,
+    'Customers': <helpscout.auth_proxy.AuthProxy object at 0x10783dd90>,
+    'Mailboxes': <helpscout.auth_proxy.AuthProxy object at 0x10783ded0>,
+    'Users': <helpscout.auth_proxy.AuthProxy object at 0x10783df50>,
+    'Teams': <helpscout.auth_proxy.AuthProxy object at 0x10783df10>,
+    }
+
+API usage is as simple as calling the method with the required parameters:
+
+.. code-block:: python
+
+   for customer in hs.Customers.list():
+       print(customer.first_name)
+
 Known Issues / RoadMap
 ======================
 
@@ -37,11 +78,6 @@ Known Issues / RoadMap
 
 Credits
 =======
-
-Images
-------
-
-* LasLabs: `Icon <https://repo.laslabs.com/projects/TEM/repos/odoo-module_template/browse/module_name/static/description/icon.svg?raw>`_.
 
 Contributors
 ------------
