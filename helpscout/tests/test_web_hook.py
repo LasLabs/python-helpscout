@@ -9,11 +9,6 @@ from ..exceptions import HelpScoutSecurityException
 from ..web_hook import WebHook
 from ..web_hook.web_hook_event import WebHookEvent
 
-try:
-    import mock
-except ImportError:
-    mock = unittest.mock
-
 
 class TestWebHook(unittest.TestCase):
 

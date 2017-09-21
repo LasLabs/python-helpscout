@@ -7,11 +7,6 @@ import unittest
 from ..models import Customer
 from ..web_hook.web_hook_event import WebHookEvent
 
-try:
-    import mock
-except ImportError:
-    mock = unittest.mock
-
 
 class TestWebHookEvent(unittest.TestCase):
 

@@ -2,16 +2,12 @@
 # Copyright 2017-TODAY LasLabs Inc.
 # License MIT (https://opensource.org/licenses/MIT).
 
+import mock
 import unittest
 
 from .. import AuthProxy
 from .. import HelpScout
 from ..apis import __all__ as all_apis
-
-try:
-    import mock
-except ImportError:
-    mock = unittest.mock
 
 
 class TestHelpScout(unittest.TestCase):
