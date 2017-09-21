@@ -26,9 +26,7 @@ class HelpScout(object):
     This allows for the ``HelpScout`` instance to act as a container for
     all of the authenticated API objects.
 
-    Examples:
-
-    ..code-block:: python
+    Examples::
 
         from helpscout import HelpScout
         hs = HelpScout('api_key')
