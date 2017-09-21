@@ -5,7 +5,7 @@
 import properties
 import re
 
-from .exceptions import HelpScoutValidationError
+from .exceptions import HelpScoutValidationException
 
 
 # Identify lowerCamelCase strings.
@@ -35,7 +35,7 @@ class BaseModel(properties.HasProperties):
         a fully Objectified and Pythonified API response.
 
         Raises:
-            HelpScoutValidationError: In the event that an unexpected property
+            HelpScoutValidationException: In the event that an unexpected property
              is received.
 
         Returns:
@@ -51,7 +51,7 @@ class BaseModel(properties.HasProperties):
             prop = cls._props.get(attribute)
 
             if not prop:
-                raise HelpScoutValidationError(
+                raise HelpScoutValidationException(
                     '"%s" is not a valid property for "%s".' % (
                         attribute, cls,
                     ),

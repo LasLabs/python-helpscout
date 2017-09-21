@@ -4,7 +4,7 @@
 
 import unittest
 
-from ..exceptions import HelpScoutRemoteException, HelpScoutValidationError
+from ..exceptions import HelpScoutRemoteException, HelpScoutValidationException
 
 class TestExceptions(unittest.TestCase):
 
@@ -18,5 +18,5 @@ class TestExceptions(unittest.TestCase):
     def test_helpscout_base_exception(self):
         """It should include the message in string."""
         message = 'message'
-        e = HelpScoutValidationError(message)
+        e = HelpScoutValidationException(message)
         self.assertEqual(str(e), message)

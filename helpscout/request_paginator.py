@@ -4,7 +4,7 @@
 
 import requests
 
-from .exceptions import HelpScoutRemoteException, HelpScoutValidationError
+from .exceptions import HelpScoutRemoteException, HelpScoutValidationException
 
 
 class RequestPaginator(object):

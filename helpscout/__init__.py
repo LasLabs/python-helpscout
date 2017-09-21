@@ -8,6 +8,7 @@ from requests.auth import HTTPBasicAuth
 from .auth_proxy import AuthProxy
 from .base_api import BaseApi
 from .base_model import BaseModel
+from .web_hook import WebHook
 
 from . import exceptions
 
@@ -44,9 +45,12 @@ class HelpScout(object):
         Users (helpscout.api.users.Users): Users API endpoint.
         __apis__ (dict): References to all available APIs, keyed by class
             name.
+        web_hook (WebHook): A usable web hook parser object; lazy loaded when
+            actually used.
     """
 
     __apis__ = {}
+    _web_hook = None
 
     def __init__(self, api_key):
         """Initialize a new HelpScout client.
@@ -57,6 +61,16 @@ class HelpScout(object):
         self.session = Session()
         self.session.auth = HTTPBasicAuth(api_key, 'NoPassBecauseKey!')
         self._load_apis()
+
+    def web_hook(self, *args, **kwargs):
+        """Represents the web hook parser. Is lazy loaded when needed.
+
+        Returns:
+            helpscout.web_hook.WebHookEvent: The event that was received.
+        """
+        if self._web_hook is None:
+            self._web_hook = WebHook(self.session.auth.username)
+        return self._web_hook.receive(*args, **kwargs)
 
     def _load_apis(self):
         """Find available APIs and set instances property auth proxies."""
