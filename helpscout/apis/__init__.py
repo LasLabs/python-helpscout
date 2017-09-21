@@ -5,6 +5,7 @@
 from .conversations import Conversations
 from .customers import Customers
 from .mailboxes import Mailboxes
+from .tags import Tags
 from .teams import Teams
 from .users import Users
 
@@ -13,6 +14,7 @@ __all__ = [
     'Conversations',
     'Customers',
     'Mailboxes',
+    'Tags',
     'Teams',
     'Users',
 ]
