@@ -94,3 +94,10 @@ class TestBaseApi(unittest.TestCase):
             res = BaseApi.get_search_domain(expect)
             from_tuple.assert_called_once_with(expect)
             self.assertEqual(res, from_tuple())
+
+    def test_new_object(self):
+        """It should return the proper object."""
+        expect = 123
+        res = BaseApi.new_object({'id': expect})
+        self.assertIsInstance(res, BaseModel)
+        self.assertEqual(res.id, expect)
