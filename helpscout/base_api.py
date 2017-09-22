@@ -85,6 +85,19 @@ class BaseApi(object):
             yield row
         raise StopIteration()
 
+    @classmethod
+    def new_object(cls, data):
+        """Return a new object of the correct type from the data.
+
+        Args:
+            data (dict): Data dictionary that should be converted to an
+                object. It can use either camelCase keys or snake_case.
+
+        Returns:
+            BaseModel: A model of the type declared in ``cls.__object__``.
+        """
+        return cls.__object__.from_api(**data)
+
     @staticmethod
     def get_search_domain(queries):
         """Helper method to create search domains if needed.
