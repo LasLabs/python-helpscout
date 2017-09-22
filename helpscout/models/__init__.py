@@ -46,7 +46,7 @@ __all__ = [
     'MailboxRef',
     'Option',
     'Person',
-    'Phone'
+    'Phone',
     'Rating',
     'SearchConversation',
     'SearchCustomer',

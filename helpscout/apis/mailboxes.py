@@ -15,13 +15,13 @@ class Mailboxes(BaseApi):
 
     * `List Mailboxes
       <http://developer.helpscout.net/help-desk-api/mailboxes/list/>`_
-      (:func:`~mailboxes.Mailboxes.list`)
+      (:func:`helpscout.apis.mailboxes.Mailboxes.list`)
     * `Get Mailboxes
       <http://developer.helpscout.net/help-desk-api/mailboxes/get/>`_
-      (:func:`~mailboxes.Mailboxes.get`)
+      (:func:`helpscout.apis.mailboxes.Mailboxes.get`)
     * `Get Folders
       <http://developer.helpscout.net/help-desk-api/mailboxes/folders/>`_
-      (:func:`~mailboxes.Mailboxes.get_folders`)
+      (:func:`helpscout.apis.mailboxes.Mailboxes.get_folders`)
     """
 
     __object__ = Mailbox

@@ -11,19 +11,19 @@ class Users(BaseApi):
     """This represents the ``Users`` Endpoint.
 
     The following aspects are implemented:
-    
+
     * `List Users
       <http://developer.helpscout.net/help-desk-api/users/list/>`_
-      (:func:`~users.Users.list`)
+      (:func:`helpscout.apis.users.Users.list`)
     * `Get Users
       <http://developer.helpscout.net/help-desk-api/users/get/>`_
-      (:func:`~users.Users.get`)
+      (:func:`helpscout.apis.users.Users.get`)
     * `Get Current User
       <http://developer.helpscout.net/help-desk-api/users/get/>`_
-      (:func:`~users.Users.get_me`)
+      (:func:`helpscout.apis.users.Users.get_me`)
     * `List Users By Mailbox
       <http://developer.helpscout.net/help-desk-api/users/mailbox-users/>`_
-      (:func:`~users.Users.find_in_mailbox`)
+      (:func:`helpscout.apis.users.Users.find_in_mailbox`)
     """
 
     __object__ = User
@@ -81,7 +81,7 @@ class Users(BaseApi):
         Args:
             session (requests.Session): Authenticated requests Session.
             mailbox_or_id (MailboxRef or int): Mailbox of the ID of the
-            mailbox to get the folders for.
+                mailbox to get the folders for.
 
         Returns:
             RequestPaginator of User: Users iterator.

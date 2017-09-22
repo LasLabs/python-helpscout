@@ -15,13 +15,13 @@ class Teams(BaseApi):
 
     * `List Teams
       <http://developer.helpscout.net/help-desk-api/teams/list/>`_
-      (:func:`~teams.Teams.list`)
+      (:func:`helpscout.apis.teams.Teams.list`)
     * `Get Teams
       <http://developer.helpscout.net/help-desk-api/teams/get/>`_
-      (:func:`~teams.Teams.get`)
+      (:func:`helpscout.apis.teams.Teams.get`)
     * `Get Team Members
       <http://developer.helpscout.net/help-desk-api/teams/team-members/>`_
-      (:func:`~teams.Teams.get_members`)
+      (:func:`helpscout.apis.teams.Teams.get_members`)
     """
 
     __object__ = Person

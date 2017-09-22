@@ -83,6 +83,7 @@ class HelpScout(object):
                 setattr(self, class_name, api)
                 self.__apis__[class_name] = api
 
+
 __all__ = [
     'AuthProxy',
     'BaseApi',

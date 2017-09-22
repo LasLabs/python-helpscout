@@ -9,7 +9,7 @@ from .request_paginator import RequestPaginator
 
 class BaseApi(object):
     """This is the API interface object to be implemented by API adapters.
-    
+
     It acts as a collection for the API object that it represents, passing
     through iteration to the API's request paginator.
 
@@ -33,7 +33,7 @@ class BaseApi(object):
                 request_type=RequestPaginator.GET, singleton=False,
                 session=None, out_type=None):
         """Create a new API object.
-        
+
         Args:
             endpoint (str): The API endpoint that this represents.
                 ``BASE_URI`` will be prepended, with no slashes added.
@@ -48,7 +48,7 @@ class BaseApi(object):
             out_type (BaseModel, optional): If set, this object will be used
                 for the creation of the models, instead of the one set in
                 ``cls.__object__``.
-        
+
         Raises:
             HelpScoutRemoteException: If ``singleton`` is ``True``, but the
                 remote API responds with more than one result.

@@ -2,10 +2,6 @@
 # Copyright 2017-TODAY LasLabs Inc.
 # License MIT (https://opensource.org/licenses/MIT).
 
-from .request_paginator import RequestPaginator
-
-from .exceptions import HelpScoutRemoteException
-
 
 class AuthProxy(object):
     """This object acts as a transparent authentication proxy for the API.

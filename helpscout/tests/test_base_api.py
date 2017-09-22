@@ -76,7 +76,7 @@ class TestBaseApi(unittest.TestCase):
             self.assertEqual(value, expect[idx])
 
     @mock.patch(PAGINATOR)
-    def test_new_paginator_singleton(self, paginator):
+    def test_new_paginator_singleton_out_type(self, paginator):
         """It should return an object of the correct type if defined."""
         paginator().call.return_value = [{'id': 9876}]
         res = self.new_api(singleton=True, out_type=mock.MagicMock())
