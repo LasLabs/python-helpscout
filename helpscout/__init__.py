@@ -8,6 +8,7 @@ from requests.auth import HTTPBasicAuth
 from .auth_proxy import AuthProxy
 from .base_api import BaseApi
 from .base_model import BaseModel
+from .domain import Domain
 from .web_hook import WebHook
 
 from . import exceptions
@@ -86,6 +87,7 @@ __all__ = [
     'AuthProxy',
     'BaseApi',
     'BaseModel',
+    'Domain',
     'exceptions',
     'HelpScout',
 ]

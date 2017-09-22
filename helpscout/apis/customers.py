@@ -5,6 +5,7 @@
 from .. import BaseApi
 
 from ..models.customer import Customer
+from ..models.search_customer import SearchCustomer
 
 from ..request_paginator import RequestPaginator
 
@@ -16,12 +17,19 @@ class Customers(BaseApi):
     
     * `List Customers
       <http://developer.helpscout.net/help-desk-api/customers/list/>`_
+      (:func:`~customers.Customers.list`)
+    * `Search Customers
+      <http://developer.helpscout.net/help-desk-api/search/customers/>`_
+      (:func:`~customers.Customers.search`)
     * `Get Customer
       <http://developer.helpscout.net/help-desk-api/customers/get/>`_
+      (:func:`~customers.Customers.get`)
     * `Create Customer
       <http://developer.helpscout.net/help-desk-api/customers/create/>`_
+      (:func:`~customers.Customers.create`)
     * `Update Customer
       <http://developer.helpscout.net/help-desk-api/customers/update/>`_
+      (:func:`~customers.Customers.update`)
     """
 
     __object__ = Customer
@@ -95,6 +103,30 @@ class Customers(BaseApi):
             'modifiedSince': modified_since,
         })
         return cls('/customers.json', data, session=session)
+
+    @classmethod
+    def search(cls, session, queries):
+        """Search for a customer given a domain.
+
+        Args:
+            session (requests.Session): Authenticated requests Session.
+            queries (Domain | iter): The queries for the domain. If a
+                ``Domain`` object is provided, it will simply be returned.
+                Otherwise, a ``Domain`` object will be generated from the
+                complex queries. In this case, the queries should conform
+                to the interface in
+                :func:`helpscout.domain.Domain.from_tuple`.
+
+        Returns:
+            RequestPaginator of SearchCustomer: SearchCustomer iterator.
+        """
+        domain = cls.get_search_domain(queries)
+        cls(
+            '/search/conversations.json',
+            data={'query': str(domain)},
+            session=session,
+            object=SearchCustomer,
+        )
 
     @classmethod
     def update(cls, session, customer, _reload=False):

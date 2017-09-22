@@ -5,6 +5,7 @@
 from .address import Address
 from .attachment import Attachment
 from .attachment_data import AttachmentData
+from .base_conversation import BaseConversation
 from .chat import Chat
 from .conversation import Conversation
 from .custom_field import CustomField
@@ -18,6 +19,8 @@ from .option import Option
 from .person import Person
 from .phone import Phone
 from .rating import Rating
+from .search_conversation import SearchConversation
+from .search_customer import SearchCustomer
 from .social_profile import SocialProfile
 from .source import Source
 from .tag import Tag
@@ -31,6 +34,7 @@ __all__ = [
     'Address',
     'Attachment',
     'AttachmentData',
+    'BaseConversation',
     'Chat',
     'Conversation',
     'CustomField',
@@ -44,6 +48,8 @@ __all__ = [
     'Person',
     'Phone'
     'Rating',
+    'SearchConversation',
+    'SearchCustomer',
     'SocialProfile',
     'Source',
     'Tag',

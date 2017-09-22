@@ -4,51 +4,18 @@
 
 import properties
 
-from .person import Person
-
 from .address import Address
 from .chat import Chat
 from .email import Email
 from .phone import Phone
+from .search_customer import SearchCustomer
 from .social_profile import SocialProfile
 from .website import Website
 
 
-class Customer(Person):
+class Customer(SearchCustomer):
     """This represents a customer, which is a type of person."""
 
-    full_name = properties.String(
-        'Full name for the customer',
-    )
-    photo_type = properties.StringChoice(
-        'Type of photo.',
-        choices=['unknown',
-                 'gravatar',
-                 'twitter',
-                 'facebook',
-                 'googleprofile',
-                 'googleplus',
-                 'linkedin',
-                 ],
-    )
-    gender = properties.StringChoice(
-        'Gender of this customer.',
-        choices=['female', 'male', 'unknown'],
-        default='unknown',
-        required=True,
-    )
-    age = properties.String(
-        'Age (or age range) of this customer.',
-    )
-    organization = properties.String(
-        'Company/Organization the customer identifies with.',
-    )
-    job_title = properties.String(
-        'Job title at company/organization.',
-    )
-    location = properties.String(
-        'Location',
-    )
     background = properties.String(
         'This is the Notes field from the user interface.',
     )
@@ -75,10 +42,4 @@ class Customer(Person):
     websites = properties.List(
         'Websites for this customer.',
         prop=Website,
-    )
-    created_at = properties.DateTime(
-        'UTC time when this customer was created.',
-    )
-    modified_at = properties.DateTime(
-        'UTC time when this customer was modified.',
     )

@@ -4,6 +4,7 @@
 
 from .. import BaseApi
 
+from ..models.folder import Folder
 from ..models.mailbox import Mailbox
 
 
@@ -14,10 +15,13 @@ class Mailboxes(BaseApi):
 
     * `List Mailboxes
       <http://developer.helpscout.net/help-desk-api/mailboxes/list/>`_
+      (:func:`~mailboxes.Mailboxes.list`)
     * `Get Mailboxes
       <http://developer.helpscout.net/help-desk-api/mailboxes/get/>`_
+      (:func:`~mailboxes.Mailboxes.get`)
     * `Get Folders
       <http://developer.helpscout.net/help-desk-api/mailboxes/folders/>`_
+      (:func:`~mailboxes.Mailboxes.get_folders`)
     """
 
     __object__ = Mailbox
@@ -53,7 +57,7 @@ class Mailboxes(BaseApi):
         return cls('/mailboxes.json', session=session)
 
     @classmethod
-    def list_folders(cls, session, mailbox_or_id):
+    def get_folders(cls, session, mailbox_or_id):
         """List the folders for the mailbox.
 
         Args:
@@ -68,4 +72,5 @@ class Mailboxes(BaseApi):
         return cls(
             '/mailboxes/%d/folders.json' % mailbox_or_id,
             session=session,
+            out_type=Folder,
         )

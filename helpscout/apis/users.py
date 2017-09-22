@@ -14,10 +14,16 @@ class Users(BaseApi):
     
     * `List Users
       <http://developer.helpscout.net/help-desk-api/users/list/>`_
+      (:func:`~users.Users.list`)
     * `Get Users
       <http://developer.helpscout.net/help-desk-api/users/get/>`_
-    * `Get Folders
-      <http://developer.helpscout.net/help-desk-api/users/folders/>`_
+      (:func:`~users.Users.get`)
+    * `Get Current User
+      <http://developer.helpscout.net/help-desk-api/users/get/>`_
+      (:func:`~users.Users.get_me`)
+    * `List Users By Mailbox
+      <http://developer.helpscout.net/help-desk-api/users/mailbox-users/>`_
+      (:func:`~users.Users.find_in_mailbox`)
     """
 
     __object__ = User

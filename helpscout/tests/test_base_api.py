@@ -25,8 +25,10 @@ class TestBaseApi(unittest.TestCase):
     REQUEST_TYPE = RequestPaginator.POST
 
     def new_api(self, endpoint=ENDPOINT, data=DATA, request_type=REQUEST_TYPE,
-                singleton=False, session=None):
-        return TestApi(endpoint, data, request_type, singleton, session)
+                singleton=False, session=None, out_type=None):
+        return TestApi(
+            endpoint, data, request_type, singleton, session, out_type,
+        )
 
     def test_new(self):
         """It should return a new TestApi instance."""
@@ -72,3 +74,10 @@ class TestBaseApi(unittest.TestCase):
         paginator().call.return_value = expect
         for idx, value in enumerate(self.new_api()):
             self.assertEqual(value, expect[idx])
+
+    @mock.patch(PAGINATOR)
+    def test_new_paginator_singleton(self, paginator):
+        """It should return an object of the correct type if defined."""
+        paginator().call.return_value = [{'id': 9876}]
+        res = self.new_api(singleton=True, out_type=mock.MagicMock())
+        self.assertIsInstance(res, mock.MagicMock)
