@@ -4,6 +4,7 @@
 
 from .. import BaseApi
 
+from ..models.person import Person
 from ..models.user import User
 
 
@@ -14,13 +15,16 @@ class Teams(BaseApi):
 
     * `List Teams
       <http://developer.helpscout.net/help-desk-api/teams/list/>`_
+      (:func:`~teams.Teams.list`)
     * `Get Teams
       <http://developer.helpscout.net/help-desk-api/teams/get/>`_
+      (:func:`~teams.Teams.get`)
     * `Get Team Members
       <http://developer.helpscout.net/help-desk-api/teams/team-members/>`_
+      (:func:`~teams.Teams.get_members`)
     """
 
-    __object__ = User
+    __object__ = Person
 
     @classmethod
     def get(cls, session, team_id):
@@ -31,7 +35,7 @@ class Teams(BaseApi):
             team_id (int): The ID of the team to get.
 
         Returns:
-            Team: A team singleton, if existing.
+            Person: A person singleton representing the team, if existing.
             None: If no match for the ID.
         """
         return cls(
@@ -48,24 +52,26 @@ class Teams(BaseApi):
             session (requests.Session): Authenticated requests Session.
 
         Returns:
-            RequestPaginator of Team: Teams iterator.
+            RequestPaginator of Person: Person iterator representing the
+                teams.
         """
         return cls('/teams.json', session=session)
 
     @classmethod
-    def list_members(cls, session, team_or_id):
+    def get_members(cls, session, team_or_id):
         """List the members for the team.
 
         Args:
-            team_or_id (Team or int): Team of the ID of the team
-             to get the folders for.
+            team_or_id (Person or int): Team or the ID of the team
+                to get the folders for.
 
         Returns:
-            RequestPaginator of User: Users iterator.
+            RequestPaginator of Users: Users iterator.
         """
-        if isinstance(team_or_id, Team):
+        if isinstance(team_or_id, Person):
             team_or_id = team_or_id.id
         return cls(
             '/teams/%d/members.json' % team_or_id,
             session=session,
+            out_type=User,
         )

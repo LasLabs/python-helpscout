@@ -5,6 +5,7 @@
 from .. import BaseApi
 
 from ..models.conversation import Conversation
+from ..models.search_conversation import SearchConversation
 from ..models.thread import Thread
 
 from ..request_paginator import RequestPaginator
@@ -17,20 +18,30 @@ class Conversations(BaseApi):
 
     * `List Conversations
       <http://developer.helpscout.net/help-desk-api/conversations/list/>`_
+      (:func:`~conversations.Conversation.list`)
+    * `Search Conversations
+      <http://developer.helpscout.net/help-desk-api/search/conversations/>`_
+      (:func:`~conversations.Conversation.search`)
     * `Get Conversation
       <http://developer.helpscout.net/help-desk-api/conversations/get/>`_
+      (:func:`~conversations.Conversation.get`)
     * `Create Conversation
       <http://developer.helpscout.net/help-desk-api/conversations/create/>`_
+      (:func:`~conversations.Conversation.create`)
     * `Update Conversation
       <http://developer.helpscout.net/help-desk-api/conversations/update/>`_
+      (:func:`~conversations.Conversation.update`)
     * `Delete Conversation
       <http://developer.helpscout.net/help-desk-api/conversations/delete/>`_
+      (:func:`~conversations.Conversation.delete`)
     * `Create Thread
-      <http://eveloper.helpscout.net/help-desk-api/conversations/
+      <http://developer.helpscout.net/help-desk-api/conversations/
       create-thread/>`_
+      (:func:`~conversations.Conversation.create_thread`)
     * `Update Thread
       <http://developer.helpscout.net/help-desk-api/conversations/
       update-thread/>`_
+      (:func:`~conversations.Conversation.update_thread`)
     """
 
     __object__ = Conversation
@@ -114,6 +125,7 @@ class Conversations(BaseApi):
             request_type=RequestPaginator.POST,
             singleton=True,
             session=session,
+            object=Thread,
         )
 
     @classmethod
@@ -135,6 +147,44 @@ class Conversations(BaseApi):
         )
 
     @classmethod
+    def find_customer(cls, session, mailbox, customer):
+        """Return conversations for a specific customer in a mailbox.
+
+        Args:
+            session (requests.Session): Authenticated requests Session.
+            mailbox (helpscout.models.Mailbox): Mailbox to search.
+            customer (helpscout.models.Customer): Customer to search for.
+
+        Returns:
+            RequestPaginator of Conversation: Conversations iterator.
+        """
+        return cls(
+            '/mailboxes/%d/customers/%s/conversations.json' % (
+                mailbox.id, customer.id,
+            ),
+            session=session,
+        )
+
+    @classmethod
+    def find_user(cls, session, mailbox, user):
+        """Return conversations for a specific user in a mailbox.
+
+        Args:
+            session (requests.Session): Authenticated requests Session.
+            mailbox (helpscout.models.Mailbox): Mailbox to search.
+            user (helpscout.models.User): User to search for.
+
+        Returns:
+            RequestPaginator of Conversation: Conversations iterator.
+        """
+        return cls(
+            '/mailboxes/%d/users/%s/conversations.json' % (
+                mailbox.id, user.id,
+            ),
+            session=session,
+        )
+
+    @classmethod
     def get(cls, session, conversation_id):
         """Return a specific conversation.
 
@@ -150,6 +200,65 @@ class Conversations(BaseApi):
             '/conversations/%d.json' % conversation_id,
             singleton=True,
             session=session,
+        )
+
+    @classmethod
+    def list(cls, session, mailbox):
+        """Return conversations in a mailbox.
+
+        Args:
+            session (requests.Session): Authenticated requests Session.
+            mailbox (helpscout.models.Mailbox): Mailbox to list.
+
+        Returns:
+            RequestPaginator of Conversation: Conversations iterator.
+        """
+        return cls(
+            '/mailboxes/%d/conversations.json' % mailbox.id,
+            session=session,
+        )
+
+    @classmethod
+    def list_folder(cls, session, mailbox, folder):
+        """Return conversations in a specific folder of a mailbox.
+
+        Args:
+            session (requests.Session): Authenticated requests Session.
+            mailbox (helpscout.models.Mailbox): Mailbox that folder is in.
+            folder (helpscout.models.Folder): Folder to list.
+
+        Returns:
+            RequestPaginator of Conversation: Conversations iterator.
+        """
+        return cls(
+            '/mailboxes/%d/folders/%s/conversations.json' % (
+                mailbox.id, folder.id,
+            ),
+            session=session,
+        )
+
+    @classmethod
+    def search(cls, session, queries):
+        """Search for a conversation given a domain.
+
+        Args:
+            session (requests.Session): Authenticated requests Session.
+            queries (Domain | iter): The queries for the domain. If a
+                ``Domain`` object is provided, it will simply be returned.
+                Otherwise, a ``Domain`` object will be generated from the
+                complex queries. In this case, the queries should conform
+                to the interface in
+                :func:`helpscout.domain.Domain.from_tuple`.
+
+        Returns:
+            RequestPaginator of SearchCustomer: SearchCustomer iterator.
+        """
+        domain = cls.get_search_domain(queries)
+        cls(
+            '/search/conversations.json',
+            data={'query': str(domain)},
+            session=session,
+            object=SearchConversation,
         )
 
     @classmethod
@@ -207,77 +316,5 @@ class Conversations(BaseApi):
             request_type=RequestPaginator.PUT,
             singleton=True,
             session=session,
-        )
-
-    @classmethod
-    def list(cls, session, mailbox):
-        """Return conversations in a mailbox.
-
-        Args:
-            session (requests.Session): Authenticated requests Session.
-            mailbox (helpscout.models.Mailbox): Mailbox to list.
-
-        Returns:
-            RequestPaginator of Conversation: Conversations iterator.
-        """
-        return cls(
-            '/mailboxes/%d/conversations.json' % mailbox.id,
-            session=session,
-        )
-
-    @classmethod
-    def list_folder(cls, session, mailbox, folder):
-        """Return conversations in a specific folder of a mailbox.
-
-        Args:
-            session (requests.Session): Authenticated requests Session.
-            mailbox (helpscout.models.Mailbox): Mailbox that folder is in.
-            folder (helpscout.models.Folder): Folder to list.
-
-        Returns:
-            RequestPaginator of Conversation: Conversations iterator.
-        """
-        return cls(
-            '/mailboxes/%d/folders/%s/conversations.json' % (
-                mailbox.id, folder.id,
-            ),
-            session=session,
-        )
-
-    @classmethod
-    def find_customer(cls, session, mailbox, customer):
-        """Return conversations for a specific customer in a mailbox.
-
-        Args:
-            session (requests.Session): Authenticated requests Session.
-            mailbox (helpscout.models.Mailbox): Mailbox to search.
-            customer (helpscout.models.Customer): Customer to search for.
-
-        Returns:
-            RequestPaginator of Conversation: Conversations iterator.
-        """
-        return cls(
-            '/mailboxes/%d/customers/%s/conversations.json' % (
-                mailbox.id, customer.id,
-            ),
-            session=session,
-        )
-
-    @classmethod
-    def find_user(cls, session, mailbox, user):
-        """Return conversations for a specific user in a mailbox.
-
-        Args:
-            session (requests.Session): Authenticated requests Session.
-            mailbox (helpscout.models.Mailbox): Mailbox to search.
-            user (helpscout.models.User): User to search for.
-
-        Returns:
-            RequestPaginator of Conversation: Conversations iterator.
-        """
-        return cls(
-            '/mailboxes/%d/users/%s/conversations.json' % (
-                mailbox.id, user.id,
-            ),
-            session=session,
+            object=Thread,
         )

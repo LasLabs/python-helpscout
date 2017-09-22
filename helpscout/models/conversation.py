@@ -4,7 +4,7 @@
 
 import properties
 
-from .. import BaseModel
+from .base_conversation import BaseConversation
 
 from .email import Email
 from .mailbox_ref import MailboxRef
@@ -13,8 +13,8 @@ from .source import Source
 from .tag import Tag
 
 
-class Conversation(BaseModel):
-    """This represents a conversation."""
+class Conversation(BaseConversation):
+    """This represents a full conversation result."""
 
     type = properties.StringChoice(
         'The type of conversation.',
@@ -27,13 +27,6 @@ class Conversation(BaseModel):
     )
     is_draft = properties.Bool(
         'Is this a draft conversation?',
-    )
-    number = properties.Integer(
-        'The conversation number displayed in the UI. This number can be used '
-        'in combination with the id to construct a URL to the conversation on '
-        'the Help Scout website. Example: '
-        '``https://secure.helpscout.net/conversation/<id>/<number>/``',
-        required=True,
     )
     owner = properties.Instance(
         'The Help Scout user who is currently assigned to this conversation.',
@@ -50,24 +43,6 @@ class Conversation(BaseModel):
         instance_class=Person,
         required=True,
     )
-    thread_count = properties.Integer(
-        'This count represents the number of published threads found on the '
-        'conversation (it does not include line items, drafts or threads held '
-        'for review by Traffic Cop).',
-        required=True,
-    )
-    status = properties.StringChoice(
-        'Status of the conversation.',
-        choices=['action', 'pending', 'closed', 'spam'],
-        default='pending',
-        required=True,
-    )
-    subject = properties.String(
-        'Subject of conversation.',
-    )
-    preview = properties.String(
-        'Conversation preview.',
-    )
     created_by = properties.Instance(
         'The ``Person`` who created this conversation. The ``type`` property '
         'will specify whether it was created by a ``user`` or a ``customer``.',
@@ -75,9 +50,6 @@ class Conversation(BaseModel):
     )
     created_at = properties.DateTime(
         'UTC time when this conversation was created.',
-    )
-    modified_at = properties.DateTime(
-        'UTC time when a user last modified this conversation.',
     )
     closed_at = properties.DateTime(
         'UTC time when this conversation was closed. Null if not closed.',

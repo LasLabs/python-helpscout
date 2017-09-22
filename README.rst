@@ -215,10 +215,10 @@ Known Issues / RoadMap
 * Attachment handling in Conversations (Create/Delete Attachment)
 * Raw email source handling in Conversations (Get Thread Source)
 * Implement List Customers by Mailbox
-* Implement Search endpoint
 * Implement Workflows
 * Implement index lookup for the RequestPaginator (currently only response
   iteration is supported)
+* Make the domain add syntax more robust (right now AND + OR don't combine well)
 
 Credits
 =======
