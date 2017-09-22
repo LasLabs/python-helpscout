@@ -4,11 +4,6 @@
 
 import unittest
 
-try:
-    import mock
-except ImportError:
-    mock = unittest.mock
-
 from .. import AuthProxy
 
 

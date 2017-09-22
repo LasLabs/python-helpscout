@@ -2,14 +2,10 @@
 # Copyright 2017-TODAY LasLabs Inc.
 # License MIT (https://opensource.org/licenses/MIT).
 
+import mock
 import unittest
 
 from contextlib import contextmanager
-
-try:
-    import mock
-except ImportError:
-    mock = unittest.mock
 
 from ..request_paginator import RequestPaginator
 

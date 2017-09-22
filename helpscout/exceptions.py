@@ -24,5 +24,10 @@ class HelpScoutRemoteException(HelpScoutException):
         return '(%d) %s' % (self.status_code, self.message)
 
 
-class HelpScoutValidationError(HelpScoutException):
+class HelpScoutValidationException(HelpScoutException):
     """Indicates an error while validating user-supplied data."""
+
+
+class HelpScoutSecurityException(HelpScoutException):
+    """Indicates a security error; probably by an invalid web hook signature.
+    """

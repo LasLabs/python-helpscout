@@ -2,6 +2,7 @@
 # Copyright 2017-TODAY LasLabs Inc.
 # License MIT (https://opensource.org/licenses/MIT).
 
+import mock
 import unittest
 
 from .. import AuthProxy
@@ -34,3 +35,30 @@ class TestHelpScout(unittest.TestCase):
         """It should wrap the APIs in an AuthProxy."""
         for api in self.hs.__apis__.values():
             self.assertIsInstance(api, AuthProxy)
+
+    @mock.patch('helpscout.WebHook')
+    def test_web_hook_init(self, WebHook):
+        """It should initialize a web hook using the API key."""
+        self.hs.web_hook()
+        WebHook.assert_called_once_with(self.API_KEY)
+
+    @mock.patch('helpscout.WebHook')
+    def test_web_hook_cache(self, WebHook):
+        """It should use the cached web hook the second time around."""
+        self.hs.web_hook()
+        self.hs.web_hook()
+        WebHook.assert_called_once_with(self.API_KEY)
+
+    @mock.patch('helpscout.WebHook')
+    def test_web_hook_pass_through(self, WebHook):
+        """It should pass args and kwargs through to receive method."""
+        args = [1, 2, 3]
+        kwargs = {'test1': 'derp', 'test2': True}
+        self.hs.web_hook(*args, **kwargs)
+        WebHook().receive.assert_called_once_with(*args, **kwargs)
+
+    @mock.patch('helpscout.WebHook')
+    def test_web_hook_return(self, WebHook):
+        """It should return the receive method on a new web hook."""
+        res = self.hs.web_hook()
+        self.assertEqual(res, WebHook().receive())

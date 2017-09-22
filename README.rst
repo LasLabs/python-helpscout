@@ -30,6 +30,9 @@ Usage
 The `HelpScout object <https://laslabs.github.io/python-helpscout/helpscout.html#helpscout.HelpScout>`_
 is the primary point of interaction with the HelpScout API.
 
+Connection
+----------
+
 Connecting to the HelpScout API will require an API Key, which is generated from
 within your HelpScout account. In the below example, our key is ``API_KEY``.
 
@@ -37,6 +40,9 @@ within your HelpScout account. In the below example, our key is ``API_KEY``.
 
    from helpscout import HelpScout
    hs = HelpScout('API_KEY')
+
+API Endpoints
+-------------
 
 The HelpScout API endpoints are exposed as variables on the instantiated ``HelpScout``
 object. The available endpoints are:
@@ -162,10 +168,43 @@ Note that all of the API responses will be parsed, with proper objects being
 created from the results. The objects are all defined in the `helpscout.models
 package <https://laslabs.github.io/python-helpscout/helpscout.models.html>`_.
 
+Web Hooks
+---------
+
+`Web Hooks <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.web_hook.web_hook>`_
+can be received using the ``web_hook`` property on an instantiated ``HelpScout``
+object, which returns a `WebHookEvent <https://laslabs.github.io/python-helpscout/helpscout.apis.html#helpscout.web_hook.web_hook_event.WebHookEvent>`_
+representing the parsed request.
+
+.. code-block:: python
+
+   signature = '2iFmnzC8SCNVF/iNiMnSe19yceU=\n'  # (``X-HelpScout-Signature`` Header)
+   event_type = 'customer.created'  # (``X-HelpScout-Event`` Header)
+   request_body = '{"firstName":"Jackie","lastName":"Chan",' \
+                  '"email":"jackie.chan@somewhere.com",' \
+                  '"gender":"male"}'
+
+   event = hs.web_hook(
+       event_type, signature, request_body,
+   )
+
+The ``WebHookEvent`` that is returned contains two properties:
+
+* ``event_type`` (*str*): The type of event that is being represented
+* ``record`` (*helpscout.BaseModel*): The parsed data record for this request
+
+Given the above example:
+
+.. code-block:: python
+
+   >>> event.event_type
+   'customer.created'
+   >>> event.record
+   <helpscout.models.customer.Customer object at 0x101723e50>
+
 Known Issues / RoadMap
 ======================
 
-* Add the ability to accept web hooks via HTTP
 * Add better validations (like regexes for emails)
 * Verify required attributes, particularly when creating for API instead of
   receiving

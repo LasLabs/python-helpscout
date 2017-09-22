@@ -5,13 +5,8 @@
 import properties
 import unittest
 
-try:
-    import mock
-except ImportError:
-    mock = unittest.mock
-
 from .. import BaseModel
-from ..exceptions import HelpScoutValidationError
+from ..exceptions import HelpScoutValidationException
 
 
 class TestModel(BaseModel):
@@ -57,7 +52,7 @@ class TestBaseModel(unittest.TestCase):
 
     def test_from_api_invalid_attribute(self):
         """It should not allow invalid attribute assignments."""
-        with self.assertRaises(HelpScoutValidationError):
+        with self.assertRaises(HelpScoutValidationException):
             BaseModel.from_api(**{'no exist': 'value'})
 
     def test_from_api_sub_instance(self):
