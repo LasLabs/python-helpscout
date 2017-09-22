@@ -10,6 +10,8 @@ This library allows you to interact with HelpScout using Python.
 
 * `Read The API Documentation <https://laslabs.github.io/python-helpscout>`_
 
+.. contents:: Table of Contents
+
 Installation
 ============
 
@@ -171,9 +173,11 @@ package <https://laslabs.github.io/python-helpscout/helpscout.models.html>`_.
 Web Hooks
 ---------
 
-`Web Hooks <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.web_hook.web_hook>`_
-can be received using the ``web_hook`` property on an instantiated ``HelpScout``
-object, which returns a `WebHookEvent <https://laslabs.github.io/python-helpscout/helpscout.apis.html#helpscout.web_hook.web_hook_event.WebHookEvent>`_
+`Web Hooks <https://laslabs.github.io/python-helpscout/helpscout.web_hook.html#helpscout.web_hook.web_hook.WebHook>`_
+can be received using the ``web_hook`` property on an instantiated `HelpScout
+<https://laslabs.github.io/python-helpscout/helpscout.html#helpscout.HelpScout>`_
+object, which returns a `WebHookEvent
+<https://laslabs.github.io/python-helpscout/helpscout.web_hook.html#helpscout.web_hook.web_hook_event.WebHookEvent>`_
 representing the parsed request.
 
 .. code-block:: python
