@@ -7,12 +7,7 @@ import unittest
 
 from datetime import datetime
 
-from ..domain import (Domain,
-                      DomainCondition,
-                      DomainConditionInteger,
-                      DomainConditionDateTime,
-                      DomainConditionBoolean,
-                      )
+from ..domain import Domain
 
 
 class TestDomain(unittest.TestCase):

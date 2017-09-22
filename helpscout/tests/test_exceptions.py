@@ -6,6 +6,7 @@ import unittest
 
 from ..exceptions import HelpScoutRemoteException, HelpScoutValidationException
 
+
 class TestExceptions(unittest.TestCase):
 
     def test_helpscout_remote_exception(self):

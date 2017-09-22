@@ -6,13 +6,6 @@ import properties
 
 from .person import Person
 
-from .address import Address
-from .chat import Chat
-from .email import Email
-from .phone import Phone
-from .social_profile import SocialProfile
-from .website import Website
-
 
 class SearchCustomer(Person):
     """This represents a customer as returned by a search."""

@@ -14,7 +14,7 @@ class Tags(BaseApi):
 
     * `List Tags
       <http://developer.helpscout.net/help-desk-api/tags/list/>`_
-      (:func:`~tags.Tags.list`)
+      (:func:`helpscout.apis.tags.Tags.list`)
     """
 
     __object__ = Tag

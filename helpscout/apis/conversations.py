@@ -18,30 +18,30 @@ class Conversations(BaseApi):
 
     * `List Conversations
       <http://developer.helpscout.net/help-desk-api/conversations/list/>`_
-      (:func:`~conversations.Conversation.list`)
+      (:func:`helpscout.apis.conversations.Conversations.list`)
     * `Search Conversations
       <http://developer.helpscout.net/help-desk-api/search/conversations/>`_
-      (:func:`~conversations.Conversation.search`)
+      (:func:`helpscout.apis.conversations.Conversations.search`)
     * `Get Conversation
       <http://developer.helpscout.net/help-desk-api/conversations/get/>`_
-      (:func:`~conversations.Conversation.get`)
+      (:func:`helpscout.apis.conversations.Conversations.get`)
     * `Create Conversation
       <http://developer.helpscout.net/help-desk-api/conversations/create/>`_
-      (:func:`~conversations.Conversation.create`)
+      (:func:`helpscout.apis.conversations.Conversations.create`)
     * `Update Conversation
       <http://developer.helpscout.net/help-desk-api/conversations/update/>`_
-      (:func:`~conversations.Conversation.update`)
+      (:func:`helpscout.apis.conversations.Conversations.update`)
     * `Delete Conversation
       <http://developer.helpscout.net/help-desk-api/conversations/delete/>`_
-      (:func:`~conversations.Conversation.delete`)
+      (:func:`helpscout.apis.conversations.Conversations.delete`)
     * `Create Thread
       <http://developer.helpscout.net/help-desk-api/conversations/
       create-thread/>`_
-      (:func:`~conversations.Conversation.create_thread`)
+      (:func:`helpscout.apis.conversations.Conversations.create_thread`)
     * `Update Thread
       <http://developer.helpscout.net/help-desk-api/conversations/
       update-thread/>`_
-      (:func:`~conversations.Conversation.update_thread`)
+      (:func:`helpscout.apis.conversations.Conversations.update_thread`)
     """
 
     __object__ = Conversation
@@ -65,8 +65,8 @@ class Conversations(BaseApi):
             auto_reply (bool): The ``auto_reply`` request parameter enables
              auto replies to be sent when a conversation is created via the
              API. When ``auto_reply`` is set to ``True``, an auto reply will
-             be sent as long as there is at least one ``customer`` thread in the
-             conversation.
+             be sent as long as there is at least one ``customer`` thread in
+             the conversation.
             _reload (bool, optional): Set this request parameter to ``True``
              to return the created conversation in the response.
 
@@ -94,8 +94,8 @@ class Conversations(BaseApi):
                       _reload=False):
         """Create a conversation thread.
 
-        Please note that threads cannot be added to conversations with 100 threads
-        (or more), if attempted the API will respond with HTTP 412.
+        Please note that threads cannot be added to conversations with 100
+        threads (or more), if attempted the API will respond with HTTP 412.
 
         Args:
             conversation (Conversation): The conversation that the thread is

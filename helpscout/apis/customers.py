@@ -14,22 +14,22 @@ class Customers(BaseApi):
     """This represents the ``Customers`` Endpoint.
 
     The following aspects are implemented:
-    
+
     * `List Customers
       <http://developer.helpscout.net/help-desk-api/customers/list/>`_
-      (:func:`~customers.Customers.list`)
+      (:func:`helpscout.apis.customers.Customers.list`)
     * `Search Customers
       <http://developer.helpscout.net/help-desk-api/search/customers/>`_
-      (:func:`~customers.Customers.search`)
+      (:func:`helpscout.apis.customers.Customers.search`)
     * `Get Customer
       <http://developer.helpscout.net/help-desk-api/customers/get/>`_
-      (:func:`~customers.Customers.get`)
+      (:func:`helpscout.apis.customers.Customers.get`)
     * `Create Customer
       <http://developer.helpscout.net/help-desk-api/customers/create/>`_
-      (:func:`~customers.Customers.create`)
+      (:func:`helpscout.apis.customers.Customers.create`)
     * `Update Customer
       <http://developer.helpscout.net/help-desk-api/customers/update/>`_
-      (:func:`~customers.Customers.update`)
+      (:func:`helpscout.apis.customers.Customers.update`)
     """
 
     __object__ = Customer

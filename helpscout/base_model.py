@@ -35,8 +35,8 @@ class BaseModel(properties.HasProperties):
         a fully Objectified and Pythonified API response.
 
         Raises:
-            HelpScoutValidationException: In the event that an unexpected property
-             is received.
+            HelpScoutValidationException: In the event that an unexpected
+             property is received.
 
         Returns:
             BaseModel: Instantiated model using the API values.
@@ -75,7 +75,7 @@ class BaseModel(properties.HasProperties):
 
     def to_api(self):
         """Return a dictionary to send to the API.
-        
+
         Returns:
             dict: Mapping representing this object that can be sent to the
              API.
