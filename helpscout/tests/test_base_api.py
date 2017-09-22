@@ -3,11 +3,11 @@
 # License MIT (https://opensource.org/licenses/MIT).
 
 import mock
-import properties
 import unittest
 
 from .. import BaseApi
 from .. import BaseModel
+from ..domain import Domain
 from ..request_paginator import RequestPaginator
 
 
@@ -81,3 +81,16 @@ class TestBaseApi(unittest.TestCase):
         paginator().call.return_value = [{'id': 9876}]
         res = self.new_api(singleton=True, out_type=mock.MagicMock())
         self.assertIsInstance(res, mock.MagicMock)
+
+    def test_get_search_domain_domain(self):
+        """It should return the input if it is a `Domain` obj."""
+        expect = Domain()
+        self.assertEqual(BaseApi.get_search_domain(expect), expect)
+
+    def test_get_search_domain_tuple(self):
+        """It should return the input if it is a `Domain` obj."""
+        expect = [('state', True)]
+        with mock.patch.object(Domain, 'from_tuple') as from_tuple:
+            res = BaseApi.get_search_domain(expect)
+            from_tuple.assert_called_once_with(expect)
+            self.assertEqual(res, from_tuple())

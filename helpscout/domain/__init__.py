@@ -6,7 +6,7 @@ import properties
 
 from datetime import datetime, date
 
-from .base_model import BaseModel
+from ..base_model import BaseModel
 
 
 class Domain(properties.HasProperties):
@@ -81,7 +81,7 @@ class Domain(properties.HasProperties):
 
     def __str__(self):
         """Return a string usable as the query in an API request."""
-        return ' '.join(self.query)
+        return ' '.join([str(q) for q in self.query])
 
 
 class DomainCondition(properties.HasProperties):
@@ -101,7 +101,7 @@ class DomainCondition(properties.HasProperties):
         """Return the name of the API field."""
         return BaseModel._to_camel_case(self.field)
 
-    def __init__(self, field, value):
+    def __init__(self, field, value, **kwargs):
         """Initialize a new generic query condition.
 
         Args:
@@ -111,14 +111,8 @@ class DomainCondition(properties.HasProperties):
                 the Customer's first name instead of ``firstName``.
             value (mixed): The value of the field.
         """
-        self.TYPES = {
-            bool: DomainConditionBoolean,
-            int: DomainConditionInteger,
-            date: DomainConditionDateTime,
-            datetime: DomainConditionDateTime,
-        }
         return super(DomainCondition, self).__init__(
-            field=field, value=value,
+            field=field, value=value, **kwargs
         )
 
     @classmethod
@@ -140,8 +134,8 @@ class DomainCondition(properties.HasProperties):
         field, query = query[0], query[1:]
 
         try:
-            cls = cls[type(query[0])]
-        except AttributeError:
+            cls = TYPES[type(query[0])]
+        except KeyError:
             # We just fallback to the base class if unknown type.
             pass
 
@@ -208,7 +202,17 @@ class DomainConditionDateTime(DomainCondition):
 
     def __str__(self):
         """Return a string usable as a query part in an API request."""
-        value_to = self.value_to if self.value_to else '*'
-        return '%s:[%s TO %s]' % (
-            self.field_name, self.value_from, value_to,
+        value_to = self.value_to.isoformat() if self.value_to else '*'
+        return '%s:[%sZ TO %sZ]' % (
+            self.field_name,
+            self.value.isoformat(),
+            value_to,
         )
+
+
+TYPES = {
+    bool: DomainConditionBoolean,
+    int: DomainConditionInteger,
+    date: DomainConditionDateTime,
+    datetime: DomainConditionDateTime,
+}

@@ -12,6 +12,8 @@ from ..request_paginator import RequestPaginator
 
 class TestRequestPaginator(unittest.TestCase):
 
+    REQUEST_TYPES = ['get', 'delete', 'post', 'put']
+
     def setUp(self):
         self.vals = {
             'endpoint': 'endpoint',
@@ -45,16 +47,39 @@ class TestRequestPaginator(unittest.TestCase):
         self.paginator = RequestPaginator(**self.vals)
 
     @contextmanager
-    def mock_session(self, response_code=200, responses=None):
+    def mock_session(self, response_code=200, responses=None,
+                     mock_attrs=None):
         if responses is None:
             responses = self.test_responses
+        if mock_attrs is None:
+            mock_attrs = ['get', 'delete', 'post', 'put']
+        elif isinstance(mock_attrs, str):
+            mock_attrs = [mock_attrs]
         with mock.patch.object(self.paginator, 'session') as session:
             response = mock.MagicMock()
             response.status_code = response_code
             response.json.side_effect = responses
-            session.get.return_value = response
-            session.post.return_value = response
+            for attr in mock_attrs:
+                method = getattr(session, attr)
+                method.return_value = response
             yield session
+
+    def do_call(self, request_type='get'):
+        self.params = {'param_test': 23234}
+        with self.mock_session(mock_attrs=request_type) as session:
+            return session, getattr(self.paginator, request_type)(self.params)
+
+    def _test_result(self, res):
+        self.assertEqual(len(res), 1)
+        self.assertDictEqual(res[0], self.test_responses[0]['items'][0])
+
+    def _test_session_call_json(self, session, request_type):
+        method = getattr(session, request_type)
+        method.assert_called_once_with(
+            url=self.vals['endpoint'],
+            json=self.params,
+            verify=True,
+        )
 
     def test_init_attrs(self):
         """ It should correctly assign instance attributes. """
@@ -71,39 +96,25 @@ class TestRequestPaginator(unittest.TestCase):
 
     def test_get_gets(self):
         """ It should call the session with proper args. """
-        params = {'param_test': 23234}
-        with self.mock_session() as session:
-            self.paginator.get(params)
-            session.get.assert_called_once_with(
-                url=self.vals['endpoint'],
-                params=params,
-                verify=True,
-            )
+        session, _ = self.do_call()
+        session.get.assert_called_once_with(
+            url=self.vals['endpoint'],
+            params=self.params,
+            verify=True,
+        )
 
-    def test_get_return(self):
-        """ It should return the json decoded response. """
-        with self.mock_session() as _:
-            res = self.paginator.get({})
-            self.assertEqual(len(res), 1)
-            self.assertDictEqual(res[0], self.test_responses[0]['items'][0])
+    def test_returns(self):
+        """The returns should all return properly."""
+        for request_type in self.REQUEST_TYPES:
+            _, res = self.do_call(request_type)
+            self._test_result(res)
 
-    def test_post_posts(self):
-        """ It should call the session with proper args. """
-        params = {'param_test': 23234}
-        with self.mock_session() as session:
-            self.paginator.post(params)
-            session.post.assert_called_once_with(
-                url=self.vals['endpoint'],
-                json=params,
-                verify=True,
-            )
-
-    def test_post_return(self):
-        """ It should return the json decoded response. """
-        with self.mock_session() as _:
-            res = self.paginator.post({})
-            self.assertEqual(len(res), 1)
-            self.assertDictEqual(res[0], self.test_responses[0]['items'][0])
+    def test_session_calls(self):
+        """The calls should all be handled properly (tests all but GET)."""
+        self.REQUEST_TYPES.remove('get')
+        for request_type in self.REQUEST_TYPES:
+            session, _ = self.do_call(request_type)
+            self._test_session_call_json(session, request_type)
 
     def test_call_get(self):
         """It should get when the request type is GET."""
