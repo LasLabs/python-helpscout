@@ -10,7 +10,7 @@ from .base_conversation import BaseConversation
 class SearchConversation(BaseConversation):
     """This represents a conversation as returned by search results."""
 
-    mailboxid = properties.Integer(
+    mailbox_id = properties.Integer(
         'The ID of the mailbox this conversation is in.',
         required=True,
     )

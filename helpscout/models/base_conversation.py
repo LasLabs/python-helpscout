@@ -23,7 +23,7 @@ class BaseConversation(BaseModel):
     )
     status = properties.StringChoice(
         'Status of the conversation.',
-        choices=['action', 'pending', 'closed', 'spam'],
+        choices=['active', 'pending', 'closed', 'spam'],
         default='pending',
         required=True,
     )

@@ -121,11 +121,11 @@ class Customers(BaseApi):
             RequestPaginator of SearchCustomer: SearchCustomer iterator.
         """
         domain = cls.get_search_domain(queries)
-        cls(
+        return cls(
             '/search/conversations.json',
             data={'query': str(domain)},
             session=session,
-            object=SearchCustomer,
+            out_type=SearchCustomer,
         )
 
     @classmethod

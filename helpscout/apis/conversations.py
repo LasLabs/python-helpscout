@@ -125,7 +125,7 @@ class Conversations(BaseApi):
             request_type=RequestPaginator.POST,
             singleton=True,
             session=session,
-            object=Thread,
+            out_type=Thread,
         )
 
     @classmethod
@@ -254,11 +254,11 @@ class Conversations(BaseApi):
             RequestPaginator of SearchCustomer: SearchCustomer iterator.
         """
         domain = cls.get_search_domain(queries)
-        cls(
+        return cls(
             '/search/conversations.json',
             data={'query': str(domain)},
             session=session,
-            object=SearchConversation,
+            out_type=SearchConversation,
         )
 
     @classmethod
@@ -316,5 +316,5 @@ class Conversations(BaseApi):
             request_type=RequestPaginator.PUT,
             singleton=True,
             session=session,
-            object=Thread,
+            out_type=Thread,
         )
