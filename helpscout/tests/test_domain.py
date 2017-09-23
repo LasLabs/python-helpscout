@@ -29,9 +29,11 @@ class TestDomain(unittest.TestCase):
         res = Domain.from_tuple(data)
         self.assertEqual(
             str(res),
+            '('
             'status:"active" '
             'AND number:1234 '
             'AND modifiedAt:[2017-01-01T00:00:00Z TO 2017-01-02T00:00:00Z] '
             'AND subject:"Test1" '
-            'OR subject:"Test2"',
+            'OR subject:"Test2"'
+            ')',
         )
