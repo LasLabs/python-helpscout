@@ -6,7 +6,7 @@ import json
 import unittest
 
 from ..exceptions import HelpScoutSecurityException
-from ..web_hook import WebHook
+from ..web_hook import HelpScoutWebHook
 from ..web_hook.web_hook_event import WebHookEvent
 
 
@@ -20,7 +20,7 @@ class TestWebHook(unittest.TestCase):
         self.data = json.loads(self.data_str)
         self.signature = '\n2iFmnzC8SCNVF/iNiMnSe19yceU=\n'
         self.bad_signature = '4+kjl2zB5OwZZjHznSTkD1/J208='
-        self.hook = WebHook(api_key='your secret key')
+        self.hook = HelpScoutWebHook(secret_key='your secret key')
 
     def test_validate_signature_valid(self):
         """It should return True for valid signature."""

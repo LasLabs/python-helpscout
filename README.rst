@@ -179,7 +179,7 @@ The ``.search()`` method is implemented for the following endpoints:
 
 * `Conversations
   <https://laslabs.github.io/python-helpscout/helpscout.apis.html#helpscout.
-  apis.conversations.Conversations.search`_
+  apis.conversations.Conversations.search>`_
 * `Customers
   <https://laslabs.github.io/python-helpscout/helpscout.apis.html#helpscout.
   apis.customers.Customers.search>`_
@@ -213,12 +213,23 @@ Following is a usage example:
 Web Hooks
 =========
 
-`Web Hooks <https://laslabs.github.io/python-helpscout/helpscout.web_hook.html#helpscout.web_hook.web_hook.WebHook>`_
-can be received using the ``web_hook`` property on an instantiated `HelpScout
-<https://laslabs.github.io/python-helpscout/helpscout.html#helpscout.HelpScout>`_
-object, which returns a `WebHookEvent
-<https://laslabs.github.io/python-helpscout/helpscout.web_hook.html#helpscout.web_hook.web_hook_event.WebHookEvent>`_
-representing the parsed request.
+`Web Hooks <https://laslabs.github.io/python-helpscout/helpscout.
+web_hook.html#helpscout.web_hook.web_hook.HelpScoutWebHook>`_ can be received by
+instantiating a `WebHook <https://laslabs.github.io/python-helpscout/
+helpscout.web_hook.html#helpscout.web_hook.web_hook.HelpScoutWebHook>`_ using
+the secret key that was configured while setting up the hook in your
+HelpScout account:
+
+.. code-block:: python
+
+   from helpscout import HelpScoutWebHook
+
+   hook = HelpScoutWebHook('your secret key')
+
+In order to actually receive the request, call the `receive method
+<https://laslabs.github.io/python-helpscout/helpscout.web_hook.html
+#helpscout.web_hook.web_hook.HelpScoutWebHook.receive>`_ on the instantiated
+``HelpScoutWebHook``:
 
 .. code-block:: python
 
@@ -228,7 +239,7 @@ representing the parsed request.
                   '"email":"jackie.chan@somewhere.com",' \
                   '"gender":"male"}'
 
-   event = hs.web_hook(
+   event = web_hook.receive(
        event_type, signature, request_body,
    )
 
