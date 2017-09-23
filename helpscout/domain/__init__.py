@@ -81,7 +81,7 @@ class Domain(properties.HasProperties):
 
     def __str__(self):
         """Return a string usable as the query in an API request."""
-        return ' '.join([str(q) for q in self.query])
+        return '(%s)' % ' '.join([str(q) for q in self.query])
 
 
 class DomainCondition(properties.HasProperties):
@@ -216,3 +216,12 @@ TYPES = {
     date: DomainConditionDateTime,
     datetime: DomainConditionDateTime,
 }
+
+
+__all__ = [
+    'Domain',
+    'DomainCondition',
+    'DomainConditionBoolean',
+    'DomainConditionDateTime',
+    'DomainConditionInteger',
+]

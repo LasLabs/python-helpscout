@@ -12,6 +12,7 @@ This library allows you to interact with HelpScout using Python.
 
 .. contents:: Table of Contents
 
+============
 Installation
 ============
 
@@ -26,6 +27,7 @@ If you would like to contribute, or prefer Git::
    pip install -r requirements.txt
    pip install .
 
+=====
 Usage
 =====
 
@@ -33,7 +35,7 @@ The `HelpScout object <https://laslabs.github.io/python-helpscout/helpscout.html
 is the primary point of interaction with the HelpScout API.
 
 Connection
-----------
+==========
 
 Connecting to the HelpScout API will require an API Key, which is generated from
 within your HelpScout account. In the below example, our key is ``API_KEY``.
@@ -44,7 +46,7 @@ within your HelpScout account. In the below example, our key is ``API_KEY``.
    hs = HelpScout('API_KEY')
 
 API Endpoints
--------------
+=============
 
 The HelpScout API endpoints are exposed as variables on the instantiated ``HelpScout``
 object. The available endpoints are:
@@ -170,8 +172,46 @@ Note that all of the API responses will be parsed, with proper objects being
 created from the results. The objects are all defined in the `helpscout.models
 package <https://laslabs.github.io/python-helpscout/helpscout.models.html>`_.
 
+Searching
+=========
+
+The ``.search()`` method is implemented for the following endpoints:
+
+* `Conversations
+  <https://laslabs.github.io/python-helpscout/helpscout.apis.html#helpscout.
+  apis.conversations.Conversations.search`_
+* `Customers
+  <https://laslabs.github.io/python-helpscout/helpscout.apis.html#helpscout.
+  apis.customers.Customers.search>`_
+
+Search accepts either an instantiated `Domain <https://laslabs.github.io/
+python-helpscout/helpscout.domain.html#helpscout.domain.Domain>`_, or an
+`iterator of queries <https://laslabs.github.io/python-helpscout/helpscout.
+domain.html#helpscout.domain.Domain.from_tuple>`_:
+
+.. code-block:: python
+
+   [('subject', 'Test1'),
+    'OR',
+    ('subject', 'Test2')',
+    ('subject', 'Test3')',
+    ]
+
+The above is equivalent to a HelpScout query string of::
+
+   (subject:'Test1' OR subject:'Test2' OR subject:'Test3')
+
+Following is a usage example:
+
+.. code-block:: python
+
+   >>> res = hs.Conversations.search([('subject', 'Learning')])
+   >>> for r in res:
+   >>>     r.serialize()
+   {'status': 'active', 'customer_email': u'help@helpscout.net', 'thread_count': 0, 'modified_at': '2017-09-16T18:38:37Z', 'number': 150, 'subject': u'Learning the basics', u'__class__': 'SearchConversation', 'has_attachments': False, 'mailbox_id': 122867, 'preview': u'Hey Dave, Above this message is what we call the Conversation Toolbar. From there you can take all sorts of actions on a Conversation. Hover your mouse over each of the icons to see what you can do....', 'id': 432907900, 'customer_name': u'Help Scout'}
+
 Web Hooks
----------
+=========
 
 `Web Hooks <https://laslabs.github.io/python-helpscout/helpscout.web_hook.html#helpscout.web_hook.web_hook.WebHook>`_
 can be received using the ``web_hook`` property on an instantiated `HelpScout
@@ -206,6 +246,7 @@ Given the above example:
    >>> event.record
    <helpscout.models.customer.Customer object at 0x101723e50>
 
+======================
 Known Issues / RoadMap
 ======================
 
@@ -219,17 +260,19 @@ Known Issues / RoadMap
 * Implement index lookup for the RequestPaginator (currently only response
   iteration is supported)
 * Make the domain add syntax more robust (right now AND + OR don't combine well)
+* Docs API is not implemented
 
+=======
 Credits
 =======
 
 Contributors
-------------
+============
 
 * Dave Lasley <dave@laslabs.com>
 
 Maintainer
-----------
+==========
 
 .. image:: https://laslabs.com/logo.png
    :alt: LasLabs Inc.
