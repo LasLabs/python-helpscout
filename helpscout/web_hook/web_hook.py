@@ -15,11 +15,13 @@ from .web_hook_event import WebHookEvent
 from ..exceptions import HelpScoutSecurityException
 
 
-class WebHook(properties.HasProperties):
-    """``WebHook`` provides the ability to easily process web hook events."""
+class HelpScoutWebHook(properties.HasProperties):
+    """This provides the ability to easily process web hook events."""
 
-    api_key = properties.String(
-        'API Key that should be used to validate requests against.',
+    secret_key = properties.String(
+        'Secret key that should be used to validate requests against. This '
+        'is configured while setting up the web hook in your HelpScout '
+        'account.',
         required=True,
     )
 
@@ -75,8 +77,8 @@ class WebHook(properties.HasProperties):
         if isinstance(signature, string_types):
             signature = bytearray(signature, encoding)
 
-        api_key = bytearray(self.api_key, 'utf8')
-        hash = hmac.new(api_key, data, sha1)
-        encoded = b64encode(hash.digest())
+        secret_key = bytearray(self.secret_key, 'utf8')
+        hashed = hmac.new(secret_key, data, sha1)
+        encoded = b64encode(hashed.digest())
 
         return encoded.strip() == signature.strip()
