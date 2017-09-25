@@ -31,12 +31,12 @@ class Mailboxes(BaseApi):
         """Return a specific mailbox.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
             mailbox_id (int): The ID of the mailbox to get.
 
         Returns:
-            Mailbox: A mailbox singleton, if existing.
-            None: If no match for the ID.
+            helpscout.models.Mailbox: A mailbox singleton, if existing.
+                Otherwise ``None``.
         """
         return cls(
             '/mailboxes/%d.json' % mailbox_id,
@@ -49,10 +49,11 @@ class Mailboxes(BaseApi):
         """List the mailboxes.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
 
         Returns:
-            RequestPaginator of Mailbox: Mailboxes iterator.
+            RequestPaginator(output_type=helpscout.models.Mailbox): Mailboxes
+                iterator.
         """
         return cls('/mailboxes.json', session=session)
 
@@ -61,11 +62,12 @@ class Mailboxes(BaseApi):
         """List the folders for the mailbox.
 
         Args:
-            mailbox_or_id (Mailbox or int): Mailbox of the ID of the mailbox
-             to get the folders for.
+            mailbox_or_id (helpscout.models.Mailbox or int): Mailbox or the ID
+                of the mailbox to get the folders for.
 
         Returns:
-            RequestPaginator of Folder: Folders iterator.
+            RequestPaginator(output_type=helpscout.models.Folder): Folders
+                iterator.
         """
         if isinstance(mailbox_or_id, Mailbox):
             mailbox_or_id = mailbox_or_id.id

@@ -52,14 +52,14 @@ class Thread(BaseModel):
                  ],
     )
     action_source_id = properties.Integer(
-        'Associated with the ``action_type`` property. \n'
+        'Associated with the ``action_type`` property. \n\n'
         '* If ``action_type`` is ``movedFromMailbox``, this will be the id '
         '  of the mailbox the conversation was moved from. \n'
         '* If ``action_type`` is ``merged``, this will be the id of the '
         '  original conversation. \n'
         '* If ``action_type`` is ``imported``, this will be null. \n'
         '* If ``action_type`` is ``workflow``, this will be the id of the '
-        '  workflow that was run.',
+        '  workflow that was run. \n',
     )
     from_mailbox = properties.Instance(
         'If the conversation was moved, this represents the MailboxRef from '

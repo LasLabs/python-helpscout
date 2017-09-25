@@ -55,10 +55,11 @@ class Conversations(BaseApi):
         threads, if attempted the API will respond with HTTP 412.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
-            conversation (Conversation): The conversation to be created.
-            imported (bool): The ``imported`` request parameter enables
-             conversations to be created for historical purposes (i.e.
+            session (requests.sessions.Session): Authenticated session.
+            conversation (helpscout.models.Conversation): The conversation
+             to be created.
+            imported (bool, optional): The ``imported`` request parameter
+             enables conversations to be created for historical purposes (i.e.
              if moving from a different platform, you can import your
              history). When ``imported`` is set to ``True``, no outgoing
              emails or notifications will be generated.
@@ -71,9 +72,8 @@ class Conversations(BaseApi):
              to return the created conversation in the response.
 
         Returns:
-            bool: Success status, if ``_reload`` is ``False``.
-            Conversation: Newly created conversation, if ``_reload`` is
-             ``True``.
+            helpscout.models.Conversation: Newly created conversation, if
+                ``_reload`` is ``True``.
         """
         data = {
             'conversation': conversation.to_api(),
@@ -98,12 +98,12 @@ class Conversations(BaseApi):
         threads (or more), if attempted the API will respond with HTTP 412.
 
         Args:
-            conversation (Conversation): The conversation that the thread is
-             being added to.
-            session (requests.Session): Authenticated requests Session.
-            thread (Thread): The thread to be created.
-            imported (bool): The ``imported`` request parameter enables
-             conversations to be created for historical purposes (i.e.
+            conversation (helpscout.models.Conversation): The conversation
+             that the thread is being added to.
+            session (requests.sessions.Session): Authenticated session.
+            thread (helpscout.models.Thread): The thread to be created.
+            imported (bool, optional): The ``imported`` request parameter
+             enables conversations to be created for historical purposes (i.e.
              if moving from a different platform, you can import your
              history). When ``imported`` is set to ``True``, no outgoing
              emails or notifications will be generated.
@@ -111,8 +111,8 @@ class Conversations(BaseApi):
              to return the created conversation in the response.
 
         Returns:
-            bool: Success status, if ``_reload`` is ``False``.
-            Thread: Newly created thread, if ``_reload`` is ``True``.
+            helpscout.models.Thread: Newly created thread, if ``_reload``
+                is ``True``.
         """
         data = {
             'thread': thread.to_api(),
@@ -133,8 +133,9 @@ class Conversations(BaseApi):
         """Delete a conversation.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
-            conversation (Conversation): The conversation to be deleted.
+            session (requests.sessions.Session): Authenticated session.
+            conversation (helpscout.models.Conversation): The conversation to
+                be deleted.
 
         Returns:
             bool: Status
@@ -151,12 +152,13 @@ class Conversations(BaseApi):
         """Return conversations for a specific customer in a mailbox.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
             mailbox (helpscout.models.Mailbox): Mailbox to search.
             customer (helpscout.models.Customer): Customer to search for.
 
         Returns:
-            RequestPaginator of Conversation: Conversations iterator.
+            RequestPaginator(output_type=helpscout.models.Conversation):
+                Conversations iterator.
         """
         return cls(
             '/mailboxes/%d/customers/%s/conversations.json' % (
@@ -170,12 +172,13 @@ class Conversations(BaseApi):
         """Return conversations for a specific user in a mailbox.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
             mailbox (helpscout.models.Mailbox): Mailbox to search.
             user (helpscout.models.User): User to search for.
 
         Returns:
-            RequestPaginator of Conversation: Conversations iterator.
+            RequestPaginator(output_type=helpscout.models.Conversation):
+                Conversations iterator.
         """
         return cls(
             '/mailboxes/%d/users/%s/conversations.json' % (
@@ -189,12 +192,12 @@ class Conversations(BaseApi):
         """Return a specific conversation.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
             conversation_id (int): The ID of the conversation to get.
 
         Returns:
-            Conversation: A conversation singleton, if existing.
-            None: If no match for the ID.
+            helpscout.models.Conversation: A conversation singleton, if
+                existing. Otherwise ``None``.
         """
         return cls(
             '/conversations/%d.json' % conversation_id,
@@ -207,11 +210,12 @@ class Conversations(BaseApi):
         """Return conversations in a mailbox.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
             mailbox (helpscout.models.Mailbox): Mailbox to list.
 
         Returns:
-            RequestPaginator of Conversation: Conversations iterator.
+            RequestPaginator(output_type=helpscout.models.Conversation):
+                Conversations iterator.
         """
         return cls(
             '/mailboxes/%d/conversations.json' % mailbox.id,
@@ -223,12 +227,13 @@ class Conversations(BaseApi):
         """Return conversations in a specific folder of a mailbox.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
             mailbox (helpscout.models.Mailbox): Mailbox that folder is in.
             folder (helpscout.models.Folder): Folder to list.
 
         Returns:
-            RequestPaginator of Conversation: Conversations iterator.
+            RequestPaginator(output_type=helpscout.models.Conversation):
+                Conversations iterator.
         """
         return cls(
             '/mailboxes/%d/folders/%s/conversations.json' % (
@@ -242,16 +247,17 @@ class Conversations(BaseApi):
         """Search for a conversation given a domain.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
-            queries (Domain | iter): The queries for the domain. If a
-                ``Domain`` object is provided, it will simply be returned.
-                Otherwise, a ``Domain`` object will be generated from the
-                complex queries. In this case, the queries should conform
-                to the interface in
+            session (requests.sessions.Session): Authenticated session.
+            queries (helpscout.models.Domain or iter): The queries for the
+                domain. If a ``Domain`` object is provided, it will simply be
+                returned. Otherwise, a ``Domain`` object will be generated
+                from the complex queries. In this case, the queries should
+                conform to the interface in
                 :func:`helpscout.domain.Domain.from_tuple`.
 
         Returns:
-            RequestPaginator of SearchCustomer: SearchCustomer iterator.
+            RequestPaginator(output_type=helpscout.models.SearchCustomer):
+                SearchCustomer iterator.
         """
         domain = cls.get_search_domain(queries)
         return cls(
@@ -266,15 +272,15 @@ class Conversations(BaseApi):
         """Update a conversation.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
-            conversation (Conversation): The conversation to be updated.
+            session (requests.sessions.Session): Authenticated session.
+            conversation (helpscout.models.Conversation): The conversation to
+                be updated.
             _reload (bool, optional): Set this request parameter to ``True``
-             to return the created conversation in the response.
+                to return the created conversation in the response.
 
         Returns:
-            bool: Success status, if ``_reload`` is ``False``.
-            Conversation: Freshly updated conversation, if ``_reload`` is
-             ``True``.
+            helpscout.models.Conversation: Freshly updated conversation, if
+                ``_reload`` is ``True``.
         """
         data = {
             'conversation': conversation.to_api(),
@@ -293,16 +299,16 @@ class Conversations(BaseApi):
         """Update a thread.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
-            conversation (Conversation): The conversation that the thread
-             belongs to.
-            thread (Thread): The thread to be updated.
+            session (requests.sessions.Session): Authenticated session.
+            conversation (helpscout.models.Conversation): The conversation
+                that the thread belongs to.
+            thread (helpscout.models.Thread): The thread to be updated.
             _reload (bool, optional): Set this request parameter to ``True``
-             to return the created conversation in the response.
+                to return the created conversation in the response.
 
         Returns:
-            bool: Success status, if ``_reload`` is ``False``.
-            Thread: Freshly updated thread, if ``_reload`` is ``True``.
+            helpscout.models.Thread: Freshly updated thread, if ``_reload``
+                is ``True``.
         """
         data = {
             'thread': thread.to_api(),

@@ -24,9 +24,9 @@ class Tags(BaseApi):
         """List the tags.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
 
         Returns:
-            RequestPaginator of Tag: Tags iterator.
+            RequestPaginator(output_type=helpscout.models.Tag): Tags iterator.
         """
         return cls('/tags.json', session=session)
