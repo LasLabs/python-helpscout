@@ -37,7 +37,7 @@ class WebHookEvent(properties.HasProperties):
         """Parse raw record data if required.
 
         Args:
-            record (dict | BaseModel): The record data that was received for
+            record (dict or BaseModel): The record data that was received for
                 the request. If it is a ``dict``, the data will be parsed
                 using the proper model's ``from_api`` method.
         """

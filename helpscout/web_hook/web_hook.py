@@ -40,11 +40,12 @@ class HelpScoutWebHook(properties.HasProperties):
                 signature validation.
 
         Raises:
-            HelpScoutSecurityException: If an invalid signature is provided,
-                and ``raise_if_invalid`` is ``True``.
+            helpscout.exceptions.HelpScoutSecurityException: If an invalid
+                signature is provided, and ``raise_if_invalid`` is ``True``.
 
         Returns:
-            WebHookEvent: The authenticated web hook request.
+            helpscout.web_hook.WebHookEvent: The authenticated web hook
+                request.
         """
 
         if not self.validate_signature(signature, data_str):
@@ -61,9 +62,9 @@ class HelpScoutWebHook(properties.HasProperties):
         """Validate the signature for the provided data.
 
         Args:
-            signature (str | bytes | bytearray): Signature that was provided
+            signature (str or bytes or bytearray): Signature that was provided
                 for the request.
-            data (str | bytes | bytearray): Data string to validate against
+            data (str or bytes or bytearray): Data string to validate against
                 the signature.
             encoding (str, optional): If a string was provided for ``data`` or
                 ``signature``, this is the character encoding.

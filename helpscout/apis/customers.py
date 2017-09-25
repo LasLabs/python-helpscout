@@ -39,14 +39,14 @@ class Customers(BaseApi):
         """Create a customer.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
-            customer (Customer): The customer to be created.
+            session (requests.sessions.Session): Authenticated session.
+            customer (helpscout.models.Customer): The customer to be created.
             _reload (bool, optional): Set this request parameter to ``True``
             to return the created conversation in the response.
 
         Returns:
-            bool: Success status, if ``_reload`` is ``False``.
-            Customer: Newly created customer, if ``_reload`` is ``True``.
+            helpscout.models.Customer: Newly created customer, if ``_reload``
+                is ``True``.
         """
         data = {
             'customer': customer.to_api(),
@@ -65,12 +65,12 @@ class Customers(BaseApi):
         """Return a specific customer.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
             customer_id (int): The ID of the customer to get.
 
         Returns:
-            Customer: A customer singleton, if existing.
-            None: If no match for the ID.
+            helpscout.models.Customer: A customer singleton, if existing.
+                Otherwise ``None``.
         """
         return cls(
             '/customers/%d.json' % customer_id,
@@ -87,14 +87,16 @@ class Customers(BaseApi):
         email, and modifiedSince.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
             first_name (str, optional): First name of customer.
             last_name (str, optional): Last name of customer.
             email (str, optional): Email address of customer.
-            modified_since (datetime, optional): If modified after this date.
+            modified_since (datetime.datetime, optional): If modified after
+                this date.
 
         Returns:
-            RequestPaginator of Customer: Customers iterator.
+            RequestPaginator(output_type=helpscout.models.Customer): Customers
+                iterator.
         """
         data = cls.__object__.get_non_empty_vals({
             'firstName': first_name,
@@ -109,16 +111,17 @@ class Customers(BaseApi):
         """Search for a customer given a domain.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
-            queries (Domain | iter): The queries for the domain. If a
-                ``Domain`` object is provided, it will simply be returned.
-                Otherwise, a ``Domain`` object will be generated from the
-                complex queries. In this case, the queries should conform
-                to the interface in
+            session (requests.sessions.Session): Authenticated session.
+            queries (helpscout.models.Domain or iter): The queries for the
+                domain. If a ``Domain`` object is provided, it will simply be
+                returned. Otherwise, a ``Domain`` object will be generated
+                from the complex queries. In this case, the queries should
+                conform to the interface in
                 :func:`helpscout.domain.Domain.from_tuple`.
 
         Returns:
-            RequestPaginator of SearchCustomer: SearchCustomer iterator.
+            RequestPaginator(output_type=helpscout.models.SearchCustomer):
+                SearchCustomer iterator.
         """
         domain = cls.get_search_domain(queries)
         return cls(
@@ -133,14 +136,14 @@ class Customers(BaseApi):
         """Update a customer.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
-            customer (Customer): The customer to be updated.
+            session (requests.sessions.Session): Authenticated session.
+            customer (helpscout.models.Customer): The customer to be updated.
             _reload (bool, optional): Set this request parameter to ``True``
             to return the created conversation in the response.
 
         Returns:
-            bool: Success status, if ``_reload`` is ``False``.
-            Customer: Freshly updated customer, if ``_reload`` is ``True``.
+            helpscout.models.Customer: Freshly updated customer, if
+                ``_reload`` is ``True``.
         """
         data = {
             'customer': customer,

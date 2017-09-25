@@ -103,7 +103,7 @@ class BaseApi(object):
         """Helper method to create search domains if needed.
 
         Args:
-            queries (Domain | iter): The queries for the domain. If a
+            queries (Domain or iter): The queries for the domain. If a
                 ``Domain`` object is provided, it will simply be returned.
                 Otherwise, a ``Domain`` object will be generated from the
                 complex queries. In this case, the queries should conform

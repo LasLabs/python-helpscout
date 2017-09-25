@@ -66,7 +66,7 @@ class Domain(properties.HasProperties):
         """Join a new query to existing queries on the stack.
 
         Args:
-            query (tuple | list | DomainCondition): The condition for the
+            query (tuple or list or DomainCondition): The condition for the
                 query. If a ``DomainCondition`` object is not provided, the
                 input should conform to the interface defined in
                 :func:`~.domain.DomainCondition.from_tuple`.
@@ -120,7 +120,7 @@ class DomainCondition(properties.HasProperties):
         """Create a condition from a query tuple.
 
         Args:
-            query (tuple | list): Tuple or list that contains a query domain
+            query (tuple or list): Tuple or list that contains a query domain
                 in the format of ``(field_name, field_value,
                 field_value_to)``. ``field_value_to`` is only applicable in
                 the case of a date search.
@@ -128,7 +128,7 @@ class DomainCondition(properties.HasProperties):
         Returns:
             DomainCondition: An instance of a domain condition. The specific
                 type will depend on the data type of the first value provided
-                in ``query`.
+                in ``query``.
         """
 
         field, query = query[0], query[1:]
@@ -192,8 +192,8 @@ class DomainConditionDateTime(DomainCondition):
                 Pythonified name as in the internal models, not the
                 name as provided in the API e.g. ``first_name`` for
                 the Customer's first name instead of ``firstName``.
-            value_from (date | datetime): The start value of the field.
-            value_to (date | datetime, optional): The ending value for
+            value_from (date or datetime): The start value of the field.
+            value_to (date or datetime, optional): The ending value for
                 the field. If omitted, will search to now.
         """
         return super(DomainConditionDateTime, self).__init__(

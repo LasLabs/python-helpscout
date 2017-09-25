@@ -33,12 +33,12 @@ class Users(BaseApi):
         """Return a specific user.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
             user_id (int): The ID of the user to get.
 
         Returns:
-            User: A user singleton, if existing.
-            None: If no match for the ID.
+            helpscout.models.User: A user singleton, if existing.
+                Otherwise ``None``.
         """
         return cls(
             '/users/%d.json' % user_id,
@@ -51,10 +51,10 @@ class Users(BaseApi):
         """Return the current user.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
 
         Returns:
-            User: A user singleton
+            helpscout.models.User: A user singleton
         """
         return cls(
             '/users/me.json',
@@ -67,10 +67,11 @@ class Users(BaseApi):
         """List the users.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
 
         Returns:
-            RequestPaginator of User: Users iterator.
+            RequestPaginator(output_type=helpscout.models.User): Users
+                iterator.
         """
         return cls('/users.json', session=session)
 
@@ -79,12 +80,13 @@ class Users(BaseApi):
         """Get the users that are associated to a Mailbox.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
             mailbox_or_id (MailboxRef or int): Mailbox of the ID of the
                 mailbox to get the folders for.
 
         Returns:
-            RequestPaginator of User: Users iterator.
+            RequestPaginator(output_type=helpscout.models.User): Users
+                iterator.
         """
         if isinstance(mailbox_or_id, User):
             mailbox_or_id = mailbox_or_id.id

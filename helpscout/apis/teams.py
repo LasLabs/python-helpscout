@@ -31,12 +31,12 @@ class Teams(BaseApi):
         """Return a specific team.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
             team_id (int): The ID of the team to get.
 
         Returns:
-            Person: A person singleton representing the team, if existing.
-            None: If no match for the ID.
+            helpscout.models.Person: A person singleton representing the team,
+                if existing. Otherwise ``None``.
         """
         return cls(
             '/teams/%d.json' % team_id,
@@ -49,11 +49,11 @@ class Teams(BaseApi):
         """List the teams.
 
         Args:
-            session (requests.Session): Authenticated requests Session.
+            session (requests.sessions.Session): Authenticated session.
 
         Returns:
-            RequestPaginator of Person: Person iterator representing the
-                teams.
+            RequestPaginator(output_type=helpscout.models.Person): Person
+                iterator representing the teams.
         """
         return cls('/teams.json', session=session)
 
@@ -62,11 +62,12 @@ class Teams(BaseApi):
         """List the members for the team.
 
         Args:
-            team_or_id (Person or int): Team or the ID of the team
-                to get the folders for.
+            team_or_id (helpscout.models.Person or int): Team or the ID of
+                the team to get the folders for.
 
         Returns:
-            RequestPaginator of Users: Users iterator.
+            RequestPaginator(output_type=helpscout.models.Users): Users
+                iterator.
         """
         if isinstance(team_or_id, Person):
             team_or_id = team_or_id.id
