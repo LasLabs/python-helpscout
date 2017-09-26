@@ -89,18 +89,25 @@ class BaseModel(properties.HasProperties):
         """
         vals = {}
         for attribute, attribute_type in self._props.items():
-
             prop = getattr(self, attribute)
-
-            if isinstance(attribute_type, properties.Instance):
-                    prop = prop.to_api()
-
-            elif isinstance(attribute_type, properties.List):
-                prop = [p.to_api() for p in prop]
-
-            vals[self._to_camel_case(attribute)] = prop
-
+            vals[self._to_camel_case(attribute)] = self._to_api_value(
+                attribute_type, prop,
+            )
         return vals
+
+    def _to_api_value(self, attribute_type, value):
+        """Return a parsed value for the API."""
+
+        if not value:
+            return None
+
+        if isinstance(attribute_type, properties.Instance):
+            return value.to_api()
+
+        if isinstance(attribute_type, properties.List):
+            return [v.to_api() for v in value]
+
+        return attribute_type.serialize(value)
 
     @staticmethod
     def get_non_empty_vals(mapping):

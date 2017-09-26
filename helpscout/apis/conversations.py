@@ -47,8 +47,7 @@ class Conversations(BaseApi):
     __object__ = Conversation
 
     @classmethod
-    def create(cls, session, conversation, imported=False, auto_reply=False,
-               _reload=False):
+    def create(cls, session, conversation, imported=False, auto_reply=False):
         """Create a conversation.
 
         Please note that conversation cannot be created with more than 100
@@ -68,18 +67,15 @@ class Conversations(BaseApi):
              API. When ``auto_reply`` is set to ``True``, an auto reply will
              be sent as long as there is at least one ``customer`` thread in
              the conversation.
-            _reload (bool, optional): Set this request parameter to ``True``
-             to return the created conversation in the response.
 
         Returns:
-            helpscout.models.Conversation: Newly created conversation, if
-                ``_reload`` is ``True``.
+            helpscout.models.Conversation: Newly created conversation.
         """
         data = {
             'conversation': conversation.to_api(),
             'imported': imported,
             'auto_reply': auto_reply,
-            'reload': _reload,
+            'reload': True,
         }
         return cls(
             '/conversations.json',
@@ -90,8 +86,7 @@ class Conversations(BaseApi):
         )
 
     @classmethod
-    def create_thread(cls, session, conversation, thread, imported=False,
-                      _reload=False):
+    def create_thread(cls, session, conversation, thread, imported=False):
         """Create a conversation thread.
 
         Please note that threads cannot be added to conversations with 100
@@ -107,17 +102,14 @@ class Conversations(BaseApi):
              if moving from a different platform, you can import your
              history). When ``imported`` is set to ``True``, no outgoing
              emails or notifications will be generated.
-            _reload (bool, optional): Set this request parameter to ``True``
-             to return the created conversation in the response.
 
         Returns:
-            helpscout.models.Thread: Newly created thread, if ``_reload``
-                is ``True``.
+            helpscout.models.Thread: Newly created thread.
         """
         data = {
             'thread': thread.to_api(),
             'imported': imported,
-            'reload': _reload,
+            'reload': True,
         }
         return cls(
             '/conversations/%s.json' % conversation.id,
@@ -268,23 +260,20 @@ class Conversations(BaseApi):
         )
 
     @classmethod
-    def update(cls, session, conversation, _reload=False):
+    def update(cls, session, conversation):
         """Update a conversation.
 
         Args:
             session (requests.sessions.Session): Authenticated session.
             conversation (helpscout.models.Conversation): The conversation to
                 be updated.
-            _reload (bool, optional): Set this request parameter to ``True``
-                to return the created conversation in the response.
 
         Returns:
-            helpscout.models.Conversation: Freshly updated conversation, if
-                ``_reload`` is ``True``.
+            helpscout.models.Conversation: Freshly updated conversation.
         """
         data = {
             'conversation': conversation.to_api(),
-            'reload': _reload,
+            'reload': True,
         }
         return cls(
             '/conversations/%s.json' % conversation.id,
@@ -295,7 +284,7 @@ class Conversations(BaseApi):
         )
 
     @classmethod
-    def update_thread(cls, session, conversation, thread, _reload=False):
+    def update_thread(cls, session, conversation, thread):
         """Update a thread.
 
         Args:
@@ -303,16 +292,13 @@ class Conversations(BaseApi):
             conversation (helpscout.models.Conversation): The conversation
                 that the thread belongs to.
             thread (helpscout.models.Thread): The thread to be updated.
-            _reload (bool, optional): Set this request parameter to ``True``
-                to return the created conversation in the response.
 
         Returns:
-            helpscout.models.Thread: Freshly updated thread, if ``_reload``
-                is ``True``.
+            helpscout.models.Thread: Freshly updated thread.
         """
         data = {
             'thread': thread.to_api(),
-            'reload': _reload,
+            'reload': True,
         }
         return cls(
             '/conversations/%s/threads/%d.json' % (

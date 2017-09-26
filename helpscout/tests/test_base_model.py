@@ -5,6 +5,8 @@
 import properties
 import unittest
 
+from datetime import datetime
+
 from .. import BaseModel
 from ..exceptions import HelpScoutValidationException
 
@@ -18,6 +20,7 @@ class TestModel(BaseModel):
         'List', prop=properties.Instance('List Instance',
                                          instance_class=BaseModel),
     )
+    date = properties.DateTime('DateTime')
     not_a_field = True
 
 
@@ -33,11 +36,13 @@ class TestBaseModel(unittest.TestCase):
             'list': [
                 {'id': 4321},
             ],
+            'date': datetime(2017, 1, 1, 0, 0, 0),
         }
         self.internal_values = {
             'a_key': self.test_values['aKey'],
             'sub_instance': self.test_values['subInstance'],
             'list': self.test_values['list'],
+            'date': self.test_values['date'],
         }
 
     def new_record(self):
@@ -81,6 +86,12 @@ class TestBaseModel(unittest.TestCase):
         res = self.new_record().to_api()
         self.assertIsInstance(res['list'], list)
         self.assertIsInstance(res['list'][0], dict)
+
+    def test_to_api_date(self):
+        """It should return the serialized datetime."""
+        self.assertEqual(
+            self.new_record().to_api()['date'], '2017-01-01T00:00:00Z',
+        )
 
     def test_get_non_empty_vals(self):
         """It should return the dict without NoneTypes."""
