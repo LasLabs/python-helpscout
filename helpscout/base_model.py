@@ -73,6 +73,13 @@ class BaseModel(properties.HasProperties):
 
         return cls(**vals)
 
+    def get(self, key, default=None):
+        """Return the field indicated by the key, if present."""
+        try:
+            return self.__getitem__(key)
+        except KeyError:
+            return default
+
     def to_api(self):
         """Return a dictionary to send to the API.
 
@@ -115,3 +122,36 @@ class BaseModel(properties.HasProperties):
             components[0],
             ''.join(c.title() for c in components[1:]),
         )
+
+    def __getitem__(self, item):
+        """Return the field indicated by the key, if present.
+
+        This is better than using ``getattr`` because it will not expose any
+        properties that are not meant to be fields for the object.
+
+        Raises:
+            KeyError: In the event that the field doesn't exist.
+        """
+        self.__check_field(item)
+        return getattr(self, item)
+
+    def __setitem__(self, key, value):
+        """Return the field indicated by the key, if present.
+
+        This is better than using ``getattr`` because it will not expose any
+        properties that are not meant to be fields for the object.
+
+        Raises:
+            KeyError: In the event that the field doesn't exist.
+        """
+        self.__check_field(key)
+        return setattr(self, key, value)
+
+    def __check_field(self, key):
+        """Raises a KeyError if the field doesn't exist."""
+        if not self._props.get(key):
+            raise KeyError(
+                'The field "%s" does not exist on "%s"' % (
+                    key, self.__class__.__name__,
+                ),
+            )
