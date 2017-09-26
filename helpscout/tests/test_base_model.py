@@ -18,6 +18,7 @@ class TestModel(BaseModel):
         'List', prop=properties.Instance('List Instance',
                                          instance_class=BaseModel),
     )
+    not_a_field = True
 
 
 class TestBaseModel(unittest.TestCase):
@@ -92,3 +93,41 @@ class TestBaseModel(unittest.TestCase):
         res = BaseModel.get_non_empty_vals(expect)
         del expect['bad']
         self.assertDictEqual(res, expect)
+
+    def test_dict_lookup_exist(self):
+        """It should return the attribute value when it exists."""
+        self.assertEqual(
+            self.new_record()['a_key'], self.internal_values['a_key'],
+        )
+
+    def test_dict_lookup_no_exist(self):
+        """It should raise a KeyError when the attribute isn't a field."""
+        with self.assertRaises(KeyError):
+            self.new_record()['not_a_field']
+
+    def test_dict_set_exist(self):
+        """It should set the attribute via the items."""
+        expect = 'Test-Expect'
+        record = self.new_record()
+        record['a_key'] = expect
+        self.assertEqual(record.a_key, expect)
+
+    def test_dict_set_no_exist(self):
+        """It should raise a KeyError and not change the non-field."""
+        record = self.new_record()
+        with self.assertRaises(KeyError):
+            record['not_a_field'] = False
+        self.assertTrue(record.not_a_field)
+
+    def test_get_exist(self):
+        """It should return the attribute if it exists."""
+        self.assertEqual(
+            self.new_record().get('a_key'), self.internal_values['a_key'],
+        )
+
+    def test_get_no_exist(self):
+        """It should return the default if the attribute doesn't exist."""
+        expect = 'Test'
+        self.assertEqual(
+            self.new_record().get('not_a_field', expect), expect,
+        )
