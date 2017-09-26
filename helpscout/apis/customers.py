@@ -125,7 +125,7 @@ class Customers(BaseApi):
         """
         domain = cls.get_search_domain(queries)
         return cls(
-            '/search/conversations.json',
+            '/search/customers.json',
             data={'query': str(domain)},
             session=session,
             out_type=SearchCustomer,
