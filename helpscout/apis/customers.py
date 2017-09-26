@@ -35,22 +35,19 @@ class Customers(BaseApi):
     __object__ = Customer
 
     @classmethod
-    def create(cls, session, customer, _reload=False):
+    def create(cls, session, customer):
         """Create a customer.
 
         Args:
             session (requests.sessions.Session): Authenticated session.
             customer (helpscout.models.Customer): The customer to be created.
-            _reload (bool, optional): Set this request parameter to ``True``
-            to return the created conversation in the response.
 
         Returns:
-            helpscout.models.Customer: Newly created customer, if ``_reload``
-                is ``True``.
+            helpscout.models.Customer: Newly created customer.
         """
         data = {
             'customer': customer.to_api(),
-            'reload': _reload,
+            'reload': True,
         }
         return cls(
             '/customers.json',
@@ -132,22 +129,19 @@ class Customers(BaseApi):
         )
 
     @classmethod
-    def update(cls, session, customer, _reload=False):
+    def update(cls, session, customer):
         """Update a customer.
 
         Args:
             session (requests.sessions.Session): Authenticated session.
             customer (helpscout.models.Customer): The customer to be updated.
-            _reload (bool, optional): Set this request parameter to ``True``
-            to return the created conversation in the response.
 
         Returns:
-            helpscout.models.Customer: Freshly updated customer, if
-                ``_reload`` is ``True``.
+            helpscout.models.Customer: Freshly updated customer.
         """
         data = {
-            'customer': customer,
-            'reload': _reload,
+            'customer': customer.to_api(),
+            'reload': True,
         }
         return cls(
             '/customers/%d.json' % customer.id,
