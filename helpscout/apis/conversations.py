@@ -271,10 +271,8 @@ class Conversations(BaseApi):
         Returns:
             helpscout.models.Conversation: Freshly updated conversation.
         """
-        data = {
-            'conversation': conversation.to_api(),
-            'reload': True,
-        }
+        data = conversation.to_api()
+        data['reload'] = True
         return cls(
             '/conversations/%s.json' % conversation.id,
             data=data,
@@ -296,10 +294,8 @@ class Conversations(BaseApi):
         Returns:
             helpscout.models.Thread: Freshly updated thread.
         """
-        data = {
-            'thread': thread.to_api(),
-            'reload': True,
-        }
+        data = thread.to_api()
+        data['reload'] = True
         return cls(
             '/conversations/%s/threads/%d.json' % (
                 conversation.id, thread.id,

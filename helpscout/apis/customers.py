@@ -139,10 +139,8 @@ class Customers(BaseApi):
         Returns:
             helpscout.models.Customer: Freshly updated customer.
         """
-        data = {
-            'customer': customer.to_api(),
-            'reload': True,
-        }
+        data = customer.to_api()
+        data['reload'] = True
         return cls(
             '/customers/%d.json' % customer.id,
             data=data,
