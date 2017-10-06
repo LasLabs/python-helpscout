@@ -65,7 +65,7 @@ class RequestPaginator(object):
         The result is returned as an instantiated `self.output_type`.
         """
         self.page_current = page
-        data = self.data.copy()
+        data = self.data and self.data.copy() or None
         result = self.call(data)
         for row in result:
             yield self.output_type(**row)

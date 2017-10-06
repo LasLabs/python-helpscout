@@ -10,9 +10,6 @@ from .person import Person
 class SearchCustomer(Person):
     """This represents a customer as returned by a search."""
 
-    full_name = properties.String(
-        'Full name for the customer',
-    )
     photo_type = properties.StringChoice(
         'Type of photo.',
         choices=['unknown',
@@ -45,10 +42,4 @@ class SearchCustomer(Person):
     emails = properties.List(
         'Email addresses for the customer.',
         prop=properties.String(''),
-    )
-    created_at = properties.DateTime(
-        'UTC time when this customer was created.',
-    )
-    modified_at = properties.DateTime(
-        'UTC time when this customer was modified.',
     )
