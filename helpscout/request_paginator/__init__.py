@@ -65,15 +65,13 @@ class RequestPaginator(object):
         The result is returned as an instantiated `self.output_type`.
         """
         self.page_current = page
-        data = self.data and self.data.copy() or None
-        result = self.call(data)
-        for row in result:
-            yield self.output_type(**row)
-        if self.page_current < self.page_total:
-            for inner_row in self.__iter__(self.page_current + 1):
-                yield inner_row
-        else:
-            raise StopIteration()
+        self.page_total = page + 1
+        while self.page_current < self.page_total:
+            data = self.data and self.data.copy() or None
+            result = self.call(data)
+            for row in result:
+                yield self.output_type(**row)
+        raise StopIteration()
 
     def call(self, data=None):
         """Generic API caller. Return the JSON decoded result.
