@@ -14,6 +14,9 @@ class Person(BaseModel):
     ``user``, ``customer`` or ``team``.
     """
 
+    full_name = properties.String(
+        'Full name for the customer',
+    )
     first_name = properties.String(
         'First name',
         required=True,
@@ -38,4 +41,10 @@ class Person(BaseModel):
     )
     photo_url = properties.String(
         'The user\'s photo, if one exists.',
+    )
+    created_at = properties.DateTime(
+        'UTC time when this customer was created.',
+    )
+    modified_at = properties.DateTime(
+        'UTC time when this customer was modified.',
     )
