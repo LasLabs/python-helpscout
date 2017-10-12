@@ -6,8 +6,6 @@ import properties
 
 from .. import BaseModel
 
-from .user import User
-
 
 class Folder(BaseModel):
 
@@ -17,21 +15,20 @@ class Folder(BaseModel):
     )
     type = properties.StringChoice(
         'The type of folder.',
-        choices=['unassigned',
-                 'mytickets',
-                 'needsattention',
+        choices=['needsattention',
                  'drafts',
                  'assigned',
+                 'open',
                  'closed',
                  'spam',
+                 'mine',
                  ],
         default='drafts',
         required=True,
     )
-    user_id = properties.Instance(
+    user_id = properties.Integer(
         'If the folder type is ``MyTickets``, this represents the Help Scout '
         'user to which this folder belongs. Otherwise it is empty.',
-        instance_class=User,
     )
     total_count = properties.Integer(
         'Total number of conversations in this folder.',
