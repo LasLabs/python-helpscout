@@ -284,6 +284,7 @@ Contributors
 ============
 
 * Dave Lasley <dave@laslabs.com>
+* Brent Hughes <brent.hughes@laslabs.com>
 
 Maintainer
 ==========

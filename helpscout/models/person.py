@@ -14,6 +14,11 @@ class Person(BaseModel):
     ``user``, ``customer`` or ``team``.
     """
 
+    def __init__(self, **kwargs):
+        value = kwargs.pop('customer_person_type', False)
+        self.type = 'customer' if value else 'user'
+        return super(Person, self).__init__(**kwargs)
+
     full_name = properties.String(
         'Full name for the customer',
     )
@@ -54,3 +59,11 @@ class Person(BaseModel):
     modified_at = properties.DateTime(
         'UTC time when this customer was modified.',
     )
+
+    @properties.Bool('customer boolean')
+    def customer_person_type(self):
+        return self.type == 'customer'
+
+    @customer_person_type.setter
+    def customer_person_type(self, value):
+        self.type = 'customer' if value else 'user'
