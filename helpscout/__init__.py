@@ -44,6 +44,7 @@ class HelpScout(object):
         Tags (helpscout.api.tags.Tags): Tags API endpoint.
         Teams (helpscout.api.teams.Teams): Teams API endpoint.
         Users (helpscout.api.users.Users): Users API endpoint.
+        WebHook (helpscout.api.web_hook.WebHook): Web Hook API endpoint.
         __apis__ (dict): References to all available APIs, keyed by class
             name.
     """

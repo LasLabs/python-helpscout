@@ -8,6 +8,7 @@ from .mailboxes import Mailboxes
 from .tags import Tags
 from .teams import Teams
 from .users import Users
+from .web_hook import WebHook
 
 
 __all__ = [
@@ -17,4 +18,5 @@ __all__ = [
     'Tags',
     'Teams',
     'Users',
+    'WebHook',
 ]

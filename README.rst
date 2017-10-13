@@ -57,6 +57,7 @@ object. The available endpoints are:
 * `Tags <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.tags>`_
 * `Teams <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.teams>`_
 * `Users <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.users>`_
+* `WebHook <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.web_hook>`_
 
 They can also be viewed from the ``__apis__`` property of ``HelpScout``::
 
@@ -256,6 +257,8 @@ Given the above example:
    'customer.created'
    >>> event.record
    <helpscout.models.customer.Customer object at 0x101723e50>
+
+Creating web hooks is
 
 ======================
 Known Issues / RoadMap

@@ -69,6 +69,11 @@ class BaseModel(properties.HasProperties):
                         )
                     except AttributeError:
                         attributes.append(v)
+                    except TypeError:
+                        raise TypeError(
+                            'Could not parse sub-object from API for '
+                            '%s with %s' % (attribute, v)
+                        )
                 vals[attribute] = attributes
 
         return cls(**vals)

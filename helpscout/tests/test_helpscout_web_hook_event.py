@@ -5,14 +5,14 @@
 import unittest
 
 from ..models import Customer
-from ..web_hook.web_hook_event import WebHookEvent
+from ..web_hook import HelpScoutWebHookEvent
 
 
-class TestWebHookEvent(unittest.TestCase):
+class TestHelpScoutWebHookEvent(unittest.TestCase):
 
     def setUp(self):
-        super(TestWebHookEvent, self).setUp()
-        self.event_type = 'customer.something.happened'
+        super(TestHelpScoutWebHookEvent, self).setUp()
+        self.event_type = 'customer.created'
         self.data = {
             'gender': 'male',
             'first_name': 'Test',
@@ -34,12 +34,16 @@ class TestWebHookEvent(unittest.TestCase):
     def test_record_from_data(self):
         """It should create a correct record from the API data."""
         self._validate_record(
-            WebHookEvent(event_type=self.event_type, record=self.api_data),
+            HelpScoutWebHookEvent(
+                event_type=self.event_type, record=self.api_data,
+            ),
         )
 
     def test_record_from_record(self):
         """It should pass through a pre-existing record."""
         record = Customer(**self.data)
         self._validate_record(
-            WebHookEvent(event_type=self.event_type, record=record),
+            HelpScoutWebHookEvent(
+                event_type=self.event_type, record=record,
+            ),
         )
