@@ -5,7 +5,6 @@
 import properties
 
 from .. import BaseModel
-from .email import Email
 
 
 class Person(BaseModel):
@@ -31,7 +30,9 @@ class Person(BaseModel):
     )
     emails = properties.List(
         'Email addresses for this person.',
-        prop=Email,
+        prop=properties.String(
+            'Email Address',
+        ),
     )
     phone = properties.String(
         'Phone is only populated when the Person is a customer associated '
