@@ -6,6 +6,7 @@ import properties
 import unittest
 
 from datetime import datetime
+from six import string_types
 
 from .. import BaseModel
 from ..exceptions import HelpScoutValidationException
@@ -89,6 +90,14 @@ class TestBaseModel(unittest.TestCase):
         res = self.new_record().to_api()
         self.assertIsInstance(res['list'], list)
         self.assertIsInstance(res['list'][0], dict)
+
+    def test_to_api_list_string(self):
+        """It should properly handle naive lists."""
+        expect = ['1', '2']
+        self.test_values['list_string'] = expect
+        res = self.new_record().to_api()
+        self.assertIsInstance(res['listString'], list)
+        self.assertIsInstance(res['listString'][0], string_types)
 
     def test_to_api_date(self):
         """It should return the serialized datetime."""
