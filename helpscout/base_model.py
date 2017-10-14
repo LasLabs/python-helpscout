@@ -82,9 +82,17 @@ class BaseModel(properties.HasProperties):
             return value.to_api()
 
         if isinstance(attribute_type, properties.List):
-            return [v.to_api() for v in value]
+            return self._parse_api_value_list(value)
 
         return attribute_type.serialize(value)
+
+    def _parse_api_value_list(self, values):
+        """Return a list field compatible with the API."""
+        try:
+            return [v.to_api() for v in values]
+        # Not models
+        except AttributeError:
+            return list(values)
 
     @staticmethod
     def get_non_empty_vals(mapping):
