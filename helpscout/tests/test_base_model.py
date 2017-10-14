@@ -20,6 +20,9 @@ class TestModel(BaseModel):
         'List', prop=properties.Instance('List Instance',
                                          instance_class=BaseModel),
     )
+    list_string = properties.List(
+        'List of Strings', prop=properties.String('String'),
+    )
     date = properties.DateTime('DateTime')
     not_a_field = True
 
@@ -142,3 +145,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(
             self.new_record().get('not_a_field', expect), expect,
         )
+
+    def test_from_api_list_no_model(self):
+        """Test ``from_api`` when there is a list of non-property objects."""
+        self.test_values['list_string'] = [
+            'test', 'again',
+        ]
+        self.assertEqual(self.new_record().list_string,
+                         self.test_values['list_string'])

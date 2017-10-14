@@ -45,32 +45,9 @@ class BaseModel(properties.HasProperties):
         vals = cls.get_non_empty_vals({
             cls._to_snake_case(k): v for k, v in kwargs.items()
         })
-
-        for attribute, value in vals.items():
-
-            prop = cls._props.get(attribute)
-
-            if not prop:
-                raise HelpScoutValidationException(
-                    '"%s" is not a valid property for "%s".' % (
-                        attribute, cls,
-                    ),
-                )
-
-            if isinstance(prop, properties.Instance):
-                vals[attribute] = prop.instance_class.from_api(**value)
-
-            elif isinstance(prop, properties.List):
-                attributes = []
-                for v in value:
-                    try:
-                        attributes.append(
-                            prop.prop.instance_class.from_api(**v),
-                        )
-                    except AttributeError:
-                        attributes.append(v)
-                vals[attribute] = attributes
-
+        vals.update({
+            attr: cls._parse_property(attr, val) for attr, val in vals.items()
+        })
         return cls(**vals)
 
     def get(self, key, default=None):
@@ -116,14 +93,72 @@ class BaseModel(properties.HasProperties):
             k: v for k, v in mapping.items() if v is not None
         }
 
+    @classmethod
+    def _parse_property(cls, name, value):
+        """Parse a property received from the API into an internal object.
+
+        Args:
+            name (str): Name of the property on the object.
+            value (mixed): The unparsed API value.
+
+        Returns:
+            mixed: A value compatible with the internal models.
+        """
+
+        prop = cls._props.get(name)
+
+        if not prop:
+            raise HelpScoutValidationException(
+                '"%s" is not a valid property for "%s".' % (
+                    name, cls,
+                ),
+            )
+
+        if isinstance(prop, properties.Instance):
+            return prop.instance_class.from_api(**value)
+
+        elif isinstance(prop, properties.List):
+            return cls._parse_property_list(prop, value)
+
+        return value
+
+    @staticmethod
+    def _parse_property_list(prop, value):
+        """Parse a list property and return a list of the results."""
+        attributes = []
+        for v in value:
+            try:
+                attributes.append(
+                    prop.prop.instance_class.from_api(**v),
+                )
+            except AttributeError:
+                attributes.append(v)
+        return attributes
+
     @staticmethod
     def _to_snake_case(string):
+        """Return a snake cased version of the input string.
+
+        Args:
+            string (str): A camel cased string.
+
+        Returns:
+            str: A snake cased string.
+        """
         sub_string = r'\1_\2'
         string = REGEX_CAMEL_FIRST.sub(sub_string, string)
         return REGEX_CAMEL_SECOND.sub(sub_string, string).lower()
 
     @staticmethod
     def _to_camel_case(string):
+        """Return a camel cased version of the input string.
+
+        Args:
+            string (str): A snake cased string.
+
+        Returns:
+            str: A camel cased string.
+        """
         components = string.split('_')
         return '%s%s' % (
             components[0],

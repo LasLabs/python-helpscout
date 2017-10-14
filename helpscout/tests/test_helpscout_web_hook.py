@@ -3,17 +3,17 @@
 # License MIT (https://opensource.org/licenses/MIT).
 
 import json
+import mock
 import unittest
 
 from ..exceptions import HelpScoutSecurityException
-from ..web_hook import HelpScoutWebHook
-from ..web_hook.web_hook_event import WebHookEvent
+from ..web_hook import HelpScoutWebHook, HelpScoutWebHookEvent
 
 
-class TestWebHook(unittest.TestCase):
+class TestHelpScoutWebHook(unittest.TestCase):
 
     def setUp(self):
-        super(TestWebHook, self).setUp()
+        super(TestHelpScoutWebHook, self).setUp()
         self.data_str = '{"firstName":"Jackie","lastName":"Chan",' \
                         '"email":"jackie.chan@somewhere.com",' \
                         '"gender":"male"}'
@@ -45,5 +45,13 @@ class TestWebHook(unittest.TestCase):
             self.hook.receive(
                 'customer.created', self.signature, self.data_str,
             ),
-            WebHookEvent,
+            HelpScoutWebHookEvent,
         )
+
+    def test_create(self):
+        """It should pass self through to the WebHook endpoint create."""
+        helpscout = mock.MagicMock()
+        self.hook.helpscout = helpscout
+        res = self.hook.create()
+        helpscout.WebHook.create.assert_called_once_with(self.hook)
+        self.assertEqual(res, helpscout.WebHook.create())

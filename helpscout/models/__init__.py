@@ -26,6 +26,8 @@ from .source import Source
 from .tag import Tag
 from .thread import Thread
 from .user import User
+from .web_hook import WebHook
+from .web_hook_event import WebHookEvent
 from .website import Website
 from .workflow import Workflow
 
@@ -55,6 +57,8 @@ __all__ = [
     'Tag',
     'Thread',
     'User',
+    'WebHook',
+    'WebHookEvent',
     'Website',
     'Workflow',
 ]
