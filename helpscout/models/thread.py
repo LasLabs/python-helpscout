@@ -96,7 +96,7 @@ class Thread(BaseModel):
         'person that created the thread. \n'
         'A state of ``hidden`` means the thread was hidden (or removed) from '
         'customer-facing emails.',
-        choices=['pubished', 'draft', 'underreview', 'hidden'],
+        choices=['published', 'draft', 'underreview', 'hidden'],
     )
     customer = properties.Instance(
         'If thread type is ``message``, this is the customer associated with '
