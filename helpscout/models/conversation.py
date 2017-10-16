@@ -72,5 +72,5 @@ class Conversation(BaseConversation):
     )
     tags = properties.List(
         'Tags for the conversation',
-        prop=Tag,
+        prop=properties.String('Tag Name'),
     )
