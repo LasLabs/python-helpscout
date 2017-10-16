@@ -49,6 +49,7 @@ class Thread(BaseModel):
                  'changedTicketCustomer',
                  'deletedTicket',
                  'restoreTicket',
+                 'originalCreator',
                  ],
     )
     action_source_id = properties.Integer(
