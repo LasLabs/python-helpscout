@@ -1,0 +1,261 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>helpscout.web_hook package &#8212; HelpScout 0.0.0b259 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.0b259',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="setup module" href="setup.html" />
+    <link rel="prev" title="helpscout.tests package" href="helpscout.tests.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="helpscout-web-hook-package">
+<h1>helpscout.web_hook package<a class="headerlink" href="#helpscout-web-hook-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-helpscout.web_hook">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-helpscout.web_hook" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="helpscout.web_hook.HelpScoutWebHook">
+<em class="property">class </em><code class="descclassname">helpscout.web_hook.</code><code class="descname">HelpScoutWebHook</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/web_hook.html#HelpScoutWebHook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.web_hook.HelpScoutWebHook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="helpscout.models.html#helpscout.models.web_hook.WebHook" title="helpscout.models.web_hook.WebHook"><code class="xref py py-class docutils literal"><span class="pre">helpscout.models.web_hook.WebHook</span></code></a></p>
+<p>This provides the ability to easily create &amp; process web hook events.</p>
+<p><strong>Required Properties:</strong></p>
+<ul class="simple">
+<li><strong>events</strong> (a list of <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The events to subscribe to., a list (each item is any of “convo.agent.reply.created” (An agent replied to the conversation.), “convo.assigned” (Conversation was assigned.), “convo.created” (Conversation was created.), “convo.customer.reply.created” (The customer replied to the conversation.), “convo.deleted” (Conversation was deleted.), “convo.merged” (Conversation was merged.), “convo.moved” (Conversation was moved.), “convo.note.created” (A note was added to the conversation.), “convo.status” (Conversation status was updated.), “convo.tags” (Conversation tags were updated.), “customer.created” (A customer was created.), “satisfaction.ratings” (A rating was received.))</li>
+<li><strong>helpscout</strong> (<code class="xref py py-class docutils literal"><span class="pre">object</span></code>): The authenticated HelpScout object. Used for create., an instance of object</li>
+<li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
+<li><strong>secret_key</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): A randomly-generated (by you) string of 40 characters or less used to create signatures for each webhook method. Help Scout uses this secret key to generate a signature for each webhook message. When the message is received at your callback URL, you can calculate a signature and compare to the one Help Scout sends. If the signatures match, you know it’s from Help Scout., a unicode string</li>
+<li><strong>url</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>):        The callback URL where Help Scout will post your webhook events. This is the script or location where you’ll handle the data received from Help Scout., a unicode string</li>
+</ul>
+<dl class="method">
+<dt id="helpscout.web_hook.HelpScoutWebHook.create">
+<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/web_hook.html#HelpScoutWebHook.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.web_hook.HelpScoutWebHook.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the web hook on HelpScout.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.web_hook.HelpScoutWebHook.helpscout">
+<code class="descname">helpscout</code><a class="headerlink" href="#helpscout.web_hook.HelpScoutWebHook.helpscout" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>helpscout</strong> (<code class="xref py py-class docutils literal"><span class="pre">object</span></code>) – The authenticated HelpScout object. Used for create., an instance of object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.web_hook.HelpScoutWebHook.receive">
+<code class="descname">receive</code><span class="sig-paren">(</span><em>event_type</em>, <em>signature</em>, <em>data_str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/web_hook.html#HelpScoutWebHook.receive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.web_hook.HelpScoutWebHook.receive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive a web hook for the event and signature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>event_type</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – Name of the event that was received (from the
+request <code class="docutils literal"><span class="pre">X-HelpScout-Event</span></code> header).</li>
+<li><strong>signature</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – The signature that was received, which serves as
+authentication (from the request <code class="docutils literal"><span class="pre">X-HelpScout-Signature</span></code>
+header).</li>
+<li><strong>data_str</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – The raw data that was posted by HelpScout
+to the web hook. This must be the raw string, because if it
+is parsed with JSON it will lose its ordering and not pass
+signature validation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><a class="reference internal" href="helpscout.html#helpscout.exceptions.HelpScoutSecurityException" title="helpscout.exceptions.HelpScoutSecurityException"><code class="xref py py-exc docutils literal"><span class="pre">helpscout.exceptions.HelpScoutSecurityException</span></code></a> – If an invalid
+signature is provided, and <code class="docutils literal"><span class="pre">raise_if_invalid</span></code> is <code class="docutils literal"><span class="pre">True</span></code>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>The authenticated web hook</dt>
+<dd><p class="first last">request.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#helpscout.web_hook.WebHookEvent" title="helpscout.web_hook.WebHookEvent">helpscout.web_hook.WebHookEvent</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.web_hook.HelpScoutWebHook.validate_signature">
+<code class="descname">validate_signature</code><span class="sig-paren">(</span><em>signature</em>, <em>data</em>, <em>encoding='utf8'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/web_hook.html#HelpScoutWebHook.validate_signature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.web_hook.HelpScoutWebHook.validate_signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate the signature for the provided data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>signature</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>bytes</em><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#bytearray" title="(in Python v2.7)"><em>bytearray</em></a>) – Signature that was provided
+for the request.</li>
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>bytes</em><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#bytearray" title="(in Python v2.7)"><em>bytearray</em></a>) – Data string to validate against
+the signature.</li>
+<li><strong>encoding</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>, </em><em>optional</em>) – If a string was provided for <code class="docutils literal"><span class="pre">data</span></code> or
+<code class="docutils literal"><span class="pre">signature</span></code>, this is the character encoding.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Whether the signature is valid for the provided data.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)">bool</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="helpscout.web_hook.WebHookEvent">
+<em class="property">class </em><code class="descclassname">helpscout.web_hook.</code><code class="descname">WebHookEvent</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/models/web_hook_event.html#WebHookEvent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.web_hook.WebHookEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="helpscout.html#helpscout.base_model.BaseModel" title="helpscout.base_model.BaseModel"><code class="xref py py-class docutils literal"><span class="pre">helpscout.base_model.BaseModel</span></code></a></p>
+<p><strong>Required Properties:</strong></p>
+<ul class="simple">
+<li><strong>event_type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The event type that this object represents., any of “convo.agent.reply.created” (An agent replied to the conversation.), “convo.assigned” (Conversation was assigned.), “convo.created” (Conversation was created.), “convo.customer.reply.created” (The customer replied to the conversation.), “convo.deleted” (Conversation was deleted.), “convo.merged” (Conversation was merged.), “convo.moved” (Conversation was moved.), “convo.note.created” (A note was added to the conversation.), “convo.status” (Conversation status was updated.), “convo.tags” (Conversation tags were updated.), “customer.created” (A customer was created.), “satisfaction.ratings” (A rating was received.)</li>
+<li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
+<li><strong>record</strong> (<a class="reference internal" href="helpscout.html#helpscout.base_model.BaseModel" title="helpscout.base_model.BaseModel"><code class="xref py py-class docutils literal"><span class="pre">BaseModel</span></code></a>): The parsed data record that was received in the request., an instance of BaseModel</li>
+</ul>
+<dl class="attribute">
+<dt id="helpscout.web_hook.WebHookEvent.event_type">
+<code class="descname">event_type</code><a class="headerlink" href="#helpscout.web_hook.WebHookEvent.event_type" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>event_type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>) – The event type that this object represents., any of “convo.agent.reply.created” (An agent replied to the conversation.), “convo.assigned” (Conversation was assigned.), “convo.created” (Conversation was created.), “convo.customer.reply.created” (The customer replied to the conversation.), “convo.deleted” (Conversation was deleted.), “convo.merged” (Conversation was merged.), “convo.moved” (Conversation was moved.), “convo.note.created” (A note was added to the conversation.), “convo.status” (Conversation status was updated.), “convo.tags” (Conversation tags were updated.), “customer.created” (A customer was created.), “satisfaction.ratings” (A rating was received.)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.web_hook.WebHookEvent.record">
+<code class="descname">record</code><a class="headerlink" href="#helpscout.web_hook.WebHookEvent.record" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>record</strong> (<a class="reference internal" href="helpscout.html#helpscout.base_model.BaseModel" title="helpscout.base_model.BaseModel"><code class="xref py py-class docutils literal"><span class="pre">BaseModel</span></code></a>) – The parsed data record that was received in the request., an instance of BaseModel</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">HelpScout</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=LasLabs&repo=python-helpscout&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/LasLabs/python-helpscout">
+    <img
+        alt="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+        src="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+    />
+</a>
+</p>
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="helpscout.html">helpscout package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="helpscout.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="helpscout.apis.html">helpscout.apis package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="helpscout.domain.html">helpscout.domain package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="helpscout.models.html">helpscout.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="helpscout.request_paginator.html">helpscout.request_paginator package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="helpscout.tests.html">helpscout.tests package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">helpscout.web_hook package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-helpscout.web_hook">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.html#module-helpscout.auth_proxy">helpscout.auth_proxy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.html#module-helpscout.base_api">helpscout.base_api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.html#module-helpscout.base_model">helpscout.base_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.html#module-helpscout.exceptions">helpscout.exceptions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.html#module-helpscout">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">setup module</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017 LasLabs Inc..
+      
+      |
+      <a href="_sources/helpscout.web_hook.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/LasLabs/python-helpscout" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

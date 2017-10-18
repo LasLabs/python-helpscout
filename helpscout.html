@@ -1,0 +1,902 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>helpscout package &#8212; HelpScout 0.0.0b259 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.0b259',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="helpscout.apis package" href="helpscout.apis.html" />
+    <link rel="prev" title="Welcome to python-helpscout’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="helpscout-package">
+<h1>helpscout package<a class="headerlink" href="#helpscout-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="helpscout.apis.html">helpscout.apis package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.apis.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.apis.html#module-helpscout.apis.conversations">helpscout.apis.conversations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.apis.html#module-helpscout.apis.customers">helpscout.apis.customers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.apis.html#module-helpscout.apis.mailboxes">helpscout.apis.mailboxes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.apis.html#module-helpscout.apis.tags">helpscout.apis.tags module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.apis.html#module-helpscout.apis.teams">helpscout.apis.teams module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.apis.html#module-helpscout.apis.users">helpscout.apis.users module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.apis.html#module-helpscout.apis.web_hook">helpscout.apis.web_hook module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.apis.html#module-helpscout.apis">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="helpscout.domain.html">helpscout.domain package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.domain.html#module-helpscout.domain">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="helpscout.models.html">helpscout.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.address">helpscout.models.address module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.attachment">helpscout.models.attachment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.attachment_data">helpscout.models.attachment_data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.base_conversation">helpscout.models.base_conversation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.chat">helpscout.models.chat module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.conversation">helpscout.models.conversation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.custom_field">helpscout.models.custom_field module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.customer">helpscout.models.customer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.email">helpscout.models.email module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.field">helpscout.models.field module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.folder">helpscout.models.folder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.mailbox">helpscout.models.mailbox module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.mailbox_ref">helpscout.models.mailbox_ref module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.option">helpscout.models.option module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.person">helpscout.models.person module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.phone">helpscout.models.phone module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.rating">helpscout.models.rating module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.search_conversation">helpscout.models.search_conversation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.search_customer">helpscout.models.search_customer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.social_profile">helpscout.models.social_profile module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.source">helpscout.models.source module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.tag">helpscout.models.tag module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.thread">helpscout.models.thread module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.user">helpscout.models.user module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.web_hook">helpscout.models.web_hook module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.web_hook_event">helpscout.models.web_hook_event module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.website">helpscout.models.website module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models.workflow">helpscout.models.workflow module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.models.html#module-helpscout.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="helpscout.request_paginator.html">helpscout.request_paginator package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.request_paginator.html#module-helpscout.request_paginator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="helpscout.tests.html">helpscout.tests package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.api_common">helpscout.tests.api_common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_api_conversations">helpscout.tests.test_api_conversations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_api_web_hook">helpscout.tests.test_api_web_hook module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_auth_proxy">helpscout.tests.test_auth_proxy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_base_api">helpscout.tests.test_base_api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_base_model">helpscout.tests.test_base_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_domain">helpscout.tests.test_domain module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_exceptions">helpscout.tests.test_exceptions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_helpscout">helpscout.tests.test_helpscout module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_helpscout_web_hook">helpscout.tests.test_helpscout_web_hook module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_helpscout_web_hook_event">helpscout.tests.test_helpscout_web_hook_event module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_request_paginator">helpscout.tests.test_request_paginator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="helpscout.web_hook.html">helpscout.web_hook package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.web_hook.html#module-helpscout.web_hook">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-helpscout.auth_proxy">
+<span id="helpscout-auth-proxy-module"></span><h2>helpscout.auth_proxy module<a class="headerlink" href="#module-helpscout.auth_proxy" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="helpscout.auth_proxy.AuthProxy">
+<em class="property">class </em><code class="descclassname">helpscout.auth_proxy.</code><code class="descname">AuthProxy</code><span class="sig-paren">(</span><em>session</em>, <em>proxy_class</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/auth_proxy.html#AuthProxy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.auth_proxy.AuthProxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>This object acts as a transparent authentication proxy for the API.</p>
+<p>This is required because the API objects are naive of the authentication
+that is setup in <code class="docutils literal"><span class="pre">HelpScout</span></code>, and all of the API interface methods are
+<code class="docutils literal"><span class="pre">classmethods</span></code> because they are instantiating.</p>
+<dl class="attribute">
+<dt id="helpscout.auth_proxy.AuthProxy.METHOD_NO_PROXY">
+<code class="descname">METHOD_NO_PROXY</code><em class="property"> = ['auth_proxy']</em><a class="headerlink" href="#helpscout.auth_proxy.AuthProxy.METHOD_NO_PROXY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="helpscout.auth_proxy.AuthProxy.auth_proxy">
+<code class="descname">auth_proxy</code><span class="sig-paren">(</span><em>method</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/auth_proxy.html#AuthProxy.auth_proxy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.auth_proxy.AuthProxy.auth_proxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authentication proxy for API requests.</p>
+<p>This is required because the API objects are naive of <code class="docutils literal"><span class="pre">HelpScout</span></code>,
+so they would otherwise be unauthenticated.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>method</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#callable" title="(in Python v2.7)"><em>callable</em></a>) – A method call that should be authenticated. It
+should accept a <code class="docutils literal"><span class="pre">requests.Session</span></code> as its first parameter,
+which should be used for the actual API call.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The results of the authenticated callable.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">mixed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-helpscout.base_api">
+<span id="helpscout-base-api-module"></span><h2>helpscout.base_api module<a class="headerlink" href="#module-helpscout.base_api" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="helpscout.base_api.BaseApi">
+<em class="property">class </em><code class="descclassname">helpscout.base_api.</code><code class="descname">BaseApi</code><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_api.BaseApi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>This is the API interface object to be implemented by API adapters.</p>
+<p>It acts as a collection for the API object that it represents, passing
+through iteration to the API’s request paginator.</p>
+<dl class="attribute">
+<dt id="helpscout.base_api.BaseApi.BASE_URI">
+<code class="descname">BASE_URI</code><a class="headerlink" href="#helpscout.base_api.BaseApi.BASE_URI" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – HelpScout API URI base.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.base_api.BaseApi.paginator">
+<code class="descname">paginator</code><a class="headerlink" href="#helpscout.base_api.BaseApi.paginator" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>RequestPaginator</em> – Object to use for producing an iterator
+representing multiple requests (API response pages). Created on init.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.base_api.BaseApi.__object__">
+<code class="descname">__object__</code><a class="headerlink" href="#helpscout.base_api.BaseApi.__object__" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>helpscout.models.BaseModel</em> – Model object that API
+represents.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">BASE_URI</code><em class="property"> = 'https://api.helpscout.net/v1'</em></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="helpscout.base_api.BaseApi.get_search_domain">
+<em class="property">static </em><code class="descname">get_search_domain</code><span class="sig-paren">(</span><em>queries</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.get_search_domain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_api.BaseApi.get_search_domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper method to create search domains if needed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>queries</strong> (<a class="reference internal" href="#helpscout.Domain" title="helpscout.Domain"><em>Domain</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#iter" title="(in Python v2.7)"><em>iter</em></a>) – The queries for the domain. If a
+<code class="docutils literal"><span class="pre">Domain</span></code> object is provided, it will simply be returned.
+Otherwise, a <code class="docutils literal"><span class="pre">Domain</span></code> object will be generated from the
+complex queries. In this case, the queries should conform
+to the interface in
+<a class="reference internal" href="helpscout.domain.html#helpscout.domain.Domain.from_tuple" title="helpscout.domain.Domain.from_tuple"><code class="xref py py-func docutils literal"><span class="pre">helpscout.domain.Domain.from_tuple()</span></code></a>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
+<dt>Either the provided domain, or one created from</dt>
+<dd><code class="docutils literal"><span class="pre">queries</span></code>.</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#helpscout.Domain" title="helpscout.Domain">Domain</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="helpscout.base_api.BaseApi.new_object">
+<em class="property">classmethod </em><code class="descname">new_object</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.new_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_api.BaseApi.new_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new object of the correct type from the data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) – Data dictionary that should be converted to an
+object. It can use either camelCase keys or snake_case.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A model of the type declared in <code class="docutils literal"><span class="pre">cls.__object__</span></code>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="helpscout.tests.html#helpscout.tests.BaseModel" title="helpscout.tests.BaseModel">BaseModel</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">paginator</code><em class="property"> = None</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-helpscout.base_model">
+<span id="helpscout-base-model-module"></span><h2>helpscout.base_model module<a class="headerlink" href="#module-helpscout.base_model" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="helpscout.base_model.BaseModel">
+<em class="property">class </em><code class="descclassname">helpscout.base_model.</code><code class="descname">BaseModel</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_model.html#BaseModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_model.BaseModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">properties.base.base.HasProperties</span></code></p>
+<p>This is the model that all other models inherit from.</p>
+<blockquote>
+<div>It provides some convenience functions, and the standard <code class="docutils literal"><span class="pre">id</span></code> property.</div></blockquote>
+<p><strong>Required Properties:</strong></p>
+<ul class="simple">
+<li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
+</ul>
+<dl class="classmethod">
+<dt id="helpscout.base_model.BaseModel.from_api">
+<em class="property">classmethod </em><code class="descname">from_api</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_model.html#BaseModel.from_api"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_model.BaseModel.from_api" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new instance from API arguments.</p>
+<p>This will switch camelCase keys into snake_case for instantiation.</p>
+<p>It will also identify any <code class="docutils literal"><span class="pre">Instance</span></code> or <code class="docutils literal"><span class="pre">List</span></code> properties, and
+instantiate the proper objects using the values. The end result being
+a fully Objectified and Pythonified API response.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">HelpScoutValidationException</span></code> – In the event that an unexpected
+property is received.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Instantiated model using the API values.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="helpscout.tests.html#helpscout.tests.BaseModel" title="helpscout.tests.BaseModel">BaseModel</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.base_model.BaseModel.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>key</em>, <em>default=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_model.html#BaseModel.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_model.BaseModel.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the field indicated by the key, if present.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="helpscout.base_model.BaseModel.get_non_empty_vals">
+<em class="property">static </em><code class="descname">get_non_empty_vals</code><span class="sig-paren">(</span><em>mapping</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_model.html#BaseModel.get_non_empty_vals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_model.BaseModel.get_non_empty_vals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the mapping without any <code class="docutils literal"><span class="pre">None</span></code> values.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.base_model.BaseModel.id">
+<code class="descname">id</code><a class="headerlink" href="#helpscout.base_model.BaseModel.id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>) – Unique identifier, an integer</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.base_model.BaseModel.to_api">
+<code class="descname">to_api</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_model.html#BaseModel.to_api"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_model.BaseModel.to_api" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dictionary to send to the API.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
+<dt>Mapping representing this object that can be sent to the</dt>
+<dd>API.</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-helpscout.exceptions">
+<span id="helpscout-exceptions-module"></span><h2>helpscout.exceptions module<a class="headerlink" href="#module-helpscout.exceptions" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="helpscout.exceptions.HelpScoutException">
+<em class="property">exception </em><code class="descclassname">helpscout.exceptions.</code><code class="descname">HelpScoutException</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/exceptions.html#HelpScoutException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.exceptions.HelpScoutException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/exceptions.html#exceptions.Exception" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></a></p>
+<p>Base exception for HelpScout library errors.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="helpscout.exceptions.HelpScoutRemoteException">
+<em class="property">exception </em><code class="descclassname">helpscout.exceptions.</code><code class="descname">HelpScoutRemoteException</code><span class="sig-paren">(</span><em>status_code</em>, <em>message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/exceptions.html#HelpScoutRemoteException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.exceptions.HelpScoutRemoteException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#helpscout.exceptions.HelpScoutException" title="helpscout.exceptions.HelpScoutException"><code class="xref py py-class docutils literal"><span class="pre">helpscout.exceptions.HelpScoutException</span></code></a></p>
+<p>Indicates that an error occurred when communicating with the remote.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="helpscout.exceptions.HelpScoutSecurityException">
+<em class="property">exception </em><code class="descclassname">helpscout.exceptions.</code><code class="descname">HelpScoutSecurityException</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/exceptions.html#HelpScoutSecurityException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.exceptions.HelpScoutSecurityException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#helpscout.exceptions.HelpScoutException" title="helpscout.exceptions.HelpScoutException"><code class="xref py py-class docutils literal"><span class="pre">helpscout.exceptions.HelpScoutException</span></code></a></p>
+<p>Indicates a security error; probably by an invalid web hook signature.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="helpscout.exceptions.HelpScoutValidationException">
+<em class="property">exception </em><code class="descclassname">helpscout.exceptions.</code><code class="descname">HelpScoutValidationException</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/exceptions.html#HelpScoutValidationException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.exceptions.HelpScoutValidationException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#helpscout.exceptions.HelpScoutException" title="helpscout.exceptions.HelpScoutException"><code class="xref py py-class docutils literal"><span class="pre">helpscout.exceptions.HelpScoutException</span></code></a></p>
+<p>Indicates an error while validating user-supplied data.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-helpscout">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-helpscout" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="helpscout.AuthProxy">
+<em class="property">class </em><code class="descclassname">helpscout.</code><code class="descname">AuthProxy</code><span class="sig-paren">(</span><em>session</em>, <em>proxy_class</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/auth_proxy.html#AuthProxy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.AuthProxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>This object acts as a transparent authentication proxy for the API.</p>
+<p>This is required because the API objects are naive of the authentication
+that is setup in <code class="docutils literal"><span class="pre">HelpScout</span></code>, and all of the API interface methods are
+<code class="docutils literal"><span class="pre">classmethods</span></code> because they are instantiating.</p>
+<dl class="attribute">
+<dt id="helpscout.AuthProxy.METHOD_NO_PROXY">
+<code class="descname">METHOD_NO_PROXY</code><em class="property"> = ['auth_proxy']</em><a class="headerlink" href="#helpscout.AuthProxy.METHOD_NO_PROXY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="helpscout.AuthProxy.auth_proxy">
+<code class="descname">auth_proxy</code><span class="sig-paren">(</span><em>method</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/auth_proxy.html#AuthProxy.auth_proxy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.AuthProxy.auth_proxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authentication proxy for API requests.</p>
+<p>This is required because the API objects are naive of <code class="docutils literal"><span class="pre">HelpScout</span></code>,
+so they would otherwise be unauthenticated.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>method</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#callable" title="(in Python v2.7)"><em>callable</em></a>) – A method call that should be authenticated. It
+should accept a <code class="docutils literal"><span class="pre">requests.Session</span></code> as its first parameter,
+which should be used for the actual API call.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The results of the authenticated callable.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">mixed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="helpscout.BaseApi">
+<em class="property">class </em><code class="descclassname">helpscout.</code><code class="descname">BaseApi</code><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseApi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>This is the API interface object to be implemented by API adapters.</p>
+<p>It acts as a collection for the API object that it represents, passing
+through iteration to the API’s request paginator.</p>
+<dl class="attribute">
+<dt id="helpscout.BaseApi.BASE_URI">
+<code class="descname">BASE_URI</code><a class="headerlink" href="#helpscout.BaseApi.BASE_URI" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – HelpScout API URI base.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.BaseApi.paginator">
+<code class="descname">paginator</code><a class="headerlink" href="#helpscout.BaseApi.paginator" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>RequestPaginator</em> – Object to use for producing an iterator
+representing multiple requests (API response pages). Created on init.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.BaseApi.__object__">
+<code class="descname">__object__</code><a class="headerlink" href="#helpscout.BaseApi.__object__" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>helpscout.models.BaseModel</em> – Model object that API
+represents.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">BASE_URI</code><em class="property"> = 'https://api.helpscout.net/v1'</em></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="helpscout.BaseApi.get_search_domain">
+<em class="property">static </em><code class="descname">get_search_domain</code><span class="sig-paren">(</span><em>queries</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.get_search_domain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseApi.get_search_domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper method to create search domains if needed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>queries</strong> (<a class="reference internal" href="#helpscout.Domain" title="helpscout.Domain"><em>Domain</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#iter" title="(in Python v2.7)"><em>iter</em></a>) – The queries for the domain. If a
+<code class="docutils literal"><span class="pre">Domain</span></code> object is provided, it will simply be returned.
+Otherwise, a <code class="docutils literal"><span class="pre">Domain</span></code> object will be generated from the
+complex queries. In this case, the queries should conform
+to the interface in
+<a class="reference internal" href="helpscout.domain.html#helpscout.domain.Domain.from_tuple" title="helpscout.domain.Domain.from_tuple"><code class="xref py py-func docutils literal"><span class="pre">helpscout.domain.Domain.from_tuple()</span></code></a>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
+<dt>Either the provided domain, or one created from</dt>
+<dd><code class="docutils literal"><span class="pre">queries</span></code>.</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#helpscout.Domain" title="helpscout.Domain">Domain</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="helpscout.BaseApi.new_object">
+<em class="property">classmethod </em><code class="descname">new_object</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.new_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseApi.new_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new object of the correct type from the data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) – Data dictionary that should be converted to an
+object. It can use either camelCase keys or snake_case.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A model of the type declared in <code class="docutils literal"><span class="pre">cls.__object__</span></code>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="helpscout.tests.html#helpscout.tests.BaseModel" title="helpscout.tests.BaseModel">BaseModel</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">paginator</code><em class="property"> = None</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="helpscout.BaseModel">
+<em class="property">class </em><code class="descclassname">helpscout.</code><code class="descname">BaseModel</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_model.html#BaseModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">properties.base.base.HasProperties</span></code></p>
+<p>This is the model that all other models inherit from.</p>
+<blockquote>
+<div>It provides some convenience functions, and the standard <code class="docutils literal"><span class="pre">id</span></code> property.</div></blockquote>
+<p><strong>Required Properties:</strong></p>
+<ul class="simple">
+<li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
+</ul>
+<dl class="classmethod">
+<dt id="helpscout.BaseModel.from_api">
+<em class="property">classmethod </em><code class="descname">from_api</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_model.html#BaseModel.from_api"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseModel.from_api" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new instance from API arguments.</p>
+<p>This will switch camelCase keys into snake_case for instantiation.</p>
+<p>It will also identify any <code class="docutils literal"><span class="pre">Instance</span></code> or <code class="docutils literal"><span class="pre">List</span></code> properties, and
+instantiate the proper objects using the values. The end result being
+a fully Objectified and Pythonified API response.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">HelpScoutValidationException</span></code> – In the event that an unexpected
+property is received.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Instantiated model using the API values.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="helpscout.tests.html#helpscout.tests.BaseModel" title="helpscout.tests.BaseModel">BaseModel</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.BaseModel.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>key</em>, <em>default=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_model.html#BaseModel.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseModel.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the field indicated by the key, if present.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="helpscout.BaseModel.get_non_empty_vals">
+<em class="property">static </em><code class="descname">get_non_empty_vals</code><span class="sig-paren">(</span><em>mapping</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_model.html#BaseModel.get_non_empty_vals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseModel.get_non_empty_vals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the mapping without any <code class="docutils literal"><span class="pre">None</span></code> values.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.BaseModel.id">
+<code class="descname">id</code><a class="headerlink" href="#helpscout.BaseModel.id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>) – Unique identifier, an integer</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.BaseModel.to_api">
+<code class="descname">to_api</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_model.html#BaseModel.to_api"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseModel.to_api" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dictionary to send to the API.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
+<dt>Mapping representing this object that can be sent to the</dt>
+<dd>API.</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="helpscout.Domain">
+<em class="property">class </em><code class="descclassname">helpscout.</code><code class="descname">Domain</code><span class="sig-paren">(</span><em>queries=None</em>, <em>join_with='AND'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/domain.html#Domain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.Domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">properties.base.base.HasProperties</span></code></p>
+<p>This represents a full search query.</p>
+<dl class="attribute">
+<dt id="helpscout.Domain.AND">
+<code class="descname">AND</code><em class="property"> = 'AND'</em><a class="headerlink" href="#helpscout.Domain.AND" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.Domain.OR">
+<code class="descname">OR</code><em class="property"> = 'OR'</em><a class="headerlink" href="#helpscout.Domain.OR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="helpscout.Domain.add_query">
+<code class="descname">add_query</code><span class="sig-paren">(</span><em>query</em>, <em>join_with='AND'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/domain.html#Domain.add_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.Domain.add_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Join a new query to existing queries on the stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em> or </em><a class="reference internal" href="helpscout.apis.html#helpscout.apis.Conversations.list" title="helpscout.apis.Conversations.list"><em>list</em></a><em> or </em><a class="reference internal" href="helpscout.domain.html#helpscout.domain.DomainCondition" title="helpscout.domain.DomainCondition"><em>DomainCondition</em></a>) – The condition for the
+query. If a <code class="docutils literal"><span class="pre">DomainCondition</span></code> object is not provided, the
+input should conform to the interface defined in
+<code class="xref py py-func docutils literal"><span class="pre">from_tuple()</span></code>.</li>
+<li><strong>join_with</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – The join string to apply, if other queries are
+already on the stack.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="helpscout.Domain.from_tuple">
+<em class="property">classmethod </em><code class="descname">from_tuple</code><span class="sig-paren">(</span><em>queries</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/domain.html#Domain.from_tuple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.Domain.from_tuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <code class="docutils literal"><span class="pre">Domain</span></code> given a set of complex query tuples.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>queries</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#iter" title="(in Python v2.7)"><em>iter</em></a>) – <p>An iterator of complex queries. Each iteration
+should contain either:</p>
+<ul class="simple">
+<li>A data-set compatible with <a class="reference internal" href="helpscout.domain.html#helpscout.domain.Domain.add_query" title="helpscout.domain.Domain.add_query"><code class="xref py py-func docutils literal"><span class="pre">add_query()</span></code></a></li>
+<li>A string to switch the join type</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;subject&#39;</span><span class="p">,</span> <span class="s1">&#39;Test1&#39;</span><span class="p">),</span>
+ <span class="s1">&#39;OR&#39;</span><span class="p">,</span>
+ <span class="p">(</span><span class="s1">&#39;subject&#39;</span><span class="p">,</span> <span class="s1">&#39;Test2&#39;</span><span class="p">)</span><span class="s1">&#39;,</span>
+ <span class="p">(</span><span class="s1">&#39;subject&#39;</span><span class="p">,</span> <span class="s1">&#39;Test3&#39;</span><span class="p">)</span><span class="s1">&#39;,</span>
+ <span class="p">]</span>
+<span class="c1"># The above is equivalent to:</span>
+<span class="c1">#    subject:&#39;Test1&#39; OR subject:&#39;Test2&#39; OR subject:&#39;Test3&#39;</span>
+
+<span class="p">[(</span><span class="s1">&#39;modified_at&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">01</span><span class="p">,</span> <span class="mi">01</span><span class="p">)),</span>
+ <span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">),</span>
+ <span class="p">]</span>
+<span class="c1"># The above is equivalent to:</span>
+<span class="c1">#    modified_at:[2017-01-01T00:00:00Z TO *]</span>
+<span class="c1">#    AND status:&quot;active&quot;</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A domain representing the input queries.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#helpscout.Domain" title="helpscout.Domain">Domain</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="helpscout.HelpScout">
+<em class="property">class </em><code class="descclassname">helpscout.</code><code class="descname">HelpScout</code><span class="sig-paren">(</span><em>api_key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout.html#HelpScout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.HelpScout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>This object is the primary point of interaction with HelpScout.</p>
+<p>Properties will be set on this <code class="docutils literal"><span class="pre">HelpScout</span></code> instance that will mirror
+the class names of APIs in the <code class="docutils literal"><span class="pre">helpscout.api</span></code> module.</p>
+<p>These API classes are naive of authentication, so the actual properties
+set will be using the <code class="docutils literal"><span class="pre">AuthProxy</span></code> class, which will transparently
+inject authentication into the API requests while still allowing for a
+naive API object.</p>
+<p>This allows for the <code class="docutils literal"><span class="pre">HelpScout</span></code> instance to act as a container for
+all of the authenticated API objects.</p>
+<p>Examples:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">helpscout</span> <span class="k">import</span> <span class="n">HelpScout</span>
+<span class="n">hs</span> <span class="o">=</span> <span class="n">HelpScout</span><span class="p">(</span><span class="s1">&#39;api_key&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">customer</span> <span class="ow">in</span> <span class="n">hs</span><span class="o">.</span><span class="n">Customers</span><span class="o">.</span><span class="n">list</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">customer</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="helpscout.HelpScout.Conversations">
+<code class="descname">Conversations</code><a class="headerlink" href="#helpscout.HelpScout.Conversations" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>helpscout.api.conversations.Conversations</em> – Conversations API endpoint.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.HelpScout.Customers">
+<code class="descname">Customers</code><a class="headerlink" href="#helpscout.HelpScout.Customers" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>helpscout.api.customers.Customers</em> – Customers API
+endpoint.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.HelpScout.Mailboxes">
+<code class="descname">Mailboxes</code><a class="headerlink" href="#helpscout.HelpScout.Mailboxes" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>helpscout.api.mailboxes.Mailboxes</em> – Mailboxes API endpoint.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.HelpScout.Tags">
+<code class="descname">Tags</code><a class="headerlink" href="#helpscout.HelpScout.Tags" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>helpscout.api.tags.Tags</em> – Tags API endpoint.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.HelpScout.Teams">
+<code class="descname">Teams</code><a class="headerlink" href="#helpscout.HelpScout.Teams" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>helpscout.api.teams.Teams</em> – Teams API endpoint.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.HelpScout.Users">
+<code class="descname">Users</code><a class="headerlink" href="#helpscout.HelpScout.Users" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>helpscout.api.users.Users</em> – Users API endpoint.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.HelpScout.WebHook">
+<code class="descname">WebHook</code><a class="headerlink" href="#helpscout.HelpScout.WebHook" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>helpscout.api.web_hook.WebHook</em> – Web Hook API endpoint.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.HelpScout.__apis__">
+<code class="descname">__apis__</code><a class="headerlink" href="#helpscout.HelpScout.__apis__" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> – References to all available APIs, keyed by class
+name.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="helpscout.HelpScoutWebHook">
+<em class="property">class </em><code class="descclassname">helpscout.</code><code class="descname">HelpScoutWebHook</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/web_hook.html#HelpScoutWebHook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.HelpScoutWebHook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="helpscout.models.html#helpscout.models.web_hook.WebHook" title="helpscout.models.web_hook.WebHook"><code class="xref py py-class docutils literal"><span class="pre">helpscout.models.web_hook.WebHook</span></code></a></p>
+<p>This provides the ability to easily create &amp; process web hook events.</p>
+<p><strong>Required Properties:</strong></p>
+<ul class="simple">
+<li><strong>events</strong> (a list of <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The events to subscribe to., a list (each item is any of “convo.agent.reply.created” (An agent replied to the conversation.), “convo.assigned” (Conversation was assigned.), “convo.created” (Conversation was created.), “convo.customer.reply.created” (The customer replied to the conversation.), “convo.deleted” (Conversation was deleted.), “convo.merged” (Conversation was merged.), “convo.moved” (Conversation was moved.), “convo.note.created” (A note was added to the conversation.), “convo.status” (Conversation status was updated.), “convo.tags” (Conversation tags were updated.), “customer.created” (A customer was created.), “satisfaction.ratings” (A rating was received.))</li>
+<li><strong>helpscout</strong> (<code class="xref py py-class docutils literal"><span class="pre">object</span></code>): The authenticated HelpScout object. Used for create., an instance of object</li>
+<li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
+<li><strong>secret_key</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): A randomly-generated (by you) string of 40 characters or less used to create signatures for each webhook method. Help Scout uses this secret key to generate a signature for each webhook message. When the message is received at your callback URL, you can calculate a signature and compare to the one Help Scout sends. If the signatures match, you know it’s from Help Scout., a unicode string</li>
+<li><strong>url</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>):        The callback URL where Help Scout will post your webhook events. This is the script or location where you’ll handle the data received from Help Scout., a unicode string</li>
+</ul>
+<dl class="method">
+<dt id="helpscout.HelpScoutWebHook.create">
+<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/web_hook.html#HelpScoutWebHook.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.HelpScoutWebHook.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the web hook on HelpScout.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.HelpScoutWebHook.helpscout">
+<code class="descname">helpscout</code><a class="headerlink" href="#helpscout.HelpScoutWebHook.helpscout" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>helpscout</strong> (<code class="xref py py-class docutils literal"><span class="pre">object</span></code>) – The authenticated HelpScout object. Used for create., an instance of object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.HelpScoutWebHook.receive">
+<code class="descname">receive</code><span class="sig-paren">(</span><em>event_type</em>, <em>signature</em>, <em>data_str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/web_hook.html#HelpScoutWebHook.receive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.HelpScoutWebHook.receive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive a web hook for the event and signature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>event_type</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – Name of the event that was received (from the
+request <code class="docutils literal"><span class="pre">X-HelpScout-Event</span></code> header).</li>
+<li><strong>signature</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – The signature that was received, which serves as
+authentication (from the request <code class="docutils literal"><span class="pre">X-HelpScout-Signature</span></code>
+header).</li>
+<li><strong>data_str</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – The raw data that was posted by HelpScout
+to the web hook. This must be the raw string, because if it
+is parsed with JSON it will lose its ordering and not pass
+signature validation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><a class="reference internal" href="#helpscout.exceptions.HelpScoutSecurityException" title="helpscout.exceptions.HelpScoutSecurityException"><code class="xref py py-exc docutils literal"><span class="pre">helpscout.exceptions.HelpScoutSecurityException</span></code></a> – If an invalid
+signature is provided, and <code class="docutils literal"><span class="pre">raise_if_invalid</span></code> is <code class="docutils literal"><span class="pre">True</span></code>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>The authenticated web hook</dt>
+<dd><p class="first last">request.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.web_hook.html#helpscout.web_hook.WebHookEvent" title="helpscout.web_hook.WebHookEvent">helpscout.web_hook.WebHookEvent</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.HelpScoutWebHook.validate_signature">
+<code class="descname">validate_signature</code><span class="sig-paren">(</span><em>signature</em>, <em>data</em>, <em>encoding='utf8'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/web_hook.html#HelpScoutWebHook.validate_signature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.HelpScoutWebHook.validate_signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate the signature for the provided data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>signature</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>bytes</em><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#bytearray" title="(in Python v2.7)"><em>bytearray</em></a>) – Signature that was provided
+for the request.</li>
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><em>bytes</em><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#bytearray" title="(in Python v2.7)"><em>bytearray</em></a>) – Data string to validate against
+the signature.</li>
+<li><strong>encoding</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>, </em><em>optional</em>) – If a string was provided for <code class="docutils literal"><span class="pre">data</span></code> or
+<code class="docutils literal"><span class="pre">signature</span></code>, this is the character encoding.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Whether the signature is valid for the provided data.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)">bool</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">HelpScout</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=LasLabs&repo=python-helpscout&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/LasLabs/python-helpscout">
+    <img
+        alt="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+        src="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+    />
+</a>
+</p>
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">helpscout package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="helpscout.apis.html">helpscout.apis package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="helpscout.domain.html">helpscout.domain package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="helpscout.models.html">helpscout.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="helpscout.request_paginator.html">helpscout.request_paginator package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="helpscout.tests.html">helpscout.tests package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="helpscout.web_hook.html">helpscout.web_hook package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-helpscout.auth_proxy">helpscout.auth_proxy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-helpscout.base_api">helpscout.base_api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-helpscout.base_model">helpscout.base_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-helpscout.exceptions">helpscout.exceptions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-helpscout">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">setup module</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017 LasLabs Inc..
+      
+      |
+      <a href="_sources/helpscout.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/LasLabs/python-helpscout" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

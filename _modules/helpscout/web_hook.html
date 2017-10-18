@@ -1,0 +1,238 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>helpscout.web_hook &#8212; HelpScout 0.0.0b259 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.0b259',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for helpscout.web_hook</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright 2017-TODAY LasLabs Inc.</span>
+<span class="c1"># License MIT (https://opensource.org/licenses/MIT).</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;HelpScoutWebHook&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;WebHookEvent&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">properties</span>
+
+<span class="kn">from</span> <span class="nn">base64</span> <span class="k">import</span> <span class="n">b64encode</span>
+<span class="kn">from</span> <span class="nn">hashlib</span> <span class="k">import</span> <span class="n">sha1</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">string_types</span>
+
+<span class="kn">from</span> <span class="nn">..models</span> <span class="k">import</span> <span class="n">Conversation</span><span class="p">,</span> <span class="n">Customer</span><span class="p">,</span> <span class="n">Rating</span><span class="p">,</span> <span class="n">WebHook</span><span class="p">,</span> <span class="n">WebHookEvent</span>
+
+<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="k">import</span> <span class="n">HelpScoutSecurityException</span>
+
+
+<div class="viewcode-block" id="HelpScoutWebHook"><a class="viewcode-back" href="../../helpscout.web_hook.html#helpscout.HelpScoutWebHook">[docs]</a><span class="k">class</span> <span class="nc">HelpScoutWebHook</span><span class="p">(</span><span class="n">WebHook</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This provides the ability to easily create &amp; process web hook events.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">helpscout</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">Instance</span><span class="p">(</span>
+        <span class="s1">&#39;The authenticated HelpScout object. Used for create.&#39;</span><span class="p">,</span>
+        <span class="c1"># This cannot be defined as a HelpScout object due to circular depends</span>
+        <span class="n">instance_class</span><span class="o">=</span><span class="nb">object</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<div class="viewcode-block" id="HelpScoutWebHook.create"><a class="viewcode-back" href="../../helpscout.web_hook.html#helpscout.HelpScoutWebHook.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create the web hook on HelpScout.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">helpscout</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">helpscout</span><span class="o">.</span><span class="n">WebHook</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HelpScoutWebHook.receive"><a class="viewcode-back" href="../../helpscout.web_hook.html#helpscout.HelpScoutWebHook.receive">[docs]</a>    <span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">data_str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receive a web hook for the event and signature.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            event_type (str): Name of the event that was received (from the</span>
+<span class="sd">                request ``X-HelpScout-Event`` header).</span>
+<span class="sd">            signature (str): The signature that was received, which serves as</span>
+<span class="sd">                authentication (from the request ``X-HelpScout-Signature``</span>
+<span class="sd">                header).</span>
+<span class="sd">            data_str (str): The raw data that was posted by HelpScout</span>
+<span class="sd">                to the web hook. This must be the raw string, because if it</span>
+<span class="sd">                is parsed with JSON it will lose its ordering and not pass</span>
+<span class="sd">                signature validation.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            helpscout.exceptions.HelpScoutSecurityException: If an invalid</span>
+<span class="sd">                signature is provided, and ``raise_if_invalid`` is ``True``.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            helpscout.web_hook.WebHookEvent: The authenticated web hook</span>
+<span class="sd">                request.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_signature</span><span class="p">(</span><span class="n">signature</span><span class="p">,</span> <span class="n">data_str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">HelpScoutSecurityException</span><span class="p">(</span>
+                <span class="s1">&#39;The signature provided by this request was invalid.&#39;</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">HelpScoutWebHookEvent</span><span class="p">(</span>
+            <span class="n">event_type</span><span class="o">=</span><span class="n">event_type</span><span class="p">,</span>
+            <span class="n">record</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data_str</span><span class="p">),</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="HelpScoutWebHook.validate_signature"><a class="viewcode-back" href="../../helpscout.web_hook.html#helpscout.HelpScoutWebHook.validate_signature">[docs]</a>    <span class="k">def</span> <span class="nf">validate_signature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Validate the signature for the provided data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            signature (str or bytes or bytearray): Signature that was provided</span>
+<span class="sd">                for the request.</span>
+<span class="sd">            data (str or bytes or bytearray): Data string to validate against</span>
+<span class="sd">                the signature.</span>
+<span class="sd">            encoding (str, optional): If a string was provided for ``data`` or</span>
+<span class="sd">                ``signature``, this is the character encoding.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether the signature is valid for the provided data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">string_types</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">signature</span><span class="p">,</span> <span class="n">string_types</span><span class="p">):</span>
+            <span class="n">signature</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">signature</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+
+        <span class="n">secret_key</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">secret_key</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+        <span class="n">hashed</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">sha1</span><span class="p">)</span>
+        <span class="n">encoded</span> <span class="o">=</span> <span class="n">b64encode</span><span class="p">(</span><span class="n">hashed</span><span class="o">.</span><span class="n">digest</span><span class="p">())</span>
+
+        <span class="k">return</span> <span class="n">encoded</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="n">signature</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span></div></div>
+
+
+<span class="k">class</span> <span class="nc">HelpScoutWebHookEvent</span><span class="p">(</span><span class="n">WebHookEvent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This represents an authenticated web hook request.</span>
+
+<span class="sd">    Note that this object is meant to represent an authenticated Web Hook,</span>
+<span class="sd">    and therefore is completely naive of all things authentication. Any</span>
+<span class="sd">    request authentication/validation should happen in the ``WebHook``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Map the event prefixes to their corresponding data models.</span>
+    <span class="n">EVENT_PREFIX_TO_MODEL</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;convo&#39;</span><span class="p">:</span> <span class="n">Conversation</span><span class="p">,</span>
+        <span class="s1">&#39;customer&#39;</span><span class="p">:</span> <span class="n">Customer</span><span class="p">,</span>
+        <span class="s1">&#39;satisfaction&#39;</span><span class="p">:</span> <span class="n">Rating</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Parse raw record data if required.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            record (dict or BaseModel): The record data that was received for</span>
+<span class="sd">                the request. If it is a ``dict``, the data will be parsed</span>
+<span class="sd">                using the proper model&#39;s ``from_api`` method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;record&#39;</span><span class="p">),</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">prefix</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;event_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">EVENT_PREFIX_TO_MODEL</span><span class="p">[</span><span class="n">prefix</span><span class="p">]</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;record&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">from_api</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;record&#39;</span><span class="p">])</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">WebHookEvent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">HelpScout</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=LasLabs&repo=python-helpscout&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/LasLabs/python-helpscout">
+    <img
+        alt="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+        src="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+    />
+</a>
+</p>
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../helpscout.html">helpscout package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../setup.html">setup module</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017 LasLabs Inc..
+      
+    </div>
+
+    
+    <a href="https://github.com/LasLabs/python-helpscout" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

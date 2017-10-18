@@ -1,0 +1,229 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>helpscout.tests.test_api_conversations &#8212; HelpScout 0.0.0b259 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.0.0b259',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for helpscout.tests.test_api_conversations</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright 2017-TODAY LasLabs Inc.</span>
+<span class="c1"># License MIT (https://opensource.org/licenses/MIT).</span>
+
+<span class="kn">from</span> <span class="nn">.api_common</span> <span class="k">import</span> <span class="n">ApiCommon</span>
+
+<span class="kn">from</span> <span class="nn">..apis.conversations</span> <span class="k">import</span> <span class="n">Conversations</span>
+
+<span class="kn">from</span> <span class="nn">..models.search_conversation</span> <span class="k">import</span> <span class="n">SearchConversation</span>
+<span class="kn">from</span> <span class="nn">..models.thread</span> <span class="k">import</span> <span class="n">Thread</span>
+
+
+<div class="viewcode-block" id="TestApiConversations"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations">[docs]</a><span class="k">class</span> <span class="nc">TestApiConversations</span><span class="p">(</span><span class="n">ApiCommon</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestApiConversations.test_create"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_create">[docs]</a>    <span class="k">def</span> <span class="nf">test_create</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;conversation&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">to_api</span><span class="p">(),</span>
+            <span class="s1">&#39;imported&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s1">&#39;auto_reply&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s1">&#39;reload&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
+            <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="s1">&#39;/conversations.json&#39;</span><span class="p">,</span>
+            <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApiConversations.test_create_thread"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_create_thread">[docs]</a>    <span class="k">def</span> <span class="nf">test_create_thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">thread</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">thread</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="n">thread</span><span class="o">.</span><span class="n">to_api</span><span class="p">(),</span>
+            <span class="s1">&#39;imported&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s1">&#39;reload&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">thread</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;/conversations/</span><span class="si">%d</span><span class="s1">.json&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
+            <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;create_thread&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span>
+            <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">Thread</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApiConversations.test_delete"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_delete">[docs]</a>    <span class="k">def</span> <span class="nf">test_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;/conversations/</span><span class="si">%s</span><span class="s1">.json&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
+            <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">],</span> <span class="n">uri</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApiConversations.test_find_customer"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_find_customer">[docs]</a>    <span class="k">def</span> <span class="nf">test_find_customer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">customer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">customer</span>
+        <span class="n">customer</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="mi">9876</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;/mailboxes/</span><span class="si">%d</span><span class="s1">/customers/</span><span class="si">%s</span><span class="s1">/conversations.json&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">customer</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">,</span> <span class="n">customer</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
+            <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;find_customer&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApiConversations.test_find_user"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_find_user">[docs]</a>    <span class="k">def</span> <span class="nf">test_find_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">user</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="mi">9876</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;/mailboxes/</span><span class="si">%d</span><span class="s1">/users/</span><span class="si">%s</span><span class="s1">/conversations.json&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">,</span> <span class="n">user</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
+            <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;find_user&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApiConversations.test_get"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;/conversations/</span><span class="si">%s</span><span class="s1">.json&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
+            <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span><span class="p">],</span> <span class="n">uri</span><span class="p">,</span>
+            <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApiConversations.test_list"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_list">[docs]</a>    <span class="k">def</span> <span class="nf">test_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;/mailboxes/</span><span class="si">%d</span><span class="s1">/conversations.json&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
+            <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">],</span> <span class="n">uri</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApiConversations.test_list_folder"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_list_folder">[docs]</a>    <span class="k">def</span> <span class="nf">test_list_folder</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">folder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">folder</span>
+        <span class="n">folder</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="mi">9876</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;/mailboxes/</span><span class="si">%d</span><span class="s1">/folders/</span><span class="si">%d</span><span class="s1">/conversations.json&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">folder</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
+            <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;list_folder&#39;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">,</span> <span class="n">folder</span><span class="p">],</span> <span class="n">uri</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApiConversations.test_search"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_search">[docs]</a>    <span class="k">def</span> <span class="nf">test_search</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="s2">&quot;()&quot;</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
+            <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;search&#39;</span><span class="p">,</span> <span class="p">[[]],</span> <span class="s1">&#39;/search/conversations.json&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span>
+            <span class="n">out_type</span><span class="o">=</span><span class="n">SearchConversation</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApiConversations.test_update"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_update">[docs]</a>    <span class="k">def</span> <span class="nf">test_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;/conversations/</span><span class="si">%s</span><span class="s1">.json&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
+            <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">],</span> <span class="n">uri</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">,</span>
+            <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApiConversations.test_update_thread"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_update_thread">[docs]</a>    <span class="k">def</span> <span class="nf">test_update_thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">thread</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">thread</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="mi">9876</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;/conversations/</span><span class="si">%s</span><span class="s1">/threads/</span><span class="si">%d</span><span class="s1">.json&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">thread</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
+            <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;update_thread&#39;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">,</span> <span class="n">thread</span><span class="p">],</span> <span class="n">uri</span><span class="p">,</span>
+            <span class="n">thread</span><span class="p">,</span> <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">out_type</span><span class="o">=</span><span class="n">Thread</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">HelpScout</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=LasLabs&repo=python-helpscout&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/LasLabs/python-helpscout">
+    <img
+        alt="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+        src="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+    />
+</a>
+</p>
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../helpscout.html">helpscout package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../setup.html">setup module</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017 LasLabs Inc..
+      
+    </div>
+
+    
+    <a href="https://github.com/LasLabs/python-helpscout" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

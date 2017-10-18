@@ -1,0 +1,244 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>helpscout.models.thread &#8212; HelpScout 0.0.0b259 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.0.0b259',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for helpscout.models.thread</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright 2017-TODAY LasLabs Inc.</span>
+<span class="c1"># License MIT (https://opensource.org/licenses/MIT).</span>
+
+<span class="kn">import</span> <span class="nn">properties</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="k">import</span> <span class="n">BaseModel</span>
+
+<span class="kn">from</span> <span class="nn">.attachment</span> <span class="k">import</span> <span class="n">Attachment</span>
+<span class="kn">from</span> <span class="nn">.email</span> <span class="k">import</span> <span class="n">Email</span>
+<span class="kn">from</span> <span class="nn">.mailbox_ref</span> <span class="k">import</span> <span class="n">MailboxRef</span>
+<span class="kn">from</span> <span class="nn">.person</span> <span class="k">import</span> <span class="n">Person</span>
+<span class="kn">from</span> <span class="nn">.source</span> <span class="k">import</span> <span class="n">Source</span>
+
+
+<div class="viewcode-block" id="Thread"><a class="viewcode-back" href="../../../helpscout.models.html#helpscout.models.thread.Thread">[docs]</a><span class="k">class</span> <span class="nc">Thread</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+
+    <span class="n">assigned_to</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">Instance</span><span class="p">(</span>
+        <span class="s1">&#39;The Help Scout user assigned to this conversation.&#39;</span><span class="p">,</span>
+        <span class="n">instance_class</span><span class="o">=</span><span class="n">Person</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">StringChoice</span><span class="p">(</span>
+        <span class="s1">&#39;Status of the thread.&#39;</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;nochange&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="s1">&#39;pending&#39;</span><span class="p">,</span> <span class="s1">&#39;closed&#39;</span><span class="p">,</span> <span class="s1">&#39;spam&#39;</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">created_at</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">DateTime</span><span class="p">(</span>
+        <span class="s1">&#39;UTC time when this thread was created.&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">opened_at</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">DateTime</span><span class="p">(</span>
+        <span class="s1">&#39;UTC time when this thread was viewed by the customer. Only applies &#39;</span>
+        <span class="s1">&#39;to threads with a ``type`` of message.&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">created_by</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">Instance</span><span class="p">(</span>
+        <span class="s1">&#39;The Person who created this thread. The ``type`` property will &#39;</span>
+        <span class="s1">&#39;specify whether it was created by a ``user`` or a ``customer``.&#39;</span><span class="p">,</span>
+        <span class="n">instance_class</span><span class="o">=</span><span class="n">Person</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">Instance</span><span class="p">(</span>
+        <span class="s1">&#39;Origin of thread&#39;</span><span class="p">,</span>
+        <span class="n">instance_class</span><span class="o">=</span><span class="n">Source</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">action_type</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">StringChoice</span><span class="p">(</span>
+        <span class="s1">&#39;Describes an optional action associated with the line item.&#39;</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;movedFromMailbox&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;merged&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;imported&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;workflow&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;importedExternal&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;changedTicketCustomer&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;deletedTicket&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;restoreTicket&#39;</span><span class="p">,</span>
+                 <span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">action_source_id</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span>
+        <span class="s1">&#39;Associated with the ``action_type`` property. </span><span class="se">\n\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;* If ``action_type`` is ``movedFromMailbox``, this will be the id &#39;</span>
+        <span class="s1">&#39;  of the mailbox the conversation was moved from. </span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;* If ``action_type`` is ``merged``, this will be the id of the &#39;</span>
+        <span class="s1">&#39;  original conversation. </span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;* If ``action_type`` is ``imported``, this will be null. </span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;* If ``action_type`` is ``workflow``, this will be the id of the &#39;</span>
+        <span class="s1">&#39;  workflow that was run. </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">from_mailbox</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">Instance</span><span class="p">(</span>
+        <span class="s1">&#39;If the conversation was moved, this represents the MailboxRef from &#39;</span>
+        <span class="s1">&#39;which it was moved.&#39;</span><span class="p">,</span>
+        <span class="n">instance_class</span><span class="o">=</span><span class="n">MailboxRef</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">StringChoice</span><span class="p">(</span>
+        <span class="s1">&#39;The type of thread. </span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;A ``lineitem`` represents a change of state on the conversation. &#39;</span>
+        <span class="s1">&#39;This could include, but not limited to, the conversation was &#39;</span>
+        <span class="s1">&#39;assigned, the status changed, the conversation was moved from one &#39;</span>
+        <span class="s1">&#39;mailbox to another, etc. A line item won</span><span class="se">\&#39;</span><span class="s1">t have a body, to/cc/bcc &#39;</span>
+        <span class="s1">&#39;lists, or attachments. </span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;When a conversation is forwarded, a new conversation is created to &#39;</span>
+        <span class="s1">&#39;represent the forwarded conversation. </span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;``forwardparent ``is the type set on the thread of the original &#39;</span>
+        <span class="s1">&#39;conversation that initiated the forward event. </span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;``forwardchild`` is the type set on the first thread of the new &#39;</span>
+        <span class="s1">&#39;forwarded conversation.&#39;</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lineitem&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;note&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;message&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;chat&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;customer&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;forwardparent&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;forwardchild&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;phone&#39;</span><span class="p">,</span>
+                 <span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">StringChoice</span><span class="p">(</span>
+        <span class="s1">&#39;The state of the thread. </span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;A state of ``underreview`` means the thread has been stopped by &#39;</span>
+        <span class="s1">&#39;Traffic Cop and is waiting to be confirmed (or discarded) by the &#39;</span>
+        <span class="s1">&#39;person that created the thread. </span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;A state of ``hidden`` means the thread was hidden (or removed) from &#39;</span>
+        <span class="s1">&#39;customer-facing emails.&#39;</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;published&#39;</span><span class="p">,</span> <span class="s1">&#39;draft&#39;</span><span class="p">,</span> <span class="s1">&#39;underreview&#39;</span><span class="p">,</span> <span class="s1">&#39;hidden&#39;</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">customer</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">Instance</span><span class="p">(</span>
+        <span class="s1">&#39;If thread type is ``message``, this is the customer associated with &#39;</span>
+        <span class="s1">&#39;the conversation. </span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;If thread type is ``customer``, this is the the customer who &#39;</span>
+        <span class="s1">&#39;initiated the thread.&#39;</span><span class="p">,</span>
+        <span class="n">instance_class</span><span class="o">=</span><span class="n">Person</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">String</span><span class="p">(</span>
+        <span class="s1">&#39;Body text&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">to</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">List</span><span class="p">(</span>
+        <span class="s1">&#39;Email to&#39;</span><span class="p">,</span>
+        <span class="n">prop</span><span class="o">=</span><span class="n">Email</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">cc</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">List</span><span class="p">(</span>
+        <span class="s1">&#39;CC to&#39;</span><span class="p">,</span>
+        <span class="n">prop</span><span class="o">=</span><span class="n">Email</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">bcc</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">List</span><span class="p">(</span>
+        <span class="s1">&#39;BCC to&#39;</span><span class="p">,</span>
+        <span class="n">prop</span><span class="o">=</span><span class="n">Email</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">attachments</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">List</span><span class="p">(</span>
+        <span class="s1">&#39;Attachments&#39;</span><span class="p">,</span>
+        <span class="n">prop</span><span class="o">=</span><span class="n">Attachment</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">saved_reply_id</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span>
+        <span class="s1">&#39;ID of Saved reply that was used to create this Thread.&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">created_by_customer</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">Bool</span><span class="p">(</span>
+        <span class="s1">&#39;Equivalent to ``created_by.type == &quot;customer&quot;``.&#39;</span><span class="p">,</span>
+    <span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">HelpScout</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=LasLabs&repo=python-helpscout&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/LasLabs/python-helpscout">
+    <img
+        alt="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+        src="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+    />
+</a>
+</p>
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../helpscout.html">helpscout package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../setup.html">setup module</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017 LasLabs Inc..
+      
+    </div>
+
+    
+    <a href="https://github.com/LasLabs/python-helpscout" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

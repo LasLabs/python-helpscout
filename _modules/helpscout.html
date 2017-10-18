@@ -1,0 +1,195 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>helpscout &#8212; HelpScout 0.0.0b259 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.0b259',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for helpscout</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright 2017-TODAY LasLabs Inc.</span>
+<span class="c1"># License MIT (https://opensource.org/licenses/MIT).</span>
+
+<span class="kn">from</span> <span class="nn">requests</span> <span class="k">import</span> <span class="n">Session</span>
+<span class="kn">from</span> <span class="nn">requests.auth</span> <span class="k">import</span> <span class="n">HTTPBasicAuth</span>
+
+<span class="kn">from</span> <span class="nn">.auth_proxy</span> <span class="k">import</span> <span class="n">AuthProxy</span>
+<span class="kn">from</span> <span class="nn">.base_api</span> <span class="k">import</span> <span class="n">BaseApi</span>
+<span class="kn">from</span> <span class="nn">.base_model</span> <span class="k">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">.domain</span> <span class="k">import</span> <span class="n">Domain</span>
+<span class="kn">from</span> <span class="nn">.web_hook</span> <span class="k">import</span> <span class="n">HelpScoutWebHook</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">exceptions</span>
+
+
+<div class="viewcode-block" id="HelpScout"><a class="viewcode-back" href="../helpscout.html#helpscout.HelpScout">[docs]</a><span class="k">class</span> <span class="nc">HelpScout</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This object is the primary point of interaction with HelpScout.</span>
+
+<span class="sd">    Properties will be set on this ``HelpScout`` instance that will mirror</span>
+<span class="sd">    the class names of APIs in the ``helpscout.api`` module.</span>
+
+<span class="sd">    These API classes are naive of authentication, so the actual properties</span>
+<span class="sd">    set will be using the ``AuthProxy`` class, which will transparently</span>
+<span class="sd">    inject authentication into the API requests while still allowing for a</span>
+<span class="sd">    naive API object.</span>
+
+<span class="sd">    This allows for the ``HelpScout`` instance to act as a container for</span>
+<span class="sd">    all of the authenticated API objects.</span>
+
+<span class="sd">    Examples::</span>
+
+<span class="sd">        from helpscout import HelpScout</span>
+<span class="sd">        hs = HelpScout(&#39;api_key&#39;)</span>
+<span class="sd">        for customer in hs.Customers.list():</span>
+<span class="sd">            print(customer)</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        Conversations (helpscout.api.conversations.Conversations):</span>
+<span class="sd">            Conversations API endpoint.</span>
+<span class="sd">        Customers (helpscout.api.customers.Customers): Customers API</span>
+<span class="sd">            endpoint.</span>
+<span class="sd">        Mailboxes (helpscout.api.mailboxes.Mailboxes): Mailboxes API endpoint.</span>
+<span class="sd">        Tags (helpscout.api.tags.Tags): Tags API endpoint.</span>
+<span class="sd">        Teams (helpscout.api.teams.Teams): Teams API endpoint.</span>
+<span class="sd">        Users (helpscout.api.users.Users): Users API endpoint.</span>
+<span class="sd">        WebHook (helpscout.api.web_hook.WebHook): Web Hook API endpoint.</span>
+<span class="sd">        __apis__ (dict): References to all available APIs, keyed by class</span>
+<span class="sd">            name.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__apis__</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a new HelpScout client.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            api_key (str): The API key to use for this session.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="s1">&#39;NoPassBecauseKey!&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_apis</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_load_apis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find available APIs and set instances property auth proxies.&quot;&quot;&quot;</span>
+        <span class="n">helpscout</span> <span class="o">=</span> <span class="nb">__import__</span><span class="p">(</span><span class="s1">&#39;helpscout.apis&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="n">helpscout</span><span class="o">.</span><span class="n">apis</span><span class="o">.</span><span class="n">__all__</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">class_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">):</span>
+                <span class="bp">cls</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">helpscout</span><span class="o">.</span><span class="n">apis</span><span class="p">,</span> <span class="n">class_name</span><span class="p">)</span>
+                <span class="n">api</span> <span class="o">=</span> <span class="n">AuthProxy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">api</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__apis__</span><span class="p">[</span><span class="n">class_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">api</span></div>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;AuthProxy&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;BaseApi&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;BaseModel&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Domain&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;exceptions&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;HelpScout&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;HelpScoutWebHook&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">HelpScout</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=LasLabs&repo=python-helpscout&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/LasLabs/python-helpscout">
+    <img
+        alt="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+        src="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+    />
+</a>
+</p>
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpscout.html">helpscout package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">setup module</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017 LasLabs Inc..
+      
+    </div>
+
+    
+    <a href="https://github.com/LasLabs/python-helpscout" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

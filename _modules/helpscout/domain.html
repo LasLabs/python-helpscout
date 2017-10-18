@@ -1,0 +1,339 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>helpscout.domain &#8212; HelpScout 0.0.0b259 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.0b259',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for helpscout.domain</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright 2017-TODAY LasLabs Inc.</span>
+<span class="c1"># License MIT (https://opensource.org/licenses/MIT).</span>
+
+<span class="kn">import</span> <span class="nn">properties</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
+
+<span class="kn">from</span> <span class="nn">..base_model</span> <span class="k">import</span> <span class="n">BaseModel</span>
+
+
+<div class="viewcode-block" id="Domain"><a class="viewcode-back" href="../../helpscout.domain.html#helpscout.Domain">[docs]</a><span class="k">class</span> <span class="nc">Domain</span><span class="p">(</span><span class="n">properties</span><span class="o">.</span><span class="n">HasProperties</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This represents a full search query.&quot;&quot;&quot;</span>
+
+    <span class="n">OR</span> <span class="o">=</span> <span class="s1">&#39;OR&#39;</span>
+    <span class="n">AND</span> <span class="o">=</span> <span class="s1">&#39;AND&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queries</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">join_with</span><span class="o">=</span><span class="n">AND</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a domain, with optional queries.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">queries</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">queries</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">join_with</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Domain.from_tuple"><a class="viewcode-back" href="../../helpscout.domain.html#helpscout.Domain.from_tuple">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_tuple</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">queries</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a ``Domain`` given a set of complex query tuples.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            queries (iter): An iterator of complex queries. Each iteration</span>
+<span class="sd">                should contain either:</span>
+
+<span class="sd">                * A data-set compatible with :func:`~domain.Domain.add_query`</span>
+<span class="sd">                * A string to switch the join type</span>
+
+<span class="sd">                Example::</span>
+
+<span class="sd">                    [(&#39;subject&#39;, &#39;Test1&#39;),</span>
+<span class="sd">                     &#39;OR&#39;,</span>
+<span class="sd">                     (&#39;subject&#39;, &#39;Test2&#39;)&#39;,</span>
+<span class="sd">                     (&#39;subject&#39;, &#39;Test3&#39;)&#39;,</span>
+<span class="sd">                     ]</span>
+<span class="sd">                    # The above is equivalent to:</span>
+<span class="sd">                    #    subject:&#39;Test1&#39; OR subject:&#39;Test2&#39; OR subject:&#39;Test3&#39;</span>
+
+<span class="sd">                    [(&#39;modified_at&#39;, datetime(2017, 01, 01)),</span>
+<span class="sd">                     (&#39;status&#39;, &#39;active&#39;),</span>
+<span class="sd">                     ]</span>
+<span class="sd">                    # The above is equivalent to:</span>
+<span class="sd">                    #    modified_at:[2017-01-01T00:00:00Z TO *]</span>
+<span class="sd">                    #    AND status:&quot;active&quot;</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Domain: A domain representing the input queries.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">domain</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
+        <span class="n">join_with</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">AND</span>
+        <span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">queries</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">query</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">OR</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">AND</span><span class="p">]:</span>
+                <span class="n">join_with</span> <span class="o">=</span> <span class="n">query</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">domain</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">join_with</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">domain</span></div>
+
+<div class="viewcode-block" id="Domain.add_query"><a class="viewcode-back" href="../../helpscout.domain.html#helpscout.Domain.add_query">[docs]</a>    <span class="k">def</span> <span class="nf">add_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">join_with</span><span class="o">=</span><span class="n">AND</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Join a new query to existing queries on the stack.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (tuple or list or DomainCondition): The condition for the</span>
+<span class="sd">                query. If a ``DomainCondition`` object is not provided, the</span>
+<span class="sd">                input should conform to the interface defined in</span>
+<span class="sd">                :func:`~.domain.DomainCondition.from_tuple`.</span>
+<span class="sd">            join_with (str): The join string to apply, if other queries are</span>
+<span class="sd">                already on the stack.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">DomainCondition</span><span class="p">):</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="n">DomainCondition</span><span class="o">.</span><span class="n">from_tuple</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">join_with</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">query</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a string usable as the query in an API request.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="DomainCondition"><a class="viewcode-back" href="../../helpscout.domain.html#helpscout.DomainCondition">[docs]</a><span class="k">class</span> <span class="nc">DomainCondition</span><span class="p">(</span><span class="n">properties</span><span class="o">.</span><span class="n">HasProperties</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This represents one condition of a domain query.&quot;&quot;&quot;</span>
+
+    <span class="n">field</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">String</span><span class="p">(</span>
+        <span class="s1">&#39;Field to search on&#39;</span><span class="p">,</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">String</span><span class="p">(</span>
+        <span class="s1">&#39;String Value&#39;</span><span class="p">,</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">field_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the name of the API field.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">BaseModel</span><span class="o">.</span><span class="n">_to_camel_case</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">field</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a new generic query condition.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            field (str): Field name to search on. This should be the</span>
+<span class="sd">                Pythonified name as in the internal models, not the</span>
+<span class="sd">                name as provided in the API e.g. ``first_name`` for</span>
+<span class="sd">                the Customer&#39;s first name instead of ``firstName``.</span>
+<span class="sd">            value (mixed): The value of the field.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">DomainCondition</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">field</span><span class="o">=</span><span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="DomainCondition.from_tuple"><a class="viewcode-back" href="../../helpscout.domain.html#helpscout.DomainCondition.from_tuple">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_tuple</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a condition from a query tuple.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query (tuple or list): Tuple or list that contains a query domain</span>
+<span class="sd">                in the format of ``(field_name, field_value,</span>
+<span class="sd">                field_value_to)``. ``field_value_to`` is only applicable in</span>
+<span class="sd">                the case of a date search.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DomainCondition: An instance of a domain condition. The specific</span>
+<span class="sd">                type will depend on the data type of the first value provided</span>
+<span class="sd">                in ``query``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">field</span><span class="p">,</span> <span class="n">query</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">query</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">cls</span> <span class="o">=</span> <span class="n">TYPES</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">query</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="c1"># We just fallback to the base class if unknown type.</span>
+            <span class="k">pass</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="o">*</span><span class="n">query</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a string usable as a query part in an API request.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">:&quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">field_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DomainConditionBoolean"><a class="viewcode-back" href="../../helpscout.domain.html#helpscout.DomainConditionBoolean">[docs]</a><span class="k">class</span> <span class="nc">DomainConditionBoolean</span><span class="p">(</span><span class="n">DomainCondition</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This represents an integer query.&quot;&quot;&quot;</span>
+
+    <span class="n">value</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">Bool</span><span class="p">(</span>
+        <span class="s1">&#39;Boolean Value&#39;</span><span class="p">,</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a string usable as a query part in an API request.&quot;&quot;&quot;</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;true&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="k">else</span> <span class="s1">&#39;false&#39;</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">field_name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DomainConditionInteger"><a class="viewcode-back" href="../../helpscout.domain.html#helpscout.DomainConditionInteger">[docs]</a><span class="k">class</span> <span class="nc">DomainConditionInteger</span><span class="p">(</span><span class="n">DomainCondition</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This represents an integer query.&quot;&quot;&quot;</span>
+
+    <span class="n">value</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span>
+        <span class="s1">&#39;Integer Value&#39;</span><span class="p">,</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a string usable as a query part in an API request.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">:</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">field_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DomainConditionDateTime"><a class="viewcode-back" href="../../helpscout.domain.html#helpscout.DomainConditionDateTime">[docs]</a><span class="k">class</span> <span class="nc">DomainConditionDateTime</span><span class="p">(</span><span class="n">DomainCondition</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This represents a date time query.&quot;&quot;&quot;</span>
+
+    <span class="n">value</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">DateTime</span><span class="p">(</span>
+        <span class="s1">&#39;Date From&#39;</span><span class="p">,</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">value_to</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">DateTime</span><span class="p">(</span>
+        <span class="s1">&#39;Date To&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">value_from</span><span class="p">,</span> <span class="n">value_to</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a new datetime query condition.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            field (str): Field name to search on. This should be the</span>
+<span class="sd">                Pythonified name as in the internal models, not the</span>
+<span class="sd">                name as provided in the API e.g. ``first_name`` for</span>
+<span class="sd">                the Customer&#39;s first name instead of ``firstName``.</span>
+<span class="sd">            value_from (date or datetime): The start value of the field.</span>
+<span class="sd">            value_to (date or datetime, optional): The ending value for</span>
+<span class="sd">                the field. If omitted, will search to now.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">DomainConditionDateTime</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">field</span><span class="o">=</span><span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value_from</span><span class="p">,</span> <span class="n">value_to</span><span class="o">=</span><span class="n">value_to</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a string usable as a query part in an API request.&quot;&quot;&quot;</span>
+        <span class="n">value_to</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_to</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_to</span> <span class="k">else</span> <span class="s1">&#39;*&#39;</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">:[</span><span class="si">%s</span><span class="s1">Z TO </span><span class="si">%s</span><span class="s1">Z]&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">field_name</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+            <span class="n">value_to</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<span class="n">TYPES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nb">bool</span><span class="p">:</span> <span class="n">DomainConditionBoolean</span><span class="p">,</span>
+    <span class="nb">int</span><span class="p">:</span> <span class="n">DomainConditionInteger</span><span class="p">,</span>
+    <span class="n">date</span><span class="p">:</span> <span class="n">DomainConditionDateTime</span><span class="p">,</span>
+    <span class="n">datetime</span><span class="p">:</span> <span class="n">DomainConditionDateTime</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Domain&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DomainCondition&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DomainConditionBoolean&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DomainConditionDateTime&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DomainConditionInteger&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">HelpScout</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=LasLabs&repo=python-helpscout&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/LasLabs/python-helpscout">
+    <img
+        alt="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+        src="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+    />
+</a>
+</p>
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../helpscout.html">helpscout package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../setup.html">setup module</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017 LasLabs Inc..
+      
+    </div>
+
+    
+    <a href="https://github.com/LasLabs/python-helpscout" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

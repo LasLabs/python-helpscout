@@ -1,0 +1,339 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>helpscout.domain package &#8212; HelpScout 0.0.0b259 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.0b259',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="helpscout.models package" href="helpscout.models.html" />
+    <link rel="prev" title="helpscout.apis package" href="helpscout.apis.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="helpscout-domain-package">
+<h1>helpscout.domain package<a class="headerlink" href="#helpscout-domain-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-helpscout.domain">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-helpscout.domain" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="helpscout.domain.Domain">
+<em class="property">class </em><code class="descclassname">helpscout.domain.</code><code class="descname">Domain</code><span class="sig-paren">(</span><em>queries=None</em>, <em>join_with='AND'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/domain.html#Domain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.domain.Domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">properties.base.base.HasProperties</span></code></p>
+<p>This represents a full search query.</p>
+<dl class="attribute">
+<dt id="helpscout.domain.Domain.AND">
+<code class="descname">AND</code><em class="property"> = 'AND'</em><a class="headerlink" href="#helpscout.domain.Domain.AND" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.domain.Domain.OR">
+<code class="descname">OR</code><em class="property"> = 'OR'</em><a class="headerlink" href="#helpscout.domain.Domain.OR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="helpscout.domain.Domain.add_query">
+<code class="descname">add_query</code><span class="sig-paren">(</span><em>query</em>, <em>join_with='AND'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/domain.html#Domain.add_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.domain.Domain.add_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Join a new query to existing queries on the stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em> or </em><a class="reference internal" href="helpscout.apis.html#helpscout.apis.Conversations.list" title="helpscout.apis.Conversations.list"><em>list</em></a><em> or </em><a class="reference internal" href="#helpscout.domain.DomainCondition" title="helpscout.domain.DomainCondition"><em>DomainCondition</em></a>) – The condition for the
+query. If a <code class="docutils literal"><span class="pre">DomainCondition</span></code> object is not provided, the
+input should conform to the interface defined in
+<code class="xref py py-func docutils literal"><span class="pre">from_tuple()</span></code>.</li>
+<li><strong>join_with</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – The join string to apply, if other queries are
+already on the stack.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="helpscout.domain.Domain.from_tuple">
+<em class="property">classmethod </em><code class="descname">from_tuple</code><span class="sig-paren">(</span><em>queries</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/domain.html#Domain.from_tuple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.domain.Domain.from_tuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <code class="docutils literal"><span class="pre">Domain</span></code> given a set of complex query tuples.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>queries</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#iter" title="(in Python v2.7)"><em>iter</em></a>) – <p>An iterator of complex queries. Each iteration
+should contain either:</p>
+<ul class="simple">
+<li>A data-set compatible with <code class="xref py py-func docutils literal"><span class="pre">add_query()</span></code></li>
+<li>A string to switch the join type</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;subject&#39;</span><span class="p">,</span> <span class="s1">&#39;Test1&#39;</span><span class="p">),</span>
+ <span class="s1">&#39;OR&#39;</span><span class="p">,</span>
+ <span class="p">(</span><span class="s1">&#39;subject&#39;</span><span class="p">,</span> <span class="s1">&#39;Test2&#39;</span><span class="p">)</span><span class="s1">&#39;,</span>
+ <span class="p">(</span><span class="s1">&#39;subject&#39;</span><span class="p">,</span> <span class="s1">&#39;Test3&#39;</span><span class="p">)</span><span class="s1">&#39;,</span>
+ <span class="p">]</span>
+<span class="c1"># The above is equivalent to:</span>
+<span class="c1">#    subject:&#39;Test1&#39; OR subject:&#39;Test2&#39; OR subject:&#39;Test3&#39;</span>
+
+<span class="p">[(</span><span class="s1">&#39;modified_at&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">01</span><span class="p">,</span> <span class="mi">01</span><span class="p">)),</span>
+ <span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">),</span>
+ <span class="p">]</span>
+<span class="c1"># The above is equivalent to:</span>
+<span class="c1">#    modified_at:[2017-01-01T00:00:00Z TO *]</span>
+<span class="c1">#    AND status:&quot;active&quot;</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A domain representing the input queries.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="helpscout.html#helpscout.Domain" title="helpscout.Domain">Domain</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="helpscout.domain.DomainCondition">
+<em class="property">class </em><code class="descclassname">helpscout.domain.</code><code class="descname">DomainCondition</code><span class="sig-paren">(</span><em>field</em>, <em>value</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/domain.html#DomainCondition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.domain.DomainCondition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">properties.base.base.HasProperties</span></code></p>
+<p>This represents one condition of a domain query.</p>
+<p><strong>Required Properties:</strong></p>
+<ul class="simple">
+<li><strong>field</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Field to search on, a unicode string</li>
+<li><strong>value</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): String Value, a unicode string</li>
+</ul>
+<dl class="attribute">
+<dt id="helpscout.domain.DomainCondition.field">
+<code class="descname">field</code><a class="headerlink" href="#helpscout.domain.DomainCondition.field" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>field</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>) – Field to search on, a unicode string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.domain.DomainCondition.field_name">
+<code class="descname">field_name</code><a class="headerlink" href="#helpscout.domain.DomainCondition.field_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the name of the API field.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="helpscout.domain.DomainCondition.from_tuple">
+<em class="property">classmethod </em><code class="descname">from_tuple</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/domain.html#DomainCondition.from_tuple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.domain.DomainCondition.from_tuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a condition from a query tuple.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em> or </em><a class="reference internal" href="helpscout.apis.html#helpscout.apis.Conversations.list" title="helpscout.apis.Conversations.list"><em>list</em></a>) – Tuple or list that contains a query domain
+in the format of <code class="docutils literal"><span class="pre">(field_name,</span> <span class="pre">field_value,</span>
+<span class="pre">field_value_to)</span></code>. <code class="docutils literal"><span class="pre">field_value_to</span></code> is only applicable in
+the case of a date search.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
+<dt>An instance of a domain condition. The specific</dt>
+<dd>type will depend on the data type of the first value provided
+in <code class="docutils literal"><span class="pre">query</span></code>.</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#helpscout.domain.DomainCondition" title="helpscout.domain.DomainCondition">DomainCondition</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.domain.DomainCondition.value">
+<code class="descname">value</code><a class="headerlink" href="#helpscout.domain.DomainCondition.value" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>value</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>) – String Value, a unicode string</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="helpscout.domain.DomainConditionBoolean">
+<em class="property">class </em><code class="descclassname">helpscout.domain.</code><code class="descname">DomainConditionBoolean</code><span class="sig-paren">(</span><em>field</em>, <em>value</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/domain.html#DomainConditionBoolean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.domain.DomainConditionBoolean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#helpscout.domain.DomainCondition" title="helpscout.domain.DomainCondition"><code class="xref py py-class docutils literal"><span class="pre">helpscout.domain.DomainCondition</span></code></a></p>
+<p>This represents an integer query.</p>
+<p><strong>Required Properties:</strong></p>
+<ul class="simple">
+<li><strong>field</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Field to search on, a unicode string</li>
+<li><strong>value</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): Boolean Value, a boolean</li>
+</ul>
+<dl class="attribute">
+<dt id="helpscout.domain.DomainConditionBoolean.value">
+<code class="descname">value</code><a class="headerlink" href="#helpscout.domain.DomainConditionBoolean.value" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>value</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>) – Boolean Value, a boolean</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="helpscout.domain.DomainConditionDateTime">
+<em class="property">class </em><code class="descclassname">helpscout.domain.</code><code class="descname">DomainConditionDateTime</code><span class="sig-paren">(</span><em>field</em>, <em>value_from</em>, <em>value_to=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/domain.html#DomainConditionDateTime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.domain.DomainConditionDateTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#helpscout.domain.DomainCondition" title="helpscout.domain.DomainCondition"><code class="xref py py-class docutils literal"><span class="pre">helpscout.domain.DomainCondition</span></code></a></p>
+<p>This represents a date time query.</p>
+<p><strong>Required Properties:</strong></p>
+<ul class="simple">
+<li><strong>field</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Field to search on, a unicode string</li>
+<li><strong>value</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): Date From, a datetime object</li>
+<li><strong>value_to</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): Date To, a datetime object</li>
+</ul>
+<dl class="attribute">
+<dt id="helpscout.domain.DomainConditionDateTime.value">
+<code class="descname">value</code><a class="headerlink" href="#helpscout.domain.DomainConditionDateTime.value" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>value</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>) – Date From, a datetime object</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.domain.DomainConditionDateTime.value_to">
+<code class="descname">value_to</code><a class="headerlink" href="#helpscout.domain.DomainConditionDateTime.value_to" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>value_to</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>) – Date To, a datetime object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="helpscout.domain.DomainConditionInteger">
+<em class="property">class </em><code class="descclassname">helpscout.domain.</code><code class="descname">DomainConditionInteger</code><span class="sig-paren">(</span><em>field</em>, <em>value</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/domain.html#DomainConditionInteger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.domain.DomainConditionInteger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#helpscout.domain.DomainCondition" title="helpscout.domain.DomainCondition"><code class="xref py py-class docutils literal"><span class="pre">helpscout.domain.DomainCondition</span></code></a></p>
+<p>This represents an integer query.</p>
+<p><strong>Required Properties:</strong></p>
+<ul class="simple">
+<li><strong>field</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Field to search on, a unicode string</li>
+<li><strong>value</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Integer Value, an integer</li>
+</ul>
+<dl class="attribute">
+<dt id="helpscout.domain.DomainConditionInteger.value">
+<code class="descname">value</code><a class="headerlink" href="#helpscout.domain.DomainConditionInteger.value" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>value</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>) – Integer Value, an integer</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">HelpScout</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=LasLabs&repo=python-helpscout&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/LasLabs/python-helpscout">
+    <img
+        alt="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+        src="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+    />
+</a>
+</p>
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="helpscout.html">helpscout package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="helpscout.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="helpscout.apis.html">helpscout.apis package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">helpscout.domain package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-helpscout.domain">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="helpscout.models.html">helpscout.models package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="helpscout.request_paginator.html">helpscout.request_paginator package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="helpscout.tests.html">helpscout.tests package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="helpscout.web_hook.html">helpscout.web_hook package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.html#module-helpscout.auth_proxy">helpscout.auth_proxy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.html#module-helpscout.base_api">helpscout.base_api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.html#module-helpscout.base_model">helpscout.base_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.html#module-helpscout.exceptions">helpscout.exceptions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.html#module-helpscout">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">setup module</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017 LasLabs Inc..
+      
+      |
+      <a href="_sources/helpscout.domain.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/LasLabs/python-helpscout" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

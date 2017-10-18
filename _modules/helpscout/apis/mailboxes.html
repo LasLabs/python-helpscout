@@ -1,0 +1,190 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>helpscout.apis.mailboxes &#8212; HelpScout 0.0.0b259 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.0.0b259',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for helpscout.apis.mailboxes</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright 2017-TODAY LasLabs Inc.</span>
+<span class="c1"># License MIT (https://opensource.org/licenses/MIT).</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="k">import</span> <span class="n">BaseApi</span>
+
+<span class="kn">from</span> <span class="nn">..models.folder</span> <span class="k">import</span> <span class="n">Folder</span>
+<span class="kn">from</span> <span class="nn">..models.mailbox</span> <span class="k">import</span> <span class="n">Mailbox</span>
+
+
+<div class="viewcode-block" id="Mailboxes"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.mailboxes.Mailboxes">[docs]</a><span class="k">class</span> <span class="nc">Mailboxes</span><span class="p">(</span><span class="n">BaseApi</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This represents the ``Mailboxes`` Endpoint.</span>
+
+<span class="sd">    The following aspects are implemented:</span>
+
+<span class="sd">    * `List Mailboxes</span>
+<span class="sd">      &lt;http://developer.helpscout.net/help-desk-api/mailboxes/list/&gt;`_</span>
+<span class="sd">      (:func:`helpscout.apis.mailboxes.Mailboxes.list`)</span>
+<span class="sd">    * `Get Mailboxes</span>
+<span class="sd">      &lt;http://developer.helpscout.net/help-desk-api/mailboxes/get/&gt;`_</span>
+<span class="sd">      (:func:`helpscout.apis.mailboxes.Mailboxes.get`)</span>
+<span class="sd">    * `Get Folders</span>
+<span class="sd">      &lt;http://developer.helpscout.net/help-desk-api/mailboxes/folders/&gt;`_</span>
+<span class="sd">      (:func:`helpscout.apis.mailboxes.Mailboxes.get_folders`)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__object__</span> <span class="o">=</span> <span class="n">Mailbox</span>
+
+<div class="viewcode-block" id="Mailboxes.get"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.mailboxes.Mailboxes.get">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">mailbox_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a specific mailbox.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            session (requests.sessions.Session): Authenticated session.</span>
+<span class="sd">            mailbox_id (int): The ID of the mailbox to get.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            helpscout.models.Mailbox: A mailbox singleton, if existing.</span>
+<span class="sd">                Otherwise ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="s1">&#39;/mailboxes/</span><span class="si">%d</span><span class="s1">.json&#39;</span> <span class="o">%</span> <span class="n">mailbox_id</span><span class="p">,</span>
+            <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Mailboxes.list"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.mailboxes.Mailboxes.list">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List the mailboxes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            session (requests.sessions.Session): Authenticated session.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            RequestPaginator(output_type=helpscout.models.Mailbox): Mailboxes</span>
+<span class="sd">                iterator.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="s1">&#39;/mailboxes.json&#39;</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Mailboxes.get_folders"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.mailboxes.Mailboxes.get_folders">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_folders</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">mailbox_or_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List the folders for the mailbox.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            mailbox_or_id (helpscout.models.Mailbox or int): Mailbox or the ID</span>
+<span class="sd">                of the mailbox to get the folders for.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            RequestPaginator(output_type=helpscout.models.Folder): Folders</span>
+<span class="sd">                iterator.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mailbox_or_id</span><span class="p">,</span> <span class="n">Mailbox</span><span class="p">):</span>
+            <span class="n">mailbox_or_id</span> <span class="o">=</span> <span class="n">mailbox_or_id</span><span class="o">.</span><span class="n">id</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="s1">&#39;/mailboxes/</span><span class="si">%d</span><span class="s1">/folders.json&#39;</span> <span class="o">%</span> <span class="n">mailbox_or_id</span><span class="p">,</span>
+            <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+            <span class="n">out_type</span><span class="o">=</span><span class="n">Folder</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">HelpScout</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=LasLabs&repo=python-helpscout&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/LasLabs/python-helpscout">
+    <img
+        alt="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+        src="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+    />
+</a>
+</p>
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../helpscout.html">helpscout package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../setup.html">setup module</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017 LasLabs Inc..
+      
+    </div>
+
+    
+    <a href="https://github.com/LasLabs/python-helpscout" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

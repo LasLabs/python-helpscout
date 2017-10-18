@@ -1,0 +1,262 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>helpscout.apis.customers &#8212; HelpScout 0.0.0b259 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.0.0b259',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for helpscout.apis.customers</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright 2017-TODAY LasLabs Inc.</span>
+<span class="c1"># License MIT (https://opensource.org/licenses/MIT).</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="k">import</span> <span class="n">BaseApi</span>
+
+<span class="kn">from</span> <span class="nn">..models.customer</span> <span class="k">import</span> <span class="n">Customer</span>
+<span class="kn">from</span> <span class="nn">..models.search_customer</span> <span class="k">import</span> <span class="n">SearchCustomer</span>
+
+<span class="kn">from</span> <span class="nn">..request_paginator</span> <span class="k">import</span> <span class="n">RequestPaginator</span>
+
+
+<div class="viewcode-block" id="Customers"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.customers.Customers">[docs]</a><span class="k">class</span> <span class="nc">Customers</span><span class="p">(</span><span class="n">BaseApi</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This represents the ``Customers`` Endpoint.</span>
+
+<span class="sd">    The following aspects are implemented:</span>
+
+<span class="sd">    * `List Customers</span>
+<span class="sd">      &lt;http://developer.helpscout.net/help-desk-api/customers/list/&gt;`_</span>
+<span class="sd">      (:func:`helpscout.apis.customers.Customers.list`)</span>
+<span class="sd">    * `Search Customers</span>
+<span class="sd">      &lt;http://developer.helpscout.net/help-desk-api/search/customers/&gt;`_</span>
+<span class="sd">      (:func:`helpscout.apis.customers.Customers.search`)</span>
+<span class="sd">    * `Get Customer</span>
+<span class="sd">      &lt;http://developer.helpscout.net/help-desk-api/customers/get/&gt;`_</span>
+<span class="sd">      (:func:`helpscout.apis.customers.Customers.get`)</span>
+<span class="sd">    * `Create Customer</span>
+<span class="sd">      &lt;http://developer.helpscout.net/help-desk-api/customers/create/&gt;`_</span>
+<span class="sd">      (:func:`helpscout.apis.customers.Customers.create`)</span>
+<span class="sd">    * `Update Customer</span>
+<span class="sd">      &lt;http://developer.helpscout.net/help-desk-api/customers/update/&gt;`_</span>
+<span class="sd">      (:func:`helpscout.apis.customers.Customers.update`)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__object__</span> <span class="o">=</span> <span class="n">Customer</span>
+
+<div class="viewcode-block" id="Customers.create"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.customers.Customers.create">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">customer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a customer.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            session (requests.sessions.Session): Authenticated session.</span>
+<span class="sd">            customer (helpscout.models.Customer): The customer to be created.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            helpscout.models.Customer: Newly created customer.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;customer&#39;</span><span class="p">:</span> <span class="n">customer</span><span class="o">.</span><span class="n">to_api</span><span class="p">(),</span>
+            <span class="s1">&#39;reload&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="s1">&#39;/customers.json&#39;</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">request_type</span><span class="o">=</span><span class="n">RequestPaginator</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span>
+            <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Customers.get"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.customers.Customers.get">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">customer_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a specific customer.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            session (requests.sessions.Session): Authenticated session.</span>
+<span class="sd">            customer_id (int): The ID of the customer to get.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            helpscout.models.Customer: A customer singleton, if existing.</span>
+<span class="sd">                Otherwise ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="s1">&#39;/customers/</span><span class="si">%d</span><span class="s1">.json&#39;</span> <span class="o">%</span> <span class="n">customer_id</span><span class="p">,</span>
+            <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Customers.list"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.customers.Customers.list">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">modified_since</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List the customers.</span>
+
+<span class="sd">        Customers can be filtered on any combination of first name, last name,</span>
+<span class="sd">        email, and modifiedSince.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            session (requests.sessions.Session): Authenticated session.</span>
+<span class="sd">            first_name (str, optional): First name of customer.</span>
+<span class="sd">            last_name (str, optional): Last name of customer.</span>
+<span class="sd">            email (str, optional): Email address of customer.</span>
+<span class="sd">            modified_since (datetime.datetime, optional): If modified after</span>
+<span class="sd">                this date.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            RequestPaginator(output_type=helpscout.models.Customer): Customers</span>
+<span class="sd">                iterator.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__object__</span><span class="o">.</span><span class="n">get_non_empty_vals</span><span class="p">({</span>
+            <span class="s1">&#39;firstName&#39;</span><span class="p">:</span> <span class="n">first_name</span><span class="p">,</span>
+            <span class="s1">&#39;lastName&#39;</span><span class="p">:</span> <span class="n">last_name</span><span class="p">,</span>
+            <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="n">email</span><span class="p">,</span>
+            <span class="s1">&#39;modifiedSince&#39;</span><span class="p">:</span> <span class="n">modified_since</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="s1">&#39;/customers.json&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Customers.search"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.customers.Customers.search">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">queries</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Search for a customer given a domain.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            session (requests.sessions.Session): Authenticated session.</span>
+<span class="sd">            queries (helpscout.models.Domain or iter): The queries for the</span>
+<span class="sd">                domain. If a ``Domain`` object is provided, it will simply be</span>
+<span class="sd">                returned. Otherwise, a ``Domain`` object will be generated</span>
+<span class="sd">                from the complex queries. In this case, the queries should</span>
+<span class="sd">                conform to the interface in</span>
+<span class="sd">                :func:`helpscout.domain.Domain.from_tuple`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            RequestPaginator(output_type=helpscout.models.SearchCustomer):</span>
+<span class="sd">                SearchCustomer iterator.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">domain</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_search_domain</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="s1">&#39;/search/customers.json&#39;</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">domain</span><span class="p">)},</span>
+            <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+            <span class="n">out_type</span><span class="o">=</span><span class="n">SearchCustomer</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Customers.update"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.customers.Customers.update">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">customer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update a customer.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            session (requests.sessions.Session): Authenticated session.</span>
+<span class="sd">            customer (helpscout.models.Customer): The customer to be updated.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            helpscout.models.Customer: Freshly updated customer.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">customer</span><span class="o">.</span><span class="n">to_api</span><span class="p">()</span>
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;reload&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="s1">&#39;/customers/</span><span class="si">%d</span><span class="s1">.json&#39;</span> <span class="o">%</span> <span class="n">customer</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">request_type</span><span class="o">=</span><span class="n">RequestPaginator</span><span class="o">.</span><span class="n">PUT</span><span class="p">,</span>
+            <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">HelpScout</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=LasLabs&repo=python-helpscout&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/LasLabs/python-helpscout">
+    <img
+        alt="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+        src="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+    />
+</a>
+</p>
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../helpscout.html">helpscout package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../setup.html">setup module</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017 LasLabs Inc..
+      
+    </div>
+
+    
+    <a href="https://github.com/LasLabs/python-helpscout" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
