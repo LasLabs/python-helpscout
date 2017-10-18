@@ -12,17 +12,24 @@ python:
   - "3.6"
   - "3.7-dev"
 
+deploy:
+  provider: pypi
+  user: laslabs
+  password:
+    secure: "Capq94JRU+jt5V4vnEyeFvJmotXSsYCn0y8ViSG3m1uxeJLxVS4idi2N0vB7XJuaix9iIKu6FTAFmhyFFRnDJgMmfGIGiKQOcJb6ksMwCGuVYl9zOI1pht43M+fuLbw5BZksgTbQPCgmOt0xWqgQBkc3KCXztF4LHZg7D8n4hDaBZ61/Ax63Tg4GTAPOUVMUl4q/SH2dwQcB4snJJ1aKaa3keubcd7jL/lC9aIZxrZGFrwlpzlhPu0r69BVYJrxgEKiokKIKAV20vQuUEHLeLz+eQg0wLbckbPV9NkjITBKxYYSo3ChWR8UmUXrP/qwNJ3qCTZxs/gxaeGYuwcftJxgVCcP+XfCdqClHTKLInMP/jeXH7IrAhYZtCGOdk4rhspiwcCkEO22Kdk+t74pbbs+M+SwZMk4T2/8B1NDs0Tnz5MF63Qz/tT7/zDk+e37ZeZ6iwwa4/4ALjPja3uLxix4S3Tl90Eu57PJkfXjEdkxRRAvvZbbKvOOOMc23UmJ8FPua2ZnbD1tz8OrIpxGFQ9HdFycIUHkF3rB1ruH/iu2WZnrtn6TQ8vSaWgifW/bfFqod0Z620ttVHFGljkJ4cMfO5ornLdHRYMXSU54FfnErnEKRdHPNRnbU7XZeK2tVEl9W7906VRWkvPIANJK850Moqj8pZ7LeYcChW/2oXTA="
+  skip_upload_docs: true
+  on:
+    repo: laslabs/python-helpscout
+    branch: master
+    tags: true
+
 env:
   global:
     - PROJECT="HelpScout"
-    - VERSION="0.1.0"
-    - RELEASE="0.0.7"
     - INTERSPHINX="requests=http://docs.python-requests.org/en/latest, properties=https://propertiespy.readthedocs.io/en/latest"
-    - secure: "Capq94JRU+jt5V4vnEyeFvJmotXSsYCn0y8ViSG3m1uxeJLxVS4idi2N0vB7XJuaix9iIKu6FTAFmhyFFRnDJgMmfGIGiKQOcJb6ksMwCGuVYl9zOI1pht43M+fuLbw5BZksgTbQPCgmOt0xWqgQBkc3KCXztF4LHZg7D8n4hDaBZ61/Ax63Tg4GTAPOUVMUl4q/SH2dwQcB4snJJ1aKaa3keubcd7jL/lC9aIZxrZGFrwlpzlhPu0r69BVYJrxgEKiokKIKAV20vQuUEHLeLz+eQg0wLbckbPV9NkjITBKxYYSo3ChWR8UmUXrP/qwNJ3qCTZxs/gxaeGYuwcftJxgVCcP+XfCdqClHTKLInMP/jeXH7IrAhYZtCGOdk4rhspiwcCkEO22Kdk+t74pbbs+M+SwZMk4T2/8B1NDs0Tnz5MF63Qz/tT7/zDk+e37ZeZ6iwwa4/4ALjPja3uLxix4S3Tl90Eu57PJkfXjEdkxRRAvvZbbKvOOOMc23UmJ8FPua2ZnbD1tz8OrIpxGFQ9HdFycIUHkF3rB1ruH/iu2WZnrtn6TQ8vSaWgifW/bfFqod0Z620ttVHFGljkJ4cMfO5ornLdHRYMXSU54FfnErnEKRdHPNRnbU7XZeK2tVEl9W7906VRWkvPIANJK850Moqj8pZ7LeYcChW/2oXTA="
   matrix:
     - TESTS="1"
     - LINT="1"
-    - PYPI="1"
     - DOCS="1"
 
 install:
