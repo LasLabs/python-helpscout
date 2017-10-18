@@ -1,45 +1,38 @@
 addons:
   apt:
     packages:
-      - expect-dev  # provides unbuffer utility
-
+    - expect-dev
 language: python
-
 python:
-  - "2.7"
-  - "3.4"
-  - "3.5"
-  - "3.6"
-  - "3.7-dev"
-
+- '2.7'
+- '3.4'
+- '3.5'
+- '3.6'
+- 3.7-dev
 deploy:
   provider: pypi
   user: laslabs
   password:
-    secure: "Capq94JRU+jt5V4vnEyeFvJmotXSsYCn0y8ViSG3m1uxeJLxVS4idi2N0vB7XJuaix9iIKu6FTAFmhyFFRnDJgMmfGIGiKQOcJb6ksMwCGuVYl9zOI1pht43M+fuLbw5BZksgTbQPCgmOt0xWqgQBkc3KCXztF4LHZg7D8n4hDaBZ61/Ax63Tg4GTAPOUVMUl4q/SH2dwQcB4snJJ1aKaa3keubcd7jL/lC9aIZxrZGFrwlpzlhPu0r69BVYJrxgEKiokKIKAV20vQuUEHLeLz+eQg0wLbckbPV9NkjITBKxYYSo3ChWR8UmUXrP/qwNJ3qCTZxs/gxaeGYuwcftJxgVCcP+XfCdqClHTKLInMP/jeXH7IrAhYZtCGOdk4rhspiwcCkEO22Kdk+t74pbbs+M+SwZMk4T2/8B1NDs0Tnz5MF63Qz/tT7/zDk+e37ZeZ6iwwa4/4ALjPja3uLxix4S3Tl90Eu57PJkfXjEdkxRRAvvZbbKvOOOMc23UmJ8FPua2ZnbD1tz8OrIpxGFQ9HdFycIUHkF3rB1ruH/iu2WZnrtn6TQ8vSaWgifW/bfFqod0Z620ttVHFGljkJ4cMfO5ornLdHRYMXSU54FfnErnEKRdHPNRnbU7XZeK2tVEl9W7906VRWkvPIANJK850Moqj8pZ7LeYcChW/2oXTA="
+    secure: buwjuY/vY8bApy2BSBIulCU1Ij6l6ArbuqHo1/LkUdrjl3VA8u0ZSqhs4rwLmcAGWNtdt/kzRIDv/NxdYkNdpxvClOvf0kD2tWo44jQwyFzGlSuv8zKuj/639EzmizWjHO6JGug+RLDe5DxTcQTQB2NIMfFAb7lwqYmxkatIHZXb44MWlctVxIS0tYA29WJSfm9HapcZher/OeLVryOWPiWOwG9m9dfNPI0g1AMMtRg+HFPmGunPgJjCQJhiHedLsXT9RcDRo7UACvBdYYpzHR1yeGu24vt8sOtjvgM6B/fdb1KKrsB1hUjfsbcgwQ8bCCBiwmYIfT/D415lotsEVFk7HBP58g6PIb7Xl8TP8j4GdNP/5MZR0pWu2cx8n2duXiJyA5JxDdFYThji9gAI85pVOztrjvvIdcH/2tVl0Fs39OU2SJJ6AWXS3SdZKR7er9X3XJzU6UxmkxGewIBwb6GNHjOeBHXpqonHG5AADp2hvbiZWEYj4c+/+Wrv13VzQY65xZjoJG4iJtN4sdPhqycotDx7RNrc7RVzyegBj/BTTt5DajfKK6JdPKIIuNifCU544t/RrQZr95RyVIIQe2cVJPhOnAP8iwlBXhdQpCx0H3ksOfVDUtvhP87aGhsWbW9Q053NWGAHmvUCu5TiefW9MNUiIeM7N8hwbCRM4jE=
   skip_cleanup: false
   skip_upload_docs: true
   on:
     repo: LasLabs/python-helpscout
     branch: master
     tags: true
-
 env:
   global:
-    - PROJECT="HelpScout"
-    - INTERSPHINX="requests=http://docs.python-requests.org/en/latest, properties=https://propertiespy.readthedocs.io/en/latest"
+  - PROJECT="HelpScout"
+  - INTERSPHINX="requests=http://docs.python-requests.org/en/latest, properties=https://propertiespy.readthedocs.io/en/latest"
   matrix:
-    - TESTS="1"
-    - LINT="1"
-    - DOCS="1"
-
+  - TESTS="1"
+  - LINT="1"
+  - DOCS="1"
 install:
-  - git clone --depth=1 https://github.com/LasLabs/python-quality-tools.git ${HOME}/python-quality-tools
-  - export PATH=${HOME}/python-quality-tools/travis:${PATH}
-  - travis_install
-
+- git clone --depth=1 https://github.com/LasLabs/python-quality-tools.git ${HOME}/python-quality-tools
+- export PATH=${HOME}/python-quality-tools/travis:${PATH}
+- travis_install
 script:
-  - travis_run
-
+- travis_run
 after_success:
-  - travis_after_success
+- travis_after_success
