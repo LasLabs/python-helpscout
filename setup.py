@@ -26,6 +26,7 @@ CLASSIFIERS = [
     'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
     'Topic :: Software Development :: Libraries :: Python Modules',
 ]
 
@@ -87,7 +88,11 @@ class Tests(Command):
 if __name__ == "__main__":
     setup(
         packages=find_packages(exclude=('tests')),
+        use_scm_version=True,
         cmdclass={'test': Tests},
+        setup_requires=[
+            'setuptools_scm',
+        ],
         tests_require=[
             'mock',
         ],
