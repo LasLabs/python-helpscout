@@ -17,6 +17,11 @@ class TestPerson(unittest.TestCase):
         }
         return Person.from_api(**test_values)
 
+    def setter_tester(self, customer_person_type, expected):
+        person = self.new_record('customer')
+        person.customer_person_type = customer_person_type
+        self.assertEqual(person.type, expected)
+
     def test_customer_person_type_customer(self):
         """It should properly set customer_person_type to True when person
         type is 'customer'"""
@@ -30,13 +35,9 @@ class TestPerson(unittest.TestCase):
     def test_customer_person_type_setter_true(self):
         """It should properly set type to 'customer' when customer_person_type
         is set as True"""
-        person = self.new_record('user')
-        person.customer_person_type = True
-        self.assertEqual(person.type, 'customer')
+        self.setter_tester(True, 'customer')
 
     def test_customer_person_type_setter_false(self):
         """It should properly set type to 'user' when customer_person_type
         is set as False"""
-        person = self.new_record('customer')
-        person.customer_person_type = False
-        self.assertEqual(person.type, 'user')
+        self.setter_tester(False, 'user')
