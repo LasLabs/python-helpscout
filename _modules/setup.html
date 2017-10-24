@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>setup &#8212; HelpScout 0.0.0b271 documentation</title>
+    <title>setup &#8212; HelpScout 0.0.0b281 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.0.0b271',
+        VERSION:     '0.0.0b281',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -47,7 +47,7 @@
 <span class="kn">from</span> <span class="nn">setuptools</span> <span class="k">import</span> <span class="n">find_packages</span>
 <span class="kn">from</span> <span class="nn">unittest</span> <span class="k">import</span> <span class="n">TestLoader</span><span class="p">,</span> <span class="n">TextTestRunner</span>
 
-<span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">environ</span><span class="p">,</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">path</span>
 
 
 <span class="n">PROJECT</span> <span class="o">=</span> <span class="s1">&#39;helpscout&#39;</span>
@@ -56,7 +56,7 @@
 <span class="n">README_FILE</span> <span class="o">=</span> <span class="s1">&#39;README.rst&#39;</span>
 
 <span class="n">CLASSIFIERS</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;Development Status :: 4 - Beta&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Development Status :: 5 - Production/Stable&#39;</span><span class="p">,</span>
     <span class="s1">&#39;Environment :: Console&#39;</span><span class="p">,</span>
     <span class="s1">&#39;Intended Audience :: Developers&#39;</span><span class="p">,</span>
     <span class="s1">&#39;License :: OSI Approved :: MIT License&#39;</span><span class="p">,</span>
@@ -71,11 +71,6 @@
     <span class="s1">&#39;Topic :: Software Development :: Libraries :: Python Modules&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 
-<span class="n">version</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RELEASE&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;VERSION&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;0.0.0&#39;</span>
-
-<span class="k">if</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TRAVIS_BUILD_NUMBER&#39;</span><span class="p">):</span>
-    <span class="n">version</span> <span class="o">+=</span> <span class="s1">&#39;b</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TRAVIS_BUILD_NUMBER&#39;</span><span class="p">)</span>
-
 
 <span class="n">setup_vals</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">PROJECT</span><span class="p">,</span>
@@ -86,19 +81,12 @@
     <span class="s1">&#39;download_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://github.com/LasLabs/python-</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">PROJECT</span><span class="p">,</span>
     <span class="s1">&#39;license&#39;</span><span class="p">:</span> <span class="s1">&#39;MIT&#39;</span><span class="p">,</span>
     <span class="s1">&#39;classifiers&#39;</span><span class="p">:</span> <span class="n">CLASSIFIERS</span><span class="p">,</span>
-    <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="n">version</span><span class="p">,</span>
 <span class="p">}</span>
 
 
 <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">README_FILE</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">README_FILE</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
         <span class="n">setup_vals</span><span class="p">[</span><span class="s1">&#39;long_description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-
-
-<span class="n">install_requires</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;requirements.txt&#39;</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;requirements.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
-        <span class="n">install_requires</span> <span class="o">=</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
 
 
 <div class="viewcode-block" id="FailTestException"><a class="viewcode-back" href="../setup.html#setup.FailTestException">[docs]</a><span class="k">class</span> <span class="nc">FailTestException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
@@ -128,16 +116,20 @@
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">setup</span><span class="p">(</span>
-        <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;tests&#39;</span><span class="p">)),</span>
+        <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="s1">&#39;tests&#39;</span><span class="p">),</span>
         <span class="n">use_scm_version</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">cmdclass</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="n">Tests</span><span class="p">},</span>
+        <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span>
+            <span class="s1">&#39;properties&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;requests&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;six&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
         <span class="n">setup_requires</span><span class="o">=</span><span class="p">[</span>
             <span class="s1">&#39;setuptools_scm&#39;</span><span class="p">,</span>
         <span class="p">],</span>
         <span class="n">tests_require</span><span class="o">=</span><span class="p">[</span>
             <span class="s1">&#39;mock&#39;</span><span class="p">,</span>
         <span class="p">],</span>
-        <span class="n">install_requires</span><span class="o">=</span><span class="n">install_requires</span><span class="p">,</span>
         <span class="o">**</span><span class="n">setup_vals</span>
     <span class="p">)</span>
 </pre></div>
