@@ -6,6 +6,7 @@ import properties
 
 from .address import Address
 from .chat import Chat
+from .email import Email
 from .phone import Phone
 from .search_customer import SearchCustomer
 from .social_profile import SocialProfile
@@ -25,6 +26,10 @@ class Customer(SearchCustomer):
     social_profiles = properties.List(
         'Social profiles that represent this customer.',
         prop=SocialProfile,
+    )
+    emails = properties.List(
+        'Email addresses for this customer.',
+        prop=Email,
     )
     phones = properties.List(
         'Phone numbers for this customer.',

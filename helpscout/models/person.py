@@ -5,7 +5,6 @@
 import properties
 
 from .. import BaseModel
-from .email import Email
 
 
 class Person(BaseModel):
@@ -14,6 +13,11 @@ class Person(BaseModel):
     The ``type`` property will specify if this person is represented by a
     ``user``, ``customer`` or ``team``.
     """
+
+    def __init__(self, **kwargs):
+        value = kwargs.pop('customer_person_type', False)
+        self.type = 'customer' if value else 'user'
+        return super(Person, self).__init__(**kwargs)
 
     full_name = properties.String(
         'Full name for the customer',
@@ -31,7 +35,9 @@ class Person(BaseModel):
     )
     emails = properties.List(
         'Email addresses for this person.',
-        prop=Email,
+        prop=properties.String(
+            'Email Address',
+        ),
     )
     phone = properties.String(
         'Phone is only populated when the Person is a customer associated '
@@ -53,3 +59,11 @@ class Person(BaseModel):
     modified_at = properties.DateTime(
         'UTC time when this customer was modified.',
     )
+
+    @properties.Bool('customer boolean')
+    def customer_person_type(self):
+        return self.type == 'customer'
+
+    @customer_person_type.setter
+    def customer_person_type(self, value):
+        self.type = 'customer' if value else 'user'

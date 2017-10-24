@@ -10,6 +10,7 @@ from .email import Email
 from .mailbox_ref import MailboxRef
 from .person import Person
 from .source import Source
+from .thread import Thread
 
 
 class Conversation(BaseConversation):
@@ -60,6 +61,10 @@ class Conversation(BaseConversation):
     source = properties.Instance(
         'Specifies the method in which this conversation was created.',
         instance_class=Source,
+    )
+    threads = properties.List(
+        'Threads associated with the conversation.',
+        prop=Thread,
     )
     cc = properties.List(
         'Emails that are CCd.',
