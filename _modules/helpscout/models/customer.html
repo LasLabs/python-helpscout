@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.models.customer &#8212; HelpScout 0.0.0b263 documentation</title>
+    <title>helpscout.models.customer &#8212; HelpScout 0.0.0b271 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.0.0b263',
+        VERSION:     '0.0.0b271',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -47,6 +47,7 @@
 
 <span class="kn">from</span> <span class="nn">.address</span> <span class="k">import</span> <span class="n">Address</span>
 <span class="kn">from</span> <span class="nn">.chat</span> <span class="k">import</span> <span class="n">Chat</span>
+<span class="kn">from</span> <span class="nn">.email</span> <span class="k">import</span> <span class="n">Email</span>
 <span class="kn">from</span> <span class="nn">.phone</span> <span class="k">import</span> <span class="n">Phone</span>
 <span class="kn">from</span> <span class="nn">.search_customer</span> <span class="k">import</span> <span class="n">SearchCustomer</span>
 <span class="kn">from</span> <span class="nn">.social_profile</span> <span class="k">import</span> <span class="n">SocialProfile</span>
@@ -66,6 +67,10 @@
     <span class="n">social_profiles</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">List</span><span class="p">(</span>
         <span class="s1">&#39;Social profiles that represent this customer.&#39;</span><span class="p">,</span>
         <span class="n">prop</span><span class="o">=</span><span class="n">SocialProfile</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">emails</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">List</span><span class="p">(</span>
+        <span class="s1">&#39;Email addresses for this customer.&#39;</span><span class="p">,</span>
+        <span class="n">prop</span><span class="o">=</span><span class="n">Email</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">phones</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">List</span><span class="p">(</span>
         <span class="s1">&#39;Phone numbers for this customer.&#39;</span><span class="p">,</span>

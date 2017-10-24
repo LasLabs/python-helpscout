@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.models package &#8212; HelpScout 0.0.0b263 documentation</title>
+    <title>helpscout.models package &#8212; HelpScout 0.0.0b271 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.0b263',
+        VERSION:     '0.0.0b271',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -303,6 +303,7 @@
 <li><strong>subject</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): The subject of the conversation., a unicode string</li>
 <li><strong>tags</strong> (a list of <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Tags for the conversation, a list (each item is a unicode string)</li>
 <li><strong>thread_count</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): This count represents the number of published threads found on the conversation (it does not include line items, drafts or threads held for review by Traffic Cop)., an integer</li>
+<li><strong>threads</strong> (a list of <a class="reference internal" href="#helpscout.models.thread.Thread" title="helpscout.models.thread.Thread"><code class="xref py py-class docutils literal"><span class="pre">Thread</span></code></a>): Threads associated with the conversation., a list (each item is an instance of Thread)</li>
 <li><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The type of conversation., any of “email”, “chat”, “phone”</li>
 </ul>
 <dl class="attribute">
@@ -384,6 +385,12 @@
 </dd></dl>
 
 <dl class="attribute">
+<dt id="helpscout.models.conversation.Conversation.threads">
+<code class="descname">threads</code><a class="headerlink" href="#helpscout.models.conversation.Conversation.threads" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>threads</strong> (a list of <a class="reference internal" href="#helpscout.models.thread.Thread" title="helpscout.models.thread.Thread"><code class="xref py py-class docutils literal"><span class="pre">Thread</span></code></a>) – Threads associated with the conversation., a list (each item is an instance of Thread)</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="helpscout.models.conversation.Conversation.type">
 <code class="descname">type</code><a class="headerlink" href="#helpscout.models.conversation.Conversation.type" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>) – The type of conversation., any of “email”, “chat”, “phone”</p>
@@ -459,7 +466,7 @@
 <li><strong>chats</strong> (a list of <a class="reference internal" href="#helpscout.models.chat.Chat" title="helpscout.models.chat.Chat"><code class="xref py py-class docutils literal"><span class="pre">Chat</span></code></a>): Chat addresses for this customer., a list (each item is an instance of Chat)</li>
 <li><strong>created_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this customer was created., a datetime object</li>
 <li><strong>email</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Email, a unicode string</li>
-<li><strong>emails</strong> (a list of <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Email addresses for the customer., a list (each item is a unicode string)</li>
+<li><strong>emails</strong> (a list of <a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">Email</span></code></a>): Email addresses for this customer., a list (each item is an instance of Email)</li>
 <li><strong>first_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): First name, a unicode string</li>
 <li><strong>full_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Full name for the customer, a unicode string</li>
 <li><strong>gender</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): Gender of this customer., any of “female”, “male”, “unknown”, Default: unknown</li>
@@ -477,6 +484,10 @@
 <li><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The type of person., any of “user”, “customer”, “team”, Default: customer</li>
 <li><strong>websites</strong> (a list of <a class="reference internal" href="#helpscout.models.website.Website" title="helpscout.models.website.Website"><code class="xref py py-class docutils literal"><span class="pre">Website</span></code></a>): Websites for this customer., a list (each item is an instance of Website)</li>
 </ul>
+<p><strong>Other Properties:</strong></p>
+<ul class="simple">
+<li><strong>customer_person_type</strong> (dynamic <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): customer boolean, a boolean created dynamically</li>
+</ul>
 <dl class="attribute">
 <dt id="helpscout.models.customer.Customer.address">
 <code class="descname">address</code><a class="headerlink" href="#helpscout.models.customer.Customer.address" title="Permalink to this definition">¶</a></dt>
@@ -493,6 +504,12 @@
 <dt id="helpscout.models.customer.Customer.chats">
 <code class="descname">chats</code><a class="headerlink" href="#helpscout.models.customer.Customer.chats" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>chats</strong> (a list of <a class="reference internal" href="#helpscout.models.chat.Chat" title="helpscout.models.chat.Chat"><code class="xref py py-class docutils literal"><span class="pre">Chat</span></code></a>) – Chat addresses for this customer., a list (each item is an instance of Chat)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.models.customer.Customer.emails">
+<code class="descname">emails</code><a class="headerlink" href="#helpscout.models.customer.Customer.emails" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>emails</strong> (a list of <a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">Email</span></code></a>) – Email addresses for this customer., a list (each item is an instance of Email)</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -762,7 +779,7 @@
 <ul class="simple">
 <li><strong>created_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this customer was created., a datetime object</li>
 <li><strong>email</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Email, a unicode string</li>
-<li><strong>emails</strong> (a list of <a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">Email</span></code></a>): Email addresses for this person., a list (each item is an instance of Email)</li>
+<li><strong>emails</strong> (a list of <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Email addresses for this person., a list (each item is a unicode string)</li>
 <li><strong>first_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): First name, a unicode string</li>
 <li><strong>full_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Full name for the customer, a unicode string</li>
 <li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
@@ -772,10 +789,20 @@
 <li><strong>photo_url</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): The user’s photo, if one exists., a unicode string</li>
 <li><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The type of person., any of “user”, “customer”, “team”, Default: customer</li>
 </ul>
+<p><strong>Other Properties:</strong></p>
+<ul class="simple">
+<li><strong>customer_person_type</strong> (dynamic <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): customer boolean, a boolean created dynamically</li>
+</ul>
 <dl class="attribute">
 <dt id="helpscout.models.person.Person.created_at">
 <code class="descname">created_at</code><a class="headerlink" href="#helpscout.models.person.Person.created_at" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>created_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>) – UTC time when this customer was created., a datetime object</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.models.person.Person.customer_person_type">
+<code class="descname">customer_person_type</code><a class="headerlink" href="#helpscout.models.person.Person.customer_person_type" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>customer_person_type</strong> (dynamic <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>) – customer boolean, a boolean created dynamically</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -787,7 +814,7 @@
 <dl class="attribute">
 <dt id="helpscout.models.person.Person.emails">
 <code class="descname">emails</code><a class="headerlink" href="#helpscout.models.person.Person.emails" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>emails</strong> (a list of <a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">Email</span></code></a>) – Email addresses for this person., a list (each item is an instance of Email)</p>
+<dd><p><strong>emails</strong> (a list of <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>) – Email addresses for this person., a list (each item is a unicode string)</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -1006,6 +1033,10 @@
 <li><strong>photo_url</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): The user’s photo, if one exists., a unicode string</li>
 <li><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The type of person., any of “user”, “customer”, “team”, Default: customer</li>
 </ul>
+<p><strong>Other Properties:</strong></p>
+<ul class="simple">
+<li><strong>customer_person_type</strong> (dynamic <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): customer boolean, a boolean created dynamically</li>
+</ul>
 <dl class="attribute">
 <dt id="helpscout.models.search_customer.SearchCustomer.age">
 <code class="descname">age</code><a class="headerlink" href="#helpscout.models.search_customer.SearchCustomer.age" title="Permalink to this definition">¶</a></dt>
@@ -1175,7 +1206,7 @@
 <li>If <code class="docutils literal"><span class="pre">action_type</span></code> is <code class="docutils literal"><span class="pre">workflow</span></code>, this will be the id of the   workflow that was run.</li>
 </ul>
 <p>, an integer
-* <strong>action_type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): Describes an optional action associated with the line item., any of “movedFromMailbox”, “merged”, “imported”, “workflow”, “importedExternal”, “changedTicketCustomer”, “deletedTicket”, “restoreTicket”
+* <strong>action_type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): Describes an optional action associated with the line item., any of “movedFromMailbox”, “merged”, “imported”, “workflow”, “importedExternal”, “changedTicketCustomer”, “deletedTicket”, “restoreTicket”, “originalCreator”
 * <strong>assigned_to</strong> (<a class="reference internal" href="#helpscout.models.person.Person" title="helpscout.models.person.Person"><code class="xref py py-class docutils literal"><span class="pre">Person</span></code></a>): The Help Scout user assigned to this conversation., an instance of Person
 * <strong>attachments</strong> (a list of <a class="reference internal" href="#helpscout.models.attachment.Attachment" title="helpscout.models.attachment.Attachment"><code class="xref py py-class docutils literal"><span class="pre">Attachment</span></code></a>): Attachments, a list (each item is an instance of Attachment)
 * <strong>bcc</strong> (a list of <a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">Email</span></code></a>): BCC to, a list (each item is an instance of Email)
@@ -1217,7 +1248,7 @@ When a conversation is forwarded, a new conversation is created to represent the
 <dl class="attribute">
 <dt id="helpscout.models.thread.Thread.action_type">
 <code class="descname">action_type</code><a class="headerlink" href="#helpscout.models.thread.Thread.action_type" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>action_type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>) – Describes an optional action associated with the line item., any of “movedFromMailbox”, “merged”, “imported”, “workflow”, “importedExternal”, “changedTicketCustomer”, “deletedTicket”, “restoreTicket”</p>
+<dd><p><strong>action_type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>) – Describes an optional action associated with the line item., any of “movedFromMailbox”, “merged”, “imported”, “workflow”, “importedExternal”, “changedTicketCustomer”, “deletedTicket”, “restoreTicket”, “originalCreator”</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -1342,7 +1373,7 @@ When a conversation is forwarded, a new conversation is created to represent the
 <ul class="simple">
 <li><strong>created_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this customer was created., a datetime object</li>
 <li><strong>email</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Email, a unicode string</li>
-<li><strong>emails</strong> (a list of <a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">Email</span></code></a>): Email addresses for this person., a list (each item is an instance of Email)</li>
+<li><strong>emails</strong> (a list of <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Email addresses for this person., a list (each item is a unicode string)</li>
 <li><strong>first_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): First name, a unicode string</li>
 <li><strong>full_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Full name for the customer, a unicode string</li>
 <li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
@@ -1353,6 +1384,10 @@ When a conversation is forwarded, a new conversation is created to represent the
 <li><strong>role</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): Role of this user., any of “owner”, “admin”, “user”</li>
 <li><strong>timezone</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Name of the user’s time zone., a unicode string</li>
 <li><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The type of user., either “user” or “team”</li>
+</ul>
+<p><strong>Other Properties:</strong></p>
+<ul class="simple">
+<li><strong>customer_person_type</strong> (dynamic <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): customer boolean, a boolean created dynamically</li>
 </ul>
 <dl class="attribute">
 <dt id="helpscout.models.user.User.role">
@@ -1761,6 +1796,7 @@ When a conversation is forwarded, a new conversation is created to represent the
 <li><strong>subject</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): The subject of the conversation., a unicode string</li>
 <li><strong>tags</strong> (a list of <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Tags for the conversation, a list (each item is a unicode string)</li>
 <li><strong>thread_count</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): This count represents the number of published threads found on the conversation (it does not include line items, drafts or threads held for review by Traffic Cop)., an integer</li>
+<li><strong>threads</strong> (a list of <a class="reference internal" href="#helpscout.models.thread.Thread" title="helpscout.models.thread.Thread"><code class="xref py py-class docutils literal"><span class="pre">Thread</span></code></a>): Threads associated with the conversation., a list (each item is an instance of Thread)</li>
 <li><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The type of conversation., any of “email”, “chat”, “phone”</li>
 </ul>
 <dl class="attribute">
@@ -1842,6 +1878,12 @@ When a conversation is forwarded, a new conversation is created to represent the
 </dd></dl>
 
 <dl class="attribute">
+<dt id="helpscout.models.Conversation.threads">
+<code class="descname">threads</code><a class="headerlink" href="#helpscout.models.Conversation.threads" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>threads</strong> (a list of <a class="reference internal" href="#helpscout.models.thread.Thread" title="helpscout.models.thread.Thread"><code class="xref py py-class docutils literal"><span class="pre">Thread</span></code></a>) – Threads associated with the conversation., a list (each item is an instance of Thread)</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="helpscout.models.Conversation.type">
 <code class="descname">type</code><a class="headerlink" href="#helpscout.models.Conversation.type" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>) – The type of conversation., any of “email”, “chat”, “phone”</p>
@@ -1911,7 +1953,7 @@ When a conversation is forwarded, a new conversation is created to represent the
 <li><strong>chats</strong> (a list of <a class="reference internal" href="#helpscout.models.chat.Chat" title="helpscout.models.chat.Chat"><code class="xref py py-class docutils literal"><span class="pre">Chat</span></code></a>): Chat addresses for this customer., a list (each item is an instance of Chat)</li>
 <li><strong>created_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this customer was created., a datetime object</li>
 <li><strong>email</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Email, a unicode string</li>
-<li><strong>emails</strong> (a list of <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Email addresses for the customer., a list (each item is a unicode string)</li>
+<li><strong>emails</strong> (a list of <a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">Email</span></code></a>): Email addresses for this customer., a list (each item is an instance of Email)</li>
 <li><strong>first_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): First name, a unicode string</li>
 <li><strong>full_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Full name for the customer, a unicode string</li>
 <li><strong>gender</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): Gender of this customer., any of “female”, “male”, “unknown”, Default: unknown</li>
@@ -1929,6 +1971,10 @@ When a conversation is forwarded, a new conversation is created to represent the
 <li><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The type of person., any of “user”, “customer”, “team”, Default: customer</li>
 <li><strong>websites</strong> (a list of <a class="reference internal" href="#helpscout.models.website.Website" title="helpscout.models.website.Website"><code class="xref py py-class docutils literal"><span class="pre">Website</span></code></a>): Websites for this customer., a list (each item is an instance of Website)</li>
 </ul>
+<p><strong>Other Properties:</strong></p>
+<ul class="simple">
+<li><strong>customer_person_type</strong> (dynamic <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): customer boolean, a boolean created dynamically</li>
+</ul>
 <dl class="attribute">
 <dt id="helpscout.models.Customer.address">
 <code class="descname">address</code><a class="headerlink" href="#helpscout.models.Customer.address" title="Permalink to this definition">¶</a></dt>
@@ -1945,6 +1991,12 @@ When a conversation is forwarded, a new conversation is created to represent the
 <dt id="helpscout.models.Customer.chats">
 <code class="descname">chats</code><a class="headerlink" href="#helpscout.models.Customer.chats" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>chats</strong> (a list of <a class="reference internal" href="#helpscout.models.chat.Chat" title="helpscout.models.chat.Chat"><code class="xref py py-class docutils literal"><span class="pre">Chat</span></code></a>) – Chat addresses for this customer., a list (each item is an instance of Chat)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.models.Customer.emails">
+<code class="descname">emails</code><a class="headerlink" href="#helpscout.models.Customer.emails" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>emails</strong> (a list of <a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">Email</span></code></a>) – Email addresses for this customer., a list (each item is an instance of Email)</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -2193,7 +2245,7 @@ When a conversation is forwarded, a new conversation is created to represent the
 <ul class="simple">
 <li><strong>created_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this customer was created., a datetime object</li>
 <li><strong>email</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Email, a unicode string</li>
-<li><strong>emails</strong> (a list of <a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">Email</span></code></a>): Email addresses for this person., a list (each item is an instance of Email)</li>
+<li><strong>emails</strong> (a list of <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Email addresses for this person., a list (each item is a unicode string)</li>
 <li><strong>first_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): First name, a unicode string</li>
 <li><strong>full_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Full name for the customer, a unicode string</li>
 <li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
@@ -2203,10 +2255,20 @@ When a conversation is forwarded, a new conversation is created to represent the
 <li><strong>photo_url</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): The user’s photo, if one exists., a unicode string</li>
 <li><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The type of person., any of “user”, “customer”, “team”, Default: customer</li>
 </ul>
+<p><strong>Other Properties:</strong></p>
+<ul class="simple">
+<li><strong>customer_person_type</strong> (dynamic <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): customer boolean, a boolean created dynamically</li>
+</ul>
 <dl class="attribute">
 <dt id="helpscout.models.Person.created_at">
 <code class="descname">created_at</code><a class="headerlink" href="#helpscout.models.Person.created_at" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>created_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>) – UTC time when this customer was created., a datetime object</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.models.Person.customer_person_type">
+<code class="descname">customer_person_type</code><a class="headerlink" href="#helpscout.models.Person.customer_person_type" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>customer_person_type</strong> (dynamic <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>) – customer boolean, a boolean created dynamically</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -2218,7 +2280,7 @@ When a conversation is forwarded, a new conversation is created to represent the
 <dl class="attribute">
 <dt id="helpscout.models.Person.emails">
 <code class="descname">emails</code><a class="headerlink" href="#helpscout.models.Person.emails" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>emails</strong> (a list of <a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">Email</span></code></a>) – Email addresses for this person., a list (each item is an instance of Email)</p>
+<dd><p><strong>emails</strong> (a list of <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>) – Email addresses for this person., a list (each item is a unicode string)</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -2425,6 +2487,10 @@ When a conversation is forwarded, a new conversation is created to represent the
 <li><strong>photo_url</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): The user’s photo, if one exists., a unicode string</li>
 <li><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The type of person., any of “user”, “customer”, “team”, Default: customer</li>
 </ul>
+<p><strong>Other Properties:</strong></p>
+<ul class="simple">
+<li><strong>customer_person_type</strong> (dynamic <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): customer boolean, a boolean created dynamically</li>
+</ul>
 <dl class="attribute">
 <dt id="helpscout.models.SearchCustomer.age">
 <code class="descname">age</code><a class="headerlink" href="#helpscout.models.SearchCustomer.age" title="Permalink to this definition">¶</a></dt>
@@ -2582,7 +2648,7 @@ When a conversation is forwarded, a new conversation is created to represent the
 <li>If <code class="docutils literal"><span class="pre">action_type</span></code> is <code class="docutils literal"><span class="pre">workflow</span></code>, this will be the id of the   workflow that was run.</li>
 </ul>
 <p>, an integer
-* <strong>action_type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): Describes an optional action associated with the line item., any of “movedFromMailbox”, “merged”, “imported”, “workflow”, “importedExternal”, “changedTicketCustomer”, “deletedTicket”, “restoreTicket”
+* <strong>action_type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): Describes an optional action associated with the line item., any of “movedFromMailbox”, “merged”, “imported”, “workflow”, “importedExternal”, “changedTicketCustomer”, “deletedTicket”, “restoreTicket”, “originalCreator”
 * <strong>assigned_to</strong> (<a class="reference internal" href="#helpscout.models.person.Person" title="helpscout.models.person.Person"><code class="xref py py-class docutils literal"><span class="pre">Person</span></code></a>): The Help Scout user assigned to this conversation., an instance of Person
 * <strong>attachments</strong> (a list of <a class="reference internal" href="#helpscout.models.attachment.Attachment" title="helpscout.models.attachment.Attachment"><code class="xref py py-class docutils literal"><span class="pre">Attachment</span></code></a>): Attachments, a list (each item is an instance of Attachment)
 * <strong>bcc</strong> (a list of <a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">Email</span></code></a>): BCC to, a list (each item is an instance of Email)
@@ -2624,7 +2690,7 @@ When a conversation is forwarded, a new conversation is created to represent the
 <dl class="attribute">
 <dt id="helpscout.models.Thread.action_type">
 <code class="descname">action_type</code><a class="headerlink" href="#helpscout.models.Thread.action_type" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>action_type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>) – Describes an optional action associated with the line item., any of “movedFromMailbox”, “merged”, “imported”, “workflow”, “importedExternal”, “changedTicketCustomer”, “deletedTicket”, “restoreTicket”</p>
+<dd><p><strong>action_type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>) – Describes an optional action associated with the line item., any of “movedFromMailbox”, “merged”, “imported”, “workflow”, “importedExternal”, “changedTicketCustomer”, “deletedTicket”, “restoreTicket”, “originalCreator”</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -2746,7 +2812,7 @@ When a conversation is forwarded, a new conversation is created to represent the
 <ul class="simple">
 <li><strong>created_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this customer was created., a datetime object</li>
 <li><strong>email</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Email, a unicode string</li>
-<li><strong>emails</strong> (a list of <a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">Email</span></code></a>): Email addresses for this person., a list (each item is an instance of Email)</li>
+<li><strong>emails</strong> (a list of <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Email addresses for this person., a list (each item is a unicode string)</li>
 <li><strong>first_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): First name, a unicode string</li>
 <li><strong>full_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Full name for the customer, a unicode string</li>
 <li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
@@ -2757,6 +2823,10 @@ When a conversation is forwarded, a new conversation is created to represent the
 <li><strong>role</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): Role of this user., any of “owner”, “admin”, “user”</li>
 <li><strong>timezone</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Name of the user’s time zone., a unicode string</li>
 <li><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The type of user., either “user” or “team”</li>
+</ul>
+<p><strong>Other Properties:</strong></p>
+<ul class="simple">
+<li><strong>customer_person_type</strong> (dynamic <a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): customer boolean, a boolean created dynamically</li>
 </ul>
 <dl class="attribute">
 <dt id="helpscout.models.User.role">

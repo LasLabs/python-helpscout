@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.models.conversation &#8212; HelpScout 0.0.0b263 documentation</title>
+    <title>helpscout.models.conversation &#8212; HelpScout 0.0.0b271 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.0.0b263',
+        VERSION:     '0.0.0b271',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -51,6 +51,7 @@
 <span class="kn">from</span> <span class="nn">.mailbox_ref</span> <span class="k">import</span> <span class="n">MailboxRef</span>
 <span class="kn">from</span> <span class="nn">.person</span> <span class="k">import</span> <span class="n">Person</span>
 <span class="kn">from</span> <span class="nn">.source</span> <span class="k">import</span> <span class="n">Source</span>
+<span class="kn">from</span> <span class="nn">.thread</span> <span class="k">import</span> <span class="n">Thread</span>
 
 
 <div class="viewcode-block" id="Conversation"><a class="viewcode-back" href="../../../helpscout.models.html#helpscout.models.conversation.Conversation">[docs]</a><span class="k">class</span> <span class="nc">Conversation</span><span class="p">(</span><span class="n">BaseConversation</span><span class="p">):</span>
@@ -101,6 +102,10 @@
     <span class="n">source</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">Instance</span><span class="p">(</span>
         <span class="s1">&#39;Specifies the method in which this conversation was created.&#39;</span><span class="p">,</span>
         <span class="n">instance_class</span><span class="o">=</span><span class="n">Source</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">threads</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">List</span><span class="p">(</span>
+        <span class="s1">&#39;Threads associated with the conversation.&#39;</span><span class="p">,</span>
+        <span class="n">prop</span><span class="o">=</span><span class="n">Thread</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">cc</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">List</span><span class="p">(</span>
         <span class="s1">&#39;Emails that are CCd.&#39;</span><span class="p">,</span>

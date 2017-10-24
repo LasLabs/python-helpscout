@@ -6,13 +6,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Index &#8212; HelpScout 0.0.0b263 documentation</title>
+    <title>Index &#8212; HelpScout 0.0.0b271 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.0b263',
+        VERSION:     '0.0.0b271',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -346,8 +346,6 @@
         <li><a href="helpscout.apis.html#helpscout.apis.conversations.Conversations.create_thread">(helpscout.apis.conversations.Conversations class method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="helpscout.models.html#helpscout.models.Address.created_at">created_at (helpscout.models.Address attribute)</a>
 
       <ul>
@@ -382,6 +380,8 @@
         <li><a href="helpscout.models.html#helpscout.models.workflow.Workflow.created_at">(helpscout.models.workflow.Workflow attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="helpscout.models.html#helpscout.models.Conversation.created_by">created_by (helpscout.models.Conversation attribute)</a>
 
       <ul>
@@ -428,6 +428,12 @@
 
       <ul>
         <li><a href="helpscout.models.html#helpscout.models.SearchConversation.customer_name">(helpscout.models.SearchConversation attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="helpscout.models.html#helpscout.models.Person.customer_person_type">customer_person_type (helpscout.models.Person attribute)</a>
+
+      <ul>
+        <li><a href="helpscout.models.html#helpscout.models.person.Person.customer_person_type">(helpscout.models.person.Person attribute)</a>
 </li>
       </ul></li>
       <li><a href="helpscout.apis.html#helpscout.apis.Customers">Customers (class in helpscout.apis)</a>
@@ -510,10 +516,14 @@
         <li><a href="helpscout.models.html#helpscout.models.person.Person.email">(helpscout.models.person.Person attribute)</a>
 </li>
       </ul></li>
-      <li><a href="helpscout.models.html#helpscout.models.Person.emails">emails (helpscout.models.Person attribute)</a>
+      <li><a href="helpscout.models.html#helpscout.models.Customer.emails">emails (helpscout.models.Customer attribute)</a>
 
       <ul>
+        <li><a href="helpscout.models.html#helpscout.models.Person.emails">(helpscout.models.Person attribute)</a>
+</li>
         <li><a href="helpscout.models.html#helpscout.models.SearchCustomer.emails">(helpscout.models.SearchCustomer attribute)</a>
+</li>
+        <li><a href="helpscout.models.html#helpscout.models.customer.Customer.emails">(helpscout.models.customer.Customer attribute)</a>
 </li>
         <li><a href="helpscout.models.html#helpscout.models.person.Person.emails">(helpscout.models.person.Person attribute)</a>
 </li>
@@ -814,10 +824,10 @@
 </li>
       <li><a href="helpscout.models.html#module-helpscout.models.mailbox">helpscout.models.mailbox (module)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="helpscout.models.html#module-helpscout.models.mailbox_ref">helpscout.models.mailbox_ref (module)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="helpscout.models.html#module-helpscout.models.option">helpscout.models.option (module)</a>
 </li>
       <li><a href="helpscout.models.html#module-helpscout.models.person">helpscout.models.person (module)</a>
@@ -873,6 +883,8 @@
       <li><a href="helpscout.tests.html#module-helpscout.tests.test_helpscout_web_hook">helpscout.tests.test_helpscout_web_hook (module)</a>
 </li>
       <li><a href="helpscout.tests.html#module-helpscout.tests.test_helpscout_web_hook_event">helpscout.tests.test_helpscout_web_hook_event (module)</a>
+</li>
+      <li><a href="helpscout.tests.html#module-helpscout.tests.test_model_person">helpscout.tests.test_model_person (module)</a>
 </li>
       <li><a href="helpscout.tests.html#module-helpscout.tests.test_request_paginator">helpscout.tests.test_request_paginator (module)</a>
 </li>
@@ -1145,7 +1157,11 @@
       <li><a href="helpscout.tests.html#helpscout.tests.test_auth_proxy.TestAuthProxy.new_proxy">new_proxy() (helpscout.tests.test_auth_proxy.TestAuthProxy method)</a>
 </li>
       <li><a href="helpscout.tests.html#helpscout.tests.test_base_model.TestBaseModel.new_record">new_record() (helpscout.tests.test_base_model.TestBaseModel method)</a>
+
+      <ul>
+        <li><a href="helpscout.tests.html#helpscout.tests.test_model_person.TestPerson.new_record">(helpscout.tests.test_model_person.TestPerson method)</a>
 </li>
+      </ul></li>
       <li><a href="helpscout.tests.html#helpscout.tests.test_base_model.TestModel.not_a_field">not_a_field (helpscout.tests.test_base_model.TestModel attribute)</a>
 </li>
       <li><a href="helpscout.tests.html#helpscout.tests.test_auth_proxy.ApiClass.not_proxied">not_proxied() (helpscout.tests.test_auth_proxy.ApiClass class method)</a>
@@ -1396,6 +1412,8 @@
       </ul></li>
       <li><a href="helpscout.tests.html#helpscout.tests.test_auth_proxy.TestAuthProxy.SESSION">SESSION (helpscout.tests.test_auth_proxy.TestAuthProxy attribute)</a>
 </li>
+      <li><a href="helpscout.tests.html#helpscout.tests.test_model_person.TestPerson.setter_tester">setter_tester() (helpscout.tests.test_model_person.TestPerson method)</a>
+</li>
       <li><a href="setup.html#module-setup">setup (module)</a>
 </li>
       <li><a href="helpscout.tests.html#helpscout.tests.api_common.ApiCommon.setUp">setUp() (helpscout.tests.api_common.ApiCommon method)</a>
@@ -1546,6 +1564,14 @@
       </ul></li>
       <li><a href="helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_create_thread">test_create_thread() (helpscout.tests.test_api_conversations.TestApiConversations method)</a>
 </li>
+      <li><a href="helpscout.tests.html#helpscout.tests.test_model_person.TestPerson.test_customer_person_type_customer">test_customer_person_type_customer() (helpscout.tests.test_model_person.TestPerson method)</a>
+</li>
+      <li><a href="helpscout.tests.html#helpscout.tests.test_model_person.TestPerson.test_customer_person_type_setter_false">test_customer_person_type_setter_false() (helpscout.tests.test_model_person.TestPerson method)</a>
+</li>
+      <li><a href="helpscout.tests.html#helpscout.tests.test_model_person.TestPerson.test_customer_person_type_setter_true">test_customer_person_type_setter_true() (helpscout.tests.test_model_person.TestPerson method)</a>
+</li>
+      <li><a href="helpscout.tests.html#helpscout.tests.test_model_person.TestPerson.test_customer_person_type_user">test_customer_person_type_user() (helpscout.tests.test_model_person.TestPerson method)</a>
+</li>
       <li><a href="helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_delete">test_delete() (helpscout.tests.test_api_conversations.TestApiConversations method)</a>
 </li>
       <li><a href="helpscout.tests.html#helpscout.tests.test_base_model.TestBaseModel.test_dict_lookup_exist">test_dict_lookup_exist() (helpscout.tests.test_base_model.TestBaseModel method)</a>
@@ -1636,10 +1662,10 @@
 </li>
       <li><a href="helpscout.tests.html#helpscout.tests.test_helpscout_web_hook.TestHelpScoutWebHook.test_receive_returns_event">test_receive_returns_event() (helpscout.tests.test_helpscout_web_hook.TestHelpScoutWebHook method)</a>
 </li>
-      <li><a href="helpscout.tests.html#helpscout.tests.test_helpscout_web_hook.TestHelpScoutWebHook.test_receive_str_invalid">test_receive_str_invalid() (helpscout.tests.test_helpscout_web_hook.TestHelpScoutWebHook method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="helpscout.tests.html#helpscout.tests.test_helpscout_web_hook.TestHelpScoutWebHook.test_receive_str_invalid">test_receive_str_invalid() (helpscout.tests.test_helpscout_web_hook.TestHelpScoutWebHook method)</a>
+</li>
       <li><a href="helpscout.tests.html#helpscout.tests.test_helpscout_web_hook_event.TestHelpScoutWebHookEvent.test_record_from_data">test_record_from_data() (helpscout.tests.test_helpscout_web_hook_event.TestHelpScoutWebHookEvent method)</a>
 </li>
       <li><a href="helpscout.tests.html#helpscout.tests.test_helpscout_web_hook_event.TestHelpScoutWebHookEvent.test_record_from_record">test_record_from_record() (helpscout.tests.test_helpscout_web_hook_event.TestHelpScoutWebHookEvent method)</a>
@@ -1692,6 +1718,8 @@
 </li>
       <li><a href="helpscout.tests.html#helpscout.tests.test_base_model.TestModel">TestModel (class in helpscout.tests.test_base_model)</a>
 </li>
+      <li><a href="helpscout.tests.html#helpscout.tests.test_model_person.TestPerson">TestPerson (class in helpscout.tests.test_model_person)</a>
+</li>
       <li><a href="helpscout.tests.html#helpscout.tests.test_request_paginator.TestRequestPaginator">TestRequestPaginator (class in helpscout.tests.test_request_paginator)</a>
 </li>
       <li><a href="setup.html#setup.Tests">Tests (class in setup)</a>
@@ -1712,6 +1740,12 @@
 
       <ul>
         <li><a href="helpscout.models.html#helpscout.models.rating.Rating.thread_id">(helpscout.models.rating.Rating attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="helpscout.models.html#helpscout.models.Conversation.threads">threads (helpscout.models.Conversation attribute)</a>
+
+      <ul>
+        <li><a href="helpscout.models.html#helpscout.models.conversation.Conversation.threads">(helpscout.models.conversation.Conversation attribute)</a>
 </li>
       </ul></li>
       <li><a href="helpscout.models.html#helpscout.models.Rating.ticket_id">ticket_id (helpscout.models.Rating attribute)</a>

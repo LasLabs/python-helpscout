@@ -92,6 +92,14 @@ helpscout\.tests\.test\_helpscout\_web\_hook\_event module
     :undoc-members:
     :show-inheritance:
 
+helpscout\.tests\.test\_model\_person module
+--------------------------------------------
+
+.. automodule:: helpscout.tests.test_model_person
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 helpscout\.tests\.test\_request\_paginator module
 -------------------------------------------------
 

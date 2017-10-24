@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.models.person &#8212; HelpScout 0.0.0b263 documentation</title>
+    <title>helpscout.models.person &#8212; HelpScout 0.0.0b271 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.0.0b263',
+        VERSION:     '0.0.0b271',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -46,7 +46,6 @@
 <span class="kn">import</span> <span class="nn">properties</span>
 
 <span class="kn">from</span> <span class="nn">..</span> <span class="k">import</span> <span class="n">BaseModel</span>
-<span class="kn">from</span> <span class="nn">.email</span> <span class="k">import</span> <span class="n">Email</span>
 
 
 <div class="viewcode-block" id="Person"><a class="viewcode-back" href="../../../helpscout.models.html#helpscout.models.person.Person">[docs]</a><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
@@ -55,6 +54,11 @@
 <span class="sd">    The ``type`` property will specify if this person is represented by a</span>
 <span class="sd">    ``user``, ``customer`` or ``team``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;customer_person_type&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;customer&#39;</span> <span class="k">if</span> <span class="n">value</span> <span class="k">else</span> <span class="s1">&#39;user&#39;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Person</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="n">full_name</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">String</span><span class="p">(</span>
         <span class="s1">&#39;Full name for the customer&#39;</span><span class="p">,</span>
@@ -72,7 +76,9 @@
     <span class="p">)</span>
     <span class="n">emails</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">List</span><span class="p">(</span>
         <span class="s1">&#39;Email addresses for this person.&#39;</span><span class="p">,</span>
-        <span class="n">prop</span><span class="o">=</span><span class="n">Email</span><span class="p">,</span>
+        <span class="n">prop</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">String</span><span class="p">(</span>
+            <span class="s1">&#39;Email Address&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">phone</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">String</span><span class="p">(</span>
         <span class="s1">&#39;Phone is only populated when the Person is a customer associated &#39;</span>
@@ -93,7 +99,15 @@
     <span class="p">)</span>
     <span class="n">modified_at</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">DateTime</span><span class="p">(</span>
         <span class="s1">&#39;UTC time when this customer was modified.&#39;</span><span class="p">,</span>
-    <span class="p">)</span></div>
+    <span class="p">)</span>
+
+    <span class="nd">@properties</span><span class="o">.</span><span class="n">Bool</span><span class="p">(</span><span class="s1">&#39;customer boolean&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">customer_person_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;customer&#39;</span>
+
+    <span class="nd">@customer_person_type</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">customer_person_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;customer&#39;</span> <span class="k">if</span> <span class="n">value</span> <span class="k">else</span> <span class="s1">&#39;user&#39;</span></div>
 </pre></div>
 
           </div>

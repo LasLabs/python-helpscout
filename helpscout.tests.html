@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.tests package &#8212; HelpScout 0.0.0b263 documentation</title>
+    <title>helpscout.tests package &#8212; HelpScout 0.0.0b271 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.0b263',
+        VERSION:     '0.0.0b271',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -635,6 +635,53 @@
 </dd></dl>
 
 </div>
+<div class="section" id="module-helpscout.tests.test_model_person">
+<span id="helpscout-tests-test-model-person-module"></span><h2>helpscout.tests.test_model_person module<a class="headerlink" href="#module-helpscout.tests.test_model_person" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="helpscout.tests.test_model_person.TestPerson">
+<em class="property">class </em><code class="descclassname">helpscout.tests.test_model_person.</code><code class="descname">TestPerson</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_model_person.html#TestPerson"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_model_person.TestPerson" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="helpscout.tests.test_model_person.TestPerson.new_record">
+<code class="descname">new_record</code><span class="sig-paren">(</span><em>type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_model_person.html#TestPerson.new_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_model_person.TestPerson.new_record" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_model_person.TestPerson.setter_tester">
+<code class="descname">setter_tester</code><span class="sig-paren">(</span><em>customer_person_type</em>, <em>expected</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_model_person.html#TestPerson.setter_tester"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_model_person.TestPerson.setter_tester" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_model_person.TestPerson.test_customer_person_type_customer">
+<code class="descname">test_customer_person_type_customer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_model_person.html#TestPerson.test_customer_person_type_customer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_model_person.TestPerson.test_customer_person_type_customer" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should properly set customer_person_type to True when person
+type is ‘customer’</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_model_person.TestPerson.test_customer_person_type_setter_false">
+<code class="descname">test_customer_person_type_setter_false</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_model_person.html#TestPerson.test_customer_person_type_setter_false"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_model_person.TestPerson.test_customer_person_type_setter_false" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should properly set type to ‘user’ when customer_person_type
+is set as False</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_model_person.TestPerson.test_customer_person_type_setter_true">
+<code class="descname">test_customer_person_type_setter_true</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_model_person.html#TestPerson.test_customer_person_type_setter_true"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_model_person.TestPerson.test_customer_person_type_setter_true" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should properly set type to ‘customer’ when customer_person_type
+is set as True</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_model_person.TestPerson.test_customer_person_type_user">
+<code class="descname">test_customer_person_type_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_model_person.html#TestPerson.test_customer_person_type_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_model_person.TestPerson.test_customer_person_type_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should properly set customer_person_type to False when person
+type is not ‘customer’</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-helpscout.tests.test_request_paginator">
 <span id="helpscout-tests-test-request-paginator-module"></span><h2>helpscout.tests.test_request_paginator module<a class="headerlink" href="#module-helpscout.tests.test_request_paginator" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
@@ -792,6 +839,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_helpscout">helpscout.tests.test_helpscout module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_helpscout_web_hook">helpscout.tests.test_helpscout_web_hook module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_helpscout_web_hook_event">helpscout.tests.test_helpscout_web_hook_event module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_model_person">helpscout.tests.test_model_person module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_request_paginator">helpscout.tests.test_request_paginator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests">Module contents</a></li>
 </ul>
