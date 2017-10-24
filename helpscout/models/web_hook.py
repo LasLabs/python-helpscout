@@ -11,7 +11,7 @@ from .web_hook_event import event_type
 class WebHook(BaseModel):
 
     url = properties.String(
-        '	The callback URL where Help Scout will post your webhook events. '
+        'The callback URL where Help Scout will post your webhook events. '
         'This is the script or location where you\'ll handle the data '
         'received from Help Scout.',
         required=True,

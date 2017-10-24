@@ -6,7 +6,7 @@ from setuptools import Command, setup
 from setuptools import find_packages
 from unittest import TestLoader, TextTestRunner
 
-from os import environ, path
+from os import path
 
 
 PROJECT = 'helpscout'
@@ -15,7 +15,7 @@ SHORT_DESC = 'This library allows you to interact with HelpScout using ' \
 README_FILE = 'README.rst'
 
 CLASSIFIERS = [
-    'Development Status :: 4 - Beta',
+    'Development Status :: 5 - Production/Stable',
     'Environment :: Console',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: MIT License',
@@ -30,11 +30,6 @@ CLASSIFIERS = [
     'Topic :: Software Development :: Libraries :: Python Modules',
 ]
 
-version = environ.get('RELEASE') or environ.get('VERSION') or '0.0.0'
-
-if environ.get('TRAVIS_BUILD_NUMBER'):
-    version += 'b%s' % environ.get('TRAVIS_BUILD_NUMBER')
-
 
 setup_vals = {
     'name': PROJECT,
@@ -45,19 +40,12 @@ setup_vals = {
     'download_url': 'https://github.com/LasLabs/python-%s' % PROJECT,
     'license': 'MIT',
     'classifiers': CLASSIFIERS,
-    'version': version,
 }
 
 
 if path.exists(README_FILE):
     with open(README_FILE) as fh:
         setup_vals['long_description'] = fh.read()
-
-
-install_requires = []
-if path.exists('requirements.txt'):
-    with open('requirements.txt') as fh:
-        install_requires = fh.read().splitlines()
 
 
 class FailTestException(Exception):
@@ -87,15 +75,19 @@ class Tests(Command):
 
 if __name__ == "__main__":
     setup(
-        packages=find_packages(exclude=('tests')),
+        packages=find_packages(exclude='tests'),
         use_scm_version=True,
         cmdclass={'test': Tests},
+        install_requires=[
+            'properties',
+            'requests',
+            'six',
+        ],
         setup_requires=[
             'setuptools_scm',
         ],
         tests_require=[
             'mock',
         ],
-        install_requires=install_requires,
         **setup_vals
     )
