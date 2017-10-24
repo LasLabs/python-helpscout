@@ -51,13 +51,13 @@ API Endpoints
 The HelpScout API endpoints are exposed as variables on the instantiated ``HelpScout``
 object. The available endpoints are:
 
-* `Conversations <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.conversations>`_
-* `Customers <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.customers>`_
-* `Mailboxes <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.mailboxes>`_
-* `Tags <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.tags>`_
-* `Teams <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.teams>`_
-* `Users <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.users>`_
-* `WebHook <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.web_hook>`_
+* `Conversations Endpoint <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.conversations>`_
+* `Customers Endpoint <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.customers>`_
+* `Mailboxes Endpoint <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.mailboxes>`_
+* `Tags Endpoint <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.tags>`_
+* `Teams Endpoint <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.teams>`_
+* `Users Endpoint <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.users>`_
+* `WebHook Endpoint <https://laslabs.github.io/python-helpscout/helpscout.apis.html#module-helpscout.apis.web_hook>`_
 
 They can also be viewed from the ``__apis__`` property of ``HelpScout``::
 
@@ -178,10 +178,10 @@ Searching
 
 The ``.search()`` method is implemented for the following endpoints:
 
-* `Conversations
+* `Conversations Search
   <https://laslabs.github.io/python-helpscout/helpscout.apis.html#helpscout.
   apis.conversations.Conversations.search>`_
-* `Customers
+* `Customers Search
   <https://laslabs.github.io/python-helpscout/helpscout.apis.html#helpscout.
   apis.customers.Customers.search>`_
 
@@ -216,8 +216,7 @@ Web Hooks
 
 `Web Hooks <https://laslabs.github.io/python-helpscout/helpscout.
 web_hook.html#helpscout.web_hook.web_hook.HelpScoutWebHook>`_ can be received by
-instantiating a `WebHook <https://laslabs.github.io/python-helpscout/
-helpscout.web_hook.html#helpscout.web_hook.web_hook.HelpScoutWebHook>`_ using
+instantiating a ``HelpScoutWebHook`` using
 the secret key that was configured while setting up the hook in your
 HelpScout account:
 
@@ -258,7 +257,22 @@ Given the above example:
    >>> event.record
    <helpscout.models.customer.Customer object at 0x101723e50>
 
-Creating web hooks is
+You create a web hook using the standard endpoint create:
+
+.. code-block:: python
+
+   from helpscout.models import HelpScoutWebHook
+   hook = HelpScoutWebHook(
+      url='https://example.com/my/web/hook/'
+      secret_key='SuperSecretRandomizedString'
+      events=[
+         'customer.created',
+      ],
+   )
+   hs.WebHook.create(hook)
+
+The above example will create a hook for the ``customer.created`` event using
+the pre-authenticated ``HelpScout`` object from above examples (``hs``).
 
 ======================
 Known Issues / RoadMap
@@ -284,6 +298,7 @@ Contributors
 ============
 
 * Dave Lasley <dave@laslabs.com>
+* Brent Hughes <brent.hughes@laslabs.com>
 
 Maintainer
 ==========
