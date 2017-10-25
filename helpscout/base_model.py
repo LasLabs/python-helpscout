@@ -2,11 +2,13 @@
 # Copyright 2017-TODAY LasLabs Inc.
 # License MIT (https://opensource.org/licenses/MIT).
 
+import logging
 import properties
 import re
 
 from .exceptions import HelpScoutValidationException
 
+logger = logging.getLogger(__name__)
 
 # Identify lowerCamelCase strings.
 # https://stackoverflow.com/a/1176023/861399
@@ -34,10 +36,6 @@ class BaseModel(properties.HasProperties):
         instantiate the proper objects using the values. The end result being
         a fully Objectified and Pythonified API response.
 
-        Raises:
-            HelpScoutValidationException: In the event that an unexpected
-             property is received.
-
         Returns:
             BaseModel: Instantiated model using the API values.
         """
@@ -45,9 +43,18 @@ class BaseModel(properties.HasProperties):
         vals = cls.get_non_empty_vals({
             cls._to_snake_case(k): v for k, v in kwargs.items()
         })
-        vals.update({
-            attr: cls._parse_property(attr, val) for attr, val in vals.items()
-        })
+        remove = []
+        for attr, val in vals.items():
+            try:
+                vals[attr] = cls._parse_property(attr, val)
+            except HelpScoutValidationException:
+                remove.append(attr)
+                logger.info(
+                    'Unexpected property received in API response',
+                    exc_info=True,
+                )
+        for attr in remove:
+            del vals[attr]
         return cls(**vals)
 
     def get(self, key, default=None):
@@ -108,6 +115,10 @@ class BaseModel(properties.HasProperties):
         Args:
             name (str): Name of the property on the object.
             value (mixed): The unparsed API value.
+
+        Raises:
+            HelpScoutValidationException: In the event that the property name
+            is not found.
 
         Returns:
             mixed: A value compatible with the internal models.
