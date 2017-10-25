@@ -9,7 +9,7 @@ from .. import BaseModel
 
 class Tag(BaseModel):
 
-    name = properties.String(
+    tag = properties.String(
         'The tag value.',
         required=True,
     )
@@ -21,7 +21,6 @@ class Tag(BaseModel):
     )
     color = properties.Color(
         'The tag color.',
-        required=True,
     )
     created_at = properties.DateTime(
         'UTC time when this tag was created.',

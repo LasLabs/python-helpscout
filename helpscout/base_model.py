@@ -139,6 +139,16 @@ class BaseModel(properties.HasProperties):
         elif isinstance(prop, properties.List):
             return cls._parse_property_list(prop, value)
 
+        elif isinstance(prop, properties.Color):
+            return cls._parse_property_color(value)
+
+        return value
+
+    @staticmethod
+    def _parse_property_color(value):
+        """Parse a color property and return a valid value."""
+        if value == 'none':
+            return 'lightgrey'
         return value
 
     @staticmethod
