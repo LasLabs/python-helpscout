@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.tests.test_base_model &#8212; HelpScout 0.0.0b281 documentation</title>
+    <title>helpscout.tests.test_base_model &#8212; HelpScout 0.0.0b289 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.0.0b281',
+        VERSION:     '0.0.0b289',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -101,11 +101,6 @@
         <span class="sd">&quot;&quot;&quot;It should call the init with snake cased keys.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">new_record</span><span class="p">()</span><span class="o">.</span><span class="n">a_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_values</span><span class="p">[</span><span class="s1">&#39;aKey&#39;</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="TestBaseModel.test_from_api_invalid_attribute"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_base_model.TestBaseModel.test_from_api_invalid_attribute">[docs]</a>    <span class="k">def</span> <span class="nf">test_from_api_invalid_attribute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;It should not allow invalid attribute assignments.&quot;&quot;&quot;</span>
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">HelpScoutValidationException</span><span class="p">):</span>
-            <span class="n">BaseModel</span><span class="o">.</span><span class="n">from_api</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;no exist&#39;</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span><span class="p">})</span></div>
-
 <div class="viewcode-block" id="TestBaseModel.test_from_api_sub_instance"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_base_model.TestBaseModel.test_from_api_sub_instance">[docs]</a>    <span class="k">def</span> <span class="nf">test_from_api_sub_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;It should properly instantiate sub-instances.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">new_record</span><span class="p">()</span><span class="o">.</span><span class="n">sub_instance</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">)</span></div>
@@ -115,6 +110,12 @@
         <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_record</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">list</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">BaseModel</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestBaseModel.test_from_api_invalid_attribute"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_base_model.TestBaseModel.test_from_api_invalid_attribute">[docs]</a>    <span class="k">def</span> <span class="nf">test_from_api_invalid_attribute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should remove any invalid attributes.&quot;&quot;&quot;</span>
+        <span class="n">record</span> <span class="o">=</span> <span class="n">TestModel</span><span class="o">.</span><span class="n">from_api</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;no_exist&#39;</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span><span class="p">})</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="n">record</span><span class="o">.</span><span class="n">no_exist</span></div>
 
 <div class="viewcode-block" id="TestBaseModel.test_to_api_camel_case"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_base_model.TestBaseModel.test_to_api_camel_case">[docs]</a>    <span class="k">def</span> <span class="nf">test_to_api_camel_case</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;It should properly camel case the API args.&quot;&quot;&quot;</span>
@@ -157,6 +158,11 @@
         <span class="n">res</span> <span class="o">=</span> <span class="n">BaseModel</span><span class="o">.</span><span class="n">get_non_empty_vals</span><span class="p">(</span><span class="n">expect</span><span class="p">)</span>
         <span class="k">del</span> <span class="n">expect</span><span class="p">[</span><span class="s1">&#39;bad&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertDictEqual</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">expect</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestBaseModel.test_parse_property_invalid_property"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_base_model.TestBaseModel.test_parse_property_invalid_property">[docs]</a>    <span class="k">def</span> <span class="nf">test_parse_property_invalid_property</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should raise an exception if property name is invalid.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">HelpScoutValidationException</span><span class="p">):</span>
+            <span class="n">BaseModel</span><span class="o">.</span><span class="n">_parse_property</span><span class="p">(</span><span class="s1">&#39;no exist&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TestBaseModel.test_dict_lookup_exist"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_base_model.TestBaseModel.test_dict_lookup_exist">[docs]</a>    <span class="k">def</span> <span class="nf">test_dict_lookup_exist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;It should return the attribute value when it exists.&quot;&quot;&quot;</span>

@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.tests package &#8212; HelpScout 0.0.0b281 documentation</title>
+    <title>helpscout.tests package &#8212; HelpScout 0.0.0b289 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.0b281',
+        VERSION:     '0.0.0b289',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -352,7 +352,7 @@
 <dl class="method">
 <dt id="helpscout.tests.test_base_model.TestBaseModel.test_from_api_invalid_attribute">
 <code class="descname">test_from_api_invalid_attribute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_base_model.html#TestBaseModel.test_from_api_invalid_attribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_base_model.TestBaseModel.test_from_api_invalid_attribute" title="Permalink to this definition">¶</a></dt>
-<dd><p>It should not allow invalid attribute assignments.</p>
+<dd><p>It should remove any invalid attributes.</p>
 </dd></dl>
 
 <dl class="method">
@@ -395,6 +395,12 @@
 <dt id="helpscout.tests.test_base_model.TestBaseModel.test_get_non_empty_vals">
 <code class="descname">test_get_non_empty_vals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_base_model.html#TestBaseModel.test_get_non_empty_vals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_base_model.TestBaseModel.test_get_non_empty_vals" title="Permalink to this definition">¶</a></dt>
 <dd><p>It should return the dict without NoneTypes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_base_model.TestBaseModel.test_parse_property_invalid_property">
+<code class="descname">test_parse_property_invalid_property</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_base_model.html#TestBaseModel.test_parse_property_invalid_property"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_base_model.TestBaseModel.test_parse_property_invalid_property" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should raise an exception if property name is invalid.</p>
 </dd></dl>
 
 <dl class="method">

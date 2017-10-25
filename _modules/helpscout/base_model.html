@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.base_model &#8212; HelpScout 0.0.0b281 documentation</title>
+    <title>helpscout.base_model &#8212; HelpScout 0.0.0b289 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.0.0b281',
+        VERSION:     '0.0.0b289',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -43,11 +43,13 @@
 <span class="c1"># Copyright 2017-TODAY LasLabs Inc.</span>
 <span class="c1"># License MIT (https://opensource.org/licenses/MIT).</span>
 
+<span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">properties</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
 <span class="kn">from</span> <span class="nn">.exceptions</span> <span class="k">import</span> <span class="n">HelpScoutValidationException</span>
 
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <span class="c1"># Identify lowerCamelCase strings.</span>
 <span class="c1"># https://stackoverflow.com/a/1176023/861399</span>
@@ -75,10 +77,6 @@
 <span class="sd">        instantiate the proper objects using the values. The end result being</span>
 <span class="sd">        a fully Objectified and Pythonified API response.</span>
 
-<span class="sd">        Raises:</span>
-<span class="sd">            HelpScoutValidationException: In the event that an unexpected</span>
-<span class="sd">             property is received.</span>
-
 <span class="sd">        Returns:</span>
 <span class="sd">            BaseModel: Instantiated model using the API values.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -86,9 +84,18 @@
         <span class="n">vals</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_non_empty_vals</span><span class="p">({</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">_to_snake_case</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
         <span class="p">})</span>
-        <span class="n">vals</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
-            <span class="n">attr</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_parse_property</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">attr</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">vals</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-        <span class="p">})</span>
+        <span class="n">remove</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">attr</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">vals</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">vals</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_parse_property</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">HelpScoutValidationException</span><span class="p">:</span>
+                <span class="n">remove</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="s1">&#39;Unexpected property received in API response&#39;</span><span class="p">,</span>
+                    <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="p">)</span>
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">remove</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">vals</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">vals</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BaseModel.get"><a class="viewcode-back" href="../../helpscout.html#helpscout.base_api.BaseModel.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -149,6 +156,10 @@
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): Name of the property on the object.</span>
 <span class="sd">            value (mixed): The unparsed API value.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            HelpScoutValidationException: In the event that the property name</span>
+<span class="sd">            is not found.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            mixed: A value compatible with the internal models.</span>
