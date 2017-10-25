@@ -60,11 +60,6 @@ class TestBaseModel(unittest.TestCase):
         """It should call the init with snake cased keys."""
         self.assertEqual(self.new_record().a_key, self.test_values['aKey'])
 
-    def test_from_api_invalid_attribute(self):
-        """It should not allow invalid attribute assignments."""
-        with self.assertRaises(HelpScoutValidationException):
-            BaseModel.from_api(**{'no exist': 'value'})
-
     def test_from_api_sub_instance(self):
         """It should properly instantiate sub-instances."""
         self.assertIsInstance(self.new_record().sub_instance, BaseModel)
@@ -74,6 +69,12 @@ class TestBaseModel(unittest.TestCase):
         res = self.new_record()
         self.assertIsInstance(res.list, list)
         self.assertIsInstance(res.list[0], BaseModel)
+
+    def test_from_api_invalid_attribute(self):
+        """It should remove any invalid attributes."""
+        record = TestModel.from_api(**{'no_exist': 'value'})
+        with self.assertRaises(AttributeError):
+            record.no_exist
 
     def test_to_api_camel_case(self):
         """It should properly camel case the API args."""
@@ -116,6 +117,11 @@ class TestBaseModel(unittest.TestCase):
         res = BaseModel.get_non_empty_vals(expect)
         del expect['bad']
         self.assertDictEqual(res, expect)
+
+    def test_parse_property_invalid_property(self):
+        """It should raise an exception if property name is invalid."""
+        with self.assertRaises(HelpScoutValidationException):
+            BaseModel._parse_property('no exist', 'value')
 
     def test_dict_lookup_exist(self):
         """It should return the attribute value when it exists."""
