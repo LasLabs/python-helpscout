@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.tests.test_base_model &#8212; HelpScout 0.0.0b289 documentation</title>
+    <title>helpscout.tests.test_base_model &#8212; HelpScout 0.0.0b300 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.0.0b289',
+        VERSION:     '0.0.0b300',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -66,6 +66,7 @@
         <span class="s1">&#39;List of Strings&#39;</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="s1">&#39;String&#39;</span><span class="p">),</span>
     <span class="p">)</span>
     <span class="n">date</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">DateTime</span><span class="p">(</span><span class="s1">&#39;DateTime&#39;</span><span class="p">)</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">)</span>
     <span class="n">not_a_field</span> <span class="o">=</span> <span class="kc">True</span></div>
 
 
@@ -82,12 +83,14 @@
                 <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">4321</span><span class="p">},</span>
             <span class="p">],</span>
             <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">internal_values</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;a_key&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_values</span><span class="p">[</span><span class="s1">&#39;aKey&#39;</span><span class="p">],</span>
             <span class="s1">&#39;sub_instance&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_values</span><span class="p">[</span><span class="s1">&#39;subInstance&#39;</span><span class="p">],</span>
             <span class="s1">&#39;list&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_values</span><span class="p">[</span><span class="s1">&#39;list&#39;</span><span class="p">],</span>
             <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_values</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_values</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">],</span>
         <span class="p">}</span></div>
 
 <div class="viewcode-block" id="TestBaseModel.new_record"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_base_model.TestBaseModel.new_record">[docs]</a>    <span class="k">def</span> <span class="nf">new_record</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -110,6 +113,11 @@
         <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_record</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">list</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">BaseModel</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestBaseModel.test_from_api_color_none"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_base_model.TestBaseModel.test_from_api_color_none">[docs]</a>    <span class="k">def</span> <span class="nf">test_from_api_color_none</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should parse &#39;none&#39; API value in Color property as lightgrey.&quot;&quot;&quot;</span>
+        <span class="n">record</span> <span class="o">=</span> <span class="n">TestModel</span><span class="o">.</span><span class="n">from_api</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;none&#39;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="p">(</span><span class="mi">211</span><span class="p">,</span> <span class="mi">211</span><span class="p">,</span> <span class="mi">211</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="TestBaseModel.test_from_api_invalid_attribute"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_base_model.TestBaseModel.test_from_api_invalid_attribute">[docs]</a>    <span class="k">def</span> <span class="nf">test_from_api_invalid_attribute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;It should remove any invalid attributes.&quot;&quot;&quot;</span>

@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.tests package &#8212; HelpScout 0.0.0b289 documentation</title>
+    <title>helpscout.tests package &#8212; HelpScout 0.0.0b300 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.0b289',
+        VERSION:     '0.0.0b300',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -350,6 +350,12 @@
 </dd></dl>
 
 <dl class="method">
+<dt id="helpscout.tests.test_base_model.TestBaseModel.test_from_api_color_none">
+<code class="descname">test_from_api_color_none</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_base_model.html#TestBaseModel.test_from_api_color_none"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_base_model.TestBaseModel.test_from_api_color_none" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should parse ‘none’ API value in Color property as lightgrey.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="helpscout.tests.test_base_model.TestBaseModel.test_from_api_invalid_attribute">
 <code class="descname">test_from_api_invalid_attribute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_base_model.html#TestBaseModel.test_from_api_invalid_attribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_base_model.TestBaseModel.test_from_api_invalid_attribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>It should remove any invalid attributes.</p>
@@ -442,6 +448,7 @@
 <p><strong>Required Properties:</strong></p>
 <ul class="simple">
 <li><strong>a_key</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): A key, a unicode string</li>
+<li><strong>color</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.Color" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Color</span></code></a>): Color, a color</li>
 <li><strong>date</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): DateTime, a datetime object</li>
 <li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
 <li><strong>list</strong> (<a class="reference internal" href="#helpscout.tests.BaseModel" title="helpscout.tests.BaseModel"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">BaseModel</span></code></a>): List, a list (each item is an instance of BaseModel)</li>
@@ -452,6 +459,12 @@
 <dt id="helpscout.tests.test_base_model.TestModel.a_key">
 <code class="descname">a_key</code><a class="headerlink" href="#helpscout.tests.test_base_model.TestModel.a_key" title="Permalink to this definition">¶</a></dt>
 <dd><p>A key</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.tests.test_base_model.TestModel.color">
+<code class="descname">color</code><a class="headerlink" href="#helpscout.tests.test_base_model.TestModel.color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Color</p>
 </dd></dl>
 
 <dl class="attribute">

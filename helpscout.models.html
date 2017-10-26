@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.models package &#8212; HelpScout 0.0.0b289 documentation</title>
+    <title>helpscout.models package &#8212; HelpScout 0.0.0b300 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.0b289',
+        VERSION:     '0.0.0b300',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -1149,8 +1149,8 @@
 <li><strong>created_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this tag was created., a datetime object</li>
 <li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
 <li><strong>modified_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this tag was modified., a datetime object</li>
-<li><strong>name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): The tag value., a unicode string</li>
 <li><strong>slug</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Slugified version of the tag value., a unicode string</li>
+<li><strong>tag</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): The tag value., a unicode string</li>
 </ul>
 <dl class="attribute">
 <dt id="helpscout.models.tag.Tag.color">
@@ -1177,15 +1177,15 @@
 </dd></dl>
 
 <dl class="attribute">
-<dt id="helpscout.models.tag.Tag.name">
-<code class="descname">name</code><a class="headerlink" href="#helpscout.models.tag.Tag.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>The tag value.</p>
-</dd></dl>
-
-<dl class="attribute">
 <dt id="helpscout.models.tag.Tag.slug">
 <code class="descname">slug</code><a class="headerlink" href="#helpscout.models.tag.Tag.slug" title="Permalink to this definition">¶</a></dt>
 <dd><p>Slugified version of the tag value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.models.tag.Tag.tag">
+<code class="descname">tag</code><a class="headerlink" href="#helpscout.models.tag.Tag.tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>The tag value.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2593,8 +2593,8 @@ When a conversation is forwarded, a new conversation is created to represent the
 <li><strong>created_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this tag was created., a datetime object</li>
 <li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
 <li><strong>modified_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this tag was modified., a datetime object</li>
-<li><strong>name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): The tag value., a unicode string</li>
 <li><strong>slug</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Slugified version of the tag value., a unicode string</li>
+<li><strong>tag</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): The tag value., a unicode string</li>
 </ul>
 <dl class="attribute">
 <dt id="helpscout.models.Tag.color">
@@ -2621,15 +2621,15 @@ When a conversation is forwarded, a new conversation is created to represent the
 </dd></dl>
 
 <dl class="attribute">
-<dt id="helpscout.models.Tag.name">
-<code class="descname">name</code><a class="headerlink" href="#helpscout.models.Tag.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>The tag value.</p>
-</dd></dl>
-
-<dl class="attribute">
 <dt id="helpscout.models.Tag.slug">
 <code class="descname">slug</code><a class="headerlink" href="#helpscout.models.Tag.slug" title="Permalink to this definition">¶</a></dt>
 <dd><p>Slugified version of the tag value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.models.Tag.tag">
+<code class="descname">tag</code><a class="headerlink" href="#helpscout.models.Tag.tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>The tag value.</p>
 </dd></dl>
 
 </dd></dl>

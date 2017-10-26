@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.models.tag &#8212; HelpScout 0.0.0b289 documentation</title>
+    <title>helpscout.models.tag &#8212; HelpScout 0.0.0b300 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.0.0b289',
+        VERSION:     '0.0.0b300',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -50,7 +50,7 @@
 
 <div class="viewcode-block" id="Tag"><a class="viewcode-back" href="../../../helpscout.models.html#helpscout.models.tag.Tag">[docs]</a><span class="k">class</span> <span class="nc">Tag</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 
-    <span class="n">name</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">String</span><span class="p">(</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">String</span><span class="p">(</span>
         <span class="s1">&#39;The tag value.&#39;</span><span class="p">,</span>
         <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
@@ -62,7 +62,6 @@
     <span class="p">)</span>
     <span class="n">color</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span>
         <span class="s1">&#39;The tag color.&#39;</span><span class="p">,</span>
-        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">created_at</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">DateTime</span><span class="p">(</span>
         <span class="s1">&#39;UTC time when this tag was created.&#39;</span><span class="p">,</span>
