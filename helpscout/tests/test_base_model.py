@@ -25,6 +25,7 @@ class TestModel(BaseModel):
         'List of Strings', prop=properties.String('String'),
     )
     date = properties.DateTime('DateTime')
+    color = properties.Color('Color')
     not_a_field = True
 
 
@@ -41,12 +42,14 @@ class TestBaseModel(unittest.TestCase):
                 {'id': 4321},
             ],
             'date': datetime(2017, 1, 1, 0, 0, 0),
+            'color': 'blue',
         }
         self.internal_values = {
             'a_key': self.test_values['aKey'],
             'sub_instance': self.test_values['subInstance'],
             'list': self.test_values['list'],
             'date': self.test_values['date'],
+            'color': self.test_values['color'],
         }
 
     def new_record(self):
@@ -69,6 +72,11 @@ class TestBaseModel(unittest.TestCase):
         res = self.new_record()
         self.assertIsInstance(res.list, list)
         self.assertIsInstance(res.list[0], BaseModel)
+
+    def test_from_api_color_none(self):
+        """It should parse 'none' API value in Color property as lightgrey."""
+        record = TestModel.from_api(**{'color': 'none'})
+        self.assertEqual(record.color, (211, 211, 211))
 
     def test_from_api_invalid_attribute(self):
         """It should remove any invalid attributes."""
