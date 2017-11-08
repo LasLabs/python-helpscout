@@ -16,7 +16,7 @@ class Attachment(BaseModel):
     mime_type = properties.String(
         'Mime Type',
     )
-    filename = properties.String(
+    file_name = properties.String(
         'File Name',
         required=True,
     )
