@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.models package &#8212; HelpScout 0.0.0b300 documentation</title>
+    <title>helpscout.models package &#8212; HelpScout 0.0.0b304 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.0b300',
+        VERSION:     '0.0.0b304',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -116,7 +116,7 @@
 <dd><p>Bases: <a class="reference internal" href="helpscout.html#helpscout.base_model.BaseModel" title="helpscout.base_model.BaseModel"><code class="xref py py-class docutils literal"><span class="pre">helpscout.base_model.BaseModel</span></code></a></p>
 <p><strong>Required Properties:</strong></p>
 <ul class="simple">
-<li><strong>filename</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): File Name, a unicode string</li>
+<li><strong>file_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): File Name, a unicode string</li>
 <li><strong>hash</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Unique hash., a unicode string</li>
 <li><strong>height</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Image height, an integer</li>
 <li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
@@ -126,8 +126,8 @@
 <li><strong>width</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Image width, an integer</li>
 </ul>
 <dl class="attribute">
-<dt id="helpscout.models.attachment.Attachment.filename">
-<code class="descname">filename</code><a class="headerlink" href="#helpscout.models.attachment.Attachment.filename" title="Permalink to this definition">¶</a></dt>
+<dt id="helpscout.models.attachment.Attachment.file_name">
+<code class="descname">file_name</code><a class="headerlink" href="#helpscout.models.attachment.Attachment.file_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>File Name</p>
 </dd></dl>
 
@@ -1620,7 +1620,7 @@ When a conversation is forwarded, a new conversation is created to represent the
 <dd><p>Bases: <a class="reference internal" href="helpscout.html#helpscout.base_model.BaseModel" title="helpscout.base_model.BaseModel"><code class="xref py py-class docutils literal"><span class="pre">helpscout.base_model.BaseModel</span></code></a></p>
 <p><strong>Required Properties:</strong></p>
 <ul class="simple">
-<li><strong>filename</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): File Name, a unicode string</li>
+<li><strong>file_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): File Name, a unicode string</li>
 <li><strong>hash</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Unique hash., a unicode string</li>
 <li><strong>height</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Image height, an integer</li>
 <li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
@@ -1630,8 +1630,8 @@ When a conversation is forwarded, a new conversation is created to represent the
 <li><strong>width</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Image width, an integer</li>
 </ul>
 <dl class="attribute">
-<dt id="helpscout.models.Attachment.filename">
-<code class="descname">filename</code><a class="headerlink" href="#helpscout.models.Attachment.filename" title="Permalink to this definition">¶</a></dt>
+<dt id="helpscout.models.Attachment.file_name">
+<code class="descname">file_name</code><a class="headerlink" href="#helpscout.models.Attachment.file_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>File Name</p>
 </dd></dl>
 
