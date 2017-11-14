@@ -7,10 +7,18 @@ from .api_common import ApiCommon
 from ..apis.conversations import Conversations
 
 from ..models.search_conversation import SearchConversation
+from ..models.attachment import Attachment
+from ..models.attachment_data import AttachmentData
 from ..models.thread import Thread
 
 
 class TestApiConversations(ApiCommon):
+
+    def _test_delete(self, uri, method_name):
+        self._test_method(
+            Conversations, method_name, [self.mock_record], uri,
+            None, 'delete', False,
+        )
 
     def test_create(self):
         data = {
@@ -23,6 +31,14 @@ class TestApiConversations(ApiCommon):
         self._test_method(
             Conversations, 'create', args, '/conversations.json',
             data, 'post', True,
+        )
+
+    def test_create_attachment(self):
+        data = self.mock_record
+        uri = '/attachments.json'
+        self._test_method(
+            Conversations, 'create_attachment', [self.mock_record], uri,
+            data, 'post', True, Attachment,
         )
 
     def test_create_thread(self):
@@ -41,10 +57,11 @@ class TestApiConversations(ApiCommon):
 
     def test_delete(self):
         uri = '/conversations/%s.json' % self.mock_record.id
-        self._test_method(
-            Conversations, 'delete', [self.mock_record], uri,
-            None, 'delete', False,
-        )
+        self._test_delete(uri, 'delete')
+
+    def test_delete_attachment(self):
+        uri = '/attachments/%s.json' % self.mock_record.id
+        self._test_delete(uri, 'delete_attachment')
 
     def test_find_customer(self):
         customer = self.mock_record.customer
@@ -73,6 +90,13 @@ class TestApiConversations(ApiCommon):
         self._test_method(
             Conversations, 'get', [self.mock_record.id], uri,
             singleton=True,
+        )
+
+    def test_get_attachment_data(self):
+        uri = '/attachments/%s/data.json' % self.mock_record.id
+        self._test_method(
+            Conversations, 'get_attachment_data', [self.mock_record.id], uri,
+            singleton=True, out_type=AttachmentData
         )
 
     def test_list(self):
