@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.apis.conversations &#8212; HelpScout 0.0.0b304 documentation</title>
+    <title>helpscout.apis.conversations &#8212; HelpScout 0.0.0b313 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.0.0b304',
+        VERSION:     '0.0.0b313',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -45,6 +45,8 @@
 
 <span class="kn">from</span> <span class="nn">..</span> <span class="k">import</span> <span class="n">BaseApi</span>
 
+<span class="kn">from</span> <span class="nn">..models.attachment</span> <span class="k">import</span> <span class="n">Attachment</span>
+<span class="kn">from</span> <span class="nn">..models.attachment_data</span> <span class="k">import</span> <span class="n">AttachmentData</span>
 <span class="kn">from</span> <span class="nn">..models.conversation</span> <span class="k">import</span> <span class="n">Conversation</span>
 <span class="kn">from</span> <span class="nn">..models.search_conversation</span> <span class="k">import</span> <span class="n">SearchConversation</span>
 <span class="kn">from</span> <span class="nn">..models.thread</span> <span class="k">import</span> <span class="n">Thread</span>
@@ -83,6 +85,15 @@
 <span class="sd">      &lt;http://developer.helpscout.net/help-desk-api/conversations/</span>
 <span class="sd">      update-thread/&gt;`_</span>
 <span class="sd">      (:func:`helpscout.apis.conversations.Conversations.update_thread`)</span>
+<span class="sd">    * `Get Attachment Data</span>
+<span class="sd">      &lt;http://developer.helpscout.com/help-desk-api/conversations/attachment-data/&gt;`_</span>
+<span class="sd">      (:func:`helpscout.apis.conversations.Conversations.get_attachment_data`)</span>
+<span class="sd">    * `Create Attachment</span>
+<span class="sd">      &lt;http://developer.helpscout.com/help-desk-api/conversations/create-attachment/&gt;`_</span>
+<span class="sd">      (:func:`helpscout.apis.conversations.Conversations.create_attachment`)</span>
+<span class="sd">    * `Delete Attachment</span>
+<span class="sd">      &lt;http://developer.helpscout.com/help-desk-api/conversations/delete-attachment/&gt;`_</span>
+<span class="sd">      (:func:`helpscout.apis.conversations.Conversations.delete_attachment`)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">__object__</span> <span class="o">=</span> <span class="n">Conversation</span>
@@ -124,6 +135,36 @@
             <span class="n">request_type</span><span class="o">=</span><span class="n">RequestPaginator</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span>
             <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Conversations.create_attachment"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.conversations.Conversations.create_attachment">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">create_attachment</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">attachment</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create an attachment.</span>
+
+<span class="sd">        An attachment must be sent to the API before it can be used in a</span>
+<span class="sd">        thread. Use this method to create the attachment, then use the</span>
+<span class="sd">        resulting hash when creating a thread.</span>
+
+<span class="sd">        Note that HelpScout only supports attachments of 10MB or lower.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            session (requests.sessions.Session): Authenticated session.</span>
+<span class="sd">            attachment (helpscout.models.Attachment): The attachment to be</span>
+<span class="sd">             created.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            helpscout.models.Attachment: The newly created attachment (hash</span>
+<span class="sd">             property only). Use this hash when associating the attachment with</span>
+<span class="sd">             a new thread.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">attachment</span><span class="o">.</span><span class="n">to_api</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="s1">&#39;/attachments.json&#39;</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">request_type</span><span class="o">=</span><span class="n">RequestPaginator</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span>
+            <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+            <span class="n">out_type</span><span class="o">=</span><span class="n">Attachment</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Conversations.create_thread"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.conversations.Conversations.create_thread">[docs]</a>    <span class="nd">@classmethod</span>
@@ -178,6 +219,26 @@
             <span class="n">request_type</span><span class="o">=</span><span class="n">RequestPaginator</span><span class="o">.</span><span class="n">DELETE</span><span class="p">,</span>
             <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Conversations.delete_attachment"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.conversations.Conversations.delete_attachment">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">delete_attachment</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">attachment</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete an attachment.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            session (requests.sessions.Session): Authenticated session.</span>
+<span class="sd">            attachment (helpscout.models.Attachment): The attachment to</span>
+<span class="sd">                be deleted.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Status</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="s1">&#39;/attachments/</span><span class="si">%s</span><span class="s1">.json&#39;</span> <span class="o">%</span> <span class="n">attachment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">request_type</span><span class="o">=</span><span class="n">RequestPaginator</span><span class="o">.</span><span class="n">DELETE</span><span class="p">,</span>
+            <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+            <span class="n">out_type</span><span class="o">=</span><span class="n">Attachment</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Conversations.find_customer"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.conversations.Conversations.find_customer">[docs]</a>    <span class="nd">@classmethod</span>
@@ -236,6 +297,26 @@
             <span class="s1">&#39;/conversations/</span><span class="si">%d</span><span class="s1">.json&#39;</span> <span class="o">%</span> <span class="n">conversation_id</span><span class="p">,</span>
             <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Conversations.get_attachment_data"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.conversations.Conversations.get_attachment_data">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_attachment_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">attachment_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a specific attachment&#39;s data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            session (requests.sessions.Session): Authenticated session.</span>
+<span class="sd">            attachment_id (int): The ID of the attachment from which to get</span>
+<span class="sd">                data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            helpscout.models.AttachmentData: An attachment data singleton, if</span>
+<span class="sd">                existing. Otherwise ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="s1">&#39;/attachments/</span><span class="si">%d</span><span class="s1">/data.json&#39;</span> <span class="o">%</span> <span class="n">attachment_id</span><span class="p">,</span>
+            <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+            <span class="n">out_type</span><span class="o">=</span><span class="n">AttachmentData</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Conversations.list"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.conversations.Conversations.list">[docs]</a>    <span class="nd">@classmethod</span>

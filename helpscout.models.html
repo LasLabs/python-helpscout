@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.models package &#8212; HelpScout 0.0.0b304 documentation</title>
+    <title>helpscout.models package &#8212; HelpScout 0.0.0b313 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.0b304',
+        VERSION:     '0.0.0b313',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -116,6 +116,7 @@
 <dd><p>Bases: <a class="reference internal" href="helpscout.html#helpscout.base_model.BaseModel" title="helpscout.base_model.BaseModel"><code class="xref py py-class docutils literal"><span class="pre">helpscout.base_model.BaseModel</span></code></a></p>
 <p><strong>Required Properties:</strong></p>
 <ul class="simple">
+<li><strong>data</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): base64 encoded data., a unicode string</li>
 <li><strong>file_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): File Name, a unicode string</li>
 <li><strong>hash</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Unique hash., a unicode string</li>
 <li><strong>height</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Image height, an integer</li>
@@ -125,6 +126,12 @@
 <li><strong>url</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Public-facing url where attachment can be downloaded., a unicode string</li>
 <li><strong>width</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Image width, an integer</li>
 </ul>
+<dl class="attribute">
+<dt id="helpscout.models.attachment.Attachment.data">
+<code class="descname">data</code><a class="headerlink" href="#helpscout.models.attachment.Attachment.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>base64 encoded data.</p>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="helpscout.models.attachment.Attachment.file_name">
 <code class="descname">file_name</code><a class="headerlink" href="#helpscout.models.attachment.Attachment.file_name" title="Permalink to this definition">¶</a></dt>
@@ -283,8 +290,8 @@
 <p>This represents a full conversation result.</p>
 <p><strong>Required Properties:</strong></p>
 <ul class="simple">
-<li><strong>bcc</strong> (<a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Email</span></code></a>): Emails that are BCCd., a list (each item is an instance of Email)</li>
-<li><strong>cc</strong> (<a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Email</span></code></a>): Emails that are CCd., a list (each item is an instance of Email)</li>
+<li><strong>bcc</strong> (<a class="reference internal" href="#helpscout.models.Email" title="helpscout.models.Email"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Email</span></code></a>): Emails that are BCCd., a list (each item is an instance of Email)</li>
+<li><strong>cc</strong> (<a class="reference internal" href="#helpscout.models.Email" title="helpscout.models.Email"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Email</span></code></a>): Emails that are CCd., a list (each item is an instance of Email)</li>
 <li><strong>closed_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this conversation was closed. Null if not closed., a datetime object</li>
 <li><strong>closed_by</strong> (<a class="reference internal" href="#helpscout.models.person.Person" title="helpscout.models.person.Person"><code class="xref py py-class docutils literal"><span class="pre">Person</span></code></a>): The Help Scout user who closed this conversation., an instance of Person</li>
 <li><strong>created_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this conversation was created., a datetime object</li>
@@ -466,7 +473,7 @@
 <li><strong>chats</strong> (<a class="reference internal" href="#helpscout.models.chat.Chat" title="helpscout.models.chat.Chat"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Chat</span></code></a>): Chat addresses for this customer., a list (each item is an instance of Chat)</li>
 <li><strong>created_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this customer was created., a datetime object</li>
 <li><strong>email</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Email, a unicode string</li>
-<li><strong>emails</strong> (<a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Email</span></code></a>): Email addresses for this customer., a list (each item is an instance of Email)</li>
+<li><strong>emails</strong> (<a class="reference internal" href="#helpscout.models.Email" title="helpscout.models.Email"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Email</span></code></a>): Email addresses for this customer., a list (each item is an instance of Email)</li>
 <li><strong>first_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): First name, a unicode string</li>
 <li><strong>full_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Full name for the customer, a unicode string</li>
 <li><strong>gender</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): Gender of this customer., any of “female”, “male”, “unknown”, Default: unknown</li>
@@ -1209,9 +1216,9 @@
 * <strong>action_type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): Describes an optional action associated with the line item., any of “movedFromMailbox”, “merged”, “imported”, “workflow”, “importedExternal”, “changedTicketCustomer”, “deletedTicket”, “restoreTicket”, “originalCreator”
 * <strong>assigned_to</strong> (<a class="reference internal" href="#helpscout.models.person.Person" title="helpscout.models.person.Person"><code class="xref py py-class docutils literal"><span class="pre">Person</span></code></a>): The Help Scout user assigned to this conversation., an instance of Person
 * <strong>attachments</strong> (<a class="reference internal" href="#helpscout.models.attachment.Attachment" title="helpscout.models.attachment.Attachment"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Attachment</span></code></a>): Attachments, a list (each item is an instance of Attachment)
-* <strong>bcc</strong> (<a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Email</span></code></a>): BCC to, a list (each item is an instance of Email)
+* <strong>bcc</strong> (<a class="reference internal" href="#helpscout.models.Email" title="helpscout.models.Email"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Email</span></code></a>): BCC to, a list (each item is an instance of Email)
 * <strong>body</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Body text, a unicode string
-* <strong>cc</strong> (<a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Email</span></code></a>): CC to, a list (each item is an instance of Email)
+* <strong>cc</strong> (<a class="reference internal" href="#helpscout.models.Email" title="helpscout.models.Email"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Email</span></code></a>): CC to, a list (each item is an instance of Email)
 * <strong>created_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this thread was created., a datetime object
 * <strong>created_by</strong> (<a class="reference internal" href="#helpscout.models.person.Person" title="helpscout.models.person.Person"><code class="xref py py-class docutils literal"><span class="pre">Person</span></code></a>): The Person who created this thread. The <code class="docutils literal"><span class="pre">type</span></code> property will specify whether it was created by a <code class="docutils literal"><span class="pre">user</span></code> or a <code class="docutils literal"><span class="pre">customer</span></code>., an instance of Person
 * <strong>created_by_customer</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): Equivalent to <code class="docutils literal"><span class="pre">created_by.type</span> <span class="pre">==</span> <span class="pre">&quot;customer&quot;</span></code>., a boolean
@@ -1226,7 +1233,7 @@ If thread type is <code class="docutils literal"><span class="pre">customer</spa
 A state of <code class="docutils literal"><span class="pre">underreview</span></code> means the thread has been stopped by Traffic Cop and is waiting to be confirmed (or discarded) by the person that created the thread.
 A state of <code class="docutils literal"><span class="pre">hidden</span></code> means the thread was hidden (or removed) from customer-facing emails., any of “published”, “draft”, “underreview”, “hidden”
 * <strong>status</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): Status of the thread., any of “nochange”, “active”, “pending”, “closed”, “spam”
-* <strong>to</strong> (<a class="reference internal" href="#helpscout.models.email.Email" title="helpscout.models.email.Email"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Email</span></code></a>): Email to, a list (each item is an instance of Email)
+* <strong>to</strong> (<a class="reference internal" href="#helpscout.models.Email" title="helpscout.models.Email"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Email</span></code></a>): Email to, a list (each item is an instance of Email)
 * <strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The type of thread.
 A <code class="docutils literal"><span class="pre">lineitem</span></code> represents a change of state on the conversation. This could include, but not limited to, the conversation was assigned, the status changed, the conversation was moved from one mailbox to another, etc. A line item won’t have a body, to/cc/bcc lists, or attachments.
 When a conversation is forwarded, a new conversation is created to represent the forwarded conversation.
@@ -1620,6 +1627,7 @@ When a conversation is forwarded, a new conversation is created to represent the
 <dd><p>Bases: <a class="reference internal" href="helpscout.html#helpscout.base_model.BaseModel" title="helpscout.base_model.BaseModel"><code class="xref py py-class docutils literal"><span class="pre">helpscout.base_model.BaseModel</span></code></a></p>
 <p><strong>Required Properties:</strong></p>
 <ul class="simple">
+<li><strong>data</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): base64 encoded data., a unicode string</li>
 <li><strong>file_name</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): File Name, a unicode string</li>
 <li><strong>hash</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Unique hash., a unicode string</li>
 <li><strong>height</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Image height, an integer</li>
@@ -1629,6 +1637,12 @@ When a conversation is forwarded, a new conversation is created to represent the
 <li><strong>url</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Public-facing url where attachment can be downloaded., a unicode string</li>
 <li><strong>width</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Image width, an integer</li>
 </ul>
+<dl class="attribute">
+<dt id="helpscout.models.Attachment.data">
+<code class="descname">data</code><a class="headerlink" href="#helpscout.models.Attachment.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>base64 encoded data.</p>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="helpscout.models.Attachment.file_name">
 <code class="descname">file_name</code><a class="headerlink" href="#helpscout.models.Attachment.file_name" title="Permalink to this definition">¶</a></dt>

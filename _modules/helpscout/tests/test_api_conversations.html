@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.tests.test_api_conversations &#8212; HelpScout 0.0.0b304 documentation</title>
+    <title>helpscout.tests.test_api_conversations &#8212; HelpScout 0.0.0b313 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.0.0b304',
+        VERSION:     '0.0.0b313',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -48,10 +48,18 @@
 <span class="kn">from</span> <span class="nn">..apis.conversations</span> <span class="k">import</span> <span class="n">Conversations</span>
 
 <span class="kn">from</span> <span class="nn">..models.search_conversation</span> <span class="k">import</span> <span class="n">SearchConversation</span>
+<span class="kn">from</span> <span class="nn">..models.attachment</span> <span class="k">import</span> <span class="n">Attachment</span>
+<span class="kn">from</span> <span class="nn">..models.attachment_data</span> <span class="k">import</span> <span class="n">AttachmentData</span>
 <span class="kn">from</span> <span class="nn">..models.thread</span> <span class="k">import</span> <span class="n">Thread</span>
 
 
 <div class="viewcode-block" id="TestApiConversations"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations">[docs]</a><span class="k">class</span> <span class="nc">TestApiConversations</span><span class="p">(</span><span class="n">ApiCommon</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">_test_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">method_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
+            <span class="n">Conversations</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">],</span> <span class="n">uri</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
 
 <div class="viewcode-block" id="TestApiConversations.test_create"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_create">[docs]</a>    <span class="k">def</span> <span class="nf">test_create</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
@@ -64,6 +72,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
             <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="s1">&#39;/conversations.json&#39;</span><span class="p">,</span>
             <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApiConversations.test_create_attachment"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_create_attachment">[docs]</a>    <span class="k">def</span> <span class="nf">test_create_attachment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;/attachments.json&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
+            <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;create_attachment&#39;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">],</span> <span class="n">uri</span><span class="p">,</span>
+            <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">Attachment</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="TestApiConversations.test_create_thread"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_create_thread">[docs]</a>    <span class="k">def</span> <span class="nf">test_create_thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -82,10 +98,11 @@
 
 <div class="viewcode-block" id="TestApiConversations.test_delete"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_delete">[docs]</a>    <span class="k">def</span> <span class="nf">test_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;/conversations/</span><span class="si">%s</span><span class="s1">.json&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
-            <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">],</span> <span class="n">uri</span><span class="p">,</span>
-            <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_delete</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApiConversations.test_delete_attachment"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_delete_attachment">[docs]</a>    <span class="k">def</span> <span class="nf">test_delete_attachment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;/attachments/</span><span class="si">%s</span><span class="s1">.json&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_delete</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="s1">&#39;delete_attachment&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TestApiConversations.test_find_customer"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_find_customer">[docs]</a>    <span class="k">def</span> <span class="nf">test_find_customer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">customer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">customer</span>
@@ -114,6 +131,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
             <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span><span class="p">],</span> <span class="n">uri</span><span class="p">,</span>
             <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApiConversations.test_get_attachment_data"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_get_attachment_data">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_attachment_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;/attachments/</span><span class="si">%s</span><span class="s1">/data.json&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
+            <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;get_attachment_data&#39;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span><span class="p">],</span> <span class="n">uri</span><span class="p">,</span>
+            <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">out_type</span><span class="o">=</span><span class="n">AttachmentData</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="TestApiConversations.test_list"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_list">[docs]</a>    <span class="k">def</span> <span class="nf">test_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
