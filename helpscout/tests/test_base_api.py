@@ -61,9 +61,16 @@ class TestBaseApi(unittest.TestCase):
         self.assertEqual(res.id, 9876)
 
     @mock.patch(PAGINATOR)
-    def test_new_paginator_singleton_none(self, paginator):
+    def test_new_paginator_singleton_not_found(self, paginator):
         """It should return None if singleton and not found."""
         paginator().call.return_value = []
+        res = self.new_api(singleton=True)
+        self.assertIs(res, None)
+
+    @mock.patch(PAGINATOR)
+    def test_new_paginator_singleton_none(self, paginator):
+        """It should return None if singleton and return value is None."""
+        paginator().call.return_value = None
         res = self.new_api(singleton=True)
         self.assertIs(res, None)
 

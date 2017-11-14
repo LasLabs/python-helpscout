@@ -143,7 +143,7 @@ class RequestPaginator(object):
             kwargs['verify'] = self.SSL_VERIFY
 
         response = method(*args, **kwargs)
-        response_json = response.json()
+        response_json = response.text and response.json() or {}
 
         if response.status_code < 200 or response.status_code >= 300:
             message = response_json.get('error', response_json.get('message'))
@@ -162,4 +162,4 @@ class RequestPaginator(object):
         except KeyError:
             pass
 
-        return True
+        return None
