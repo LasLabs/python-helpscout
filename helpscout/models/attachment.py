@@ -9,9 +9,11 @@ from .. import BaseModel
 
 class Attachment(BaseModel):
 
+    data = properties.String(
+        'base64 encoded data.',
+    )
     hash = properties.String(
         'Unique hash.',
-        required=True,
     )
     mime_type = properties.String(
         'Mime Type',

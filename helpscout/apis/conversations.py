@@ -4,6 +4,8 @@
 
 from .. import BaseApi
 
+from ..models.attachment import Attachment
+from ..models.attachment_data import AttachmentData
 from ..models.conversation import Conversation
 from ..models.search_conversation import SearchConversation
 from ..models.thread import Thread
@@ -42,6 +44,15 @@ class Conversations(BaseApi):
       <http://developer.helpscout.net/help-desk-api/conversations/
       update-thread/>`_
       (:func:`helpscout.apis.conversations.Conversations.update_thread`)
+    * `Get Attachment Data
+      <http://developer.helpscout.com/help-desk-api/conversations/attachment-data/>`_
+      (:func:`helpscout.apis.conversations.Conversations.get_attachment_data`)
+    * `Create Attachment
+      <http://developer.helpscout.com/help-desk-api/conversations/create-attachment/>`_
+      (:func:`helpscout.apis.conversations.Conversations.create_attachment`)
+    * `Delete Attachment
+      <http://developer.helpscout.com/help-desk-api/conversations/delete-attachment/>`_
+      (:func:`helpscout.apis.conversations.Conversations.delete_attachment`)
     """
 
     __object__ = Conversation
@@ -83,6 +94,36 @@ class Conversations(BaseApi):
             request_type=RequestPaginator.POST,
             singleton=True,
             session=session,
+        )
+
+    @classmethod
+    def create_attachment(cls, session, attachment):
+        """Create an attachment.
+
+        An attachment must be sent to the API before it can be used in a
+        thread. Use this method to create the attachment, then use the
+        resulting hash when creating a thread.
+
+        Note that HelpScout only supports attachments of 10MB or lower.
+
+        Args:
+            session (requests.sessions.Session): Authenticated session.
+            attachment (helpscout.models.Attachment): The attachment to be
+             created.
+
+        Returns:
+            helpscout.models.Attachment: The newly created attachment (hash
+             property only). Use this hash when associating the attachment with
+             a new thread.
+        """
+        data = attachment.to_api()
+        return cls(
+            '/attachments.json',
+            data=data,
+            request_type=RequestPaginator.POST,
+            singleton=True,
+            session=session,
+            out_type=Attachment,
         )
 
     @classmethod
@@ -137,6 +178,26 @@ class Conversations(BaseApi):
             request_type=RequestPaginator.DELETE,
             singleton=True,
             session=session,
+        )
+
+    @classmethod
+    def delete_attachment(cls, session, attachment):
+        """Delete an attachment.
+
+        Args:
+            session (requests.sessions.Session): Authenticated session.
+            attachment (helpscout.models.Attachment): The attachment to
+                be deleted.
+
+        Returns:
+            bool: Status
+        """
+        return cls(
+            '/attachments/%s.json' % attachment.id,
+            request_type=RequestPaginator.DELETE,
+            singleton=True,
+            session=session,
+            out_type=Attachment,
         )
 
     @classmethod
@@ -195,6 +256,26 @@ class Conversations(BaseApi):
             '/conversations/%d.json' % conversation_id,
             singleton=True,
             session=session,
+        )
+
+    @classmethod
+    def get_attachment_data(cls, session, attachment_id):
+        """Return a specific attachment's data.
+
+        Args:
+            session (requests.sessions.Session): Authenticated session.
+            attachment_id (int): The ID of the attachment from which to get
+                data.
+
+        Returns:
+            helpscout.models.AttachmentData: An attachment data singleton, if
+                existing. Otherwise ``None``.
+        """
+        return cls(
+            '/attachments/%d/data.json' % attachment_id,
+            singleton=True,
+            session=session,
+            out_type=AttachmentData,
         )
 
     @classmethod
