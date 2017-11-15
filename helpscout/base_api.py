@@ -71,10 +71,10 @@ class BaseApi(object):
         )
         if singleton:
             results = paginator.call(paginator.data)
-            result_length = len(results)
-            if result_length == 0:
+            try:
+                return out_type.from_api(**results[0])
+            except (IndexError, TypeError):
                 return None
-            return out_type.from_api(**results[0])
         obj = super(BaseApi, cls).__new__(cls)
         obj.paginator = paginator
         return obj

@@ -49,8 +49,6 @@ class TestRequestPaginator(unittest.TestCase):
     @contextmanager
     def mock_session(self, response_code=200, responses=None,
                      mock_attrs=None):
-        if responses is None:
-            responses = self.test_responses
         if mock_attrs is None:
             mock_attrs = ['get', 'delete', 'post', 'put']
         elif isinstance(mock_attrs, str):
@@ -59,14 +57,16 @@ class TestRequestPaginator(unittest.TestCase):
             response = mock.MagicMock()
             response.status_code = response_code
             response.json.side_effect = responses
+            response.json.return_value = responses
             for attr in mock_attrs:
                 method = getattr(session, attr)
                 method.return_value = response
             yield session
 
-    def do_call(self, request_type='get'):
+    def do_call(self, request_type='get', responses=None):
         self.params = {'param_test': 23234}
-        with self.mock_session(mock_attrs=request_type) as session:
+        with self.mock_session(mock_attrs=request_type,
+                               responses=responses) as session:
             return session, getattr(self.paginator, request_type)(self.params)
 
     def _test_result(self, res):
@@ -96,7 +96,7 @@ class TestRequestPaginator(unittest.TestCase):
 
     def test_get_gets(self):
         """ It should call the session with proper args. """
-        session, _ = self.do_call()
+        session, _ = self.do_call(responses=self.test_responses)
         session.get.assert_called_once_with(
             url=self.vals['endpoint'],
             params=self.params,
@@ -106,14 +106,19 @@ class TestRequestPaginator(unittest.TestCase):
     def test_returns(self):
         """The returns should all return properly."""
         for request_type in self.REQUEST_TYPES:
-            _, res = self.do_call(request_type)
+            _, res = self.do_call(request_type, self.test_responses)
             self._test_result(res)
+
+    def test_delete_return_null_response_body(self):
+        """The delete return should be None if response body is null."""
+        _, res = self.do_call('delete', None)
+        self.assertEqual(res, None)
 
     def test_session_calls(self):
         """The calls should all be handled properly (tests all but GET)."""
         self.REQUEST_TYPES.remove('get')
         for request_type in self.REQUEST_TYPES:
-            session, _ = self.do_call(request_type)
+            session, _ = self.do_call(request_type, self.test_responses)
             self._test_session_call_json(session, request_type)
 
     def test_call_get(self):
