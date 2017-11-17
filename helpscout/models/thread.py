@@ -48,7 +48,7 @@ class Thread(BaseModel):
                  'importedExternal',
                  'changedTicketCustomer',
                  'deletedTicket',
-                 'restoreTicket',
+                 'restoredTicket',
                  'originalCreator',
                  ],
     )
