@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.models.conversation &#8212; HelpScout 0.0.0b327 documentation</title>
+    <title>helpscout.models.conversation &#8212; HelpScout 0.0.0b328 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.0.0b327',
+        VERSION:     '0.0.0b328',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -47,7 +47,6 @@
 
 <span class="kn">from</span> <span class="nn">.base_conversation</span> <span class="k">import</span> <span class="n">BaseConversation</span>
 
-<span class="kn">from</span> <span class="nn">.email</span> <span class="k">import</span> <span class="n">Email</span>
 <span class="kn">from</span> <span class="nn">.mailbox_ref</span> <span class="k">import</span> <span class="n">MailboxRef</span>
 <span class="kn">from</span> <span class="nn">.person</span> <span class="k">import</span> <span class="n">Person</span>
 <span class="kn">from</span> <span class="nn">.source</span> <span class="k">import</span> <span class="n">Source</span>
@@ -109,11 +108,15 @@
     <span class="p">)</span>
     <span class="n">cc</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">List</span><span class="p">(</span>
         <span class="s1">&#39;Emails that are CCd.&#39;</span><span class="p">,</span>
-        <span class="n">prop</span><span class="o">=</span><span class="n">Email</span><span class="p">,</span>
+        <span class="n">prop</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">String</span><span class="p">(</span>
+            <span class="s1">&#39;Email Address&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">bcc</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">List</span><span class="p">(</span>
         <span class="s1">&#39;Emails that are BCCd.&#39;</span><span class="p">,</span>
-        <span class="n">prop</span><span class="o">=</span><span class="n">Email</span><span class="p">,</span>
+        <span class="n">prop</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">String</span><span class="p">(</span>
+            <span class="s1">&#39;Email Address&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">tags</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">List</span><span class="p">(</span>
         <span class="s1">&#39;Tags for the conversation&#39;</span><span class="p">,</span>
