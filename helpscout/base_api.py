@@ -72,9 +72,10 @@ class BaseApi(object):
         if singleton:
             results = paginator.call(paginator.data)
             try:
-                return out_type.from_api(**results[0])
+                result = results[0]
             except (IndexError, TypeError):
                 return None
+            return out_type.from_api(**result)
         obj = super(BaseApi, cls).__new__(cls)
         obj.paginator = paginator
         return obj
