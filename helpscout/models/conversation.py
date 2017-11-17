@@ -6,7 +6,6 @@ import properties
 
 from .base_conversation import BaseConversation
 
-from .email import Email
 from .mailbox_ref import MailboxRef
 from .person import Person
 from .source import Source

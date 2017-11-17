@@ -7,7 +7,6 @@ import properties
 from .. import BaseModel
 
 from .attachment import Attachment
-from .email import Email
 from .mailbox_ref import MailboxRef
 from .person import Person
 from .source import Source
