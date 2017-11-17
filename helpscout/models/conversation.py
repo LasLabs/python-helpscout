@@ -6,7 +6,6 @@ import properties
 
 from .base_conversation import BaseConversation
 
-from .email import Email
 from .mailbox_ref import MailboxRef
 from .person import Person
 from .source import Source
@@ -68,11 +67,15 @@ class Conversation(BaseConversation):
     )
     cc = properties.List(
         'Emails that are CCd.',
-        prop=Email,
+        prop=properties.String(
+            'Email Address',
+        ),
     )
     bcc = properties.List(
         'Emails that are BCCd.',
-        prop=Email,
+        prop=properties.String(
+            'Email Address',
+        ),
     )
     tags = properties.List(
         'Tags for the conversation',

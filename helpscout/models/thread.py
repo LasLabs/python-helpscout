@@ -7,7 +7,6 @@ import properties
 from .. import BaseModel
 
 from .attachment import Attachment
-from .email import Email
 from .mailbox_ref import MailboxRef
 from .person import Person
 from .source import Source
@@ -48,7 +47,7 @@ class Thread(BaseModel):
                  'importedExternal',
                  'changedTicketCustomer',
                  'deletedTicket',
-                 'restoreTicket',
+                 'restoredTicket',
                  'originalCreator',
                  ],
     )
@@ -111,15 +110,21 @@ class Thread(BaseModel):
     )
     to = properties.List(
         'Email to',
-        prop=Email,
+        prop=properties.String(
+            'Email Address',
+        ),
     )
     cc = properties.List(
         'CC to',
-        prop=Email,
+        prop=properties.String(
+            'Email Address',
+        ),
     )
     bcc = properties.List(
         'BCC to',
-        prop=Email,
+        prop=properties.String(
+            'Email Address',
+        ),
     )
     attachments = properties.List(
         'Attachments',
