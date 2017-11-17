@@ -111,15 +111,21 @@ class Thread(BaseModel):
     )
     to = properties.List(
         'Email to',
-        prop=Email,
+        prop=properties.String(
+            'Email Address',
+        ),
     )
     cc = properties.List(
         'CC to',
-        prop=Email,
+        prop=properties.String(
+            'Email Address',
+        ),
     )
     bcc = properties.List(
         'BCC to',
-        prop=Email,
+        prop=properties.String(
+            'Email Address',
+        ),
     )
     attachments = properties.List(
         'Attachments',

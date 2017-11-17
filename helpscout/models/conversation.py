@@ -68,11 +68,15 @@ class Conversation(BaseConversation):
     )
     cc = properties.List(
         'Emails that are CCd.',
-        prop=Email,
+        prop=properties.String(
+            'Email Address',
+        ),
     )
     bcc = properties.List(
         'Emails that are BCCd.',
-        prop=Email,
+        prop=properties.String(
+            'Email Address',
+        ),
     )
     tags = properties.List(
         'Tags for the conversation',
