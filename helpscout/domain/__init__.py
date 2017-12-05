@@ -81,6 +81,8 @@ class Domain(properties.HasProperties):
 
     def __str__(self):
         """Return a string usable as the query in an API request."""
+        if not self.query:
+            return '*'
         return '(%s)' % ' '.join([str(q) for q in self.query])
 
 
