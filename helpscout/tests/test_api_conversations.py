@@ -116,7 +116,7 @@ class TestApiConversations(ApiCommon):
         )
 
     def test_search(self):
-        data = {'query': "()"}
+        data = {'query': "*"}
         self._test_method(
             Conversations, 'search', [[]], '/search/conversations.json', data,
             out_type=SearchConversation,
