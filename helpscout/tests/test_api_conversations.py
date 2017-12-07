@@ -9,7 +9,6 @@ from ..apis.conversations import Conversations
 from ..models.search_conversation import SearchConversation
 from ..models.attachment import Attachment
 from ..models.attachment_data import AttachmentData
-from ..models.thread import Thread
 
 
 class TestApiConversations(ApiCommon):
@@ -21,12 +20,12 @@ class TestApiConversations(ApiCommon):
         )
 
     def test_create(self):
-        data = {
-            'conversation': self.mock_record.to_api(),
+        data = self.mock_record
+        data.update({
             'imported': True,
             'auto_reply': True,
             'reload': True,
-        }
+        })
         args = [self.mock_record, True, True]
         self._test_method(
             Conversations, 'create', args, '/conversations.json',
@@ -42,17 +41,16 @@ class TestApiConversations(ApiCommon):
         )
 
     def test_create_thread(self):
-        thread = self.mock_record.thread
-        data = {
-            'thread': thread.to_api(),
+        data = self.mock_record.thread
+        data.update({
             'imported': True,
             'reload': True,
-        }
+        })
         args = [self.mock_record, self.mock_record.thread, True]
         uri = '/conversations/%d.json' % self.mock_record.id
         self._test_method(
             Conversations, 'create_thread', args, uri,
-            data, 'post', True, Thread,
+            data, 'post', True,
         )
 
     def test_delete(self):
@@ -137,5 +135,5 @@ class TestApiConversations(ApiCommon):
         )
         self._test_method(
             Conversations, 'update_thread', [self.mock_record, thread], uri,
-            thread, singleton=True, out_type=Thread,
+            thread, singleton=True,
         )

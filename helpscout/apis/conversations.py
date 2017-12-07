@@ -8,7 +8,6 @@ from ..models.attachment import Attachment
 from ..models.attachment_data import AttachmentData
 from ..models.conversation import Conversation
 from ..models.search_conversation import SearchConversation
-from ..models.thread import Thread
 
 from ..request_paginator import RequestPaginator
 
@@ -82,12 +81,13 @@ class Conversations(BaseApi):
         Returns:
             helpscout.models.Conversation: Newly created conversation.
         """
-        data = {
-            'conversation': conversation.to_api(),
+        data = conversation.to_api()
+        params = {
             'imported': imported,
             'auto_reply': auto_reply,
             'reload': True,
         }
+        data.update(params)
         return cls(
             '/conversations.json',
             data=data,
@@ -145,20 +145,21 @@ class Conversations(BaseApi):
              emails or notifications will be generated.
 
         Returns:
-            helpscout.models.Thread: Newly created thread.
+            helpscout.models.Conversation: Conversation including newly created
+                thread.
         """
-        data = {
-            'thread': thread.to_api(),
+        data = thread.to_api()
+        params = {
             'imported': imported,
             'reload': True,
         }
+        data.update(params)
         return cls(
             '/conversations/%s.json' % conversation.id,
             data=data,
             request_type=RequestPaginator.POST,
             singleton=True,
             session=session,
-            out_type=Thread,
         )
 
     @classmethod
@@ -373,7 +374,8 @@ class Conversations(BaseApi):
             thread (helpscout.models.Thread): The thread to be updated.
 
         Returns:
-            helpscout.models.Thread: Freshly updated thread.
+            helpscout.models.Conversation: Conversation including freshly
+                updated thread.
         """
         data = thread.to_api()
         data['reload'] = True
@@ -385,5 +387,4 @@ class Conversations(BaseApi):
             request_type=RequestPaginator.PUT,
             singleton=True,
             session=session,
-            out_type=Thread,
         )
