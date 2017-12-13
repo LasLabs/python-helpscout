@@ -9,7 +9,6 @@ from datetime import datetime
 from six import string_types
 
 from .. import BaseModel
-from ..exceptions import HelpScoutValidationException
 
 
 class TestModel(BaseModel):
@@ -128,8 +127,7 @@ class TestBaseModel(unittest.TestCase):
 
     def test_parse_property_invalid_property(self):
         """It should raise an exception if property name is invalid."""
-        with self.assertRaises(HelpScoutValidationException):
-            BaseModel._parse_property('no exist', 'value')
+        self.assertIsNone(BaseModel._parse_property('no exist', 'value'))
 
     def test_dict_lookup_exist(self):
         """It should return the attribute value when it exists."""

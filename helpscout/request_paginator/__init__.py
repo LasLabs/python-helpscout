@@ -137,12 +137,11 @@ class RequestPaginator(object):
         """Call the remote service and return the response data."""
 
         assert self.session
-        method = getattr(self.session, method)
 
         if not kwargs.get('verify'):
             kwargs['verify'] = self.SSL_VERIFY
 
-        response = method(*args, **kwargs)
+        response = self.session.request(method, *args, **kwargs)
         response_json = response.text and response.json() or {}
 
         if response.status_code < 200 or response.status_code >= 300:

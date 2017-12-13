@@ -88,6 +88,7 @@ if __name__ == "__main__":
         ],
         tests_require=[
             'mock',
+            'vcrpy',
         ],
         **setup_vals
     )

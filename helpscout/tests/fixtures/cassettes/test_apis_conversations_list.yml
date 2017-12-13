@@ -1,0 +1,73 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.4]
+    method: GET
+    uri: https://api.helpscout.net/v1/mailboxes/122867/conversations.json
+  response:
+    body:
+      string: !!binary |
+        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
+        llq1Uon4+aLNfkxE4/O3fwHjMHwSY1IAAA==
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-encoding: [gzip]
+      content-length: ['1792']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [00c70165-0a63-4686-b794-8d0518107e1b#64992754]
+      date: ['Wed, 13 Dec 2017 22:39:27 GMT']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['67']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['9']
+      x-ratelimit-remaining-minute: ['179']
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

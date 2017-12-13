@@ -1,0 +1,141 @@
+interactions:
+- request:
+    body: !!python/unicode '{"mimeType": "text/plain", "hash": null, "reload": true,
+      "url": null, "height": null, "width": null, "fileName": "test.txt", "data":
+      "VGVzdCBTdHJpbmc=", "id": null, "size": null}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['178']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.18.4]
+    method: POST
+    uri: https://api.helpscout.net/v1/attachments.json
+  response:
+    body: {string: !!python/unicode '{"item":{"hash":"c9c0f1b88ced80fe9ec3631bfc74e0ebf0b758a2"}}'}
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-length: ['60']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [692051f9-0061-4dcf-a178-1c98e764220b#63969837]
+      date: ['Thu, 14 Dec 2017 00:32:27 GMT']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['67']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['11']
+      x-ratelimit-remaining-minute: ['199']
+      x-xss-protection: [1; mode=block]
+    status: {code: 201, message: Created}
+- request:
+    body: !!python/unicode '{"status": "active", "body": "<p>Test conversation.</p>",
+      "fromMailbox": null, "openedAt": null, "attachments": [{"mimeType": null, "hash":
+      "c9c0f1b88ced80fe9ec3631bfc74e0ebf0b758a2", "url": null, "height": null, "width":
+      null, "fileName": null, "data": null, "id": null, "size": null}], "cc": null,
+      "actionType": null, "reload": true, "createdBy": {"firstName": "Dave", "photoUrl":
+      "https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg", "lastName":
+      "Lasley", "emails": null, "phone": null, "modifiedAt": null, "customerPersonType":
+      null, "id": 218639, "fullName": "Dave Lasley", "type": "user", "email": "support@example.com",
+      "createdAt": null}, "id": 1310543489, "createdAt": "2017-12-07T21:08:20Z", "customer":
+      {"firstName": "Test", "photoUrl": null, "lastName": "User", "emails": ["test@example.com"],
+      "phone": "1234567890", "modifiedAt": null, "customerPersonType": true, "id":
+      144228647, "fullName": null, "type": "customer", "email": "test@example.com",
+      "createdAt": null}, "imported": false, "assignedTo": null, "actionSourceId":
+      null, "createdByCustomer": null, "bcc": null, "to": null, "state": "published",
+      "savedReplyId": null, "source": {"via": "user", "type": "api", "id": null},
+      "type": "note"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['1219']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.18.4]
+    method: POST
+    uri: https://api.helpscout.net/v1/conversations/448848612.json
+  response:
+    body: {string: !!python/unicode '{"item":{"id":448848612,"type":"phone","folderId":1601742,"isDraft":false,"number":154,"owner":null,"mailbox":{"id":122867,"name":"Support"},"customer":{"id":147223415,"firstName":"Tester","lastName":"Testerson","email":null,"phone":"23434545t54","type":"customer","photoUrl":"","emails":[],"customerPersonType":true},"threadCount":2,"status":"active","subject":"beep
+        boop","preview":"Test conversation.","createdBy":{"id":218639,"firstName":"Dave","lastName":"Lasley","email":"support@laslabs.com","phone":null,"type":"user","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg"},"createdAt":"2017-10-13T16:33:46Z","modifiedAt":"2017-12-07T21:08:20Z","closedAt":null,"closedBy":null,"source":{"type":"web","via":"user"},"cc":[],"bcc":[],"tags":["green"],"threads":[{"id":1320816416,"type":"note","assignedTo":null,"status":"active","createdAt":"2017-12-07T21:08:20Z","openedAt":null,"createdBy":{"id":218639,"firstName":"Dave","lastName":"Lasley","email":"support@laslabs.com","phone":null,"type":"user","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg"},"source":{"type":"api","via":"user"},"actionType":null,"actionSourceId":null,"fromMailbox":null,"state":"published","customer":{"id":147223415,"firstName":"Tester","lastName":"Testerson","email":null,"phone":"23434545t54","type":"customer","photoUrl":"","emails":[],"customerPersonType":true},"body":"<p>Test
+        conversation.</p>","to":null,"cc":[],"bcc":[],"attachments":[{"id":105228045,"mimeType":"text/plain","fileName":"test.txt","size":11,"width":0,"height":0,"url":"https://secure.helpscout.net/file/105228045/c9c0f1b88ced80fe9ec3631bfc74e0ebf0b758a2/test.txt","hash":"c9c0f1b88ced80fe9ec3631bfc74e0ebf0b758a2"}],"savedReplyId":null,"createdByCustomer":false},{"id":1320813073,"type":"note","assignedTo":null,"status":"active","createdAt":"2017-12-07T21:08:20Z","openedAt":null,"createdBy":{"id":218639,"firstName":"Dave","lastName":"Lasley","email":"support@laslabs.com","phone":null,"type":"user","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg"},"source":{"type":"api","via":"user"},"actionType":null,"actionSourceId":null,"fromMailbox":null,"state":"published","customer":{"id":147223415,"firstName":"Tester","lastName":"Testerson","email":null,"phone":"23434545t54","type":"customer","photoUrl":"","emails":[],"customerPersonType":true},"body":"<p>Test
+        conversation.</p>","to":null,"cc":[],"bcc":[],"attachments":[{"id":105227685,"mimeType":"text/plain","fileName":"test.txt","size":11,"width":0,"height":0,"url":"https://secure.helpscout.net/file/105227685/c9c0f1b88ced80fe9ec3631bfc74e0ebf0b758a2/test.txt","hash":"c9c0f1b88ced80fe9ec3631bfc74e0ebf0b758a2"}],"savedReplyId":null,"createdByCustomer":false},{"id":1320812301,"type":"note","assignedTo":null,"status":"active","createdAt":"2017-12-07T21:08:20Z","openedAt":null,"createdBy":{"id":218639,"firstName":"Dave","lastName":"Lasley","email":"support@laslabs.com","phone":null,"type":"user","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg"},"source":{"type":"api","via":"user"},"actionType":null,"actionSourceId":null,"fromMailbox":null,"state":"published","customer":{"id":147223415,"firstName":"Tester","lastName":"Testerson","email":null,"phone":"23434545t54","type":"customer","photoUrl":"","emails":[],"customerPersonType":true},"body":"<p>Test
+        conversation.</p>","to":null,"cc":[],"bcc":[],"attachments":[{"id":105227546,"mimeType":"text/plain","fileName":"test.txt","size":11,"width":0,"height":0,"url":"https://secure.helpscout.net/file/105227546/c9c0f1b88ced80fe9ec3631bfc74e0ebf0b758a2/test.txt","hash":"c9c0f1b88ced80fe9ec3631bfc74e0ebf0b758a2"}],"savedReplyId":null,"createdByCustomer":false},{"id":1306665296,"type":"customer","assignedTo":null,"status":"active","createdAt":"2017-12-05T22:35:13Z","openedAt":null,"createdBy":{"id":147223415,"firstName":"Tester","lastName":"Testerson","email":null,"phone":"23434545t54","type":"customer","photoUrl":"","emails":[],"customerPersonType":true},"source":{"type":"api","via":"customer"},"actionType":null,"actionSourceId":null,"fromMailbox":null,"state":"published","customer":{"id":147223415,"firstName":"Tester","lastName":"Testerson","email":null,"phone":"23434545t54","type":"customer","photoUrl":"","emails":[],"customerPersonType":true},"body":"api
+        test","to":null,"cc":[],"bcc":[],"attachments":null,"savedReplyId":null,"createdByCustomer":true},{"id":1275000097,"type":"lineitem","assignedTo":{"id":218639,"firstName":"Dave","lastName":"Lasley","email":"support@laslabs.com","phone":null,"type":"user","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg"},"status":"pending","createdAt":"2017-11-17T23:27:59Z","openedAt":null,"createdBy":{"id":218639,"firstName":"Dave","lastName":"Lasley","email":"support@laslabs.com","phone":null,"type":"user","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg"},"source":{"type":"api","via":"user"},"actionType":null,"actionSourceId":null,"fromMailbox":null,"state":null,"customer":null,"body":null,"to":null,"cc":[],"bcc":[],"attachments":null,"savedReplyId":null,"createdByCustomer":false},{"id":1274997753,"type":"lineitem","assignedTo":null,"status":"active","createdAt":"2017-11-17T23:26:34Z","openedAt":null,"createdBy":{"id":218639,"firstName":"Dave","lastName":"Lasley","email":"support@laslabs.com","phone":null,"type":"user","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg"},"source":{"type":"api","via":"user"},"actionType":null,"actionSourceId":null,"fromMailbox":null,"state":null,"customer":null,"body":null,"to":null,"cc":[],"bcc":[],"attachments":null,"savedReplyId":null,"createdByCustomer":false},{"id":1274590175,"type":"lineitem","assignedTo":null,"status":"pending","createdAt":"2017-11-17T20:04:03Z","openedAt":null,"createdBy":{"id":218639,"firstName":"Dave","lastName":"Lasley","email":"support@laslabs.com","phone":null,"type":"user","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg"},"source":{"type":"api","via":"user"},"actionType":null,"actionSourceId":null,"fromMailbox":null,"state":null,"customer":null,"body":null,"to":null,"cc":[],"bcc":[],"attachments":null,"savedReplyId":null,"createdByCustomer":false},{"id":1256631260,"type":"lineitem","assignedTo":null,"status":"nochange","createdAt":"2017-11-08T00:04:39Z","openedAt":null,"createdBy":{"id":218639,"firstName":"Dave","lastName":"Lasley","email":"support@laslabs.com","phone":null,"type":"user","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg"},"source":{"type":"web","via":"user"},"actionType":null,"actionSourceId":null,"fromMailbox":null,"state":null,"customer":null,"body":null,"to":null,"cc":[],"bcc":[],"attachments":null,"savedReplyId":null,"createdByCustomer":false},{"id":1244447222,"type":"lineitem","assignedTo":{"id":218639,"firstName":"Dave","lastName":"Lasley","email":"support@laslabs.com","phone":null,"type":"user","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg"},"status":"nochange","createdAt":"2017-10-31T23:18:24Z","openedAt":null,"createdBy":{"id":218639,"firstName":"Dave","lastName":"Lasley","email":"support@laslabs.com","phone":null,"type":"user","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg"},"source":{"type":"api","via":"user"},"actionType":null,"actionSourceId":null,"fromMailbox":null,"state":null,"customer":null,"body":null,"to":null,"cc":[],"bcc":[],"attachments":null,"savedReplyId":null,"createdByCustomer":false},{"id":1215840860,"type":"phone","assignedTo":null,"status":"closed","createdAt":"2017-10-13T16:33:46Z","openedAt":null,"createdBy":{"id":218639,"firstName":"Dave","lastName":"Lasley","email":"support@laslabs.com","phone":null,"type":"user","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg"},"source":{"type":"web","via":"user"},"actionType":"originalCreator","actionSourceId":218639,"fromMailbox":null,"state":"published","customer":{"id":147223415,"firstName":"Tester","lastName":"Testerson","email":null,"phone":"23434545t54","type":"customer","photoUrl":"","emails":[],"customerPersonType":true},"body":"gergdrgedrgbrdgdfvdrfgv","to":null,"cc":[],"bcc":[],"attachments":null,"savedReplyId":0,"createdByCustomer":false}]}}'}
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-length: ['8279']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [692051f9-0061-4dcf-a178-1c98e764220b#63969838]
+      date: ['Thu, 14 Dec 2017 00:32:27 GMT']
+      location: ['https://api.helpscout.net/v1/conversations/448848612.json']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['265']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['10']
+      x-ratelimit-remaining-minute: ['198']
+      x-xss-protection: [1; mode=block]
+    status: {code: 201, message: Created}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['0']
+      User-Agent: [python-requests/2.18.4]
+    method: DELETE
+    uri: https://api.helpscout.net/v1/attachments/105228045.json
+  response:
+    body: {string: !!python/unicode ''}
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-length: ['0']
+      content-type: [text/plain; charset=UTF-8]
+      correlation-id: [9298a7c0-93dd-4777-b0a4-47c83bfae739#64639165]
+      date: ['Thu, 14 Dec 2017 00:32:27 GMT']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['72']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['11']
+      x-ratelimit-remaining-minute: ['197']
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

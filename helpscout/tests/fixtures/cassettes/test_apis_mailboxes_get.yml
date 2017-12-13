@@ -1,0 +1,49 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.4]
+    method: GET
+    uri: https://api.helpscout.net/v1/mailboxes/122867.json
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA62TPU/DMBCG/wrynCDb+fZEVRYGWChLEYOJncpSYkexg4Sq/nfOapqmaYMYkLLc
+        h/K8d+95j5STDWJ7pARihNI8zQJk636HGCIylaKKSUQyikvMUYA0byRUXvu2NZ2DhGy4qiFjj5mH
+        mtuaf9r70jRQLTvJnRQrBx0UkyzERUjSDclZBF+6hZbGCFWpaQ8hIaEbEjOcsDj3PZWphewsYu+D
+        zhT+FdNRzpvm1qqdlgKa3XfrJZpWaoh6K7snGA1DwTher02vQQ0pAsRLp77kJHFDCg1JtKGURQVL
+        ii06BFMB+SjgWWl5RjfH6ISmJE8j4E350QwPs/xGh2Vlczr8YnDjRUph71bOSe2U8VMPO9C+wCf5
+        hW3Aci6WAfG1mrl1l7uIRzWPHa+cPYsQp3gBTuZO3IL7m4i9EXA6MdzNJTwZ4aurO5hcxoKAf/AC
+        3szgxbo2dnqG5SlegM+nv7l6P33mp6dwCHQ+fXp+li33r25w3x6jBfCfPCc4pACOGMUs8eCPw+EH
+        /moz0DMEAAA=
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-encoding: [gzip]
+      content-length: ['407']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [00c70165-0a63-4686-b794-8d0518107e1b#65007307]
+      date: ['Wed, 13 Dec 2017 22:58:09 GMT']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['29']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['12']
+      x-ratelimit-remaining-minute: ['198']
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

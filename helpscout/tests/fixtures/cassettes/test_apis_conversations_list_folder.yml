@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.4]
+    method: GET
+    uri: https://api.helpscout.net/v1/mailboxes/122867/folders/1601748/conversations.json
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+1WzY7bNhB+FYJn2RYl2/q5JGnSYgNsgwJxLw1yGFG0pTVFCiRl11gs0Nfo6/VJ
+        OiOt7RjYHtqihwIL+Ifk/A9nvuEj72GneCmiceHHlbSDCbxMIt4G1eHZl0fe1rxcpkkRZ0WMLOHU
+        oxRXHbSaR3xrda3cR+QR61hkyxxF/QcHW1SzBe1VxM3QVcohwwrF7dHQelKbiHydFqikdT58go4U
+        f4CDQr0aLif34LU64dlks+R+6Hvrwlvk0VD5ubQdUvvGGlRgBq0vXg4ejY2kYH92GtU3IfS+XCzq
+        ND0s07R4aHS+j+dS26HeOmvC3KiwIDm/mNybF6s8i+cP/Y4/RZzCruyv5whEkuTrDGOcnP88eUaM
+        cvDBdtdYxTIVaxHn6W24d0r3t+F+xksI30TbIMdb+vFEIPeuwfJ8tZot09Usy5I1Hj9fzsX2i6F7
+        JQen5jsHBwjgKH2LabnI6lVRFFmmZJLnUIilSEVWpatExst6WWRnt6gy+AuOfb3G/RNm0JrNWC3B
+        DQpTEhqnoH4/1RjWgg8QBlTFQYZ2vHU/VA9KYunwjyY4Ww9IsIYFyz7Z0G5bCbT3lACnDq06Iued
+        OjEqmoix782DPbVmxyirbEwk85Ztwb1h9yr88dvvngXQewYVkRp7ZCc7MAmG7ZXqGbAtSivHyGaj
+        WD9gATO7JS7HQI7tESEJzB412ZGpg10rienGxTljm0Y5xQC/FLhiRzj5bz0js4bCOo1eYFAS8xNU
+        /d3pUl6vRfOck3dUFAkizCwuZmK9EXmZ4if7BdNG3fqjrbE+VH3lE2IWJ5skKeMYsYn4sMn9xDGB
+        xLSnbE97j7cssVwfz310VBWKHVpA25eeot4+39NU3lcakuRZW3VdBtiNHeOh6zVCbcSdqjk2S30D
+        lNrKPZ6fcdP30D1vnqJbHI7/HQ6j+CsOv+LwedZfcLhXpkYAvAHiewXOEKYS1lXgW/mX8PuusgcC
+        u9azTnmPrwqGy2MDgR0VoqzWo5L31hxwOIxQzjbW6gqHEPvB2Y7ICJdnTA6wR/xEKY/T3hPE0qBA
+        /Cd8hhs9c3aHtt0E1J1FRGDjXoFsSJDstpJEEbU9gTF5dTZU2/kr/OJb5YWZ/c/hN5nFq00iynRZ
+        xuIWficgR4AW2UYU5Sork/jKcR1//8P34X8+Q2hyRPyktLZHXFR6oIdTPzicLLjY4UvD4L+xTFpt
+        3d+aMl+f/gTN3u14FgwAAA==
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-encoding: [gzip]
+      content-length: ['928']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [9298a7c0-93dd-4777-b0a4-47c83bfae739#64643484]
+      date: ['Thu, 14 Dec 2017 00:38:27 GMT']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['50']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['12']
+      x-ratelimit-remaining-minute: ['199']
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

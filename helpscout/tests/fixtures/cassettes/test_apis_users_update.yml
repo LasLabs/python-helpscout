@@ -1,0 +1,31 @@
+interactions:
+- request:
+    body: !!python/unicode '{"firstName": "Dave", "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg",
+      "lastName": "Lasley", "emails": null, "phone": null, "modifiedAt": "2017-12-13T19:47:35Z",
+      "customerPersonType": null, "reload": true, "timezone": "America/New_York",
+      "role": "owner", "fullName": "Dave Lasley", "type": "user", "email": "support@example.com",
+      "createdAt": "2017-08-25T20:01:06Z"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['393']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.18.4]
+    method: PUT
+    uri: https://api.helpscout.net/v1/None/218639.json
+  response:
+    body: {string: !!python/unicode '{"code":404,"error":"The specified resource was
+        not found: ''/v1/None/218639.json''"}'}
+    headers:
+      connection: [keep-alive]
+      content-length: ['83']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [00c70165-0a63-4686-b794-8d0518107e1b#65033669]
+      date: ['Wed, 13 Dec 2017 23:25:57 GMT']
+      server: [nginx]
+      via: [kong/0.10.3]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['2']
+    status: {code: 404, message: Not Found}
+version: 1

@@ -55,7 +55,7 @@ class BaseModel(properties.HasProperties):
                 )
         for attr in remove:
             del vals[attr]
-        return cls(**vals)
+        return cls(**cls.get_non_empty_vals(vals))
 
     def get(self, key, default=None):
         """Return the field indicated by the key, if present."""
@@ -125,24 +125,26 @@ class BaseModel(properties.HasProperties):
         """
 
         prop = cls._props.get(name)
+        return_value = value
 
         if not prop:
-            raise HelpScoutValidationException(
-                '"%s" is not a valid property for "%s".' % (
-                    name, cls,
+            logger.debug(
+                '"%s" with value "%s" is not a valid property for "%s".' % (
+                    name, value, cls,
                 ),
             )
+            return_value = None
 
-        if isinstance(prop, properties.Instance):
-            return prop.instance_class.from_api(**value)
+        elif isinstance(prop, properties.Instance):
+            return_value = prop.instance_class.from_api(**value)
 
         elif isinstance(prop, properties.List):
-            return cls._parse_property_list(prop, value)
+            return_value = cls._parse_property_list(prop, value)
 
         elif isinstance(prop, properties.Color):
-            return cls._parse_property_color(value)
+            return_value = cls._parse_property_color(value)
 
-        return value
+        return return_value
 
     @staticmethod
     def _parse_property_color(value):

@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.4]
+    method: GET
+    uri: https://api.helpscout.net/v1/users.json
+  response:
+    body: {string: !!python/unicode '{"page":1,"pages":1,"count":1,"items":[{"id":218639,"firstName":"Dave","lastName":"Lasley","fullName":"Dave
+        Lasley","email":"support@laslabs.com","role":"owner","timezone":"America/New_York","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg","createdAt":"2017-08-25T20:01:06Z","modifiedAt":"2017-12-13T19:47:35Z","type":"user"}]}'}
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-length: ['352']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [00c70165-0a63-4686-b794-8d0518107e1b#65033657]
+      date: ['Wed, 13 Dec 2017 23:25:57 GMT']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['15']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['12']
+      x-ratelimit-remaining-minute: ['198']
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

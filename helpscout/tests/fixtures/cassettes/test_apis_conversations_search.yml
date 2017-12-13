@@ -1,0 +1,41 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.4]
+    method: GET
+    uri: https://api.helpscout.net/v1/search/conversations.json?query=%28id%3A448848612%29
+  response:
+    body: {string: !!python/unicode '{"page":1,"pages":1,"count":1,"items":[{"id":448848612,"number":154,"mailboxId":122867,"subject":"beep
+        boop","status":"active","threadCount":2,"preview":"api test...","customerName":"Tester
+        Testerson","customerEmail":null,"hasAttachments":false,"modifiedAt":"2017-12-05T22:35:13Z"}]}'}
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-length: ['283']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [9298a7c0-93dd-4777-b0a4-47c83bfae739#64530883]
+      date: ['Wed, 13 Dec 2017 22:39:28 GMT']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['20']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['9']
+      x-ratelimit-remaining-minute: ['178']
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

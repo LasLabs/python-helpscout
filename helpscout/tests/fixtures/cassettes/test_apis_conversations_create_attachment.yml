@@ -1,0 +1,43 @@
+interactions:
+- request:
+    body: !!python/unicode '{"mimeType": "text/plain", "hash": null, "reload": true,
+      "url": null, "height": null, "width": null, "fileName": "test.txt", "data":
+      "VGVzdCBTdHJpbmc=", "id": null, "size": null}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['178']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.18.4]
+    method: POST
+    uri: https://api.helpscout.net/v1/attachments.json
+  response:
+    body: {string: !!python/unicode '{"item":{"hash":"c9c0f1b88ced80fe9ec3631bfc74e0ebf0b758a2"}}'}
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-length: ['60']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [83eeded5-611e-4ddb-8d91-10e9db5880aa#64596404]
+      date: ['Thu, 14 Dec 2017 00:19:53 GMT']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['16']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['11']
+      x-ratelimit-remaining-minute: ['199']
+      x-xss-protection: [1; mode=block]
+    status: {code: 201, message: Created}
+version: 1

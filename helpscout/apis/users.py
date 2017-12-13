@@ -27,24 +27,8 @@ class Users(BaseApi):
     """
 
     __object__ = User
-
-    @classmethod
-    def get(cls, session, user_id):
-        """Return a specific user.
-
-        Args:
-            session (requests.sessions.Session): Authenticated session.
-            user_id (int): The ID of the user to get.
-
-        Returns:
-            helpscout.models.User: A user singleton, if existing.
-                Otherwise ``None``.
-        """
-        return cls(
-            '/users/%d.json' % user_id,
-            singleton=True,
-            session=session,
-        )
+    __endpoint__ = 'users'
+    __implements__ = ['get', 'list']
 
     @classmethod
     def get_me(cls, session):
@@ -63,19 +47,6 @@ class Users(BaseApi):
         )
 
     @classmethod
-    def list(cls, session):
-        """List the users.
-
-        Args:
-            session (requests.sessions.Session): Authenticated session.
-
-        Returns:
-            RequestPaginator(output_type=helpscout.models.User): Users
-                iterator.
-        """
-        return cls('/users.json', session=session)
-
-    @classmethod
     def find_in_mailbox(cls, session, mailbox_or_id):
         """Get the users that are associated to a Mailbox.
 
@@ -88,7 +59,7 @@ class Users(BaseApi):
             RequestPaginator(output_type=helpscout.models.User): Users
                 iterator.
         """
-        if isinstance(mailbox_or_id, User):
+        if hasattr(mailbox_or_id, 'id'):
             mailbox_or_id = mailbox_or_id.id
         return cls(
             '/mailboxes/%d/users.json' % mailbox_or_id,

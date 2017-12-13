@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.4]
+    method: GET
+    uri: https://api.helpscout.net/v1/teams/245377.json
+  response:
+    body: {string: !!python/unicode '{"item":{"id":245377,"firstName":"Test Team","lastName":"","fullName":"Test
+        Team ","email":"","role":"user","timezone":"UTC","photoUrl":null,"createdAt":"2017-12-14T01:18:46Z","modifiedAt":"2017-12-14T01:18:51Z","type":"team"}}'}
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-length: ['227']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [692051f9-0061-4dcf-a178-1c98e764220b#64020943]
+      date: ['Thu, 14 Dec 2017 01:26:01 GMT']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['35']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['12']
+      x-ratelimit-remaining-minute: ['199']
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
