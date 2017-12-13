@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.apis.conversations &#8212; HelpScout 0.0.0b332 documentation</title>
+    <title>helpscout.apis.conversations &#8212; HelpScout 0.0.0b337 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.0.0b332',
+        VERSION:     '0.0.0b337',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -49,7 +49,6 @@
 <span class="kn">from</span> <span class="nn">..models.attachment_data</span> <span class="k">import</span> <span class="n">AttachmentData</span>
 <span class="kn">from</span> <span class="nn">..models.conversation</span> <span class="k">import</span> <span class="n">Conversation</span>
 <span class="kn">from</span> <span class="nn">..models.search_conversation</span> <span class="k">import</span> <span class="n">SearchConversation</span>
-<span class="kn">from</span> <span class="nn">..models.thread</span> <span class="k">import</span> <span class="n">Thread</span>
 
 <span class="kn">from</span> <span class="nn">..request_paginator</span> <span class="k">import</span> <span class="n">RequestPaginator</span>
 
@@ -123,12 +122,13 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            helpscout.models.Conversation: Newly created conversation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;conversation&#39;</span><span class="p">:</span> <span class="n">conversation</span><span class="o">.</span><span class="n">to_api</span><span class="p">(),</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">conversation</span><span class="o">.</span><span class="n">to_api</span><span class="p">()</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;imported&#39;</span><span class="p">:</span> <span class="n">imported</span><span class="p">,</span>
             <span class="s1">&#39;auto_reply&#39;</span><span class="p">:</span> <span class="n">auto_reply</span><span class="p">,</span>
             <span class="s1">&#39;reload&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="p">}</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="s1">&#39;/conversations.json&#39;</span><span class="p">,</span>
             <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
@@ -186,20 +186,21 @@
 <span class="sd">             emails or notifications will be generated.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            helpscout.models.Thread: Newly created thread.</span>
+<span class="sd">            helpscout.models.Conversation: Conversation including newly created</span>
+<span class="sd">                thread.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="n">thread</span><span class="o">.</span><span class="n">to_api</span><span class="p">(),</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">thread</span><span class="o">.</span><span class="n">to_api</span><span class="p">()</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;imported&#39;</span><span class="p">:</span> <span class="n">imported</span><span class="p">,</span>
             <span class="s1">&#39;reload&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="p">}</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="s1">&#39;/conversations/</span><span class="si">%s</span><span class="s1">.json&#39;</span> <span class="o">%</span> <span class="n">conversation</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
             <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
             <span class="n">request_type</span><span class="o">=</span><span class="n">RequestPaginator</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span>
             <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
-            <span class="n">out_type</span><span class="o">=</span><span class="n">Thread</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Conversations.delete"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.conversations.Conversations.delete">[docs]</a>    <span class="nd">@classmethod</span>
@@ -414,7 +415,8 @@
 <span class="sd">            thread (helpscout.models.Thread): The thread to be updated.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            helpscout.models.Thread: Freshly updated thread.</span>
+<span class="sd">            helpscout.models.Conversation: Conversation including freshly</span>
+<span class="sd">                updated thread.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">thread</span><span class="o">.</span><span class="n">to_api</span><span class="p">()</span>
         <span class="n">data</span><span class="p">[</span><span class="s1">&#39;reload&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
@@ -426,7 +428,6 @@
             <span class="n">request_type</span><span class="o">=</span><span class="n">RequestPaginator</span><span class="o">.</span><span class="n">PUT</span><span class="p">,</span>
             <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
-            <span class="n">out_type</span><span class="o">=</span><span class="n">Thread</span><span class="p">,</span>
         <span class="p">)</span></div></div>
 </pre></div>
 

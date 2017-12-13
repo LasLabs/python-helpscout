@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.tests.test_api_conversations &#8212; HelpScout 0.0.0b332 documentation</title>
+    <title>helpscout.tests.test_api_conversations &#8212; HelpScout 0.0.0b337 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.0.0b332',
+        VERSION:     '0.0.0b337',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -50,7 +50,6 @@
 <span class="kn">from</span> <span class="nn">..models.search_conversation</span> <span class="k">import</span> <span class="n">SearchConversation</span>
 <span class="kn">from</span> <span class="nn">..models.attachment</span> <span class="k">import</span> <span class="n">Attachment</span>
 <span class="kn">from</span> <span class="nn">..models.attachment_data</span> <span class="k">import</span> <span class="n">AttachmentData</span>
-<span class="kn">from</span> <span class="nn">..models.thread</span> <span class="k">import</span> <span class="n">Thread</span>
 
 
 <div class="viewcode-block" id="TestApiConversations"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations">[docs]</a><span class="k">class</span> <span class="nc">TestApiConversations</span><span class="p">(</span><span class="n">ApiCommon</span><span class="p">):</span>
@@ -62,12 +61,12 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="TestApiConversations.test_create"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_create">[docs]</a>    <span class="k">def</span> <span class="nf">test_create</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;conversation&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">to_api</span><span class="p">(),</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
             <span class="s1">&#39;imported&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
             <span class="s1">&#39;auto_reply&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
             <span class="s1">&#39;reload&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="p">}</span>
+        <span class="p">})</span>
         <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
             <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="s1">&#39;/conversations.json&#39;</span><span class="p">,</span>
@@ -83,17 +82,16 @@
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="TestApiConversations.test_create_thread"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_create_thread">[docs]</a>    <span class="k">def</span> <span class="nf">test_create_thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">thread</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">thread</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="n">thread</span><span class="o">.</span><span class="n">to_api</span><span class="p">(),</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">thread</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
             <span class="s1">&#39;imported&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
             <span class="s1">&#39;reload&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="p">}</span>
+        <span class="p">})</span>
         <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">thread</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
         <span class="n">uri</span> <span class="o">=</span> <span class="s1">&#39;/conversations/</span><span class="si">%d</span><span class="s1">.json&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
             <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;create_thread&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span>
-            <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">Thread</span><span class="p">,</span>
+            <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="TestApiConversations.test_delete"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_api_conversations.TestApiConversations.test_delete">[docs]</a>    <span class="k">def</span> <span class="nf">test_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -178,7 +176,7 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_test_method</span><span class="p">(</span>
             <span class="n">Conversations</span><span class="p">,</span> <span class="s1">&#39;update_thread&#39;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="p">,</span> <span class="n">thread</span><span class="p">],</span> <span class="n">uri</span><span class="p">,</span>
-            <span class="n">thread</span><span class="p">,</span> <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">out_type</span><span class="o">=</span><span class="n">Thread</span><span class="p">,</span>
+            <span class="n">thread</span><span class="p">,</span> <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="p">)</span></div></div>
 </pre></div>
 
