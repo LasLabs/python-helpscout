@@ -25,24 +25,8 @@ class Mailboxes(BaseApi):
     """
 
     __object__ = Mailbox
-
-    @classmethod
-    def get(cls, session, mailbox_id):
-        """Return a specific mailbox.
-
-        Args:
-            session (requests.sessions.Session): Authenticated session.
-            mailbox_id (int): The ID of the mailbox to get.
-
-        Returns:
-            helpscout.models.Mailbox: A mailbox singleton, if existing.
-                Otherwise ``None``.
-        """
-        return cls(
-            '/mailboxes/%d.json' % mailbox_id,
-            singleton=True,
-            session=session,
-        )
+    __endpoint__ = 'mailboxes'
+    __implements__ = ['get', 'list']
 
     @classmethod
     def list(cls, session):

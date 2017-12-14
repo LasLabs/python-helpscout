@@ -25,6 +25,7 @@ class Teams(BaseApi):
     """
 
     __object__ = Person
+    __implements__ = ['get', 'list']
 
     @classmethod
     def get(cls, session, team_id):

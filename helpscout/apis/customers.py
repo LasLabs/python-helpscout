@@ -7,8 +7,6 @@ from .. import BaseApi
 from ..models.customer import Customer
 from ..models.search_customer import SearchCustomer
 
-from ..request_paginator import RequestPaginator
-
 
 class Customers(BaseApi):
     """This represents the ``Customers`` Endpoint.
@@ -33,45 +31,8 @@ class Customers(BaseApi):
     """
 
     __object__ = Customer
-
-    @classmethod
-    def create(cls, session, customer):
-        """Create a customer.
-
-        Args:
-            session (requests.sessions.Session): Authenticated session.
-            customer (helpscout.models.Customer): The customer to be created.
-
-        Returns:
-            helpscout.models.Customer: Newly created customer.
-        """
-        data = customer.to_api()
-        data['reload'] = True
-        return cls(
-            '/customers.json',
-            data=data,
-            request_type=RequestPaginator.POST,
-            singleton=True,
-            session=session,
-        )
-
-    @classmethod
-    def get(cls, session, customer_id):
-        """Return a specific customer.
-
-        Args:
-            session (requests.sessions.Session): Authenticated session.
-            customer_id (int): The ID of the customer to get.
-
-        Returns:
-            helpscout.models.Customer: A customer singleton, if existing.
-                Otherwise ``None``.
-        """
-        return cls(
-            '/customers/%d.json' % customer_id,
-            singleton=True,
-            session=session,
-        )
+    __endpoint__ = 'customers'
+    __implements__ = ['create', 'get', 'update', 'search', 'list']
 
     @classmethod
     def list(cls, session, first_name=None, last_name=None, email=None,
@@ -93,13 +54,15 @@ class Customers(BaseApi):
             RequestPaginator(output_type=helpscout.models.Customer): Customers
                 iterator.
         """
-        data = cls.__object__.get_non_empty_vals({
-            'firstName': first_name,
-            'lastName': last_name,
-            'email': email,
-            'modifiedSince': modified_since,
-        })
-        return cls('/customers.json', data, session=session)
+        return super(Customers, cls).list(
+            session,
+            data=cls.__object__.get_non_empty_vals({
+                'firstName': first_name,
+                'lastName': last_name,
+                'email': email,
+                'modifiedSince': modified_since,
+            })
+        )
 
     @classmethod
     def search(cls, session, queries):
@@ -118,31 +81,4 @@ class Customers(BaseApi):
             RequestPaginator(output_type=helpscout.models.SearchCustomer):
                 SearchCustomer iterator.
         """
-        domain = cls.get_search_domain(queries)
-        return cls(
-            '/search/customers.json',
-            data={'query': str(domain)},
-            session=session,
-            out_type=SearchCustomer,
-        )
-
-    @classmethod
-    def update(cls, session, customer):
-        """Update a customer.
-
-        Args:
-            session (requests.sessions.Session): Authenticated session.
-            customer (helpscout.models.Customer): The customer to be updated.
-
-        Returns:
-            helpscout.models.Customer: Freshly updated customer.
-        """
-        data = customer.to_api()
-        data['reload'] = True
-        return cls(
-            '/customers/%d.json' % customer.id,
-            data=data,
-            request_type=RequestPaginator.PUT,
-            singleton=True,
-            session=session,
-        )
+        return super(Customers, cls).search(session, queries, SearchCustomer)

@@ -18,15 +18,5 @@ class Tags(BaseApi):
     """
 
     __object__ = Tag
-
-    @classmethod
-    def list(cls, session):
-        """List the tags.
-
-        Args:
-            session (requests.sessions.Session): Authenticated session.
-
-        Returns:
-            RequestPaginator(output_type=helpscout.models.Tag): Tags iterator.
-        """
-        return cls('/tags.json', session=session)
+    __endpoint__ = 'tags'
+    __implements__ = ['list']

@@ -4,6 +4,7 @@
 
 from .base_model import BaseModel
 from .domain import Domain
+from .exceptions import HelpScoutRemoteException
 from .request_paginator import RequestPaginator
 
 
@@ -25,6 +26,12 @@ class BaseApi(object):
 
     # This should be replaced in child classes with the correct model.
     __object__ = BaseModel
+
+    # This should be replaced with the endpoint, such as ``customers``
+    __endpoint__ = None
+
+    # Override this to disallow certain CRUD operations
+    __implements__ = ['create', 'get', 'update', 'delete', 'search', 'list']
 
     # This is set within new, after the object has been created.
     paginator = None
@@ -118,3 +125,171 @@ class BaseApi(object):
         if isinstance(queries, Domain):
             return queries
         return Domain.from_tuple(queries)
+
+    @classmethod
+    def create(cls, session, record, endpoint_override=None, out_type=None,
+               **add_params):
+        """Create an object on HelpScout.
+
+        Args:
+            session (requests.sessions.Session): Authenticated session.
+            record (helpscout.BaseModel): The record to be created.
+            endpoint_override (str, optional): Override the default
+                endpoint using this.
+            out_type (helpscout.BaseModel, optional): The type of record to
+                output. This should be provided by child classes, by calling
+                super.
+            **add_params (mixed): Add these to the request parameters.
+
+        Returns:
+            helpscout.models.BaseModel: Newly created record. Will be of the
+        """
+        cls._check_implements('create')
+        data = record.to_api()
+        params = {
+            'reload': True,
+        }
+        params.update(**add_params)
+        data.update(params)
+        return cls(
+            endpoint_override or '/%s.json' % cls.__endpoint__,
+            data=data,
+            request_type=RequestPaginator.POST,
+            singleton=True,
+            session=session,
+            out_type=out_type,
+        )
+
+    @classmethod
+    def delete(cls, session, record, endpoint_override=None, out_type=None):
+        """Delete a record.
+
+        Args:
+            session (requests.sessions.Session): Authenticated session.
+            record (helpscout.BaseModel): The record to be deleted.
+            endpoint_override (str, optional): Override the default
+                endpoint using this.
+            out_type (helpscout.BaseModel, optional): The type of record to
+                output. This should be provided by child classes, by calling
+                super.
+
+        Returns:
+            NoneType: Nothing.
+        """
+        cls._check_implements('delete')
+        return cls(
+            endpoint_override or '/%s/%s.json' % (
+                cls.__endpoint__, record.id,
+            ),
+            request_type=RequestPaginator.DELETE,
+            singleton=True,
+            session=session,
+            out_type=out_type,
+        )
+
+    @classmethod
+    def get(cls, session, record_id, endpoint_override=None):
+        """Return a specific record.
+
+        Args:
+            session (requests.sessions.Session): Authenticated session.
+            record_id (int): The ID of the record to get.
+            endpoint_override (str, optional): Override the default
+                endpoint using this.
+
+        Returns:
+            helpscout.BaseModel: A record singleton, if existing. Otherwise
+                ``None``.
+        """
+        cls._check_implements('get')
+        try:
+            return cls(
+                endpoint_override or '/%s/%d.json' % (
+                    cls.__endpoint__, record_id,
+                ),
+                singleton=True,
+                session=session,
+            )
+        except HelpScoutRemoteException as e:
+            if e.status_code == 404:
+                return None
+            else:
+                raise
+
+    @classmethod
+    def list(cls, session, endpoint_override=None, data=None):
+        """Return records in a mailbox.
+
+        Args:
+            session (requests.sessions.Session): Authenticated session.
+            endpoint_override (str, optional): Override the default
+                endpoint using this.
+            data (dict, optional): Data to provide as request parameters.
+
+        Returns:
+            RequestPaginator(output_type=helpscout.BaseModel): Results
+                iterator.
+        """
+        cls._check_implements('list')
+        return cls(
+            endpoint_override or '/%s.json' % cls.__endpoint__,
+            data=data,
+            session=session,
+        )
+
+    @classmethod
+    def search(cls, session, queries, out_type):
+        """Search for a record given a domain.
+
+        Args:
+            session (requests.sessions.Session): Authenticated session.
+            queries (helpscout.models.Domain or iter): The queries for the
+                domain. If a ``Domain`` object is provided, it will simply be
+                returned. Otherwise, a ``Domain`` object will be generated
+                from the complex queries. In this case, the queries should
+                conform to the interface in
+                :func:`helpscout.domain.Domain.from_tuple`.
+            out_type (helpscout.BaseModel): The type of record to output. This
+                should be provided by child classes, by calling super.
+
+        Returns:
+            RequestPaginator(output_type=helpscout.BaseModel): Results
+                iterator of the ``out_type`` that is defined.
+        """
+        cls._check_implements('search')
+        domain = cls.get_search_domain(queries)
+        return cls(
+            '/search/%s.json' % cls.__endpoint__,
+            data={'query': str(domain)},
+            session=session,
+            out_type=out_type,
+        )
+
+    @classmethod
+    def update(cls, session, record):
+        """Update a record.
+
+        Args:
+            session (requests.sessions.Session): Authenticated session.
+            record (helpscout.BaseModel): The record to
+                be updated.
+
+        Returns:
+            helpscout.BaseModel: Freshly updated record.
+        """
+        cls._check_implements('update')
+        data = record.to_api()
+        del data['id']
+        data['reload'] = True
+        return cls(
+            '/%s/%s.json' % (cls.__endpoint__, record.id),
+            data=data,
+            request_type=RequestPaginator.PUT,
+            singleton=True,
+            session=session,
+        )
+
+    @classmethod
+    def _check_implements(cls, check_type):
+        if check_type not in cls.__implements__:
+            raise NotImplementedError

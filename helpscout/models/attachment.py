@@ -4,14 +4,11 @@
 
 import properties
 
-from .. import BaseModel
+from .attachment_data import AttachmentData
 
 
-class Attachment(BaseModel):
+class Attachment(AttachmentData):
 
-    data = properties.String(
-        'base64 encoded data.',
-    )
     hash = properties.String(
         'Unique hash.',
     )

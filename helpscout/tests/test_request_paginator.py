@@ -58,9 +58,7 @@ class TestRequestPaginator(unittest.TestCase):
             response.status_code = response_code
             response.json.side_effect = responses
             response.json.return_value = responses
-            for attr in mock_attrs:
-                method = getattr(session, attr)
-                method.return_value = response
+            session.request.return_value = response
             yield session
 
     def do_call(self, request_type='get', responses=None):
@@ -74,8 +72,8 @@ class TestRequestPaginator(unittest.TestCase):
         self.assertDictEqual(res[0], self.test_responses[0]['items'][0])
 
     def _test_session_call_json(self, session, request_type):
-        method = getattr(session, request_type)
-        method.assert_called_once_with(
+        session.request.assert_called_once_with(
+            request_type,
             url=self.vals['endpoint'],
             json=self.params,
             verify=True,
@@ -97,7 +95,8 @@ class TestRequestPaginator(unittest.TestCase):
     def test_get_gets(self):
         """ It should call the session with proper args. """
         session, _ = self.do_call(responses=self.test_responses)
-        session.get.assert_called_once_with(
+        session.request.assert_called_once_with(
+            'get',
             url=self.vals['endpoint'],
             params=self.params,
             verify=True,
@@ -140,7 +139,7 @@ class TestRequestPaginator(unittest.TestCase):
     def test_iter(self):
         """ It should iterate until the end & yield data. """
         with self.mock_session() as session:
-            session.get().json.side_effect = self.test_responses
+            session.request().json.side_effect = self.test_responses
             res = list(self.paginator)
             expect = [{'page': 1}, {'page': 2}, {'page': 3}]
             self.assertEqual(res, expect)

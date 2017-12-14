@@ -1,0 +1,201 @@
+interactions:
+- request:
+    body: !!python/unicode '{"closedBy": null, "cc": null, "number": 162, "auto_reply":
+      false, "owner": {"firstName": "Dave", "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg",
+      "lastName": "Lasley", "emails": null, "phone": null, "modifiedAt": null, "customerPersonType":
+      null, "id": 218639, "fullName": "Dave Lasley", "type": "user", "email": "support@example.com",
+      "createdAt": null}, "id": null, "createdAt": "2017-12-07T21:08:20Z", "subject":
+      "Celebrate successful conversation.", "folderId": 1601748, "imported": false,
+      "spam": null, "createdByType": null, "isDraft": null, "source": {"via": "user",
+      "type": "api", "id": null}, "draft": null, "preview": "Conversation exported
+      from Odoo.", "type": "email", "status": "pending", "tags": null, "mailbox":
+      {"id": 122867, "name": "Support"}, "threads": [{"status": "active", "body":
+      "<p>Test conversation.</p>", "fromMailbox": null, "openedAt": null, "attachments":
+      null, "to": null, "cc": null, "assignedTo": null, "createdByCustomer": null,
+      "bcc": null, "customer": {"firstName": "Test", "photoUrl": null, "lastName":
+      "User", "emails": ["test@example.com"], "phone": "1234567890", "modifiedAt":
+      null, "customerPersonType": true, "id": 144228647, "fullName": null, "type":
+      "customer", "email": "test@example.com", "createdAt": null}, "state": "published",
+      "savedReplyId": null, "createdAt": "2017-12-07T21:08:20Z", "createdBy": {"firstName":
+      "Dave", "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg",
+      "lastName": "Lasley", "emails": null, "phone": null, "modifiedAt": null, "customerPersonType":
+      null, "id": 218639, "fullName": "Dave Lasley", "type": "user", "email": "support@example.com",
+      "createdAt": null}, "actionType": null, "type": "note", "id": 1310543489, "actionSourceId":
+      null, "source": {"via": "user", "type": "api", "id": null}}], "createdBy": {"firstName":
+      "Dave", "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg",
+      "lastName": "Lasley", "emails": null, "phone": null, "modifiedAt": null, "customerPersonType":
+      null, "id": 218639, "fullName": "Dave Lasley", "type": "user", "email": "support@example.com",
+      "createdAt": null}, "userModifiedAt": null, "closedAt": null, "customer": {"firstName":
+      "Test", "photoUrl": null, "lastName": "User", "emails": ["test@example.com"],
+      "phone": "1234567890", "modifiedAt": null, "customerPersonType": true, "id":
+      144228647, "fullName": null, "type": "customer", "email": "test@example.com",
+      "createdAt": null}, "locked": null, "threadCount": 1, "bcc": null, "reload":
+      true, "modifiedAt": null}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['2543']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.18.4]
+    method: POST
+    uri: https://api.helpscout.net/v1/conversations.json
+  response:
+    body: {string: !!python/unicode '{"item":{"id":486569356,"type":"email","folderId":1601742,"isDraft":false,"number":184,"owner":null,"mailbox":{"id":122867,"name":"Support"},"customer":{"id":144228647,"firstName":"Test","lastName":"User","email":"test@example.com","phone":"1234567890","type":"customer","emails":["test@example.com"],"photoUrl":"","customerPersonType":true},"threadCount":1,"status":"active","subject":"Celebrate
+        successful conversation.","preview":null,"createdBy":{"id":218639,"firstName":"Dave","lastName":"Lasley","email":"support@laslabs.com","phone":null,"type":"user","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg"},"createdAt":"2017-12-07T21:08:20Z","modifiedAt":"2017-12-07T21:08:20Z","closedAt":null,"closedBy":null,"source":{"type":"api","via":"user"},"cc":[],"bcc":[],"tags":null,"threads":[{"id":1320671708,"type":"note","assignedTo":null,"status":"active","createdAt":"2017-12-07T21:08:20Z","openedAt":null,"createdBy":{"id":218639,"firstName":"Dave","lastName":"Lasley","email":"support@laslabs.com","phone":null,"type":"user","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg"},"source":{"type":"api","via":"user"},"actionType":null,"actionSourceId":null,"fromMailbox":null,"state":"published","customer":{"id":144228647,"firstName":"Test","lastName":"User","email":"test@example.com","phone":"1234567890","type":"customer","emails":["test@example.com"],"photoUrl":"","customerPersonType":true},"body":"<p>Test
+        conversation.</p>","to":null,"cc":[],"bcc":[],"attachments":null,"savedReplyId":null,"createdByCustomer":false}]}}'}
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-length: ['1575']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [692051f9-0061-4dcf-a178-1c98e764220b#63867605]
+      date: ['Wed, 13 Dec 2017 22:39:28 GMT']
+      location: ['https://api.helpscout.net/v1/conversations/486569356.json']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['81']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['8']
+      x-ratelimit-remaining-minute: ['177']
+      x-xss-protection: [1; mode=block]
+    status: {code: 201, message: Created}
+- request:
+    body: !!python/unicode '{"closedBy": null, "cc": null, "number": 184, "owner":
+      null, "createdAt": "2017-12-07T21:08:20Z", "subject": "A new subject", "folderId":
+      1601742, "spam": null, "createdByType": null, "isDraft": null, "source": {"via":
+      "user", "type": "api", "id": null}, "draft": null, "preview": null, "type":
+      "email", "status": "active", "tags": null, "mailbox": {"id": 122867, "name":
+      "Support"}, "threads": [{"status": "active", "body": "<p>Test conversation.</p>",
+      "fromMailbox": null, "openedAt": null, "attachments": null, "to": null, "cc":
+      null, "assignedTo": null, "createdByCustomer": null, "bcc": null, "customer":
+      {"firstName": "Test", "photoUrl": null, "lastName": "User", "emails": ["test@example.com"],
+      "phone": "1234567890", "modifiedAt": null, "customerPersonType": true, "id":
+      144228647, "fullName": null, "type": "customer", "email": "test@example.com",
+      "createdAt": null}, "state": "published", "savedReplyId": null, "createdAt":
+      "2017-12-07T21:08:20Z", "createdBy": {"firstName": "Dave", "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg",
+      "lastName": "Lasley", "emails": null, "phone": null, "modifiedAt": null, "customerPersonType":
+      null, "id": 218639, "fullName": null, "type": "user", "email": "support@laslabs.com",
+      "createdAt": null}, "actionType": null, "type": "note", "id": 1320671708, "actionSourceId":
+      null, "source": {"via": "user", "type": "api", "id": null}}], "createdBy": {"firstName":
+      "Dave", "photoUrl": "https://d33v4339jhl8k0.cloudfront.net/users/218639.95870.jpg",
+      "lastName": "Lasley", "emails": null, "phone": null, "modifiedAt": null, "customerPersonType":
+      null, "id": 218639, "fullName": null, "type": "user", "email": "support@laslabs.com",
+      "createdAt": null}, "userModifiedAt": null, "closedAt": null, "customer": {"firstName":
+      "Test", "photoUrl": null, "lastName": "User", "emails": ["test@example.com"],
+      "phone": "1234567890", "modifiedAt": null, "customerPersonType": true, "id":
+      144228647, "fullName": null, "type": "customer", "email": "test@example.com",
+      "createdAt": null}, "locked": null, "threadCount": 1, "bcc": null, "reload":
+      true, "modifiedAt": "2017-12-07T21:08:20Z"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['2137']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.18.4]
+    method: PUT
+    uri: https://api.helpscout.net/v1/conversations/486569356.json
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA91UTW/bMAz9K4XObmLLjr9QFO3ay4BtGNb0sqEH2WYaZbIkWHLaoMh/H2XZXoNc
+        eu7Nkkg+vvdovhFuoSXlG+ENKZM8XaVFvEoDYg8aSEmgZVyQgGyUaKD7ijFRGkZZQgPCzX3HNpaU
+        GyYMBET2bQUdBuRJQNSLdN+yFyIgrkalXieUiNI8zTCBtQ7ioddadZYcA1L3xqrWJfp+oiRxsQkG
+        b3hn7A+fsQZjsSfB5ptHg0nB2G1JLAbcwCtrtYBFrVp80lslHVpE42SVZnkR4uVIcoYdKxhS/jmv
+        8TQUseqxE1gHs6e0n9AZJdeDYLbrAYnYbQesuVO9RH2igBjLbI9lCast3wMmm77aQY2v5PZCwsvF
+        dEaQDvYcXvDF8byoldwjALNcyYVDxcoWmi+HSSQa5WlcnCp0zwaQdwp9Y0bA4Z1Gxst+gzGCVeZU
+        Ju/bKE/vxX1HfmutNuVy2cTxPonjYrcV+d9wUQvVN5tOSbuQYJcuzyx9e4tilWfhYqefB589h1tH
+        n+I4XUb0MszWNCrDvKThb2yzVQ3fcGhOYqJ4TWkZFyUtXAziGR/h+/Vnp4w/G9V3NZryNhnNNMe0
+        PWeIO7ByvdToNnpbTR+WPaNTowKDj24exoGMaZhmURbm8/BIZZ3UzBj+LKFZqxn9zPMP0FYasIgj
+        PVL6BG5/yAb3Y0w/kafubx4GD93i8bc4Xu33aZ+MNqPQ7tfWfSW42ULjRuOzbJJKNTjP5Epfn2+D
+        q6W+Rq52HrmzWWbWsnrbgrTzSBtcDc0v0OLwX9R5p9zNsg1L/fh0PP4DUQ6wHSIGAAA=
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-encoding: [gzip]
+      content-length: ['620']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [692051f9-0061-4dcf-a178-1c98e764220b#63867606]
+      date: ['Wed, 13 Dec 2017 22:39:28 GMT']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['68']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['7']
+      x-ratelimit-remaining-minute: ['176']
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.4]
+    method: GET
+    uri: https://api.helpscout.net/v1/conversations/486569356.json
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA91UTW/bMAz9K4XObmLLjr9QFO3ay4BtGNb0sqEH2WYaZbIkWHLaoMh/H2XZXoNc
+        eu7Nkkg+vvdovhFuoSXlG+ENKZM8XaVFvEoDYg8aSEmgZVyQgGyUaKD7ijFRGkZZQgPCzX3HNpaU
+        GyYMBET2bQUdBuRJQNSLdN+yFyIgrkalXieUiNI8zTCBtQ7ioddadZYcA1L3xqrWJfp+oiRxsQkG
+        b3hn7A+fsQZjsSfB5ptHg0nB2G1JLAbcwCtrtYBFrVp80lslHVpE42SVZnkR4uVIcoYdKxhS/jmv
+        8TQUseqxE1gHs6e0n9AZJdeDYLbrAYnYbQesuVO9RH2igBjLbI9lCast3wMmm77aQY2v5PZCwsvF
+        dEaQDvYcXvDF8byoldwjALNcyYVDxcoWmi+HSSQa5WlcnCp0zwaQdwp9Y0bA4Z1Gxst+gzGCVeZU
+        Ju/bKE/vxX1HfmutNuVy2cTxPonjYrcV+d9wUQvVN5tOSbuQYJcuzyx9e4tilWfhYqefB589h1tH
+        n+I4XUb0MszWNCrDvKThb2yzVQ3fcGhOYqJ4TWkZFyUtXAziGR/h+/Vnp4w/G9V3NZryNhnNNMe0
+        PWeIO7ByvdToNnpbTR+WPaNTowKDj24exoGMaZhmURbm8/BIZZ3UzBj+LKFZqxn9zPMP0FYasIgj
+        PVL6BG5/yAb3Y0w/kafubx4GD93i8bc4Xu33aZ+MNqPQ7tfWfSW42ULjRuOzbJJKNTjP5Epfn2+D
+        q6W+Rq52HrmzWWbWsnrbgrTzSBtcDc0v0OLwX9R5p9zNsg1L/fh0PP4DUQ6wHSIGAAA=
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-encoding: [gzip]
+      content-length: ['620']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [692051f9-0061-4dcf-a178-1c98e764220b#63867608]
+      date: ['Wed, 13 Dec 2017 22:39:28 GMT']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['22']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['7']
+      x-ratelimit-remaining-minute: ['175']
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

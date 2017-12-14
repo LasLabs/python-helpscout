@@ -1,0 +1,27 @@
+interactions:
+- request:
+    body: !!python/unicode '{"reload": true, "name": "Support"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['35']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.18.4]
+    method: PUT
+    uri: https://api.helpscout.net/v1/mailboxes/122867.json
+  response:
+    body: {string: !!python/unicode '{"code":404,"error":"The specified resource was
+        not found: ''/v1/mailboxes/122867.json''"}'}
+    headers:
+      connection: [keep-alive]
+      content-length: ['88']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [692051f9-0061-4dcf-a178-1c98e764220b#63896670]
+      date: ['Wed, 13 Dec 2017 23:14:02 GMT']
+      server: [nginx]
+      via: [kong/0.10.3]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['4']
+    status: {code: 404, message: Not Found}
+version: 1

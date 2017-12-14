@@ -55,9 +55,10 @@ class Conversations(BaseApi):
     """
 
     __object__ = Conversation
+    __endpoint__ = 'conversations'
 
     @classmethod
-    def create(cls, session, conversation, imported=False, auto_reply=False):
+    def create(cls, session, record, imported=False, auto_reply=False):
         """Create a conversation.
 
         Please note that conversation cannot be created with more than 100
@@ -65,7 +66,7 @@ class Conversations(BaseApi):
 
         Args:
             session (requests.sessions.Session): Authenticated session.
-            conversation (helpscout.models.Conversation): The conversation
+            record (helpscout.models.Conversation): The conversation
              to be created.
             imported (bool, optional): The ``imported`` request parameter
              enables conversations to be created for historical purposes (i.e.
@@ -81,19 +82,11 @@ class Conversations(BaseApi):
         Returns:
             helpscout.models.Conversation: Newly created conversation.
         """
-        data = conversation.to_api()
-        params = {
-            'imported': imported,
-            'auto_reply': auto_reply,
-            'reload': True,
-        }
-        data.update(params)
-        return cls(
-            '/conversations.json',
-            data=data,
-            request_type=RequestPaginator.POST,
-            singleton=True,
-            session=session,
+        return super(Conversations, cls).create(
+            session,
+            record,
+            imported=imported,
+            auto_reply=auto_reply,
         )
 
     @classmethod
@@ -116,13 +109,10 @@ class Conversations(BaseApi):
              property only). Use this hash when associating the attachment with
              a new thread.
         """
-        data = attachment.to_api()
-        return cls(
-            '/attachments.json',
-            data=data,
-            request_type=RequestPaginator.POST,
-            singleton=True,
-            session=session,
+        return super(Conversations, cls).create(
+            session,
+            attachment,
+            endpoint_override='/attachments.json',
             out_type=Attachment,
         )
 
@@ -148,37 +138,11 @@ class Conversations(BaseApi):
             helpscout.models.Conversation: Conversation including newly created
                 thread.
         """
-        data = thread.to_api()
-        params = {
-            'imported': imported,
-            'reload': True,
-        }
-        data.update(params)
-        return cls(
-            '/conversations/%s.json' % conversation.id,
-            data=data,
-            request_type=RequestPaginator.POST,
-            singleton=True,
-            session=session,
-        )
-
-    @classmethod
-    def delete(cls, session, conversation):
-        """Delete a conversation.
-
-        Args:
-            session (requests.sessions.Session): Authenticated session.
-            conversation (helpscout.models.Conversation): The conversation to
-                be deleted.
-
-        Returns:
-            bool: Status
-        """
-        return cls(
-            '/conversations/%s.json' % conversation.id,
-            request_type=RequestPaginator.DELETE,
-            singleton=True,
-            session=session,
+        return super(Conversations, cls).create(
+            session,
+            thread,
+            endpoint_override='/conversations/%s.json' % conversation.id,
+            imported=imported,
         )
 
     @classmethod
@@ -191,13 +155,12 @@ class Conversations(BaseApi):
                 be deleted.
 
         Returns:
-            bool: Status
+            NoneType: Nothing.
         """
-        return cls(
-            '/attachments/%s.json' % attachment.id,
-            request_type=RequestPaginator.DELETE,
-            singleton=True,
-            session=session,
+        return super(Conversations, cls).delete(
+            session,
+            attachment,
+            endpoint_override='/attachments/%s.json' % attachment.id,
             out_type=Attachment,
         )
 
@@ -242,24 +205,6 @@ class Conversations(BaseApi):
         )
 
     @classmethod
-    def get(cls, session, conversation_id):
-        """Return a specific conversation.
-
-        Args:
-            session (requests.sessions.Session): Authenticated session.
-            conversation_id (int): The ID of the conversation to get.
-
-        Returns:
-            helpscout.models.Conversation: A conversation singleton, if
-                existing. Otherwise ``None``.
-        """
-        return cls(
-            '/conversations/%d.json' % conversation_id,
-            singleton=True,
-            session=session,
-        )
-
-    @classmethod
     def get_attachment_data(cls, session, attachment_id):
         """Return a specific attachment's data.
 
@@ -291,10 +236,8 @@ class Conversations(BaseApi):
             RequestPaginator(output_type=helpscout.models.Conversation):
                 Conversations iterator.
         """
-        return cls(
-            '/mailboxes/%d/conversations.json' % mailbox.id,
-            session=session,
-        )
+        endpoint = '/mailboxes/%d/conversations.json' % mailbox.id
+        return super(Conversations, cls).list(session, endpoint)
 
     @classmethod
     def list_folder(cls, session, mailbox, folder):
@@ -333,34 +276,8 @@ class Conversations(BaseApi):
             RequestPaginator(output_type=helpscout.models.SearchCustomer):
                 SearchCustomer iterator.
         """
-        domain = cls.get_search_domain(queries)
-        return cls(
-            '/search/conversations.json',
-            data={'query': str(domain)},
-            session=session,
-            out_type=SearchConversation,
-        )
-
-    @classmethod
-    def update(cls, session, conversation):
-        """Update a conversation.
-
-        Args:
-            session (requests.sessions.Session): Authenticated session.
-            conversation (helpscout.models.Conversation): The conversation to
-                be updated.
-
-        Returns:
-            helpscout.models.Conversation: Freshly updated conversation.
-        """
-        data = conversation.to_api()
-        data['reload'] = True
-        return cls(
-            '/conversations/%s.json' % conversation.id,
-            data=data,
-            request_type=RequestPaginator.PUT,
-            singleton=True,
-            session=session,
+        return super(Conversations, cls).search(
+            session, queries, SearchConversation,
         )
 
     @classmethod

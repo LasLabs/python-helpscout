@@ -1,0 +1,61 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.4]
+    method: GET
+    uri: https://api.helpscout.net/v1/mailboxes/122867/customers/144228647/conversations.json
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+1cS2/bOBD+KwbPtkNS1IM89XUp0F0ssO5lix5oiY6VypIgUnaDIP99R6Kd2A1a
+        2BWShTYD+CDJHD6G/DTD0fC7I7W+NkSxaX9h+6u0aktHFKdTkjuzgYdf7kieESWSKIxkEEZT4m5r
+        ECNmo/OCTMmqKjLTfIQyLKIsFhxE7YdGr6CelS6smZKy3SxNAwUSMSXVruyuy7YopqSrY1l9J8q3
+        wjhPohgE9KZr4u+2rqvGkXvoWGtdtekE9yWF6MoKKLzKG+v+9BILYx30qdAPTz5bEJrue6uIgwJv
+        zHe9qQszT6sN/FWvq7JrjfFAhFGcSAoP94N8aHZfQ6eQp3V87Stx1eemgHpA+iD2l2lsVS56hbmm
+        NTAQt26Mzt57PYPGrdOuhWqJTl2+NSBs2+WNSUF75O2kNLvJ4R4aacw2Nzv4pxvnJK3KLTSgXV6V
+        865VqNmZ7N3tQUmcJVEgTzX0QfeNHGnok7aFuT3SkfVqfwNlCr20p2ry87ZXT+uVezT4tXO1VVdX
+        WRBsRRDIm3WRfKPztKjabNVUpZuXxl11cvbKd28uwySm85v6up9nP4a33fA5LKcZ4zMaLzhTNIFl
+        +Q90sxP+o8ryVW6yk3IsWHCuAqm47MpBm9aX8H329512/L2t2iaFibk7TLaucxDb5hra7kf22J93
+        t34S/XOoO4WFANO+PFw4fd2tDXiUnSz9okq/GcDGHgm21pv9zf30CFmRjAEaA5AVAzARWY/IghfY
+        r5D13hRm2QBaAF1paqxdtcUTPCHcfgm3H2A5LrjJgXADu4NwQ0P2rIZMKBGMzZAlkiXDDBmII7LO
+        RhYasuF+44gNWSJ5MAxusD1AuKHf+ILbtFHDTQzzGxPYlyDczrZuGAD5nQBIokQfKBnTjkwGAUBj
+        QAAkgVgaIutsZKHf+Kr9RoAbRDCGwA3C/Ag39BvRbzwnvC8DMdC6wS4P4YbWDeF2DtwiGQ2MioQI
+        twu+U6Mz+aqdScHjgTF/TAvBtJBnTgvhUoXx2KIiNJDDEq4iNGSXIAsN2as2ZFTQYeH9CLOwEG4v
+        m/Q44q9pVHAI2g8IQnapwhgVwagIRkXOiYowKgfCDVOz0LqhdTszpZ+xgdYtxlwRhNvLws2foOGB
+        CsXYQiVMcEhlHOBMxphAcgI3PEHz7AfWRrx345RCaHEI3DCBBK3bf2LdQhWM7lgND9nAL9qYQHIJ
+        3DDx+DcSj3mkgnBMfmMQU5EAqcGDIfNUAE85DSDO+FNOg/DRkPkD3SM8df/KaRhgATwcFvdJ8yc0
+        DDvTwA94F44ZGDoiiUnW1kWedsfIewqEiXZOp+uNAQ6N/ykdA5UzDjQLVDGuRP89/Sd0DGzGaUfH
+        ICIV/vBS2BM7sBmVC0qVgHOu7PG1MWr6iiecEjuzvIRTwjNT9KwSe6INzytBlkVryCXsEl/v/wXP
+        AIpw4UUAAA==
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-headers: ['Origin, X-Requested-With, Content-Type, Accept,
+          Authorization']
+      access-control-allow-methods: ['GET, POST, PUT, DELETE']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-encoding: [gzip]
+      content-length: ['1090']
+      content-type: [application/json; charset=utf-8]
+      correlation-id: [00c70165-0a63-4686-b794-8d0518107e1b#65081307]
+      date: ['Thu, 14 Dec 2017 00:12:46 GMT']
+      server: [nginx]
+      strict-transport-security: [max-age=31536000; includeSubdomains;]
+      via: [kong/0.10.3]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-kong-proxy-latency: ['0']
+      x-kong-upstream-latency: ['107']
+      x-ratelimit-interval-burst: ['5']
+      x-ratelimit-interval-minute: ['60']
+      x-ratelimit-limit-burst: ['12']
+      x-ratelimit-limit-minute: ['200']
+      x-ratelimit-remaining-burst: ['12']
+      x-ratelimit-remaining-minute: ['199']
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
