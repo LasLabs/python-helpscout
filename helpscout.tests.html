@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.tests package &#8212; HelpScout 0.0.0b337 documentation</title>
+    <title>helpscout.tests package &#8212; HelpScout 0.0.0b372 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.0b337',
+        VERSION:     '0.0.0b372',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -59,95 +59,374 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-helpscout.tests.test_api_conversations">
-<span id="helpscout-tests-test-api-conversations-module"></span><h2>helpscout.tests.test_api_conversations module<a class="headerlink" href="#module-helpscout.tests.test_api_conversations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-helpscout.tests.test_apis_conversations">
+<span id="helpscout-tests-test-apis-conversations-module"></span><h2>helpscout.tests.test_apis_conversations module<a class="headerlink" href="#module-helpscout.tests.test_apis_conversations" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="helpscout.tests.test_api_conversations.TestApiConversations">
-<em class="property">class </em><code class="descclassname">helpscout.tests.test_api_conversations.</code><code class="descname">TestApiConversations</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_conversations.html#TestApiConversations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_conversations.TestApiConversations" title="Permalink to this definition">¶</a></dt>
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations">
+<em class="property">class </em><code class="descclassname">helpscout.tests.test_apis_conversations.</code><code class="descname">TestApisConversations</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#helpscout.tests.api_common.ApiCommon" title="helpscout.tests.api_common.ApiCommon"><code class="xref py py-class docutils literal"><span class="pre">helpscout.tests.api_common.ApiCommon</span></code></a></p>
+<p>Tests the Conversations API endpoint.</p>
 <dl class="method">
-<dt id="helpscout.tests.test_api_conversations.TestApiConversations.test_create">
-<code class="descname">test_create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_conversations.html#TestApiConversations.test_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_conversations.TestApiConversations.test_create" title="Permalink to this definition">¶</a></dt>
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations.setUp" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="helpscout.tests.test_api_conversations.TestApiConversations.test_create_attachment">
-<code class="descname">test_create_attachment</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_conversations.html#TestApiConversations.test_create_attachment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_conversations.TestApiConversations.test_create_attachment" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_create">
+<code class="descname">test_apis_conversations_create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations.test_apis_conversations_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should create and return a Conversation.</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="helpscout.tests.test_api_conversations.TestApiConversations.test_create_thread">
-<code class="descname">test_create_thread</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_conversations.html#TestApiConversations.test_create_thread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_conversations.TestApiConversations.test_create_thread" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_create_attachment">
+<code class="descname">test_apis_conversations_create_attachment</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations.test_apis_conversations_create_attachment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_create_attachment" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should create and return the Attachment.</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="helpscout.tests.test_api_conversations.TestApiConversations.test_delete">
-<code class="descname">test_delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_conversations.html#TestApiConversations.test_delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_conversations.TestApiConversations.test_delete" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_create_thread">
+<code class="descname">test_apis_conversations_create_thread</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations.test_apis_conversations_create_thread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_create_thread" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should create the thread and return the conversation.</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="helpscout.tests.test_api_conversations.TestApiConversations.test_delete_attachment">
-<code class="descname">test_delete_attachment</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_conversations.html#TestApiConversations.test_delete_attachment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_conversations.TestApiConversations.test_delete_attachment" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_delete">
+<code class="descname">test_apis_conversations_delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations.test_apis_conversations_delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should delete the conversation.</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="helpscout.tests.test_api_conversations.TestApiConversations.test_find_customer">
-<code class="descname">test_find_customer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_conversations.html#TestApiConversations.test_find_customer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_conversations.TestApiConversations.test_find_customer" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_delete_attachment">
+<code class="descname">test_apis_conversations_delete_attachment</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations.test_apis_conversations_delete_attachment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_delete_attachment" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should return None after a success.</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="helpscout.tests.test_api_conversations.TestApiConversations.test_find_user">
-<code class="descname">test_find_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_conversations.html#TestApiConversations.test_find_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_conversations.TestApiConversations.test_find_user" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_find_customer">
+<code class="descname">test_apis_conversations_find_customer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations.test_apis_conversations_find_customer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_find_customer" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should only return conversations for the customer.</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="helpscout.tests.test_api_conversations.TestApiConversations.test_get">
-<code class="descname">test_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_conversations.html#TestApiConversations.test_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_conversations.TestApiConversations.test_get" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_find_user">
+<code class="descname">test_apis_conversations_find_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations.test_apis_conversations_find_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_find_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should only return conversations for the user.</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="helpscout.tests.test_api_conversations.TestApiConversations.test_get_attachment_data">
-<code class="descname">test_get_attachment_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_conversations.html#TestApiConversations.test_get_attachment_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_conversations.TestApiConversations.test_get_attachment_data" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_get">
+<code class="descname">test_apis_conversations_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations.test_apis_conversations_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should return the conversation.</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="helpscout.tests.test_api_conversations.TestApiConversations.test_list">
-<code class="descname">test_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_conversations.html#TestApiConversations.test_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_conversations.TestApiConversations.test_list" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_get_attachment_data">
+<code class="descname">test_apis_conversations_get_attachment_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations.test_apis_conversations_get_attachment_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_get_attachment_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should return the proper attachment.</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="helpscout.tests.test_api_conversations.TestApiConversations.test_list_folder">
-<code class="descname">test_list_folder</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_conversations.html#TestApiConversations.test_list_folder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_conversations.TestApiConversations.test_list_folder" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_list">
+<code class="descname">test_apis_conversations_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations.test_apis_conversations_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should list the conversations in the mailbox.</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="helpscout.tests.test_api_conversations.TestApiConversations.test_search">
-<code class="descname">test_search</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_conversations.html#TestApiConversations.test_search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_conversations.TestApiConversations.test_search" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_list_folder">
+<code class="descname">test_apis_conversations_list_folder</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations.test_apis_conversations_list_folder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_list_folder" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should return conversations specific to a folder.</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="helpscout.tests.test_api_conversations.TestApiConversations.test_update">
-<code class="descname">test_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_conversations.html#TestApiConversations.test_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_conversations.TestApiConversations.test_update" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_search">
+<code class="descname">test_apis_conversations_search</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations.test_apis_conversations_search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should search for and return the conversation.</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="helpscout.tests.test_api_conversations.TestApiConversations.test_update_thread">
-<code class="descname">test_update_thread</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_conversations.html#TestApiConversations.test_update_thread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_conversations.TestApiConversations.test_update_thread" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_update">
+<code class="descname">test_apis_conversations_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations.test_apis_conversations_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should update the conversation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_update_thread">
+<code class="descname">test_apis_conversations_update_thread</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_conversations.html#TestApisConversations.test_apis_conversations_update_thread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_update_thread" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should update the thread.</p>
+</dd></dl>
 
 </dd></dl>
 
 </div>
-<div class="section" id="module-helpscout.tests.test_api_web_hook">
-<span id="helpscout-tests-test-api-web-hook-module"></span><h2>helpscout.tests.test_api_web_hook module<a class="headerlink" href="#module-helpscout.tests.test_api_web_hook" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-helpscout.tests.test_apis_customers">
+<span id="helpscout-tests-test-apis-customers-module"></span><h2>helpscout.tests.test_apis_customers module<a class="headerlink" href="#module-helpscout.tests.test_apis_customers" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="helpscout.tests.test_api_web_hook.TestApiWebHook">
-<em class="property">class </em><code class="descclassname">helpscout.tests.test_api_web_hook.</code><code class="descname">TestApiWebHook</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_web_hook.html#TestApiWebHook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_web_hook.TestApiWebHook" title="Permalink to this definition">¶</a></dt>
+<dt id="helpscout.tests.test_apis_customers.TestApisCustomers">
+<em class="property">class </em><code class="descclassname">helpscout.tests.test_apis_customers.</code><code class="descname">TestApisCustomers</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_customers.html#TestApisCustomers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_customers.TestApisCustomers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#helpscout.tests.api_common.ApiCommon" title="helpscout.tests.api_common.ApiCommon"><code class="xref py py-class docutils literal"><span class="pre">helpscout.tests.api_common.ApiCommon</span></code></a></p>
+<p>Tests the Customers API endpoint.</p>
 <dl class="method">
-<dt id="helpscout.tests.test_api_web_hook.TestApiWebHook.test_create">
-<code class="descname">test_create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_api_web_hook.html#TestApiWebHook.test_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_api_web_hook.TestApiWebHook.test_create" title="Permalink to this definition">¶</a></dt>
+<dt id="helpscout.tests.test_apis_customers.TestApisCustomers.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_customers.html#TestApisCustomers.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_customers.TestApisCustomers.setUp" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_customers.TestApisCustomers.test_apis_customers_create">
+<code class="descname">test_apis_customers_create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_customers.html#TestApisCustomers.test_apis_customers_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_customers.TestApisCustomers.test_apis_customers_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should create and return a Customer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_customers.TestApisCustomers.test_apis_customers_delete">
+<code class="descname">test_apis_customers_delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_customers.html#TestApisCustomers.test_apis_customers_delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_customers.TestApisCustomers.test_apis_customers_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_customers.TestApisCustomers.test_apis_customers_get">
+<code class="descname">test_apis_customers_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_customers.html#TestApisCustomers.test_apis_customers_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_customers.TestApisCustomers.test_apis_customers_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should return the customer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_customers.TestApisCustomers.test_apis_customers_list">
+<code class="descname">test_apis_customers_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_customers.html#TestApisCustomers.test_apis_customers_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_customers.TestApisCustomers.test_apis_customers_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should list the customers in the mailbox.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_customers.TestApisCustomers.test_apis_customers_search">
+<code class="descname">test_apis_customers_search</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_customers.html#TestApisCustomers.test_apis_customers_search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_customers.TestApisCustomers.test_apis_customers_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should search for and return the customer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_customers.TestApisCustomers.test_apis_customers_update">
+<code class="descname">test_apis_customers_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_customers.html#TestApisCustomers.test_apis_customers_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_customers.TestApisCustomers.test_apis_customers_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should update the customer.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-helpscout.tests.test_apis_mailboxes">
+<span id="helpscout-tests-test-apis-mailboxes-module"></span><h2>helpscout.tests.test_apis_mailboxes module<a class="headerlink" href="#module-helpscout.tests.test_apis_mailboxes" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="helpscout.tests.test_apis_mailboxes.TestApisMailboxes">
+<em class="property">class </em><code class="descclassname">helpscout.tests.test_apis_mailboxes.</code><code class="descname">TestApisMailboxes</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_mailboxes.html#TestApisMailboxes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_mailboxes.TestApisMailboxes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#helpscout.tests.api_common.ApiCommon" title="helpscout.tests.api_common.ApiCommon"><code class="xref py py-class docutils literal"><span class="pre">helpscout.tests.api_common.ApiCommon</span></code></a></p>
+<p>Tests the Mailboxes API endpoint.</p>
+<dl class="method">
+<dt id="helpscout.tests.test_apis_mailboxes.TestApisMailboxes.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_mailboxes.html#TestApisMailboxes.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_mailboxes.TestApisMailboxes.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_mailboxes.TestApisMailboxes.test_apis_mailboxes_create">
+<code class="descname">test_apis_mailboxes_create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_mailboxes.html#TestApisMailboxes.test_apis_mailboxes_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_mailboxes.TestApisMailboxes.test_apis_mailboxes_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_mailboxes.TestApisMailboxes.test_apis_mailboxes_delete">
+<code class="descname">test_apis_mailboxes_delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_mailboxes.html#TestApisMailboxes.test_apis_mailboxes_delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_mailboxes.TestApisMailboxes.test_apis_mailboxes_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_mailboxes.TestApisMailboxes.test_apis_mailboxes_get">
+<code class="descname">test_apis_mailboxes_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_mailboxes.html#TestApisMailboxes.test_apis_mailboxes_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_mailboxes.TestApisMailboxes.test_apis_mailboxes_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should return the mailbox.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_mailboxes.TestApisMailboxes.test_apis_mailboxes_list">
+<code class="descname">test_apis_mailboxes_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_mailboxes.html#TestApisMailboxes.test_apis_mailboxes_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_mailboxes.TestApisMailboxes.test_apis_mailboxes_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should list the mailboxes in the mailbox.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_mailboxes.TestApisMailboxes.test_apis_mailboxes_search">
+<code class="descname">test_apis_mailboxes_search</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_mailboxes.html#TestApisMailboxes.test_apis_mailboxes_search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_mailboxes.TestApisMailboxes.test_apis_mailboxes_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_mailboxes.TestApisMailboxes.test_apis_mailboxes_update">
+<code class="descname">test_apis_mailboxes_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_mailboxes.html#TestApisMailboxes.test_apis_mailboxes_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_mailboxes.TestApisMailboxes.test_apis_mailboxes_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-helpscout.tests.test_apis_tags">
+<span id="helpscout-tests-test-apis-tags-module"></span><h2>helpscout.tests.test_apis_tags module<a class="headerlink" href="#module-helpscout.tests.test_apis_tags" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="helpscout.tests.test_apis_tags.TestApisTags">
+<em class="property">class </em><code class="descclassname">helpscout.tests.test_apis_tags.</code><code class="descname">TestApisTags</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_tags.html#TestApisTags"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_tags.TestApisTags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#helpscout.tests.api_common.ApiCommon" title="helpscout.tests.api_common.ApiCommon"><code class="xref py py-class docutils literal"><span class="pre">helpscout.tests.api_common.ApiCommon</span></code></a></p>
+<p>Tests the Tags API endpoint.</p>
+<dl class="method">
+<dt id="helpscout.tests.test_apis_tags.TestApisTags.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_tags.html#TestApisTags.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_tags.TestApisTags.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_tags.TestApisTags.test_apis_tags_create">
+<code class="descname">test_apis_tags_create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_tags.html#TestApisTags.test_apis_tags_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_tags.TestApisTags.test_apis_tags_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_tags.TestApisTags.test_apis_tags_delete">
+<code class="descname">test_apis_tags_delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_tags.html#TestApisTags.test_apis_tags_delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_tags.TestApisTags.test_apis_tags_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_tags.TestApisTags.test_apis_tags_get">
+<code class="descname">test_apis_tags_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_tags.html#TestApisTags.test_apis_tags_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_tags.TestApisTags.test_apis_tags_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_tags.TestApisTags.test_apis_tags_list">
+<code class="descname">test_apis_tags_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_tags.html#TestApisTags.test_apis_tags_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_tags.TestApisTags.test_apis_tags_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should list the tags in the tag.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_tags.TestApisTags.test_apis_tags_search">
+<code class="descname">test_apis_tags_search</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_tags.html#TestApisTags.test_apis_tags_search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_tags.TestApisTags.test_apis_tags_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_tags.TestApisTags.test_apis_tags_update">
+<code class="descname">test_apis_tags_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_tags.html#TestApisTags.test_apis_tags_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_tags.TestApisTags.test_apis_tags_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-helpscout.tests.test_apis_teams">
+<span id="helpscout-tests-test-apis-teams-module"></span><h2>helpscout.tests.test_apis_teams module<a class="headerlink" href="#module-helpscout.tests.test_apis_teams" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="helpscout.tests.test_apis_teams.TestApisTeams">
+<em class="property">class </em><code class="descclassname">helpscout.tests.test_apis_teams.</code><code class="descname">TestApisTeams</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_teams.html#TestApisTeams"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_teams.TestApisTeams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#helpscout.tests.api_common.ApiCommon" title="helpscout.tests.api_common.ApiCommon"><code class="xref py py-class docutils literal"><span class="pre">helpscout.tests.api_common.ApiCommon</span></code></a></p>
+<p>Tests the Teams API endpoint.</p>
+<dl class="method">
+<dt id="helpscout.tests.test_apis_teams.TestApisTeams.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_teams.html#TestApisTeams.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_teams.TestApisTeams.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_teams.TestApisTeams.test_apis_teams_create">
+<code class="descname">test_apis_teams_create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_teams.html#TestApisTeams.test_apis_teams_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_teams.TestApisTeams.test_apis_teams_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_teams.TestApisTeams.test_apis_teams_delete">
+<code class="descname">test_apis_teams_delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_teams.html#TestApisTeams.test_apis_teams_delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_teams.TestApisTeams.test_apis_teams_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_teams.TestApisTeams.test_apis_teams_get">
+<code class="descname">test_apis_teams_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_teams.html#TestApisTeams.test_apis_teams_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_teams.TestApisTeams.test_apis_teams_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should return the team.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_teams.TestApisTeams.test_apis_teams_get_members">
+<code class="descname">test_apis_teams_get_members</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_teams.html#TestApisTeams.test_apis_teams_get_members"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_teams.TestApisTeams.test_apis_teams_get_members" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should get the team members.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_teams.TestApisTeams.test_apis_teams_list">
+<code class="descname">test_apis_teams_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_teams.html#TestApisTeams.test_apis_teams_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_teams.TestApisTeams.test_apis_teams_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should list the teams in the team.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_teams.TestApisTeams.test_apis_teams_search">
+<code class="descname">test_apis_teams_search</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_teams.html#TestApisTeams.test_apis_teams_search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_teams.TestApisTeams.test_apis_teams_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_teams.TestApisTeams.test_apis_teams_update">
+<code class="descname">test_apis_teams_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_teams.html#TestApisTeams.test_apis_teams_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_teams.TestApisTeams.test_apis_teams_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-helpscout.tests.test_apis_users">
+<span id="helpscout-tests-test-apis-users-module"></span><h2>helpscout.tests.test_apis_users module<a class="headerlink" href="#module-helpscout.tests.test_apis_users" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="helpscout.tests.test_apis_users.TestApisUsers">
+<em class="property">class </em><code class="descclassname">helpscout.tests.test_apis_users.</code><code class="descname">TestApisUsers</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_users.html#TestApisUsers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_users.TestApisUsers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#helpscout.tests.api_common.ApiCommon" title="helpscout.tests.api_common.ApiCommon"><code class="xref py py-class docutils literal"><span class="pre">helpscout.tests.api_common.ApiCommon</span></code></a></p>
+<p>Tests the Users API endpoint.</p>
+<dl class="method">
+<dt id="helpscout.tests.test_apis_users.TestApisUsers.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_users.html#TestApisUsers.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_users.TestApisUsers.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_create">
+<code class="descname">test_apis_users_create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_users.html#TestApisUsers.test_apis_users_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_delete">
+<code class="descname">test_apis_users_delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_users.html#TestApisUsers.test_apis_users_delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_find_in_mailbox">
+<code class="descname">test_apis_users_find_in_mailbox</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_users.html#TestApisUsers.test_apis_users_find_in_mailbox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_find_in_mailbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should return the users associated with the mailbox.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_get">
+<code class="descname">test_apis_users_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_users.html#TestApisUsers.test_apis_users_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should return the user.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_get_me">
+<code class="descname">test_apis_users_get_me</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_users.html#TestApisUsers.test_apis_users_get_me"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_get_me" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should return the current users.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_list">
+<code class="descname">test_apis_users_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_users.html#TestApisUsers.test_apis_users_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should list the users in the user.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_search">
+<code class="descname">test_apis_users_search</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_users.html#TestApisUsers.test_apis_users_search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_update">
+<code class="descname">test_apis_users_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_apis_users.html#TestApisUsers.test_apis_users_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_apis_users.TestApisUsers.test_apis_users_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>It should not be implemented.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -687,11 +966,6 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="helpscout.tests.test_model_person.TestPerson.setter_tester">
-<code class="descname">setter_tester</code><span class="sig-paren">(</span><em>customer_person_type</em>, <em>expected</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_model_person.html#TestPerson.setter_tester"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_model_person.TestPerson.setter_tester" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
 <dt id="helpscout.tests.test_model_person.TestPerson.test_customer_person_type_customer">
 <code class="descname">test_customer_person_type_customer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/tests/test_model_person.html#TestPerson.test_customer_person_type_customer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.tests.test_model_person.TestPerson.test_customer_person_type_customer" title="Permalink to this definition">¶</a></dt>
 <dd><p>It should properly set customer_person_type to True when person
@@ -875,8 +1149,12 @@ type is not ‘customer’</p>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">helpscout.tests package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.api_common">helpscout.tests.api_common module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_api_conversations">helpscout.tests.test_api_conversations module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_api_web_hook">helpscout.tests.test_api_web_hook module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_apis_conversations">helpscout.tests.test_apis_conversations module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_apis_customers">helpscout.tests.test_apis_customers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_apis_mailboxes">helpscout.tests.test_apis_mailboxes module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_apis_tags">helpscout.tests.test_apis_tags module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_apis_teams">helpscout.tests.test_apis_teams module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_apis_users">helpscout.tests.test_apis_users module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_auth_proxy">helpscout.tests.test_auth_proxy module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_base_api">helpscout.tests.test_base_api module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-helpscout.tests.test_base_model">helpscout.tests.test_base_model module</a></li>

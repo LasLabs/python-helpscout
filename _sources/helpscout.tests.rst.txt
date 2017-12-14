@@ -12,18 +12,50 @@ helpscout\.tests\.api\_common module
     :undoc-members:
     :show-inheritance:
 
-helpscout\.tests\.test\_api\_conversations module
--------------------------------------------------
+helpscout\.tests\.test\_apis\_conversations module
+--------------------------------------------------
 
-.. automodule:: helpscout.tests.test_api_conversations
+.. automodule:: helpscout.tests.test_apis_conversations
     :members:
     :undoc-members:
     :show-inheritance:
 
-helpscout\.tests\.test\_api\_web\_hook module
----------------------------------------------
+helpscout\.tests\.test\_apis\_customers module
+----------------------------------------------
 
-.. automodule:: helpscout.tests.test_api_web_hook
+.. automodule:: helpscout.tests.test_apis_customers
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+helpscout\.tests\.test\_apis\_mailboxes module
+----------------------------------------------
+
+.. automodule:: helpscout.tests.test_apis_mailboxes
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+helpscout\.tests\.test\_apis\_tags module
+-----------------------------------------
+
+.. automodule:: helpscout.tests.test_apis_tags
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+helpscout\.tests\.test\_apis\_teams module
+------------------------------------------
+
+.. automodule:: helpscout.tests.test_apis_teams
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+helpscout\.tests\.test\_apis\_users module
+------------------------------------------
+
+.. automodule:: helpscout.tests.test_apis_users
     :members:
     :undoc-members:
     :show-inheritance:

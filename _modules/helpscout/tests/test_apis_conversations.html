@@ -1,0 +1,264 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>helpscout.tests.test_apis_conversations &#8212; HelpScout 0.0.0b372 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.0.0b372',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for helpscout.tests.test_apis_conversations</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright 2017-TODAY LasLabs Inc.</span>
+<span class="c1"># License MIT (https://opensource.org/licenses/MIT).</span>
+
+<span class="kn">from</span> <span class="nn">.api_common</span> <span class="k">import</span> <span class="n">ApiCommon</span><span class="p">,</span> <span class="n">recorder</span>
+
+<span class="kn">from</span> <span class="nn">..models.attachment</span> <span class="k">import</span> <span class="n">Attachment</span>
+
+
+<div class="viewcode-block" id="TestApisConversations"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations">[docs]</a><span class="k">class</span> <span class="nc">TestApisConversations</span><span class="p">(</span><span class="n">ApiCommon</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Tests the Conversations API endpoint.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TestApisConversations.setUp"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TestApisConversations</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__endpoint__</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Conversations</span></div>
+
+    <span class="k">def</span> <span class="nf">_test_attachment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">attachment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Conversations</span><span class="o">.</span><span class="n">create_attachment</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_new_attachment</span><span class="p">(),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">attachment</span><span class="p">,</span> <span class="n">Attachment</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">attachment</span><span class="o">.</span><span class="n">hash</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">attachment</span>
+
+    <span class="k">def</span> <span class="nf">_conversation_with_attachment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conversation</span><span class="p">,</span> <span class="n">thread</span><span class="p">):</span>
+        <span class="n">thread</span><span class="p">[</span><span class="s1">&#39;attachments&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_test_attachment</span><span class="p">()]</span>
+        <span class="n">conversation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Conversations</span><span class="o">.</span><span class="n">create_thread</span><span class="p">(</span>
+            <span class="n">conversation</span><span class="p">,</span> <span class="n">thread</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">conversation</span><span class="p">,</span> <span class="n">conversation</span><span class="p">[</span><span class="s1">&#39;threads&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;attachments&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<div class="viewcode-block" id="TestApisConversations.test_apis_conversations_create"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_create">[docs]</a>    <span class="nd">@recorder</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">test_apis_conversations_create</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should create and return a Conversation.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_create</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_conversation</span><span class="p">(</span><span class="n">strip_id</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="TestApisConversations.test_apis_conversations_create_attachment"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_create_attachment">[docs]</a>    <span class="nd">@recorder</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">test_apis_conversations_create_attachment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should create and return the Attachment.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_attachment</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TestApisConversations.test_apis_conversations_create_thread"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_create_thread">[docs]</a>    <span class="nd">@recorder</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">test_apis_conversations_create_thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should create the thread and return the conversation.&quot;&quot;&quot;</span>
+        <span class="n">conversation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_test_create</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get_conversation</span><span class="p">(</span><span class="n">strip_id</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">thread_count</span> <span class="o">=</span> <span class="n">conversation</span><span class="o">.</span><span class="n">thread_count</span>
+        <span class="n">thread</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_thread</span><span class="p">(</span><span class="n">strip_id</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">conversation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Conversations</span><span class="o">.</span><span class="n">create_thread</span><span class="p">(</span>
+            <span class="n">conversation</span><span class="p">,</span> <span class="n">thread</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">conversation</span><span class="o">.</span><span class="n">threads</span><span class="p">),</span> <span class="n">thread_count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApisConversations.test_apis_conversations_get"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_get">[docs]</a>    <span class="nd">@recorder</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">test_apis_conversations_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should return the conversation.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_conversation</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="TestApisConversations.test_apis_conversations_delete"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_delete">[docs]</a>    <span class="nd">@recorder</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">test_apis_conversations_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should delete the conversation.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_conversation</span><span class="p">(</span><span class="n">strip_id</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="TestApisConversations.test_apis_conversations_list"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_list">[docs]</a>    <span class="nd">@recorder</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">test_apis_conversations_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should list the conversations in the mailbox.&quot;&quot;&quot;</span>
+        <span class="n">mailbox</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_mailbox_ref</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_list</span><span class="p">(</span><span class="n">mailbox</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApisConversations.test_apis_conversations_search"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_search">[docs]</a>    <span class="nd">@recorder</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">test_apis_conversations_search</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should search for and return the conversation.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_search</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_conversation</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="TestApisConversations.test_apis_conversations_update"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_update">[docs]</a>    <span class="nd">@recorder</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">test_apis_conversations_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should update the conversation.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_update</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get_conversation</span><span class="p">(</span><span class="n">strip_id</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="s1">&#39;subject&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;A new subject&#39;</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApisConversations.test_apis_conversations_find_customer"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_find_customer">[docs]</a>    <span class="nd">@recorder</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">test_apis_conversations_find_customer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should only return conversations for the customer.&quot;&quot;&quot;</span>
+        <span class="n">mailbox</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_mailbox_ref</span><span class="p">()</span>
+        <span class="n">customer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_customer</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_results</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Conversations</span><span class="o">.</span><span class="n">find_customer</span><span class="p">(</span><span class="n">mailbox</span><span class="p">,</span> <span class="n">customer</span><span class="p">),</span>
+            <span class="k">lambda</span> <span class="n">result</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">customer</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">customer</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApisConversations.test_apis_conversations_find_user"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_find_user">[docs]</a>    <span class="nd">@recorder</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">test_apis_conversations_find_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should only return conversations for the user.&quot;&quot;&quot;</span>
+        <span class="n">mailbox</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_mailbox_ref</span><span class="p">()</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_user</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_results</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Conversations</span><span class="o">.</span><span class="n">find_user</span><span class="p">(</span><span class="n">mailbox</span><span class="p">,</span> <span class="n">user</span><span class="p">),</span>
+            <span class="k">lambda</span> <span class="n">result</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">owner</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApisConversations.test_apis_conversations_get_attachment_data"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_get_attachment_data">[docs]</a>    <span class="nd">@recorder</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">test_apis_conversations_get_attachment_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should return the proper attachment.&quot;&quot;&quot;</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">attachment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conversation_with_attachment</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get_conversation</span><span class="p">(),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get_thread</span><span class="p">(</span><span class="n">strip_id</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Conversations</span><span class="o">.</span><span class="n">get_attachment_data</span><span class="p">(</span><span class="n">attachment</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">raw_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_attachment</span><span class="p">()</span><span class="o">.</span><span class="n">raw_data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApisConversations.test_apis_conversations_delete_attachment"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_delete_attachment">[docs]</a>    <span class="nd">@recorder</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">test_apis_conversations_delete_attachment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should return None after a success.&quot;&quot;&quot;</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">attachment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conversation_with_attachment</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get_conversation</span><span class="p">(),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get_thread</span><span class="p">(</span><span class="n">strip_id</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNone</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Conversations</span><span class="o">.</span><span class="n">delete_attachment</span><span class="p">(</span><span class="n">attachment</span><span class="p">),</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApisConversations.test_apis_conversations_list_folder"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_list_folder">[docs]</a>    <span class="nd">@recorder</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">test_apis_conversations_list_folder</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should return conversations specific to a folder.&quot;&quot;&quot;</span>
+        <span class="n">mailbox</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_mailbox_ref</span><span class="p">()</span>
+        <span class="n">folder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_folder</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_results</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Conversations</span><span class="o">.</span><span class="n">list_folder</span><span class="p">(</span><span class="n">mailbox</span><span class="p">,</span> <span class="n">folder</span><span class="p">),</span>
+            <span class="k">lambda</span> <span class="n">record</span><span class="p">:</span> <span class="n">record</span><span class="o">.</span><span class="n">folder_id</span> <span class="o">==</span> <span class="n">folder</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestApisConversations.test_apis_conversations_update_thread"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_apis_conversations.TestApisConversations.test_apis_conversations_update_thread">[docs]</a>    <span class="nd">@recorder</span><span class="o">.</span><span class="n">use_cassette</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">test_apis_conversations_update_thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It should update the thread.&quot;&quot;&quot;</span>
+        <span class="n">conversation</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conversation_with_attachment</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get_conversation</span><span class="p">(),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get_thread</span><span class="p">(</span><span class="n">strip_id</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">thread</span> <span class="o">=</span> <span class="n">conversation</span><span class="p">[</span><span class="s1">&#39;threads&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="s1">&#39;expect&#39;</span>
+        <span class="n">conversation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Conversations</span><span class="o">.</span><span class="n">update_thread</span><span class="p">(</span>
+            <span class="n">conversation</span><span class="p">,</span> <span class="n">thread</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span>
+            <span class="n">conversation</span><span class="p">[</span><span class="s1">&#39;threads&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="s1">&#39;expect&#39;</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">HelpScout</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=LasLabs&repo=python-helpscout&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/LasLabs/python-helpscout">
+    <img
+        alt="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+        src="https://secure.travis-ci.org/LasLabs/python-helpscout.svg?branch=master"
+    />
+</a>
+</p>
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../helpscout.html">helpscout package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../setup.html">setup module</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017 LasLabs Inc..
+      
+    </div>
+
+    
+    <a href="https://github.com/LasLabs/python-helpscout" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

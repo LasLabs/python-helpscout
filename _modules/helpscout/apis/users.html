@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.apis.users &#8212; HelpScout 0.0.0b337 documentation</title>
+    <title>helpscout.apis.users &#8212; HelpScout 0.0.0b372 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.0.0b337',
+        VERSION:     '0.0.0b372',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -68,24 +68,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">__object__</span> <span class="o">=</span> <span class="n">User</span>
-
-<div class="viewcode-block" id="Users.get"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.users.Users.get">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return a specific user.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            session (requests.sessions.Session): Authenticated session.</span>
-<span class="sd">            user_id (int): The ID of the user to get.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            helpscout.models.User: A user singleton, if existing.</span>
-<span class="sd">                Otherwise ``None``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-            <span class="s1">&#39;/users/</span><span class="si">%d</span><span class="s1">.json&#39;</span> <span class="o">%</span> <span class="n">user_id</span><span class="p">,</span>
-            <span class="n">singleton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
-        <span class="p">)</span></div>
+    <span class="n">__endpoint__</span> <span class="o">=</span> <span class="s1">&#39;users&#39;</span>
+    <span class="n">__implements__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;list&#39;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="Users.get_me"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.users.Users.get_me">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_me</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
@@ -103,19 +87,6 @@
             <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="Users.list"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.users.Users.list">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;List the users.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            session (requests.sessions.Session): Authenticated session.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            RequestPaginator(output_type=helpscout.models.User): Users</span>
-<span class="sd">                iterator.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="s1">&#39;/users.json&#39;</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">)</span></div>
-
 <div class="viewcode-block" id="Users.find_in_mailbox"><a class="viewcode-back" href="../../../helpscout.apis.html#helpscout.apis.users.Users.find_in_mailbox">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">find_in_mailbox</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">mailbox_or_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the users that are associated to a Mailbox.</span>
@@ -129,7 +100,7 @@
 <span class="sd">            RequestPaginator(output_type=helpscout.models.User): Users</span>
 <span class="sd">                iterator.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mailbox_or_id</span><span class="p">,</span> <span class="n">User</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mailbox_or_id</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">):</span>
             <span class="n">mailbox_or_id</span> <span class="o">=</span> <span class="n">mailbox_or_id</span><span class="o">.</span><span class="n">id</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="s1">&#39;/mailboxes/</span><span class="si">%d</span><span class="s1">/users.json&#39;</span> <span class="o">%</span> <span class="n">mailbox_or_id</span><span class="p">,</span>

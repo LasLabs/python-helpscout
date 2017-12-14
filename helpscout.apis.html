@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.apis package &#8212; HelpScout 0.0.0b337 documentation</title>
+    <title>helpscout.apis package &#8212; HelpScout 0.0.0b372 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.0b337',
+        VERSION:     '0.0.0b372',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -59,13 +59,13 @@
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/search/conversations/">Search Conversations</a>
 (<a class="reference internal" href="#helpscout.apis.conversations.Conversations.search" title="helpscout.apis.conversations.Conversations.search"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.search()</span></code></a>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/conversations/get/">Get Conversation</a>
-(<a class="reference internal" href="#helpscout.apis.conversations.Conversations.get" title="helpscout.apis.conversations.Conversations.get"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.get()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.get()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/conversations/create/">Create Conversation</a>
 (<a class="reference internal" href="#helpscout.apis.conversations.Conversations.create" title="helpscout.apis.conversations.Conversations.create"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.create()</span></code></a>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/conversations/update/">Update Conversation</a>
-(<a class="reference internal" href="#helpscout.apis.conversations.Conversations.update" title="helpscout.apis.conversations.Conversations.update"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.update()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.update()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/conversations/delete/">Delete Conversation</a>
-(<a class="reference internal" href="#helpscout.apis.conversations.Conversations.delete" title="helpscout.apis.conversations.Conversations.delete"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.delete()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.delete()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/conversations/create-thread/">Create Thread</a>
 (<a class="reference internal" href="#helpscout.apis.conversations.Conversations.create_thread" title="helpscout.apis.conversations.Conversations.create_thread"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.create_thread()</span></code></a>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/conversations/update-thread/">Update Thread</a>
@@ -79,7 +79,7 @@
 </ul>
 <dl class="classmethod">
 <dt id="helpscout.apis.conversations.Conversations.create">
-<em class="property">classmethod </em><code class="descname">create</code><span class="sig-paren">(</span><em>session</em>, <em>conversation</em>, <em>imported=False</em>, <em>auto_reply=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/conversations.html#Conversations.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.conversations.Conversations.create" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="descname">create</code><span class="sig-paren">(</span><em>session</em>, <em>record</em>, <em>imported=False</em>, <em>auto_reply=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/conversations.html#Conversations.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.conversations.Conversations.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a conversation.</p>
 <p>Please note that conversation cannot be created with more than 100
 threads, if attempted the API will respond with HTTP 412.</p>
@@ -89,7 +89,7 @@ threads, if attempted the API will respond with HTTP 412.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>conversation</strong> (<a class="reference internal" href="helpscout.models.html#helpscout.models.Conversation" title="helpscout.models.Conversation"><em>helpscout.models.Conversation</em></a>) – The conversation
+<li><strong>record</strong> (<a class="reference internal" href="helpscout.models.html#helpscout.models.Conversation" title="helpscout.models.Conversation"><em>helpscout.models.Conversation</em></a>) – The conversation
 to be created.</li>
 <li><strong>imported</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) – The <code class="docutils literal"><span class="pre">imported</span></code> request parameter
 enables conversations to be created for historical purposes (i.e.
@@ -188,31 +188,6 @@ emails or notifications will be generated.</li>
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="helpscout.apis.conversations.Conversations.delete">
-<em class="property">classmethod </em><code class="descname">delete</code><span class="sig-paren">(</span><em>session</em>, <em>conversation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/conversations.html#Conversations.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.conversations.Conversations.delete" title="Permalink to this definition">¶</a></dt>
-<dd><p>Delete a conversation.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>conversation</strong> (<a class="reference internal" href="helpscout.models.html#helpscout.models.Conversation" title="helpscout.models.Conversation"><em>helpscout.models.Conversation</em></a>) – The conversation to
-be deleted.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Status</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)">bool</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="classmethod">
 <dt id="helpscout.apis.conversations.Conversations.delete_attachment">
 <em class="property">classmethod </em><code class="descname">delete_attachment</code><span class="sig-paren">(</span><em>session</em>, <em>attachment</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/conversations.html#Conversations.delete_attachment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.conversations.Conversations.delete_attachment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete an attachment.</p>
@@ -227,10 +202,10 @@ be deleted.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Status</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Nothing.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)">bool</a></p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">NoneType</p>
 </td>
 </tr>
 </tbody>
@@ -281,35 +256,6 @@ be deleted.</li>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.request_paginator.html#helpscout.request_paginator.RequestPaginator" title="helpscout.request_paginator.RequestPaginator">RequestPaginator</a>(output_type=helpscout.models.Conversation)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="classmethod">
-<dt id="helpscout.apis.conversations.Conversations.get">
-<em class="property">classmethod </em><code class="descname">get</code><span class="sig-paren">(</span><em>session</em>, <em>conversation_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/conversations.html#Conversations.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.conversations.Conversations.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a specific conversation.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>conversation_id</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The ID of the conversation to get.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
-<dt>A conversation singleton, if</dt>
-<dd><p class="first last">existing. Otherwise <code class="docutils literal"><span class="pre">None</span></code>.</p>
-</dd>
-</dl>
-</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.models.html#helpscout.models.Conversation" title="helpscout.models.Conversation">helpscout.models.Conversation</a></p>
 </td>
 </tr>
 </tbody>
@@ -425,31 +371,6 @@ conform to the interface in
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="helpscout.apis.conversations.Conversations.update">
-<em class="property">classmethod </em><code class="descname">update</code><span class="sig-paren">(</span><em>session</em>, <em>conversation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/conversations.html#Conversations.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.conversations.Conversations.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update a conversation.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>conversation</strong> (<a class="reference internal" href="helpscout.models.html#helpscout.models.Conversation" title="helpscout.models.Conversation"><em>helpscout.models.Conversation</em></a>) – The conversation to
-be updated.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Freshly updated conversation.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.models.html#helpscout.models.Conversation" title="helpscout.models.Conversation">helpscout.models.Conversation</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="classmethod">
 <dt id="helpscout.apis.conversations.Conversations.update_thread">
 <em class="property">classmethod </em><code class="descname">update_thread</code><span class="sig-paren">(</span><em>session</em>, <em>conversation</em>, <em>thread</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/conversations.html#Conversations.update_thread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.conversations.Conversations.update_thread" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update a thread.</p>
@@ -497,65 +418,12 @@ that the thread belongs to.</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/search/customers/">Search Customers</a>
 (<a class="reference internal" href="#helpscout.apis.customers.Customers.search" title="helpscout.apis.customers.Customers.search"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.customers.Customers.search()</span></code></a>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/customers/get/">Get Customer</a>
-(<a class="reference internal" href="#helpscout.apis.customers.Customers.get" title="helpscout.apis.customers.Customers.get"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.customers.Customers.get()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.customers.Customers.get()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/customers/create/">Create Customer</a>
-(<a class="reference internal" href="#helpscout.apis.customers.Customers.create" title="helpscout.apis.customers.Customers.create"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.customers.Customers.create()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.customers.Customers.create()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/customers/update/">Update Customer</a>
-(<a class="reference internal" href="#helpscout.apis.customers.Customers.update" title="helpscout.apis.customers.Customers.update"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.customers.Customers.update()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.customers.Customers.update()</span></code>)</li>
 </ul>
-<dl class="classmethod">
-<dt id="helpscout.apis.customers.Customers.create">
-<em class="property">classmethod </em><code class="descname">create</code><span class="sig-paren">(</span><em>session</em>, <em>customer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/customers.html#Customers.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.customers.Customers.create" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a customer.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>customer</strong> (<a class="reference internal" href="helpscout.models.html#helpscout.models.Customer" title="helpscout.models.Customer"><em>helpscout.models.Customer</em></a>) – The customer to be created.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Newly created customer.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.models.html#helpscout.models.Customer" title="helpscout.models.Customer">helpscout.models.Customer</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="classmethod">
-<dt id="helpscout.apis.customers.Customers.get">
-<em class="property">classmethod </em><code class="descname">get</code><span class="sig-paren">(</span><em>session</em>, <em>customer_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/customers.html#Customers.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.customers.Customers.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a specific customer.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>customer_id</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The ID of the customer to get.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
-<dt>A customer singleton, if existing.</dt>
-<dd><p class="first last">Otherwise <code class="docutils literal"><span class="pre">None</span></code>.</p>
-</dd>
-</dl>
-</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.models.html#helpscout.models.Customer" title="helpscout.models.Customer">helpscout.models.Customer</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 <dl class="classmethod">
 <dt id="helpscout.apis.customers.Customers.list">
 <em class="property">classmethod </em><code class="descname">list</code><span class="sig-paren">(</span><em>session</em>, <em>first_name=None</em>, <em>last_name=None</em>, <em>email=None</em>, <em>modified_since=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/customers.html#Customers.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.customers.Customers.list" title="Permalink to this definition">¶</a></dt>
@@ -620,30 +488,6 @@ conform to the interface in
 </table>
 </dd></dl>
 
-<dl class="classmethod">
-<dt id="helpscout.apis.customers.Customers.update">
-<em class="property">classmethod </em><code class="descname">update</code><span class="sig-paren">(</span><em>session</em>, <em>customer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/customers.html#Customers.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.customers.Customers.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update a customer.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>customer</strong> (<a class="reference internal" href="helpscout.models.html#helpscout.models.Customer" title="helpscout.models.Customer"><em>helpscout.models.Customer</em></a>) – The customer to be updated.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Freshly updated customer.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.models.html#helpscout.models.Customer" title="helpscout.models.Customer">helpscout.models.Customer</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -659,39 +503,10 @@ conform to the interface in
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/mailboxes/list/">List Mailboxes</a>
 (<a class="reference internal" href="#helpscout.apis.mailboxes.Mailboxes.list" title="helpscout.apis.mailboxes.Mailboxes.list"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.mailboxes.Mailboxes.list()</span></code></a>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/mailboxes/get/">Get Mailboxes</a>
-(<a class="reference internal" href="#helpscout.apis.mailboxes.Mailboxes.get" title="helpscout.apis.mailboxes.Mailboxes.get"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.mailboxes.Mailboxes.get()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.mailboxes.Mailboxes.get()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/mailboxes/folders/">Get Folders</a>
 (<a class="reference internal" href="#helpscout.apis.mailboxes.Mailboxes.get_folders" title="helpscout.apis.mailboxes.Mailboxes.get_folders"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.mailboxes.Mailboxes.get_folders()</span></code></a>)</li>
 </ul>
-<dl class="classmethod">
-<dt id="helpscout.apis.mailboxes.Mailboxes.get">
-<em class="property">classmethod </em><code class="descname">get</code><span class="sig-paren">(</span><em>session</em>, <em>mailbox_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/mailboxes.html#Mailboxes.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.mailboxes.Mailboxes.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a specific mailbox.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>mailbox_id</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The ID of the mailbox to get.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
-<dt>A mailbox singleton, if existing.</dt>
-<dd><p class="first last">Otherwise <code class="docutils literal"><span class="pre">None</span></code>.</p>
-</dd>
-</dl>
-</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.models.html#helpscout.models.Mailbox" title="helpscout.models.Mailbox">helpscout.models.Mailbox</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 <dl class="classmethod">
 <dt id="helpscout.apis.mailboxes.Mailboxes.get_folders">
 <em class="property">classmethod </em><code class="descname">get_folders</code><span class="sig-paren">(</span><em>session</em>, <em>mailbox_or_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/mailboxes.html#Mailboxes.get_folders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.mailboxes.Mailboxes.get_folders" title="Permalink to this definition">¶</a></dt>
@@ -750,26 +565,8 @@ of the mailbox to get the folders for.</td>
 <p>The following aspects are implemented:</p>
 <ul class="simple">
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/tags/list/">List Tags</a>
-(<a class="reference internal" href="#helpscout.apis.tags.Tags.list" title="helpscout.apis.tags.Tags.list"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.tags.Tags.list()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.tags.Tags.list()</span></code>)</li>
 </ul>
-<dl class="classmethod">
-<dt id="helpscout.apis.tags.Tags.list">
-<em class="property">classmethod </em><code class="descname">list</code><span class="sig-paren">(</span><em>session</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/tags.html#Tags.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.tags.Tags.list" title="Permalink to this definition">¶</a></dt>
-<dd><p>List the tags.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tags iterator.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="helpscout.request_paginator.html#helpscout.request_paginator.RequestPaginator" title="helpscout.request_paginator.RequestPaginator">RequestPaginator</a>(output_type=helpscout.models.Tag)</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -876,9 +673,9 @@ the team to get the folders for.</td>
 <p>The following aspects are implemented:</p>
 <ul class="simple">
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/users/list/">List Users</a>
-(<a class="reference internal" href="#helpscout.apis.users.Users.list" title="helpscout.apis.users.Users.list"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.users.Users.list()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.users.Users.list()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/users/get/">Get Users</a>
-(<a class="reference internal" href="#helpscout.apis.users.Users.get" title="helpscout.apis.users.Users.get"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.users.Users.get()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.users.Users.get()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/users/get/">Get Current User</a>
 (<a class="reference internal" href="#helpscout.apis.users.Users.get_me" title="helpscout.apis.users.Users.get_me"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.users.Users.get_me()</span></code></a>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/users/mailbox-users/">List Users By Mailbox</a>
@@ -915,35 +712,6 @@ mailbox to get the folders for.</li>
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="helpscout.apis.users.Users.get">
-<em class="property">classmethod </em><code class="descname">get</code><span class="sig-paren">(</span><em>session</em>, <em>user_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/users.html#Users.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.users.Users.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a specific user.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>user_id</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The ID of the user to get.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
-<dt>A user singleton, if existing.</dt>
-<dd><p class="first last">Otherwise <code class="docutils literal"><span class="pre">None</span></code>.</p>
-</dd>
-</dl>
-</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.models.html#helpscout.models.User" title="helpscout.models.User">helpscout.models.User</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="classmethod">
 <dt id="helpscout.apis.users.Users.get_me">
 <em class="property">classmethod </em><code class="descname">get_me</code><span class="sig-paren">(</span><em>session</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/users.html#Users.get_me"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.users.Users.get_me" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the current user.</p>
@@ -956,28 +724,6 @@ mailbox to get the folders for.</li>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A user singleton</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="helpscout.models.html#helpscout.models.User" title="helpscout.models.User">helpscout.models.User</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="classmethod">
-<dt id="helpscout.apis.users.Users.list">
-<em class="property">classmethod </em><code class="descname">list</code><span class="sig-paren">(</span><em>session</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/users.html#Users.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.users.Users.list" title="Permalink to this definition">¶</a></dt>
-<dd><p>List the users.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
-<dt>Users</dt>
-<dd>iterator.</dd>
-</dl>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="helpscout.request_paginator.html#helpscout.request_paginator.RequestPaginator" title="helpscout.request_paginator.RequestPaginator">RequestPaginator</a>(output_type=helpscout.models.User)</td>
 </tr>
 </tbody>
 </table>
@@ -1044,13 +790,13 @@ circumvented.</p>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/search/conversations/">Search Conversations</a>
 (<a class="reference internal" href="#helpscout.apis.conversations.Conversations.search" title="helpscout.apis.conversations.Conversations.search"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.search()</span></code></a>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/conversations/get/">Get Conversation</a>
-(<a class="reference internal" href="#helpscout.apis.conversations.Conversations.get" title="helpscout.apis.conversations.Conversations.get"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.get()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.get()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/conversations/create/">Create Conversation</a>
 (<a class="reference internal" href="#helpscout.apis.conversations.Conversations.create" title="helpscout.apis.conversations.Conversations.create"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.create()</span></code></a>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/conversations/update/">Update Conversation</a>
-(<a class="reference internal" href="#helpscout.apis.conversations.Conversations.update" title="helpscout.apis.conversations.Conversations.update"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.update()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.update()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/conversations/delete/">Delete Conversation</a>
-(<a class="reference internal" href="#helpscout.apis.conversations.Conversations.delete" title="helpscout.apis.conversations.Conversations.delete"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.delete()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.delete()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/conversations/create-thread/">Create Thread</a>
 (<a class="reference internal" href="#helpscout.apis.conversations.Conversations.create_thread" title="helpscout.apis.conversations.Conversations.create_thread"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.conversations.Conversations.create_thread()</span></code></a>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/conversations/update-thread/">Update Thread</a>
@@ -1064,7 +810,7 @@ circumvented.</p>
 </ul>
 <dl class="classmethod">
 <dt id="helpscout.apis.Conversations.create">
-<em class="property">classmethod </em><code class="descname">create</code><span class="sig-paren">(</span><em>session</em>, <em>conversation</em>, <em>imported=False</em>, <em>auto_reply=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/conversations.html#Conversations.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Conversations.create" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="descname">create</code><span class="sig-paren">(</span><em>session</em>, <em>record</em>, <em>imported=False</em>, <em>auto_reply=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/conversations.html#Conversations.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Conversations.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a conversation.</p>
 <p>Please note that conversation cannot be created with more than 100
 threads, if attempted the API will respond with HTTP 412.</p>
@@ -1074,7 +820,7 @@ threads, if attempted the API will respond with HTTP 412.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>conversation</strong> (<a class="reference internal" href="helpscout.models.html#helpscout.models.Conversation" title="helpscout.models.Conversation"><em>helpscout.models.Conversation</em></a>) – The conversation
+<li><strong>record</strong> (<a class="reference internal" href="helpscout.models.html#helpscout.models.Conversation" title="helpscout.models.Conversation"><em>helpscout.models.Conversation</em></a>) – The conversation
 to be created.</li>
 <li><strong>imported</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) – The <code class="docutils literal"><span class="pre">imported</span></code> request parameter
 enables conversations to be created for historical purposes (i.e.
@@ -1173,31 +919,6 @@ emails or notifications will be generated.</li>
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="helpscout.apis.Conversations.delete">
-<em class="property">classmethod </em><code class="descname">delete</code><span class="sig-paren">(</span><em>session</em>, <em>conversation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/conversations.html#Conversations.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Conversations.delete" title="Permalink to this definition">¶</a></dt>
-<dd><p>Delete a conversation.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>conversation</strong> (<a class="reference internal" href="helpscout.models.html#helpscout.models.Conversation" title="helpscout.models.Conversation"><em>helpscout.models.Conversation</em></a>) – The conversation to
-be deleted.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Status</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)">bool</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="classmethod">
 <dt id="helpscout.apis.Conversations.delete_attachment">
 <em class="property">classmethod </em><code class="descname">delete_attachment</code><span class="sig-paren">(</span><em>session</em>, <em>attachment</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/conversations.html#Conversations.delete_attachment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Conversations.delete_attachment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete an attachment.</p>
@@ -1212,10 +933,10 @@ be deleted.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Status</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Nothing.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)">bool</a></p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">NoneType</p>
 </td>
 </tr>
 </tbody>
@@ -1266,35 +987,6 @@ be deleted.</li>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.request_paginator.html#helpscout.request_paginator.RequestPaginator" title="helpscout.request_paginator.RequestPaginator">RequestPaginator</a>(output_type=helpscout.models.Conversation)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="classmethod">
-<dt id="helpscout.apis.Conversations.get">
-<em class="property">classmethod </em><code class="descname">get</code><span class="sig-paren">(</span><em>session</em>, <em>conversation_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/conversations.html#Conversations.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Conversations.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a specific conversation.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>conversation_id</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The ID of the conversation to get.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
-<dt>A conversation singleton, if</dt>
-<dd><p class="first last">existing. Otherwise <code class="docutils literal"><span class="pre">None</span></code>.</p>
-</dd>
-</dl>
-</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.models.html#helpscout.models.Conversation" title="helpscout.models.Conversation">helpscout.models.Conversation</a></p>
 </td>
 </tr>
 </tbody>
@@ -1410,31 +1102,6 @@ conform to the interface in
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="helpscout.apis.Conversations.update">
-<em class="property">classmethod </em><code class="descname">update</code><span class="sig-paren">(</span><em>session</em>, <em>conversation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/conversations.html#Conversations.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Conversations.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update a conversation.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>conversation</strong> (<a class="reference internal" href="helpscout.models.html#helpscout.models.Conversation" title="helpscout.models.Conversation"><em>helpscout.models.Conversation</em></a>) – The conversation to
-be updated.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Freshly updated conversation.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.models.html#helpscout.models.Conversation" title="helpscout.models.Conversation">helpscout.models.Conversation</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="classmethod">
 <dt id="helpscout.apis.Conversations.update_thread">
 <em class="property">classmethod </em><code class="descname">update_thread</code><span class="sig-paren">(</span><em>session</em>, <em>conversation</em>, <em>thread</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/conversations.html#Conversations.update_thread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Conversations.update_thread" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update a thread.</p>
@@ -1479,65 +1146,12 @@ that the thread belongs to.</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/search/customers/">Search Customers</a>
 (<a class="reference internal" href="#helpscout.apis.customers.Customers.search" title="helpscout.apis.customers.Customers.search"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.customers.Customers.search()</span></code></a>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/customers/get/">Get Customer</a>
-(<a class="reference internal" href="#helpscout.apis.customers.Customers.get" title="helpscout.apis.customers.Customers.get"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.customers.Customers.get()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.customers.Customers.get()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/customers/create/">Create Customer</a>
-(<a class="reference internal" href="#helpscout.apis.customers.Customers.create" title="helpscout.apis.customers.Customers.create"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.customers.Customers.create()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.customers.Customers.create()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/customers/update/">Update Customer</a>
-(<a class="reference internal" href="#helpscout.apis.customers.Customers.update" title="helpscout.apis.customers.Customers.update"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.customers.Customers.update()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.customers.Customers.update()</span></code>)</li>
 </ul>
-<dl class="classmethod">
-<dt id="helpscout.apis.Customers.create">
-<em class="property">classmethod </em><code class="descname">create</code><span class="sig-paren">(</span><em>session</em>, <em>customer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/customers.html#Customers.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Customers.create" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a customer.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>customer</strong> (<a class="reference internal" href="helpscout.models.html#helpscout.models.Customer" title="helpscout.models.Customer"><em>helpscout.models.Customer</em></a>) – The customer to be created.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Newly created customer.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.models.html#helpscout.models.Customer" title="helpscout.models.Customer">helpscout.models.Customer</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="classmethod">
-<dt id="helpscout.apis.Customers.get">
-<em class="property">classmethod </em><code class="descname">get</code><span class="sig-paren">(</span><em>session</em>, <em>customer_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/customers.html#Customers.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Customers.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a specific customer.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>customer_id</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The ID of the customer to get.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
-<dt>A customer singleton, if existing.</dt>
-<dd><p class="first last">Otherwise <code class="docutils literal"><span class="pre">None</span></code>.</p>
-</dd>
-</dl>
-</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.models.html#helpscout.models.Customer" title="helpscout.models.Customer">helpscout.models.Customer</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 <dl class="classmethod">
 <dt id="helpscout.apis.Customers.list">
 <em class="property">classmethod </em><code class="descname">list</code><span class="sig-paren">(</span><em>session</em>, <em>first_name=None</em>, <em>last_name=None</em>, <em>email=None</em>, <em>modified_since=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/customers.html#Customers.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Customers.list" title="Permalink to this definition">¶</a></dt>
@@ -1602,30 +1216,6 @@ conform to the interface in
 </table>
 </dd></dl>
 
-<dl class="classmethod">
-<dt id="helpscout.apis.Customers.update">
-<em class="property">classmethod </em><code class="descname">update</code><span class="sig-paren">(</span><em>session</em>, <em>customer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/customers.html#Customers.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Customers.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update a customer.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>customer</strong> (<a class="reference internal" href="helpscout.models.html#helpscout.models.Customer" title="helpscout.models.Customer"><em>helpscout.models.Customer</em></a>) – The customer to be updated.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Freshly updated customer.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.models.html#helpscout.models.Customer" title="helpscout.models.Customer">helpscout.models.Customer</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="class">
@@ -1638,39 +1228,10 @@ conform to the interface in
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/mailboxes/list/">List Mailboxes</a>
 (<a class="reference internal" href="#helpscout.apis.mailboxes.Mailboxes.list" title="helpscout.apis.mailboxes.Mailboxes.list"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.mailboxes.Mailboxes.list()</span></code></a>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/mailboxes/get/">Get Mailboxes</a>
-(<a class="reference internal" href="#helpscout.apis.mailboxes.Mailboxes.get" title="helpscout.apis.mailboxes.Mailboxes.get"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.mailboxes.Mailboxes.get()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.mailboxes.Mailboxes.get()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/mailboxes/folders/">Get Folders</a>
 (<a class="reference internal" href="#helpscout.apis.mailboxes.Mailboxes.get_folders" title="helpscout.apis.mailboxes.Mailboxes.get_folders"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.mailboxes.Mailboxes.get_folders()</span></code></a>)</li>
 </ul>
-<dl class="classmethod">
-<dt id="helpscout.apis.Mailboxes.get">
-<em class="property">classmethod </em><code class="descname">get</code><span class="sig-paren">(</span><em>session</em>, <em>mailbox_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/mailboxes.html#Mailboxes.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Mailboxes.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a specific mailbox.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>mailbox_id</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The ID of the mailbox to get.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
-<dt>A mailbox singleton, if existing.</dt>
-<dd><p class="first last">Otherwise <code class="docutils literal"><span class="pre">None</span></code>.</p>
-</dd>
-</dl>
-</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.models.html#helpscout.models.Mailbox" title="helpscout.models.Mailbox">helpscout.models.Mailbox</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 <dl class="classmethod">
 <dt id="helpscout.apis.Mailboxes.get_folders">
 <em class="property">classmethod </em><code class="descname">get_folders</code><span class="sig-paren">(</span><em>session</em>, <em>mailbox_or_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/mailboxes.html#Mailboxes.get_folders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Mailboxes.get_folders" title="Permalink to this definition">¶</a></dt>
@@ -1726,26 +1287,8 @@ of the mailbox to get the folders for.</td>
 <p>The following aspects are implemented:</p>
 <ul class="simple">
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/tags/list/">List Tags</a>
-(<a class="reference internal" href="#helpscout.apis.tags.Tags.list" title="helpscout.apis.tags.Tags.list"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.tags.Tags.list()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.tags.Tags.list()</span></code>)</li>
 </ul>
-<dl class="classmethod">
-<dt id="helpscout.apis.Tags.list">
-<em class="property">classmethod </em><code class="descname">list</code><span class="sig-paren">(</span><em>session</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/tags.html#Tags.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Tags.list" title="Permalink to this definition">¶</a></dt>
-<dd><p>List the tags.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tags iterator.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="helpscout.request_paginator.html#helpscout.request_paginator.RequestPaginator" title="helpscout.request_paginator.RequestPaginator">RequestPaginator</a>(output_type=helpscout.models.Tag)</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="class">
@@ -1846,9 +1389,9 @@ the team to get the folders for.</td>
 <p>The following aspects are implemented:</p>
 <ul class="simple">
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/users/list/">List Users</a>
-(<a class="reference internal" href="#helpscout.apis.users.Users.list" title="helpscout.apis.users.Users.list"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.users.Users.list()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.users.Users.list()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/users/get/">Get Users</a>
-(<a class="reference internal" href="#helpscout.apis.users.Users.get" title="helpscout.apis.users.Users.get"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.users.Users.get()</span></code></a>)</li>
+(<code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.users.Users.get()</span></code>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/users/get/">Get Current User</a>
 (<a class="reference internal" href="#helpscout.apis.users.Users.get_me" title="helpscout.apis.users.Users.get_me"><code class="xref py py-func docutils literal"><span class="pre">helpscout.apis.users.Users.get_me()</span></code></a>)</li>
 <li><a class="reference external" href="http://developer.helpscout.net/help-desk-api/users/mailbox-users/">List Users By Mailbox</a>
@@ -1885,35 +1428,6 @@ mailbox to get the folders for.</li>
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="helpscout.apis.Users.get">
-<em class="property">classmethod </em><code class="descname">get</code><span class="sig-paren">(</span><em>session</em>, <em>user_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/users.html#Users.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Users.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a specific user.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
-<li><strong>user_id</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The ID of the user to get.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
-<dt>A user singleton, if existing.</dt>
-<dd><p class="first last">Otherwise <code class="docutils literal"><span class="pre">None</span></code>.</p>
-</dd>
-</dl>
-</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.models.html#helpscout.models.User" title="helpscout.models.User">helpscout.models.User</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="classmethod">
 <dt id="helpscout.apis.Users.get_me">
 <em class="property">classmethod </em><code class="descname">get_me</code><span class="sig-paren">(</span><em>session</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/users.html#Users.get_me"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Users.get_me" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the current user.</p>
@@ -1926,28 +1440,6 @@ mailbox to get the folders for.</li>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A user singleton</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="helpscout.models.html#helpscout.models.User" title="helpscout.models.User">helpscout.models.User</a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="classmethod">
-<dt id="helpscout.apis.Users.list">
-<em class="property">classmethod </em><code class="descname">list</code><span class="sig-paren">(</span><em>session</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/apis/users.html#Users.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.apis.Users.list" title="Permalink to this definition">¶</a></dt>
-<dd><p>List the users.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
-<dt>Users</dt>
-<dd>iterator.</dd>
-</dl>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="helpscout.request_paginator.html#helpscout.request_paginator.RequestPaginator" title="helpscout.request_paginator.RequestPaginator">RequestPaginator</a>(output_type=helpscout.models.User)</td>
 </tr>
 </tbody>
 </table>

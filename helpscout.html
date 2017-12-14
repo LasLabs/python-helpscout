@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout package &#8212; HelpScout 0.0.0b337 documentation</title>
+    <title>helpscout package &#8212; HelpScout 0.0.0b372 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.0b337',
+        VERSION:     '0.0.0b372',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -102,8 +102,12 @@
 <li class="toctree-l1"><a class="reference internal" href="helpscout.tests.html">helpscout.tests package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.api_common">helpscout.tests.api_common module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_api_conversations">helpscout.tests.test_api_conversations module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_api_web_hook">helpscout.tests.test_api_web_hook module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_apis_conversations">helpscout.tests.test_apis_conversations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_apis_customers">helpscout.tests.test_apis_customers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_apis_mailboxes">helpscout.tests.test_apis_mailboxes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_apis_tags">helpscout.tests.test_apis_tags module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_apis_teams">helpscout.tests.test_apis_teams module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_apis_users">helpscout.tests.test_apis_users module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_auth_proxy">helpscout.tests.test_auth_proxy module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_base_api">helpscout.tests.test_base_api module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helpscout.tests.html#module-helpscout.tests.test_base_model">helpscout.tests.test_base_model module</a></li>
@@ -201,6 +205,96 @@ represents.</p>
 <code class="descname">BASE_URI</code><em class="property"> = 'https://api.helpscout.net/v1'</em></dt>
 <dd></dd></dl>
 
+<dl class="classmethod">
+<dt id="helpscout.base_api.BaseApi.create">
+<em class="property">classmethod </em><code class="descname">create</code><span class="sig-paren">(</span><em>session</em>, <em>record</em>, <em>endpoint_override=None</em>, <em>out_type=None</em>, <em>**add_params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_api.BaseApi.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an object on HelpScout.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
+<li><strong>record</strong> (<a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel"><em>helpscout.BaseModel</em></a>) – The record to be created.</li>
+<li><strong>endpoint_override</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>, </em><em>optional</em>) – Override the default
+endpoint using this.</li>
+<li><strong>out_type</strong> (<a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel"><em>helpscout.BaseModel</em></a><em>, </em><em>optional</em>) – The type of record to
+output. This should be provided by child classes, by calling
+super.</li>
+<li><strong>**add_params</strong> (<em>mixed</em>) – Add these to the request parameters.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Newly created record. Will be of the</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">helpscout.models.BaseModel</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="helpscout.base_api.BaseApi.delete">
+<em class="property">classmethod </em><code class="descname">delete</code><span class="sig-paren">(</span><em>session</em>, <em>record</em>, <em>endpoint_override=None</em>, <em>out_type=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_api.BaseApi.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a record.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
+<li><strong>record</strong> (<a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel"><em>helpscout.BaseModel</em></a>) – The record to be deleted.</li>
+<li><strong>endpoint_override</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>, </em><em>optional</em>) – Override the default
+endpoint using this.</li>
+<li><strong>out_type</strong> (<a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel"><em>helpscout.BaseModel</em></a><em>, </em><em>optional</em>) – The type of record to
+output. This should be provided by child classes, by calling
+super.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Nothing.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">NoneType</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="helpscout.base_api.BaseApi.get">
+<em class="property">classmethod </em><code class="descname">get</code><span class="sig-paren">(</span><em>session</em>, <em>record_id</em>, <em>endpoint_override=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_api.BaseApi.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a specific record.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
+<li><strong>record_id</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The ID of the record to get.</li>
+<li><strong>endpoint_override</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>, </em><em>optional</em>) – Override the default
+endpoint using this.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>A record singleton, if existing. Otherwise</dt>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel">helpscout.BaseModel</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="staticmethod">
 <dt id="helpscout.base_api.BaseApi.get_search_domain">
 <em class="property">static </em><code class="descname">get_search_domain</code><span class="sig-paren">(</span><em>queries</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.get_search_domain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_api.BaseApi.get_search_domain" title="Permalink to this definition">¶</a></dt>
@@ -229,6 +323,37 @@ to the interface in
 </dd></dl>
 
 <dl class="classmethod">
+<dt id="helpscout.base_api.BaseApi.list">
+<em class="property">classmethod </em><code class="descname">list</code><span class="sig-paren">(</span><em>session</em>, <em>endpoint_override=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_api.BaseApi.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return records in a mailbox.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
+<li><strong>endpoint_override</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>, </em><em>optional</em>) – Override the default
+endpoint using this.</li>
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a><em>, </em><em>optional</em>) – Data to provide as request parameters.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>Results</dt>
+<dd><p class="first last">iterator.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.request_paginator.html#helpscout.request_paginator.RequestPaginator" title="helpscout.request_paginator.RequestPaginator">RequestPaginator</a>(output_type=helpscout.BaseModel)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
 <dt id="helpscout.base_api.BaseApi.new_object">
 <em class="property">classmethod </em><code class="descname">new_object</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.new_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_api.BaseApi.new_object" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a new object of the correct type from the data.</p>
@@ -251,6 +376,67 @@ object. It can use either camelCase keys or snake_case.</td>
 <dt>
 <code class="descname">paginator</code><em class="property"> = None</em></dt>
 <dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="helpscout.base_api.BaseApi.search">
+<em class="property">classmethod </em><code class="descname">search</code><span class="sig-paren">(</span><em>session</em>, <em>queries</em>, <em>out_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_api.BaseApi.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search for a record given a domain.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
+<li><strong>queries</strong> (<em>helpscout.models.Domain</em><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#iter" title="(in Python v2.7)"><em>iter</em></a>) – The queries for the
+domain. If a <code class="docutils literal"><span class="pre">Domain</span></code> object is provided, it will simply be
+returned. Otherwise, a <code class="docutils literal"><span class="pre">Domain</span></code> object will be generated
+from the complex queries. In this case, the queries should
+conform to the interface in
+<a class="reference internal" href="helpscout.domain.html#helpscout.domain.Domain.from_tuple" title="helpscout.domain.Domain.from_tuple"><code class="xref py py-func docutils literal"><span class="pre">helpscout.domain.Domain.from_tuple()</span></code></a>.</li>
+<li><strong>out_type</strong> (<a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel"><em>helpscout.BaseModel</em></a>) – The type of record to output. This
+should be provided by child classes, by calling super.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>Results</dt>
+<dd><p class="first last">iterator of the <code class="docutils literal"><span class="pre">out_type</span></code> that is defined.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.request_paginator.html#helpscout.request_paginator.RequestPaginator" title="helpscout.request_paginator.RequestPaginator">RequestPaginator</a>(output_type=helpscout.BaseModel)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="helpscout.base_api.BaseApi.update">
+<em class="property">classmethod </em><code class="descname">update</code><span class="sig-paren">(</span><em>session</em>, <em>record</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.base_api.BaseApi.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a record.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
+<li><strong>record</strong> (<a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel"><em>helpscout.BaseModel</em></a>) – The record to
+be updated.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Freshly updated record.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel">helpscout.BaseModel</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -431,6 +617,96 @@ represents.</p>
 <code class="descname">BASE_URI</code><em class="property"> = 'https://api.helpscout.net/v1'</em></dt>
 <dd></dd></dl>
 
+<dl class="classmethod">
+<dt id="helpscout.BaseApi.create">
+<em class="property">classmethod </em><code class="descname">create</code><span class="sig-paren">(</span><em>session</em>, <em>record</em>, <em>endpoint_override=None</em>, <em>out_type=None</em>, <em>**add_params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseApi.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an object on HelpScout.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
+<li><strong>record</strong> (<a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel"><em>helpscout.BaseModel</em></a>) – The record to be created.</li>
+<li><strong>endpoint_override</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>, </em><em>optional</em>) – Override the default
+endpoint using this.</li>
+<li><strong>out_type</strong> (<a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel"><em>helpscout.BaseModel</em></a><em>, </em><em>optional</em>) – The type of record to
+output. This should be provided by child classes, by calling
+super.</li>
+<li><strong>**add_params</strong> (<em>mixed</em>) – Add these to the request parameters.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Newly created record. Will be of the</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">helpscout.models.BaseModel</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="helpscout.BaseApi.delete">
+<em class="property">classmethod </em><code class="descname">delete</code><span class="sig-paren">(</span><em>session</em>, <em>record</em>, <em>endpoint_override=None</em>, <em>out_type=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseApi.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a record.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
+<li><strong>record</strong> (<a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel"><em>helpscout.BaseModel</em></a>) – The record to be deleted.</li>
+<li><strong>endpoint_override</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>, </em><em>optional</em>) – Override the default
+endpoint using this.</li>
+<li><strong>out_type</strong> (<a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel"><em>helpscout.BaseModel</em></a><em>, </em><em>optional</em>) – The type of record to
+output. This should be provided by child classes, by calling
+super.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Nothing.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">NoneType</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="helpscout.BaseApi.get">
+<em class="property">classmethod </em><code class="descname">get</code><span class="sig-paren">(</span><em>session</em>, <em>record_id</em>, <em>endpoint_override=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseApi.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a specific record.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
+<li><strong>record_id</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The ID of the record to get.</li>
+<li><strong>endpoint_override</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>, </em><em>optional</em>) – Override the default
+endpoint using this.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>A record singleton, if existing. Otherwise</dt>
+<dd><p class="first last"><code class="docutils literal"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel">helpscout.BaseModel</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="staticmethod">
 <dt id="helpscout.BaseApi.get_search_domain">
 <em class="property">static </em><code class="descname">get_search_domain</code><span class="sig-paren">(</span><em>queries</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.get_search_domain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseApi.get_search_domain" title="Permalink to this definition">¶</a></dt>
@@ -459,6 +735,37 @@ to the interface in
 </dd></dl>
 
 <dl class="classmethod">
+<dt id="helpscout.BaseApi.list">
+<em class="property">classmethod </em><code class="descname">list</code><span class="sig-paren">(</span><em>session</em>, <em>endpoint_override=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseApi.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return records in a mailbox.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
+<li><strong>endpoint_override</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>, </em><em>optional</em>) – Override the default
+endpoint using this.</li>
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a><em>, </em><em>optional</em>) – Data to provide as request parameters.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>Results</dt>
+<dd><p class="first last">iterator.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.request_paginator.html#helpscout.request_paginator.RequestPaginator" title="helpscout.request_paginator.RequestPaginator">RequestPaginator</a>(output_type=helpscout.BaseModel)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
 <dt id="helpscout.BaseApi.new_object">
 <em class="property">classmethod </em><code class="descname">new_object</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.new_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseApi.new_object" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a new object of the correct type from the data.</p>
@@ -481,6 +788,67 @@ object. It can use either camelCase keys or snake_case.</td>
 <dt>
 <code class="descname">paginator</code><em class="property"> = None</em></dt>
 <dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="helpscout.BaseApi.search">
+<em class="property">classmethod </em><code class="descname">search</code><span class="sig-paren">(</span><em>session</em>, <em>queries</em>, <em>out_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseApi.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search for a record given a domain.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
+<li><strong>queries</strong> (<em>helpscout.models.Domain</em><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#iter" title="(in Python v2.7)"><em>iter</em></a>) – The queries for the
+domain. If a <code class="docutils literal"><span class="pre">Domain</span></code> object is provided, it will simply be
+returned. Otherwise, a <code class="docutils literal"><span class="pre">Domain</span></code> object will be generated
+from the complex queries. In this case, the queries should
+conform to the interface in
+<a class="reference internal" href="helpscout.domain.html#helpscout.domain.Domain.from_tuple" title="helpscout.domain.Domain.from_tuple"><code class="xref py py-func docutils literal"><span class="pre">helpscout.domain.Domain.from_tuple()</span></code></a>.</li>
+<li><strong>out_type</strong> (<a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel"><em>helpscout.BaseModel</em></a>) – The type of record to output. This
+should be provided by child classes, by calling super.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>Results</dt>
+<dd><p class="first last">iterator of the <code class="docutils literal"><span class="pre">out_type</span></code> that is defined.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="helpscout.request_paginator.html#helpscout.request_paginator.RequestPaginator" title="helpscout.request_paginator.RequestPaginator">RequestPaginator</a>(output_type=helpscout.BaseModel)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="helpscout.BaseApi.update">
+<em class="property">classmethod </em><code class="descname">update</code><span class="sig-paren">(</span><em>session</em>, <em>record</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/base_api.html#BaseApi.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.BaseApi.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a record.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>session</strong> (<em>requests.sessions.Session</em>) – Authenticated session.</li>
+<li><strong>record</strong> (<a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel"><em>helpscout.BaseModel</em></a>) – The record to
+be updated.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Freshly updated record.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#helpscout.BaseModel" title="helpscout.BaseModel">helpscout.BaseModel</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 

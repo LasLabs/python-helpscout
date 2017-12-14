@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.tests.test_request_paginator &#8212; HelpScout 0.0.0b337 documentation</title>
+    <title>helpscout.tests.test_request_paginator &#8212; HelpScout 0.0.0b372 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.0.0b337',
+        VERSION:     '0.0.0b372',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -99,9 +99,7 @@
             <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="n">response_code</span>
             <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">responses</span>
             <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">responses</span>
-            <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">mock_attrs</span><span class="p">:</span>
-                <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
-                <span class="n">method</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">response</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">response</span>
             <span class="k">yield</span> <span class="n">session</span></div>
 
 <div class="viewcode-block" id="TestRequestPaginator.do_call"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_request_paginator.TestRequestPaginator.do_call">[docs]</a>    <span class="k">def</span> <span class="nf">do_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request_type</span><span class="o">=</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="n">responses</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -115,8 +113,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertDictEqual</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_responses</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;items&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 
     <span class="k">def</span> <span class="nf">_test_session_call_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">request_type</span><span class="p">):</span>
-        <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">request_type</span><span class="p">)</span>
-        <span class="n">method</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span>
+            <span class="n">request_type</span><span class="p">,</span>
             <span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vals</span><span class="p">[</span><span class="s1">&#39;endpoint&#39;</span><span class="p">],</span>
             <span class="n">json</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
             <span class="n">verify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -138,7 +136,8 @@
 <div class="viewcode-block" id="TestRequestPaginator.test_get_gets"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_request_paginator.TestRequestPaginator.test_get_gets">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_gets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; It should call the session with proper args. &quot;&quot;&quot;</span>
         <span class="n">session</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">do_call</span><span class="p">(</span><span class="n">responses</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">test_responses</span><span class="p">)</span>
-        <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span>
+            <span class="s1">&#39;get&#39;</span><span class="p">,</span>
             <span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vals</span><span class="p">[</span><span class="s1">&#39;endpoint&#39;</span><span class="p">],</span>
             <span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
             <span class="n">verify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -181,7 +180,7 @@
 <div class="viewcode-block" id="TestRequestPaginator.test_iter"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.test_request_paginator.TestRequestPaginator.test_iter">[docs]</a>    <span class="k">def</span> <span class="nf">test_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; It should iterate until the end &amp; yield data. &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
-            <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_responses</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">()</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_responses</span>
             <span class="n">res</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paginator</span><span class="p">)</span>
             <span class="n">expect</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;page&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;page&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;page&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">expect</span><span class="p">)</span></div></div>

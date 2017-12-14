@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.models package &#8212; HelpScout 0.0.0b337 documentation</title>
+    <title>helpscout.models package &#8212; HelpScout 0.0.0b372 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.0b337',
+        VERSION:     '0.0.0b372',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -113,7 +113,7 @@
 <dl class="class">
 <dt id="helpscout.models.attachment.Attachment">
 <em class="property">class </em><code class="descclassname">helpscout.models.attachment.</code><code class="descname">Attachment</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/models/attachment.html#Attachment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.models.attachment.Attachment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="helpscout.html#helpscout.base_model.BaseModel" title="helpscout.base_model.BaseModel"><code class="xref py py-class docutils literal"><span class="pre">helpscout.base_model.BaseModel</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#helpscout.models.attachment_data.AttachmentData" title="helpscout.models.attachment_data.AttachmentData"><code class="xref py py-class docutils literal"><span class="pre">helpscout.models.attachment_data.AttachmentData</span></code></a></p>
 <p><strong>Required Properties:</strong></p>
 <ul class="simple">
 <li><strong>data</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): base64 encoded data., a unicode string</li>
@@ -126,12 +126,6 @@
 <li><strong>url</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Public-facing url where attachment can be downloaded., a unicode string</li>
 <li><strong>width</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Image width, an integer</li>
 </ul>
-<dl class="attribute">
-<dt id="helpscout.models.attachment.Attachment.data">
-<code class="descname">data</code><a class="headerlink" href="#helpscout.models.attachment.Attachment.data" title="Permalink to this definition">¶</a></dt>
-<dd><p>base64 encoded data.</p>
-</dd></dl>
-
 <dl class="attribute">
 <dt id="helpscout.models.attachment.Attachment.file_name">
 <code class="descname">file_name</code><a class="headerlink" href="#helpscout.models.attachment.Attachment.file_name" title="Permalink to this definition">¶</a></dt>
@@ -192,6 +186,12 @@
 <dt id="helpscout.models.attachment_data.AttachmentData.data">
 <code class="descname">data</code><a class="headerlink" href="#helpscout.models.attachment_data.AttachmentData.data" title="Permalink to this definition">¶</a></dt>
 <dd><p>base64 encoded data.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.models.attachment_data.AttachmentData.raw_data">
+<code class="descname">raw_data</code><a class="headerlink" href="#helpscout.models.attachment_data.AttachmentData.raw_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raw (decoded) attachment data (possibly binary).</p>
 </dd></dl>
 
 </dd></dl>
@@ -296,22 +296,27 @@
 <li><strong>closed_by</strong> (<a class="reference internal" href="#helpscout.models.person.Person" title="helpscout.models.person.Person"><code class="xref py py-class docutils literal"><span class="pre">Person</span></code></a>): The Help Scout user who closed this conversation., an instance of Person</li>
 <li><strong>created_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this conversation was created., a datetime object</li>
 <li><strong>created_by</strong> (<a class="reference internal" href="#helpscout.models.person.Person" title="helpscout.models.person.Person"><code class="xref py py-class docutils literal"><span class="pre">Person</span></code></a>): The <code class="docutils literal"><span class="pre">Person</span></code> who created this conversation. The <code class="docutils literal"><span class="pre">type</span></code> property will specify whether it was created by a <code class="docutils literal"><span class="pre">user</span></code> or a <code class="docutils literal"><span class="pre">customer</span></code>., an instance of Person</li>
+<li><strong>created_by_type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): The type of user that created this conversation., a unicode string</li>
 <li><strong>customer</strong> (<a class="reference internal" href="#helpscout.models.person.Person" title="helpscout.models.person.Person"><code class="xref py py-class docutils literal"><span class="pre">Person</span></code></a>): The customer who this conversation is associated with., an instance of Person</li>
+<li><strong>draft</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): Is this a draft conversation? This property duplicates <code class="docutils literal"><span class="pre">is_draft</span></code>, but both are received in API responses at the same time so neither can be considered “deprecated”., a boolean</li>
 <li><strong>folder_id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): ID of the Mailbox Folder to which this conversation resides., an integer</li>
 <li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
-<li><strong>is_draft</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): Is this a draft conversation?, a boolean</li>
+<li><strong>is_draft</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): Is this a draft conversation? This property duplicates <code class="docutils literal"><span class="pre">draft</span></code>, but both are received in API responses at the same time so neither can be considered “deprecated”., a boolean</li>
+<li><strong>locked</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): If this conversation is locked from editing., a boolean</li>
 <li><strong>mailbox</strong> (<a class="reference internal" href="#helpscout.models.mailbox_ref.MailboxRef" title="helpscout.models.mailbox_ref.MailboxRef"><code class="xref py py-class docutils literal"><span class="pre">MailboxRef</span></code></a>): The mailbox to which this conversation belongs., an instance of MailboxRef</li>
 <li><strong>modified_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when a user last modified this conversation., a datetime object</li>
 <li><strong>number</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): The conversation number displayed in the UI. This number can be used in combination with the id to construct a URI to the conversation on the Help Scout website. Example: <code class="docutils literal"><span class="pre">https://secure.helpscout.net/conversation/&lt;id&gt;/&lt;number&gt;/</span></code>, an integer</li>
 <li><strong>owner</strong> (<a class="reference internal" href="#helpscout.models.person.Person" title="helpscout.models.person.Person"><code class="xref py py-class docutils literal"><span class="pre">Person</span></code></a>): The Help Scout user who is currently assigned to this conversation., an instance of Person</li>
 <li><strong>preview</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Conversation preview., a unicode string</li>
 <li><strong>source</strong> (<a class="reference internal" href="#helpscout.models.source.Source" title="helpscout.models.source.Source"><code class="xref py py-class docutils literal"><span class="pre">Source</span></code></a>): Specifies the method in which this conversation was created., an instance of Source</li>
+<li><strong>spam</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): If this conversation is marked as SPAM., a boolean</li>
 <li><strong>status</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): Status of the conversation., any of “active”, “pending”, “closed”, “spam”, Default: pending</li>
 <li><strong>subject</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): The subject of the conversation., a unicode string</li>
 <li><strong>tags</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">String</span></code></a>): Tags for the conversation, a list (each item is a unicode string)</li>
 <li><strong>thread_count</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): This count represents the number of published threads found on the conversation (it does not include line items, drafts or threads held for review by Traffic Cop)., an integer</li>
 <li><strong>threads</strong> (<a class="reference internal" href="#helpscout.models.Thread" title="helpscout.models.Thread"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Thread</span></code></a>): Threads associated with the conversation., a list (each item is an instance of Thread)</li>
-<li><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The type of conversation., any of “email”, “chat”, “phone”</li>
+<li><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The type of conversation., any of “email”, “chat”, “phone”, “spam”</li>
+<li><strong>user_modified_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): Last time that this conversation was edited by a user., a datetime object</li>
 </ul>
 <dl class="attribute">
 <dt id="helpscout.models.conversation.Conversation.bcc">
@@ -350,9 +355,21 @@
 </dd></dl>
 
 <dl class="attribute">
+<dt id="helpscout.models.conversation.Conversation.created_by_type">
+<code class="descname">created_by_type</code><a class="headerlink" href="#helpscout.models.conversation.Conversation.created_by_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of user that created this conversation.</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="helpscout.models.conversation.Conversation.customer">
 <code class="descname">customer</code><a class="headerlink" href="#helpscout.models.conversation.Conversation.customer" title="Permalink to this definition">¶</a></dt>
 <dd><p>The customer who this conversation is associated with.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.models.conversation.Conversation.draft">
+<code class="descname">draft</code><a class="headerlink" href="#helpscout.models.conversation.Conversation.draft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is this a draft conversation? This property duplicates <code class="docutils literal"><span class="pre">is_draft</span></code>, but both are received in API responses at the same time so neither can be considered “deprecated”.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -364,7 +381,13 @@
 <dl class="attribute">
 <dt id="helpscout.models.conversation.Conversation.is_draft">
 <code class="descname">is_draft</code><a class="headerlink" href="#helpscout.models.conversation.Conversation.is_draft" title="Permalink to this definition">¶</a></dt>
-<dd><p>Is this a draft conversation?</p>
+<dd><p>Is this a draft conversation? This property duplicates <code class="docutils literal"><span class="pre">draft</span></code>, but both are received in API responses at the same time so neither can be considered “deprecated”.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.models.conversation.Conversation.locked">
+<code class="descname">locked</code><a class="headerlink" href="#helpscout.models.conversation.Conversation.locked" title="Permalink to this definition">¶</a></dt>
+<dd><p>If this conversation is locked from editing.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -386,6 +409,12 @@
 </dd></dl>
 
 <dl class="attribute">
+<dt id="helpscout.models.conversation.Conversation.spam">
+<code class="descname">spam</code><a class="headerlink" href="#helpscout.models.conversation.Conversation.spam" title="Permalink to this definition">¶</a></dt>
+<dd><p>If this conversation is marked as SPAM.</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="helpscout.models.conversation.Conversation.tags">
 <code class="descname">tags</code><a class="headerlink" href="#helpscout.models.conversation.Conversation.tags" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tags for the conversation</p>
@@ -401,6 +430,12 @@
 <dt id="helpscout.models.conversation.Conversation.type">
 <code class="descname">type</code><a class="headerlink" href="#helpscout.models.conversation.Conversation.type" title="Permalink to this definition">¶</a></dt>
 <dd><p>The type of conversation.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.models.conversation.Conversation.user_modified_at">
+<code class="descname">user_modified_at</code><a class="headerlink" href="#helpscout.models.conversation.Conversation.user_modified_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Last time that this conversation was edited by a user.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1624,7 +1659,7 @@ When a conversation is forwarded, a new conversation is created to represent the
 <dl class="class">
 <dt id="helpscout.models.Attachment">
 <em class="property">class </em><code class="descclassname">helpscout.models.</code><code class="descname">Attachment</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helpscout/models/attachment.html#Attachment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpscout.models.Attachment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="helpscout.html#helpscout.base_model.BaseModel" title="helpscout.base_model.BaseModel"><code class="xref py py-class docutils literal"><span class="pre">helpscout.base_model.BaseModel</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#helpscout.models.attachment_data.AttachmentData" title="helpscout.models.attachment_data.AttachmentData"><code class="xref py py-class docutils literal"><span class="pre">helpscout.models.attachment_data.AttachmentData</span></code></a></p>
 <p><strong>Required Properties:</strong></p>
 <ul class="simple">
 <li><strong>data</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): base64 encoded data., a unicode string</li>
@@ -1637,12 +1672,6 @@ When a conversation is forwarded, a new conversation is created to represent the
 <li><strong>url</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Public-facing url where attachment can be downloaded., a unicode string</li>
 <li><strong>width</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Image width, an integer</li>
 </ul>
-<dl class="attribute">
-<dt id="helpscout.models.Attachment.data">
-<code class="descname">data</code><a class="headerlink" href="#helpscout.models.Attachment.data" title="Permalink to this definition">¶</a></dt>
-<dd><p>base64 encoded data.</p>
-</dd></dl>
-
 <dl class="attribute">
 <dt id="helpscout.models.Attachment.file_name">
 <code class="descname">file_name</code><a class="headerlink" href="#helpscout.models.Attachment.file_name" title="Permalink to this definition">¶</a></dt>
@@ -1700,6 +1729,12 @@ When a conversation is forwarded, a new conversation is created to represent the
 <dt id="helpscout.models.AttachmentData.data">
 <code class="descname">data</code><a class="headerlink" href="#helpscout.models.AttachmentData.data" title="Permalink to this definition">¶</a></dt>
 <dd><p>base64 encoded data.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.models.AttachmentData.raw_data">
+<code class="descname">raw_data</code><a class="headerlink" href="#helpscout.models.AttachmentData.raw_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raw (decoded) attachment data (possibly binary).</p>
 </dd></dl>
 
 </dd></dl>
@@ -1795,22 +1830,27 @@ When a conversation is forwarded, a new conversation is created to represent the
 <li><strong>closed_by</strong> (<a class="reference internal" href="#helpscout.models.Person" title="helpscout.models.Person"><code class="xref py py-class docutils literal"><span class="pre">Person</span></code></a>): The Help Scout user who closed this conversation., an instance of Person</li>
 <li><strong>created_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when this conversation was created., a datetime object</li>
 <li><strong>created_by</strong> (<a class="reference internal" href="#helpscout.models.Person" title="helpscout.models.Person"><code class="xref py py-class docutils literal"><span class="pre">Person</span></code></a>): The <code class="docutils literal"><span class="pre">Person</span></code> who created this conversation. The <code class="docutils literal"><span class="pre">type</span></code> property will specify whether it was created by a <code class="docutils literal"><span class="pre">user</span></code> or a <code class="docutils literal"><span class="pre">customer</span></code>., an instance of Person</li>
+<li><strong>created_by_type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): The type of user that created this conversation., a unicode string</li>
 <li><strong>customer</strong> (<a class="reference internal" href="#helpscout.models.Person" title="helpscout.models.Person"><code class="xref py py-class docutils literal"><span class="pre">Person</span></code></a>): The customer who this conversation is associated with., an instance of Person</li>
+<li><strong>draft</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): Is this a draft conversation? This property duplicates <code class="docutils literal"><span class="pre">is_draft</span></code>, but both are received in API responses at the same time so neither can be considered “deprecated”., a boolean</li>
 <li><strong>folder_id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): ID of the Mailbox Folder to which this conversation resides., an integer</li>
 <li><strong>id</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): Unique identifier, an integer</li>
-<li><strong>is_draft</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): Is this a draft conversation?, a boolean</li>
+<li><strong>is_draft</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): Is this a draft conversation? This property duplicates <code class="docutils literal"><span class="pre">draft</span></code>, but both are received in API responses at the same time so neither can be considered “deprecated”., a boolean</li>
+<li><strong>locked</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): If this conversation is locked from editing., a boolean</li>
 <li><strong>mailbox</strong> (<a class="reference internal" href="#helpscout.models.MailboxRef" title="helpscout.models.MailboxRef"><code class="xref py py-class docutils literal"><span class="pre">MailboxRef</span></code></a>): The mailbox to which this conversation belongs., an instance of MailboxRef</li>
 <li><strong>modified_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): UTC time when a user last modified this conversation., a datetime object</li>
 <li><strong>number</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): The conversation number displayed in the UI. This number can be used in combination with the id to construct a URI to the conversation on the Help Scout website. Example: <code class="docutils literal"><span class="pre">https://secure.helpscout.net/conversation/&lt;id&gt;/&lt;number&gt;/</span></code>, an integer</li>
 <li><strong>owner</strong> (<a class="reference internal" href="#helpscout.models.Person" title="helpscout.models.Person"><code class="xref py py-class docutils literal"><span class="pre">Person</span></code></a>): The Help Scout user who is currently assigned to this conversation., an instance of Person</li>
 <li><strong>preview</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): Conversation preview., a unicode string</li>
 <li><strong>source</strong> (<a class="reference internal" href="#helpscout.models.Source" title="helpscout.models.Source"><code class="xref py py-class docutils literal"><span class="pre">Source</span></code></a>): Specifies the method in which this conversation was created., an instance of Source</li>
+<li><strong>spam</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Bool" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>): If this conversation is marked as SPAM., a boolean</li>
 <li><strong>status</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): Status of the conversation., any of “active”, “pending”, “closed”, “spam”, Default: pending</li>
 <li><strong>subject</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>): The subject of the conversation., a unicode string</li>
 <li><strong>tags</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.String" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">String</span></code></a>): Tags for the conversation, a list (each item is a unicode string)</li>
 <li><strong>thread_count</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/primitive.html#properties.Integer" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">Integer</span></code></a>): This count represents the number of published threads found on the conversation (it does not include line items, drafts or threads held for review by Traffic Cop)., an integer</li>
 <li><strong>threads</strong> (<a class="reference internal" href="#helpscout.models.Thread" title="helpscout.models.Thread"><code class="xref py py-class docutils literal"><span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">Thread</span></code></a>): Threads associated with the conversation., a list (each item is an instance of Thread)</li>
-<li><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The type of conversation., any of “email”, “chat”, “phone”</li>
+<li><strong>type</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.StringChoice" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">StringChoice</span></code></a>): The type of conversation., any of “email”, “chat”, “phone”, “spam”</li>
+<li><strong>user_modified_at</strong> (<a class="reference external" href="https://propertiespy.readthedocs.io/en/latest/content/other.html#properties.DateTime" title="(in properties v0.3.3)"><code class="xref py py-class docutils literal"><span class="pre">DateTime</span></code></a>): Last time that this conversation was edited by a user., a datetime object</li>
 </ul>
 <dl class="attribute">
 <dt id="helpscout.models.Conversation.bcc">
@@ -1849,9 +1889,21 @@ When a conversation is forwarded, a new conversation is created to represent the
 </dd></dl>
 
 <dl class="attribute">
+<dt id="helpscout.models.Conversation.created_by_type">
+<code class="descname">created_by_type</code><a class="headerlink" href="#helpscout.models.Conversation.created_by_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of user that created this conversation.</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="helpscout.models.Conversation.customer">
 <code class="descname">customer</code><a class="headerlink" href="#helpscout.models.Conversation.customer" title="Permalink to this definition">¶</a></dt>
 <dd><p>The customer who this conversation is associated with.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.models.Conversation.draft">
+<code class="descname">draft</code><a class="headerlink" href="#helpscout.models.Conversation.draft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is this a draft conversation? This property duplicates <code class="docutils literal"><span class="pre">is_draft</span></code>, but both are received in API responses at the same time so neither can be considered “deprecated”.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -1863,7 +1915,13 @@ When a conversation is forwarded, a new conversation is created to represent the
 <dl class="attribute">
 <dt id="helpscout.models.Conversation.is_draft">
 <code class="descname">is_draft</code><a class="headerlink" href="#helpscout.models.Conversation.is_draft" title="Permalink to this definition">¶</a></dt>
-<dd><p>Is this a draft conversation?</p>
+<dd><p>Is this a draft conversation? This property duplicates <code class="docutils literal"><span class="pre">draft</span></code>, but both are received in API responses at the same time so neither can be considered “deprecated”.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.models.Conversation.locked">
+<code class="descname">locked</code><a class="headerlink" href="#helpscout.models.Conversation.locked" title="Permalink to this definition">¶</a></dt>
+<dd><p>If this conversation is locked from editing.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -1885,6 +1943,12 @@ When a conversation is forwarded, a new conversation is created to represent the
 </dd></dl>
 
 <dl class="attribute">
+<dt id="helpscout.models.Conversation.spam">
+<code class="descname">spam</code><a class="headerlink" href="#helpscout.models.Conversation.spam" title="Permalink to this definition">¶</a></dt>
+<dd><p>If this conversation is marked as SPAM.</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="helpscout.models.Conversation.tags">
 <code class="descname">tags</code><a class="headerlink" href="#helpscout.models.Conversation.tags" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tags for the conversation</p>
@@ -1900,6 +1964,12 @@ When a conversation is forwarded, a new conversation is created to represent the
 <dt id="helpscout.models.Conversation.type">
 <code class="descname">type</code><a class="headerlink" href="#helpscout.models.Conversation.type" title="Permalink to this definition">¶</a></dt>
 <dd><p>The type of conversation.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="helpscout.models.Conversation.user_modified_at">
+<code class="descname">user_modified_at</code><a class="headerlink" href="#helpscout.models.Conversation.user_modified_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Last time that this conversation was edited by a user.</p>
 </dd></dl>
 
 </dd></dl>

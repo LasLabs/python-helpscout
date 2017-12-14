@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>helpscout.tests.api_common &#8212; HelpScout 0.0.0b337 documentation</title>
+    <title>helpscout.tests.api_common &#8212; HelpScout 0.0.0b372 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.0.0b337',
+        VERSION:     '0.0.0b372',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -46,54 +46,263 @@
 <span class="kn">import</span> <span class="nn">mock</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
 
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="k">import</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">join</span>
+
+<span class="kn">from</span> <span class="nn">vcr</span> <span class="k">import</span> <span class="n">VCR</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="k">import</span> <span class="n">HelpScout</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="k">import</span> <span class="n">BaseModel</span>
+
+<span class="kn">from</span> <span class="nn">..models.attachment</span> <span class="k">import</span> <span class="n">Attachment</span>
+<span class="kn">from</span> <span class="nn">..models.customer</span> <span class="k">import</span> <span class="n">Customer</span>
+<span class="kn">from</span> <span class="nn">..models.conversation</span> <span class="k">import</span> <span class="n">Conversation</span>
+<span class="kn">from</span> <span class="nn">..models.folder</span> <span class="k">import</span> <span class="n">Folder</span>
+<span class="kn">from</span> <span class="nn">..models.mailbox_ref</span> <span class="k">import</span> <span class="n">MailboxRef</span>
+<span class="kn">from</span> <span class="nn">..models.person</span> <span class="k">import</span> <span class="n">Person</span>
+<span class="kn">from</span> <span class="nn">..models.thread</span> <span class="k">import</span> <span class="n">Thread</span>
+<span class="kn">from</span> <span class="nn">..models.user</span> <span class="k">import</span> <span class="n">User</span>
+
+
+<span class="n">recorder</span> <span class="o">=</span> <span class="n">VCR</span><span class="p">(</span>
+    <span class="n">record_mode</span><span class="o">=</span><span class="s1">&#39;once&#39;</span><span class="p">,</span>
+    <span class="n">cassette_library_dir</span><span class="o">=</span><span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;fixtures/cassettes&#39;</span><span class="p">),</span>
+    <span class="n">path_transformer</span><span class="o">=</span><span class="n">VCR</span><span class="o">.</span><span class="n">ensure_suffix</span><span class="p">(</span><span class="s1">&#39;.yml&#39;</span><span class="p">),</span>
+    <span class="n">filter_headers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Authorization&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+
 
 <div class="viewcode-block" id="ApiCommon"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.api_common.ApiCommon">[docs]</a><span class="k">class</span> <span class="nc">ApiCommon</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
+    <span class="c1"># This should be set to the API endpoint object in children</span>
+    <span class="n">__endpoint__</span> <span class="o">=</span> <span class="kc">None</span>
+
 <div class="viewcode-block" id="ApiCommon.setUp"><a class="viewcode-back" href="../../../helpscout.tests.html#helpscout.tests.api_common.ApiCommon.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ApiCommon</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api</span> <span class="o">=</span> <span class="n">HelpScout</span><span class="p">(</span>
+            <span class="s1">&#39;06501c1e20bcb8a489f428b3b6a08c6bffaef190&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mock_class</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mock_session</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">MagicMock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mock_record</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="mi">1234</span></div>
 
-    <span class="k">def</span> <span class="nf">_test_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="n">method_args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">uri</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                     <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">request_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">singleton</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                     <span class="n">out_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Helper to test an API method call.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strip_id</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a User object.&quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">deserialize</span><span class="p">({</span>
+            <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Dave&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Lasley&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;created_at&#39;</span><span class="p">:</span> <span class="s1">&#39;2017-08-25T20:01:06Z&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;modified_at&#39;</span><span class="p">:</span> <span class="s1">&#39;2017-12-13T19:47:35Z&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;emails&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">218639</span><span class="p">,</span>
+            <span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;owner&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;full_name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Dave Lasley&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;timezone&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;America/New_York&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;support@example.com&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;photo_url&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;https://d33v4339jhl8k0.cloudfront.net/&#39;</span>
+                         <span class="sa">u</span><span class="s1">&#39;users/218639.95870.jpg&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_strip_id</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">strip_id</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">method_args</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">method_args</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="nf">_get_person_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strip_id</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a Person object for a user.&quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">Person</span><span class="o">.</span><span class="n">deserialize</span><span class="p">({</span>
+            <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Dave&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Lasley&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;emails&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">218639</span><span class="p">,</span>
+            <span class="s1">&#39;full_name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Dave Lasley&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;support@example.com&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;photo_url&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;https://d33v4339jhl8k0.cloudfront.net/&#39;</span>
+                         <span class="sa">u</span><span class="s1">&#39;users/218639.95870.jpg&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_strip_id</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">strip_id</span><span class="p">)</span>
 
-        <span class="k">with</span> <span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s1">&#39;__new__&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">new</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_get_customer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strip_id</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a Customer object.&quot;&quot;&quot;</span>
+        <span class="n">customer</span> <span class="o">=</span> <span class="n">Customer</span><span class="o">.</span><span class="n">deserialize</span><span class="p">({</span>
+            <span class="s1">&#39;chats&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;User&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;phones&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;created_at&#39;</span><span class="p">:</span> <span class="s1">&#39;2017-09-23T20:12:43Z&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;modified_at&#39;</span><span class="p">:</span> <span class="s1">&#39;2017-12-13T22:39:59Z&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;websites&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;emails&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;full_name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Test User&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="s1">&#39;unknown&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">144228647</span><span class="p">,</span>
+            <span class="s1">&#39;organization&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Test Company&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;social_profiles&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;job_title&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;CEO&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_strip_id</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span> <span class="n">strip_id</span><span class="p">)</span>
 
-            <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)</span>
-            <span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mock_session</span><span class="p">,</span> <span class="o">*</span><span class="n">method_args</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_get_person_customer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strip_id</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a Person object for a customer.&quot;&quot;&quot;</span>
+        <span class="n">customer</span> <span class="o">=</span> <span class="n">Person</span><span class="o">.</span><span class="n">deserialize</span><span class="p">({</span>
+            <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;User&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;test@example.com&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;phone&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;1234567890&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">144228647</span><span class="p">,</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;customer&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;emails&#39;</span><span class="p">:</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;test@example.com&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;photo_url&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_strip_id</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span> <span class="n">strip_id</span><span class="p">)</span>
 
-            <span class="n">new</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">_get_mailbox_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strip_id</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a MailboxRef object.&quot;&quot;&quot;</span>
+        <span class="n">mailbox_ref</span> <span class="o">=</span> <span class="n">MailboxRef</span><span class="o">.</span><span class="n">deserialize</span><span class="p">({</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">122867</span><span class="p">,</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Support&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_strip_id</span><span class="p">(</span><span class="n">mailbox_ref</span><span class="p">,</span> <span class="n">strip_id</span><span class="p">)</span>
 
-            <span class="n">call_args</span> <span class="o">=</span> <span class="n">new</span><span class="o">.</span><span class="n">call_args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">call_kwargs</span> <span class="o">=</span> <span class="n">new</span><span class="o">.</span><span class="n">call_args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">_get_thread</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strip_id</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="o">.</span><span class="n">deserialize</span><span class="p">({</span>
+            <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;active&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;body&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;&lt;p&gt;Test conversation.&lt;/p&gt;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;created_by_customer&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s1">&#39;attachments&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;to&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;cc&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;created_at&#39;</span><span class="p">:</span> <span class="s1">&#39;2017-12-07T21:08:20Z&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;created_by&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_person_user</span><span class="p">()</span><span class="o">.</span><span class="n">serialize</span><span class="p">(),</span>
+            <span class="s1">&#39;bcc&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;customer&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_person_customer</span><span class="p">()</span><span class="o">.</span><span class="n">serialize</span><span class="p">(),</span>
+            <span class="s1">&#39;state&#39;</span><span class="p">:</span> <span class="s1">&#39;published&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;via&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;api&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;note&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1310543489</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_strip_id</span><span class="p">(</span><span class="n">thread</span><span class="p">,</span> <span class="n">strip_id</span><span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">call_kwargs</span><span class="p">[</span><span class="s1">&#39;session&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_session</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_get_conversation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strip_id</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a Conversation object.&quot;&quot;&quot;</span>
+        <span class="n">conversation</span> <span class="o">=</span> <span class="n">Conversation</span><span class="o">.</span><span class="n">deserialize</span><span class="p">({</span>
+            <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;pending&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;customer&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_person_customer</span><span class="p">()</span><span class="o">.</span><span class="n">serialize</span><span class="p">(),</span>
+            <span class="s1">&#39;preview&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Conversation exported from Odoo.&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;thread_count&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;created_at&#39;</span><span class="p">:</span> <span class="s1">&#39;2017-12-07T21:08:20Z&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;number&#39;</span><span class="p">:</span> <span class="mi">162</span><span class="p">,</span>
+            <span class="s1">&#39;created_by&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_person_user</span><span class="p">()</span><span class="o">.</span><span class="n">serialize</span><span class="p">(),</span>
+            <span class="s1">&#39;mailbox&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_mailbox_ref</span><span class="p">()</span><span class="o">.</span><span class="n">serialize</span><span class="p">(),</span>
+            <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;via&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;api&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s1">&#39;threads&#39;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_thread</span><span class="p">(</span><span class="n">strip_id</span><span class="o">=</span><span class="n">strip_id</span><span class="p">)</span><span class="o">.</span><span class="n">serialize</span><span class="p">(),</span>
+            <span class="p">],</span>
+            <span class="s1">&#39;folder_id&#39;</span><span class="p">:</span> <span class="mi">1601748</span><span class="p">,</span>
+            <span class="s1">&#39;owner&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_person_user</span><span class="p">()</span><span class="o">.</span><span class="n">serialize</span><span class="p">(),</span>
+            <span class="s1">&#39;bcc&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;is_draft&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">448848612</span><span class="p">,</span>
+            <span class="s1">&#39;cc&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;subject&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Celebrate successful conversation.&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_strip_id</span><span class="p">(</span><span class="n">conversation</span><span class="p">,</span> <span class="n">strip_id</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">uri</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">call_args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">uri</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_get_folder</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Folder</span><span class="o">.</span><span class="n">deserialize</span><span class="p">({</span>
+            <span class="s1">&#39;user_id&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_user</span><span class="p">()</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Mine&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;total_count&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s1">&#39;modified_at&#39;</span><span class="p">:</span> <span class="s1">&#39;2017-12-14T00:28:40Z&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;active_count&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;mine&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1601748</span><span class="p">,</span>
+        <span class="p">})</span>
 
-            <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">call_kwargs</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">to_api</span><span class="p">())</span>
-                <span class="c1"># Simple object, not a model</span>
-                <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">call_kwargs</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_get_team</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strip_id</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">team</span> <span class="o">=</span> <span class="n">Person</span><span class="o">.</span><span class="n">deserialize</span><span class="p">({</span>
+            <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Test Team&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;created_at&#39;</span><span class="p">:</span> <span class="s1">&#39;2017-12-14T01:18:46Z&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;modified_at&#39;</span><span class="p">:</span> <span class="s1">&#39;2017-12-14T01:18:51Z&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;emails&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;full_name&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Test Team &#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">245377</span><span class="p">,</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;team&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_strip_id</span><span class="p">(</span><span class="n">team</span><span class="p">,</span> <span class="n">strip_id</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">request_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">call_kwargs</span><span class="p">[</span><span class="s1">&#39;request_type&#39;</span><span class="p">],</span> <span class="n">request_type</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_new_attachment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Attachment</span><span class="p">(</span>
+            <span class="n">raw_data</span><span class="o">=</span><span class="s1">&#39;Test String&#39;</span><span class="p">,</span>
+            <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;test.txt&#39;</span><span class="p">,</span>
+            <span class="n">mime_type</span><span class="o">=</span><span class="s1">&#39;text/plain&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">singleton</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">call_kwargs</span><span class="p">[</span><span class="s1">&#39;singleton&#39;</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">_strip_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">do_strip</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">do_strip</span><span class="p">:</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">obj</span>
 
-            <span class="k">if</span> <span class="n">out_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">call_kwargs</span><span class="p">[</span><span class="s1">&#39;out_type&#39;</span><span class="p">],</span> <span class="n">out_type</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">_test_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generic create API endpoint test helper.&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__endpoint__</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+    <span class="k">def</span> <span class="nf">_test_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generic get API endpoint test helper.&quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__endpoint__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">_test_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generic delete API endpoint test helper.&quot;&quot;&quot;</span>
+        <span class="n">record</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__endpoint__</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__endpoint__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__endpoint__</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">record</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__endpoint__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_test_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generic list API endpoint test helper.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assert_results</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__endpoint__</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">),</span>
+            <span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_test_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generic search API endpoint test helper.&quot;&quot;&quot;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">id</span><span class="p">)]</span>
+        <span class="n">result_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__endpoint__</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">result_ids</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_test_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">update_attr</span><span class="p">,</span> <span class="n">update_val</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generic update API endpoint test helper.&quot;&quot;&quot;</span>
+        <span class="n">record</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__endpoint__</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="n">update_attr</span><span class="p">,</span> <span class="n">update_val</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__endpoint__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__endpoint__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">id</span><span class="p">),</span> <span class="n">update_attr</span><span class="p">),</span>
+            <span class="n">update_val</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_assert_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result_iterator</span><span class="p">,</span> <span class="n">assert_method</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">result_counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">result_iterator</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">assert_method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">assert_method</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+            <span class="n">result_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">result_counter</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
