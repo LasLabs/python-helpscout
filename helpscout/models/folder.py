@@ -22,6 +22,7 @@ class Folder(BaseModel):
                  'closed',
                  'spam',
                  'mine',
+                 'team',
                  ],
         default='drafts',
         required=True,
