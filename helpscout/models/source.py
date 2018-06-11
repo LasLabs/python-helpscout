@@ -11,7 +11,9 @@ class Source(BaseModel):
 
     type = properties.StringChoice(
         'The method from which this conversation (or thread) was created.',
-        choices=['email', 'web', 'notification', 'emailfwd', 'api', 'chat'],
+        choices=['email', 'web', 'notification', 'emailfwd',
+                 'api', 'chat', 'workflows', 'zendesk-import',
+                 'mobile'],
         default='api',
         required=True,
     )
