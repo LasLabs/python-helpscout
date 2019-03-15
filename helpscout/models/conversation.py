@@ -6,6 +6,7 @@ import properties
 
 from .base_conversation import BaseConversation
 
+from .field import Field
 from .mailbox_ref import MailboxRef
 from .person import Person
 from .source import Source
@@ -99,4 +100,8 @@ class Conversation(BaseConversation):
     )
     user_modified_at = properties.DateTime(
         'Last time that this conversation was edited by a user.',
+    )
+    custom_fields = properties.List(
+        'Custom fields for the conversation',
+        prop=Field,
     )
